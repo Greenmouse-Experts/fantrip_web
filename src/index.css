@@ -334,7 +334,7 @@
     background: linear-gradient(86.78deg, #0e1624 1.8%, #2f1840 97.69%);
   }
   .bg-faq {
-    background-image: url('/src/assets/images/resized-3.png');
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%),  url('/src/assets/images/resized-3.png');
     background-position: fixed;
   }
   .footer-gradient{

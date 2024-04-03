@@ -40,7 +40,24 @@ const LandingHeader = () => {
                 </li>
                 <li>
                   <Menu>
-                    <MenuButton ><div className="flex gap-x-2 items-center">Actions <ChevronDownIcon className="text-xs" /></div></MenuButton>
+                    <MenuButton ><div className="flex gap-x-2 items-center">Features <ChevronDownIcon size={14} className="text-xs" /></div></MenuButton>
+                    <MenuList>
+                       
+                    </MenuList>
+                  </Menu>
+                </li>
+                <li>
+                  <Link to={""}>Find a fan stay</Link>
+                </li>
+                <li>
+                  <Link to={""}>Host a fan</Link>
+                </li>
+                <li>
+                  <Link to={""}>FAQs</Link>
+                </li>
+                <li>
+                  <Menu>
+                    <MenuButton ><div className="flex gap-x-2 items-center">Login</div></MenuButton>
                     <MenuList>
                       <MenuItem className="border-b !py-3">
                         <Link to={''} className="flex gap-x-3 items-center text-black">
@@ -55,18 +72,6 @@ const LandingHeader = () => {
                         </Link></MenuItem>
                     </MenuList>
                   </Menu>
-                </li>
-                <li>
-                  <Link to={""}>Find a fan stay</Link>
-                </li>
-                <li>
-                  <Link to={""}>Host a fan</Link>
-                </li>
-                <li>
-                  <Link to={""}>FAQs</Link>
-                </li>
-                <li>
-                  <Link to={""}>Login</Link>
                 </li>
               </ul>
             </div>
