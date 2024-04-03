@@ -44,7 +44,7 @@ const HeroBanner = () => {
         </div>
        </div>
       </div>
-      <div className="relative -top-10">
+      <div className="py-12 lg:pt-0 lg:relative -top-10">
         <BookingTab/>
       </div>
     </div>

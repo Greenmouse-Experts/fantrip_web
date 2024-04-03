@@ -8,10 +8,10 @@ const BookingTab = () => {
     <div className="box">
       <div className="w-full bg-white lg:rounded-[100px] book-tab-border px-6 py-3 lg:pl-12">
         <div className="lg:flex w-full ">
-          <div className="grid gap-5 lg:gap-0 lg:grid-cols-4 divide-x divide-gray-400 w-full">
+          <div className="grid gap-9 lg:gap-0 lg:grid-cols-4 divide-x divide-gray-400 w-full">
             <div className="flex gap-x-2 items-center">
                 <IoSearch className="text-xl"/>
-                <input type="text" className="outline-none p-2 placeholder:text-black" placeholder="Enter city or region"/>
+                <input type="text" className="w-full lg:w-auto outline-none p-2 placeholder:text-black" placeholder="Enter city or region"/>
             </div>
             <div className="flex justify-center">
                 <div className="flex gap-x-4 cursor-pointer items-center">
