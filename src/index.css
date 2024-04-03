@@ -89,7 +89,6 @@
 }
 
 @layer components {
-
   /* container settings */
   .box {
     width: 100%;
@@ -232,11 +231,11 @@
   }
 
   .text-primary {
-    color: #9847FE;
+    color: #9847fe;
   }
 
   .bg-primary {
-    background: #9847FE;
+    background: #9847fe;
   }
 
   .bg-pri {
@@ -252,7 +251,7 @@
   }
 
   .btn-primary {
-    background: linear-gradient(90deg, #9847FE 0%, #FC819F 100%);
+    background: linear-gradient(90deg, #9847fe 0%, #fc819f 100%);
     color: white;
     font-weight: 500;
     border-radius: 50px;
@@ -268,21 +267,21 @@
 
   .btn-primary:hover,
   .btn-like:hover {
-    background: #9847FE;
+    background: #9847fe;
     transform: scaleX(1.02);
     transition: 0.6s;
   }
 
   .btn-feel:hover {
-    background: #9847FE;
+    background: #9847fe;
     transform: scaleX(1.02);
     transition: 0.6s;
-    color: #fff
+    color: #fff;
   }
 
   .btn-feel {
     border-radius: 1000px;
-    background: #F3E8FF;
+    background: #f3e8ff;
     color: #291946;
     font-weight: 500;
     cursor: pointer;
@@ -303,30 +302,42 @@
   }
 
   .hero-bg {
-    background-image: url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1711971286/fantrip/Cover_1_yrsdvo.jpg');
+    background-image: url("https://res.cloudinary.com/greenmouse-tech/image/upload/v1711971286/fantrip/Cover_1_yrsdvo.jpg");
   }
 
   .text-gradient {
-    background: -webkit-linear-gradient(50deg, #9847FE 51.83%, #FC819F 100%);
+    background: -webkit-linear-gradient(50deg, #9847fe 51.83%, #fc819f 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .book-tab-border {
-    border: 3px solid #FC819F;
-    border-radius: 100px;
+    border: 3px solid #fc819f;
     box-shadow: 0px 4px 24.799999237060547px 0px #00000026;
   }
 
   .border-with-gradient {
     border: 0.97px solid;
-    border-image-source: linear-gradient(135deg, #9847FE 0%, #FC819F 100%);
+    border-image: linear-gradient(135deg, #9847fe 0%, #fc819f 100%) 1;
+  }
+  .border-gradient {
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(90deg, #9847fe 0%, #fc819f 100%) 1;
   }
 
   .bg-gradient {
-    background: linear-gradient(90deg, #9847FE 0%, #FC819F 100%);
+    background: linear-gradient(90deg, #9847fe 0%, #fc819f 100%);
   }
-  .bg-layout-gradient{
-    background: linear-gradient(86.78deg, #0E1624 1.8%, #2F1840 97.69%);
+  .bg-layout-gradient {
+    background: linear-gradient(86.78deg, #0e1624 1.8%, #2f1840 97.69%);
+  }
+  .bg-faq {
+    background-image: url('/src/assets/images/resized-3.png');
+    background-position: fixed;
+  }
+  .footer-gradient{
+    background: linear-gradient(106.7deg, #341C5B 2.13%, #14131E 100%);
   }
 }

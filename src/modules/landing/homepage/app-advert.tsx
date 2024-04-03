@@ -13,7 +13,7 @@ const AppAdvert = () => {
               className="w-full"
             />
           </div>
-          <div className="lg:w-7/12">
+          <div className="lg:w-7/12 lg:mt-0 mt-12">
             <div className="flex">
               <p className="border border-[#9847FE] rounded-[50px] px-7 py-2 fs-400">
                 We cater to every aspect of your sports passion
@@ -32,24 +32,26 @@ const AppAdvert = () => {
               spots, get the inside scoop powered by real fans. Contribute your
               winning recommendations, too!
             </p>
-            <div className="flex items-center gap-x-6 lg:mt-12 mt-6 lg:mt-12">
+            <div className="lg:flex items-center gap-x-6 mt-6 lg:mt-12">
               <Link to={""} className="btn-primary block px-8 py-4">
                 <BtnContent name="Explore matchday area guide" />
               </Link>
+              <div className="flex justify-center lg:justify-normal mt-12 lg:mt-0 gap-x-6">
               <Link to={""}>
                 <img
                   src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711986112/fantrip/Frame_23_yu0vbi.png"
                   alt="google"
-                  className="w-full h-[55px] object-fit"
+                  className="lg:w-full  h-[55px] object-fit"
                 />
               </Link>
               <Link to={""}>
                 <img
                   src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711986113/fantrip/Frame_24_ii4i87.png"
                   alt="apple"
-                  className="w-full object-fit h-[55px]"
+                  className="lg:w-full object-fit h-[55px]"
                 />
               </Link>
+              </div>
             </div>
           </div>
         </div>

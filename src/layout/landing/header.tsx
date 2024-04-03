@@ -4,6 +4,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
+import { TiThMenuOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 const LandingHeader = () => {
     const [change, setChange] = useState(false)
@@ -29,10 +30,11 @@ const LandingHeader = () => {
         <div className="box duration-100">
           <div className={`${change? "bg-gradient" : "bg-[#FFFFFF33]"} rounded-[50px] p-5 lg:px-12 flex justify-between items-center`}>
             <div>
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="logo" className="w-28 lg:w-auto"/>
             </div>
             <div>
-              <ul className="flex items-center gap-x-6 lg:gap-x-10 text-white">
+              <div className="lg:hidden text-white"><TiThMenuOutline className="text-xl cursor-pointer"/></div>
+              <ul className="hidden lg:flex items-center gap-x-6 lg:gap-x-10 text-white">
                 <li>
                   <Link to={""}>Get the app</Link>
                 </li>
