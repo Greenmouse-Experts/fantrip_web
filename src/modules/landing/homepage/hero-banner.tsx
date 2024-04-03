@@ -29,7 +29,7 @@ const HeroBanner = () => {
                 <span className="syne block mt-3 lg:mt-6">Wherever You Go</span>
               </p>
               <div className="monts mt-8 lg:text-lg">
-                <p>Why stay with just anyone when you can live the match with a fellow fan? <br/>Discover <span className="text-gradient monts">fan-fan</span> accommodation, matchday travel logistics, and <br/> community in one play</p>
+                <p>Why stay with just anyone when you can live the match with a fellow fan? <br/>Discover <span className="text-gradient monts">fan-fan</span> accommodation, matchday travel logistics, and <br/> community in one play!</p>
               </div>
               <div className="flex ites-center gap-x-8 mt-8">
                 <Link to={''} className="block btn-primary py-2 px-10">
