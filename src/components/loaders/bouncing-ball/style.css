@@ -1,0 +1,69 @@
+.contain {
+    margin: auto;
+    width: 300px;
+    height: 240px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.shadow {
+    position: absolute;
+    width: 80%;
+    height: 10px;
+    background-color: rgb(203, 195, 195);
+    bottom: 0;
+    border-radius: 100%;
+    transform: scaleX(.8);
+    opacity: .6;
+    animation: shadowScale 1s linear infinite;
+}
+
+.gravity {
+    width: 140px;
+    height: 240px;
+    animation: bounce 1s cubic-bezier(0.68, 0.35, 0.29, 0.54) infinite;
+}
+
+.ball {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    left: -30px;
+    background-image: url('https://res.cloudinary.com/greenmouse-tech/image/upload/v1712572993/fantrip/football_3_dpbnqr.png');
+    background-size: cover;
+    animation: roll 2.4s linear infinite;
+}
+
+@keyframes roll {
+    0% {}
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(-100px)
+    }
+
+    50% {
+        transform: translateY(40px)
+    }
+
+    100% {
+        transform: translateY(-100px)
+    }
+}
+
+@keyframes shadowScale {
+    0% {}
+
+    50% {
+        transform: scaleX(1);
+        opacity: .8;
+    }
+
+    100% {}
+}

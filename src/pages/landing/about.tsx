@@ -1,7 +1,12 @@
+import BouncingBall from "@/components/loaders/bouncing-ball"
 
 const LandingAbout = () => {
   return (
-    <div>LandingAbout</div>
+    <div className="bg-primary pt-24">
+      <div className="h-screen w-full place-center">
+      <BouncingBall/>
+      </div>
+    </div>
   )
 }
 
