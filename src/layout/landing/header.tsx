@@ -47,7 +47,7 @@ const LandingHeader = () => {
                   </Menu>
                 </li>
                 <li>
-                  <Link to={""}>Find a fan stay</Link>
+                  <Link to={"/find-stay"}>Find a fan stay</Link>
                 </li>
                 <li>
                   <Link to={""}>Host a fan</Link>
@@ -60,13 +60,13 @@ const LandingHeader = () => {
                     <MenuButton ><div className="flex gap-x-2 items-center">Login</div></MenuButton>
                     <MenuList>
                       <MenuItem className="border-b !py-3">
-                        <Link to={''} className="flex gap-x-3 items-center text-black">
+                        <Link to={'/auth/login'} className="flex gap-x-3 items-center text-black">
                             <FaRegUser className="text-xl"/>
                             <p>Guest</p>
                         </Link>
                       </MenuItem>
                       <MenuItem className="!py-3">
-                      <Link to={''} className="flex gap-x-3 items-center text-black">
+                      <Link to={'/auth/login'} className="flex gap-x-3 items-center text-black">
                             <LuKeyRound className="text-xl"/>
                             <p>Host</p>
                         </Link></MenuItem>

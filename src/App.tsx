@@ -6,13 +6,6 @@ import ScreenLoader from "./lib/utils/screen-loader";
 import { authRooutes } from "./routes/auth-routes";
 
 const router = createBrowserRouter([...landingRooutes, ...authRooutes]);
-// const router = createBrowserRouter([
-//   {
-//     path: "/",
-//     element: <></>,
-//     children: [...landingRooutes, ...authRooutes],
-//   },
-// ]);
 
 function App() {
   const [screenLoading, setScreenLoading] = useState(false);
@@ -25,8 +18,8 @@ function App() {
   }, []);
   return (
     <ChakraProvider>
-      {screenLoading && <ScreenLoader />}
-      {!screenLoading && <RouterProvider router={router} />}
+      {/* {screenLoading && <ScreenLoader />} */}
+       <RouterProvider router={router} />
     </ChakraProvider>
   );
 }

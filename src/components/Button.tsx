@@ -10,6 +10,7 @@ interface Props {
   className?: string;
   altClassName?: string;
   isBusy?: boolean;
+  type?: 'int' | "link" | "normal";
 }
 
 const Button: React.FC<Props> = ({
@@ -19,13 +20,14 @@ const Button: React.FC<Props> = ({
   disabled,
   altClassName,
   isBusy,
+  type
 }) => {
   return (
     <div className={disabled ? 'opacity-75 ' : ''}>
       <button
         className={
           altClassName ||
-          `py-3 lg:text-lg w-full btn-primary uppercase fw-500 ${
+          `py-3 lg:text-lg w-full ${type === 'int'? "btn-int" : "btn-primary"} uppercase fw-500 ${
             disabled ? 'cursor-not-allowed btn-disabled' : ''
           }`
         }
