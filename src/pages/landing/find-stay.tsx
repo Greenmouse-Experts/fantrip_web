@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 const FindStay = () => {
   return (
     <div>
-      <div className="lg:pt-28 bg-layout-gradient">
-        <div className="pb-12">
-          <p className="text-4xl fw-600 text-center py-16 text-white">
+      <div className="pt-16 lg:pt-28 bg-layout-gradient">
+        <div className="lg:pb-12">
+          <p className="px-4 lg:px-0 text-2xl lg:text-4xl fw-600 text-center py-16 text-white">
             Stay in the heart of the game!
           </p>
         </div>
@@ -23,10 +23,10 @@ const FindStay = () => {
             <img
               src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1712587463/fantrip/Group_1171275051_2_1_dvaat3.png"
               alt="shouting fan"
-              className="w-10/12"
+              className="w-full lg:w-10/12"
             />
           </div>
-          <div className="lg:w-6/12 lg:pl-3">
+          <div className="lg:w-6/12 lg:pl-3 mt-6 lg:mt-0">
             <p className="lg:text-lg">
               Your host isn't just anyone – they're your pre-match pundit,
               post-game analyst, and fellow cheerleader. Check out their fan
@@ -37,11 +37,11 @@ const FindStay = () => {
               Who needs standard hotel rooms or unavailable hosts when you can
               have a fan's den?
             </p>
-            <div className="flex items-center gap-x-4 mt-12 lg:mt-24">
+            <div className="lg:flex items-center gap-x-4 mt-12 lg:mt-24">
               <Link to={""} className="btn-primary block px-8 py-4">
                 <BtnContent name="Find your Fan Stay" />
               </Link>
-              <Link to={""} className="btn-black block px-8 py-4">
+              <Link to={""} className="btn-black mt-5 lg:mt-0 block px-8 py-4">
                 <BtnContent name="Host a Fan" />
               </Link>
             </div>

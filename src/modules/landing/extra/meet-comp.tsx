@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
   item: any;
   i: number;
 }
 const MeetComponent: FC<Props> = ({ item, i }) => {
+  const navigate = useNavigate()
   return (
     <div
       className="border-with-gradient rounded-[13px] p-5 bg-black grid grid-cols-2 gap-5"
@@ -23,7 +24,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
           <div className="mt-2">
             <p className="fs-500">
               {item.intro}{" "}
-              <Link to={""} className="fw-500 fs-500 text-[#9847FE]">
+              <Link to={`/find-stay/${i}`} className="fw-500 fs-500 text-[#9847FE]">
                 Read More
               </Link>
             </p>
@@ -39,7 +40,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
           </div>
         </div>
         <div>
-          <div className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3">
+          <div className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3" onClick={() => navigate(`/find-stay/67`)}>
             <p className="fs-500 fw-500">Liverpool</p>
             <p className="fw-500">€ 25/ night</p>
           </div>
