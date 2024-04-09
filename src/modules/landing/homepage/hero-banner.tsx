@@ -4,7 +4,7 @@ import BookingTab from "./booking-tab";
 
 const HeroBanner = () => {
   return (
-    <div className="bg-gradient">
+    <div className="">
       <div className="hero-bg lg:h-[90vh] bg-fit overflow-hidden">
        <div className="box h-full">
        <div className="pt-40 lg:pt-16 2xl:pt-10 h-full items-center lg:flex flex-row-reverse">

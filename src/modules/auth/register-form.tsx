@@ -25,7 +25,7 @@ const RegisterForm = () => {
           placeholder="Password"
           type={InputType.password}
         />
-        <div className="mt-9 col-span-2">
+        <div className="mt-9 lg:col-span-2">
           <Button title={"Register"} type="int" />
         </div>
       </form>
