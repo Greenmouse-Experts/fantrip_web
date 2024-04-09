@@ -18,7 +18,7 @@ function App() {
   }, []);
   return (
     <ChakraProvider>
-      {/* {screenLoading && <ScreenLoader />} */}
+      {screenLoading && <ScreenLoader />}
        <RouterProvider router={router} />
     </ChakraProvider>
   );
