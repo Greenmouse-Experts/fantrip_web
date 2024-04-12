@@ -1,8 +1,9 @@
-import Button from "@/components/Button";
+// import Button from "@/components/Button";
 import TextInput, { InputType } from "@/components/TextInput";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <form className="grid gap-4">
@@ -22,7 +23,8 @@ const LoginForm = () => {
           </div>
         </div>
         <div className="mt-9">
-          <Button title={"Login"} type="int"/>
+          {/* <Button title={"Login"} type="int" /> */}
+          <div className="btn-int text-lg fw-600 uppercase py-3 cursor-pointer text-center" onClick={() => navigate('/user/profile')}>Login</div>
         </div>
       </form>
     </div>
