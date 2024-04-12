@@ -4,8 +4,13 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ScreenLoader from "./lib/utils/screen-loader";
 import { authRooutes } from "./routes/auth-routes";
+import { userRoutes } from "./routes/user-routes";
 
-const router = createBrowserRouter([...landingRooutes, ...authRooutes]);
+const router = createBrowserRouter([
+  ...landingRooutes,
+  ...authRooutes,
+  ...userRoutes,
+]);
 
 function App() {
   const [screenLoading, setScreenLoading] = useState(false);
@@ -19,7 +24,7 @@ function App() {
   return (
     <ChakraProvider>
       {screenLoading && <ScreenLoader />}
-       <RouterProvider router={router} />
+      {!screenLoading && <RouterProvider router={router} />}
     </ChakraProvider>
   );
 }

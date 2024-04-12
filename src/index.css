@@ -357,4 +357,7 @@
   .circle-shadow{
     box-shadow: 0px 4px 4px 0px #00000040;
   }
+  .sidebar-shadow{
+    box-shadow: 0px 4px 73px 0px #0000000F;
+  }
 }

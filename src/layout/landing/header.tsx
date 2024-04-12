@@ -50,7 +50,7 @@ const LandingHeader = () => {
                   <Link to={"/find-stay"}>Find a fan stay</Link>
                 </li>
                 <li>
-                  <Link to={""}>Host a fan</Link>
+                  <Link to={"/user/host-setup"}>Host a fan</Link>
                 </li>
                 <li>
                   <Link to={""}>FAQs</Link>

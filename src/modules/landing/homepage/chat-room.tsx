@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ChatRoom = () => {
   return (
     <div className="section bg-layout-gradient">
-      <div className="box">
+      <div className="box overflow-hidden">
         <div className="lg:flex items-center justify-between flex-row-reverse">
           <div className="lg:w-6/12 lg:flex justify-end">
             <img
