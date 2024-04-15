@@ -1,4 +1,3 @@
-import { IoSearch } from "react-icons/io5";
 import Button from "../../../components/Button";
 import { FiCalendar } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
@@ -19,7 +18,6 @@ interface SearchParam {
   no_of_guests: number | null;
 }
 const BookingTab = () => {
-  const [showCities, setShowCities] = useState(false);
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
