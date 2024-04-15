@@ -27,8 +27,6 @@ const BookingTab = () => {
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
   };
-  console.log(params);
-
   return (
     <div className="box">
       <div className="w-full bg-white lg:rounded-[100px] book-tab-border px-6 py-3 lg:pl-12">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import SetupSidebar from './sidebar/setup-sidebar'
 import ProfileSetup from './components/profile-setup'
 import SetupPhotos from './components/photos'
