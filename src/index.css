@@ -13,6 +13,16 @@
 .monts {
   font-family: "Montserrat", sans-serif;
 }
+.react-calendar{
+  border-radius: 10px;
+  padding-bottom: 10px;
+  border: 1.5px solid #9847fe;
+}
+@media (max-width: 380px) {
+  .react-calendar{
+    width: 260px;
+  }
+}
 
 @layer base {
   :root {
