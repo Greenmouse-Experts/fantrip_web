@@ -1,9 +1,20 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import LandingHeader from "../landing/header";
 import LandingFooter from "../landing/footer";
 import ScrollToTop from "@/lib/utils/scrollTop";
+import { useEffect } from "react";
 
 const UserLayout = () => {
+  const token = sessionStorage.getItem('fantrip_token')
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(!token){
+      navigate("/auth/login");
+    }
+  }, [])
+  if (!token) {
+    return;
+  }
   return (
     <div>
       <ScrollToTop />

@@ -1,3 +1,4 @@
+import useAuth from "@/hooks/authUser";
 import { FC } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
@@ -10,6 +11,7 @@ interface Props{
     setActive: React.Dispatch<React.SetStateAction<number>>
 }
 const SidebarLayout:FC<Props> = ({setActive, active}) => {
+  const {user} = useAuth()
   return (
     <div className="py-12">
       <div>
@@ -24,7 +26,7 @@ const SidebarLayout:FC<Props> = ({setActive, active}) => {
           </div>
         </div>
         <div className="mt-4">
-          <p className="text-xl fw-600 text-center">Victor Dwayne</p>
+          <p className="text-xl fw-600 text-center">{user.name}</p>
           <div className="flex justify-center">
             <p className="mt-2 bg-green-100 text-green-700 fw-500 px-4 py-1">
               Verified

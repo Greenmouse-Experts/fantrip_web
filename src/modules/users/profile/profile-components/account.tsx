@@ -1,6 +1,8 @@
+import useAuth from "@/hooks/authUser"
 import { AiOutlineEdit } from "react-icons/ai"
 
 const UserAccount = () => {
+    const {firstName, lastName, user} = useAuth()
   return (
     <div>
         <p className="fw-600 lg:text-lg">My Profile</p>
@@ -8,7 +10,7 @@ const UserAccount = () => {
             <div className="flex items-center gap-x-4 p-4">
                 <img src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png" alt="profile" className="w-[70px]" />
                 <div>
-                    <p className="fw-600">Victor Dwae</p>
+                    <p className="fw-600">{user.name}</p>
                     <p className="mt-1 fs-500">User</p>
                 </div>
             </div>
@@ -24,15 +26,15 @@ const UserAccount = () => {
             <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
                 <div>
                     <p className="fs-500 text-[#5F5F5F]">First Name</p>
-                    <p className="fw-500 mt-1">Victor</p>
+                    <p className="fw-500 mt-1">{firstName}</p>
                 </div>
                 <div>
                     <p className="fs-500 text-[#5F5F5F]">Last Name</p>
-                    <p className="fw-500 mt-1">Nwanyi</p>
+                    <p className="fw-500 mt-1">{lastName}</p>
                 </div>
                 <div>
                     <p className="fs-500 text-[#5F5F5F]">Email</p>
-                    <p className="fw-500 mt-1">victornwayi@gmail.com</p>
+                    <p className="fw-500 mt-1">{user.email}</p>
                 </div>
                 <div>
                     <p className="fs-500 text-[#5F5F5F]">First Name</p>
