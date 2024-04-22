@@ -5,13 +5,12 @@ import {
   DrawerOverlay,
   Menu,
   MenuButton,
-  MenuItem,
   MenuList,
 } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
-import { FaRegUser } from "react-icons/fa6";
-import { LuKeyRound } from "react-icons/lu";
+// import { FaRegUser } from "react-icons/fa6";
+// import { LuKeyRound } from "react-icons/lu";
 import { TiThMenuOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import MobileMenu from "./mobileMenu";
@@ -56,6 +55,9 @@ const LandingHeader = () => {
                   <Link to={""}>FAQs</Link>
                 </li>
                 <li>
+                  <Link to={"/auth/login"}>Login</Link>
+                </li>
+                {/* <li>
                   <Menu>
                     <MenuButton>
                       <div className="flex gap-x-2 items-center">Login</div>
@@ -81,7 +83,7 @@ const LandingHeader = () => {
                       </MenuItem>
                     </MenuList>
                   </Menu>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
