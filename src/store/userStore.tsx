@@ -16,6 +16,7 @@ interface userProps{
     id: string;
     account: string;
     joined: string;
+    bio: string;
 }
 const userInitState = {
     name: '',
@@ -26,7 +27,8 @@ const userInitState = {
     account: '',
     phone: '',
     id: '',
-    joined: ''
+    joined: '',
+    bio: ''
 }
 const useAuthStore = create<Props>()(
   persist(

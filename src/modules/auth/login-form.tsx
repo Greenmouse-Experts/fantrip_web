@@ -37,7 +37,7 @@ const LoginForm = () => {
         setIsBusy(false);
         toast({
           render: () => (
-            <div className="text-white fw-600 syne bg-gradient rounded p-3">
+            <div className="text-white text-center fw-600 syne bg-gradient rounded p-3">
               Login successfully
             </div>
           ),
@@ -54,8 +54,13 @@ const LoginForm = () => {
           id: data.data.id,
           account: data.data.role,
           joined: data.data.createdDate,
+          bio: data.data.bio
         })
-        navigate('/user/profile')
+        if(data?.data.role === "user"){
+          navigate('/user/profile')
+        }else if(data?.data.role === "admin"){
+          navigate('/admin')
+        }
       },
       onError: (error: any) => {
         toast({
@@ -101,7 +106,7 @@ const LoginForm = () => {
                 message: "Please enter your password",
               },
               minLength: {
-                value: 6,
+                value: 5,
                 message: "Password is too short",
               },
             }}

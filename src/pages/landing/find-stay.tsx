@@ -17,7 +17,17 @@ const FindStay = () => {
       <div className="py-12 lg:pt-0 lg:relative -top-10">
         <BookingTab />
       </div>
-      <div className="box">
+      <div className="">
+        <div className="box">
+          <div className="mt-12 grid lg:grid-cols-3 gap-8">
+            {meetData.map((item, i) => (
+              <MeetComponent item={item} i={i} />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="section">
+      <div className="box lg:pt-12">
         <div className="lg:flex flex-row-reverse items-center">
           <div className="lg:w-6/12 lg:flex justify-end">
             <img
@@ -46,14 +56,6 @@ const FindStay = () => {
               </Link>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="section">
-      <div className="box">
-      <div className="mt-12 grid lg:grid-cols-3 gap-8">
-          {meetData.map((item, i) => (
-            <MeetComponent item={item} i={i}/>
-          ))}
         </div>
       </div>
       </div>

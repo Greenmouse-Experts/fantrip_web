@@ -370,4 +370,7 @@
   .sidebar-shadow{
     box-shadow: 0px 4px 73px 0px #0000000F;
   }
+  .logout-grad{
+    background: linear-gradient(128.49deg, #9847FE 19.86%, #FC819F 68.34%);
+  }
 }
