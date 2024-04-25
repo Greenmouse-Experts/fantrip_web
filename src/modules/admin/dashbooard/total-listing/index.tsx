@@ -19,7 +19,7 @@ const TotalListing = () => {
       </div>
       <div className="h-24"></div>
       <div className="flex justify-between items-center">
-        <p className="text-[#AEB9E1] fs-500">Last 6 months</p>
+        <p className="text-[#AEB9E1] fs-500">Last 5 months</p>
         <p className="text-[#9847FE] fs-500">View report</p>
       </div>
     </div>
