@@ -1,7 +1,7 @@
 
 import SidebarLayout from "./sections/sidebar";
 import { BsGear } from "react-icons/bs";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/authUser";
 import useDialog from "@/hooks/useDialog";
 import LogoutModal from "@/modules/auth/modals/logout-modal";
@@ -9,10 +9,21 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { IoMdLogOut } from "react-icons/io";
 import ProfileAvatar from "@/components/ProfileAvatar";
+import { useEffect } from "react";
 
 const AdminDashboardLayout = () => {
   const { user, firstName } = useAuth();
   const { Dialog, setShowModal } = useDialog();
+  const token = sessionStorage.getItem('fantrip_token')
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(!token){
+      navigate("/auth/login");
+    }
+  }, [])
+  if (!token || user.account !== 'admin') {
+    return;
+  }
   return (
     <>
       <div className="flex">

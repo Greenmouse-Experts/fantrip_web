@@ -87,7 +87,7 @@ const UserAccount = () => {
         </div>
       </div>
       <ProfileInfo title="Update Profile Information" size="xl">
-        <UpdateProfileForm />
+        <UpdateProfileForm close={() => ShowProfile(false)}/>
       </ProfileInfo>
       <LocationInfo title="Update Location Information" size="xl">
         <UpdateAddressForm />

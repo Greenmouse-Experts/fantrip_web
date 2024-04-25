@@ -56,7 +56,7 @@ const LoginForm = () => {
           joined: data.data.createdDate,
           bio: data.data.bio
         })
-        if(data?.data.role === "user"){
+        if(data?.data.role === "student"){
           navigate('/user/profile')
         }else if(data?.data.role === "admin"){
           navigate('/admin')
