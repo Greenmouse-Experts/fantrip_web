@@ -4,6 +4,7 @@ export interface AuthInputTyping {
   phone?: string;
   email: string;
   password: string;
+  confirm_password: string;
 }
 
 export interface ForgetInputTyping {
