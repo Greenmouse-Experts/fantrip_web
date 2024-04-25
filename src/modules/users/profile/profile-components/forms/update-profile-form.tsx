@@ -4,11 +4,14 @@ import useAuth from "@/hooks/authUser";
 import { updateProfile } from "@/services/api/authApi";
 import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
 
-const UpdateProfileForm = () => {
+interface Props{
+  close: () => void
+}
+const UpdateProfileForm:FC<Props> = ({close}) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
   const { user, firstName, lastName, saveUser } = useAuth();
