@@ -1,5 +1,5 @@
 import BtnContent from "@/components/btn-content";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BookSection = () => {
   const data = [
@@ -33,6 +33,7 @@ const BookSection = () => {
       perks: ["Medium sized Bed", "Wall 2 Wall Insp...", "15 Min to Arena"],
     },
   ];
+  const navigate = useNavigate()
   return (
     <div className="section pt-4">
       <div className="box">
@@ -77,7 +78,7 @@ const BookSection = () => {
                   </div>
                 </div>
                 <div>
-                  <div className="text-white bg-gradient text-center rounded-[13px] w-full py-3">
+                  <div className="text-white bg-gradient text-center rounded-[13px] w-full py-3 cursor-pointer" onClick={() => navigate('find-stay/67')}>
                     <p className="fs-500 fw-500">Liverpool</p>
                     <p className="fw-500">€ 25/ night</p>
                   </div>
@@ -90,7 +91,7 @@ const BookSection = () => {
           ))}
         </div>
         <div className="mt-12 lg:mt-24 flex justify-center">
-            <Link to={''} className="btn-primary py-5 px-16">
+            <Link to={'/find-stay'} className="btn-primary py-5 px-16">
                 <BtnContent name="Book a stay with a fan"/>
             </Link>
         </div>

@@ -86,7 +86,7 @@ const LandingHeader = () => {
                       </MenuItem>
                       <MenuItem className="border-b3">
                         <Link
-                          to={"/user/host"}
+                          to={"/"}
                           className="flex gap-x-3 !py-3 items-center text-black"
                         >
                           <FaRegUser className="text-xl" />
