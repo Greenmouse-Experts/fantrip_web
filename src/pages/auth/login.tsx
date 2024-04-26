@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const LoginPage = () => {
   return (
     <div className="flex h-screen">
-      <div className="w-full lg:w-[60%] px-4 lg:px-0">
+      <div className="w-full lg:w-[60%] lg:h-screen overflow-y-auto px-4 lg:px-0">
         <div className="lg:w-7/12 2xl:w-6/12 mx-auto py-12 lg:py-16">
           <Link to={'/'}><img src={logo} alt="logo" className='w-44 mx-auto' /></Link>
           <div className='text-center mt-8 lg:mt-16'>

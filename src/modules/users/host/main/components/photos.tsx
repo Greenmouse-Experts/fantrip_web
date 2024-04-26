@@ -5,18 +5,18 @@ import { FaRegImage } from "react-icons/fa6";
 
 interface Props {
   next: () => void;
+  prev: () => void;
 }
-const SetupPhotos: FC<Props> = ({ next }) => {
+const StayPhotos: FC<Props> = ({ next, prev }) => {
   return (
     <div>
       <p className="text-xl lg:text-4xl lg:w-9/12">
-        Upload Your Profile Picture and a Picture of the Room
+      Upload More Photos
       </p>
       <div className="mt-6 flex gap-x-1">
-        <BsInfoCircle className="shrink-0 text-sm relative top-[4px]" />
-        <p className="fs-400">
-          Use a profile picture of yourself in your favorite team's jersey or at
-          a stadium.
+        <BsInfoCircle className="shrink-0 text-sm lg:text-[17px] relative top-[4px]" />
+        <p className="fs-400 lg:fs-600">
+        Hosts are encouraged to upload high-quality images of their accommodation.
         </p>
       </div>
       <div className="mt-4 flex">
@@ -36,13 +36,16 @@ const SetupPhotos: FC<Props> = ({ next }) => {
           </div>
         </div>
       </div>
-      <div className="mt-8 flex justify-end">
-        <div className="btn-primary cursor-pointer px-6 py-2" onClick={next}>
-          <BtnContent name="Upload & continue" />
+      <div className="mt-8 lg:mt-16 flex justify-between items-center">
+        <div className="btn-primary cursor-pointer px-6 py-2 lg:py-3" onClick={prev}>
+          <BtnContent name="Prev" reverse/>
+        </div>
+        <div className="btn-primary cursor-pointer px-6 py-2 lg:py-3" onClick={next}>
+          <BtnContent name="Continue" />
         </div>
       </div>
     </div>
   );
 };
 
-export default SetupPhotos;
+export default StayPhotos;

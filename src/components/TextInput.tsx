@@ -52,6 +52,7 @@ interface Props {
   [key: string]: any;
   readonly?: any;
   contact?: boolean;
+  borderClass?: string
 }
 
 const TextInput: React.FC<Props> = ({
@@ -83,6 +84,7 @@ const TextInput: React.FC<Props> = ({
   icon,
   readonly,
   contact,
+  borderClass,
   ...rest
 }) => {
   const [isPasswordType, setIsPasswordType] = useState<boolean>(false);
@@ -191,7 +193,7 @@ const TextInput: React.FC<Props> = ({
         </>
       </div>
       <div
-        className={classNames(
+        className={borderClass || classNames(
           type === InputType.checkbox
             ? 'mt-2'
             : error
