@@ -26,8 +26,9 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
+    if (error.response.status === 4) {
         localStorage.clear()
+        sessionStorage.clear()
       return (window.location.href = "/auth/login");
     }
     return Promise.reject(error);
