@@ -17,7 +17,7 @@ const Pricing: FC<Props> = ({ next, prev }) => {
       <div className="mt-6 flex gap-x-1">
         <BsInfoCircle className="shrink-0 text-sm lg:text-[17px] relative top-[4px]" />
         <p className="fs-400 lg:fs-600">
-          Note: Fantrip charges a 15% service fee.
+          Note: Fantrip charges a 3% service fee.
         </p>
       </div>
       <div className="mt-12">
