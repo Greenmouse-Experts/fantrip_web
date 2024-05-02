@@ -32,7 +32,7 @@ const LandingFooter = () => {
     },
   ]
   return (
-    <div className="mt-16">
+    <div className="">
       <div className="footer-gradient">
         <div className="py-12 lg:pt-24 border-b">
           <div className="box">

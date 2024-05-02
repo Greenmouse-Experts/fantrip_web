@@ -1,5 +1,6 @@
 import LandingLayout from "@/layout/landing";
 import LandingAbout from "@/pages/landing/about";
+import { AreaGuide } from "@/pages/landing/area-guide";
 import FindStay from "@/pages/landing/find-stay";
 import FindStayDetails from "@/pages/landing/find-stay-details";
 import LandingHomepage from "@/pages/landing/homepage";
@@ -24,6 +25,10 @@ export const landingRooutes = [
           {
             path: 'find-stay/:id',
             element: <FindStayDetails />,
+          },
+          {
+            path: 'area-guide',
+            element: <AreaGuide />,
           },
         ],
       },

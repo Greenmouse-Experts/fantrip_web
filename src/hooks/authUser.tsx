@@ -3,7 +3,9 @@ import useAuthStore from '../store/userStore'
 
 const useAuth = () => {
     const user = useAuthStore((state) => state.user)
+    const kyc = useAuthStore((state) => state.kyc)
     const saveUser = useAuthStore((state) => state.saveUser)
+    const saveKyc = useAuthStore((state) => state.saveKyc)
     const clearUser = useAuthStore((state) => state.clearUser);
     const token = getToken()
     const isLoggedIn = token !== null? true : false
@@ -22,6 +24,8 @@ const useAuth = () => {
     firstName,
     lastName,
     isLoggedIn,
+    kyc,
+    saveKyc,
     saveUser,
     signOut
   }

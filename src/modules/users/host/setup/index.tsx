@@ -16,10 +16,10 @@ const HostSetupIndex = () => {
         <div className='lg:w-[65%]'>
             {
                 active === 1 && <ProfileSetup next={() => setActive(2)}/>}
-                {active === 2 && <SetupPhotos next={() => setActive(3)}/>}
-                {active === 3 && <SetupBio next={() => setActive(4)}/>}
-                {active === 4 && <SetupSocials next={() => setActive(5)}/>}
-                {active === 5 && <SetupVerification/>}
+                {active === 2 && <SetupPhotos prev={() => setActive(1)} next={() => setActive(3)}/>}
+                {active === 3 && <SetupBio prev={() => setActive(2)} next={() => setActive(4)}/>}
+                {active === 4 && <SetupSocials prev={() => setActive(3)} next={() => setActive(5)}/>}
+                {active === 5 && <SetupVerification prev={() => setActive(4)}/>}
         </div>
     </div>
   )

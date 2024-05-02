@@ -16,6 +16,8 @@ import MobileMenu from "./mobileMenu";
 import useAuth from "@/hooks/authUser";
 import { FaCircleUser, FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
+import { PiMapPin } from "react-icons/pi";
+
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
   const { isLoggedIn } = useAuth();
@@ -50,7 +52,17 @@ const LandingHeader = () => {
                         <ChevronDownIcon size={14} className="text-xs" />
                       </div>
                     </MenuButton>
-                    <MenuList></MenuList>
+                    <MenuList>
+                      <MenuItem>
+                      <Link
+                          to={"/area-guide"}
+                          className="flex gap-x-3 !py-3 items-center text-black"
+                        >
+                          <PiMapPin className="text-xl" />
+                          <p>Area Guide</p>
+                        </Link>
+                      </MenuItem>
+                    </MenuList>
                   </Menu>
                 </li>
                 <li>

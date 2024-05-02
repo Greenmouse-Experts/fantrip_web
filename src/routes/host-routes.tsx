@@ -1,5 +1,5 @@
-import AdminDashboardLayout from "@/layout/admin";
-import AdminDasboard from "@/pages/admin/dashboard";
+import AdminDashboardLayout from "@/layout/host";
+import AdminDasboard from "@/pages/host/dashboard";
 
 export const adminRoutes = [
     {

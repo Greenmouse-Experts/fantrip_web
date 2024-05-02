@@ -1,7 +1,7 @@
-import BoxAnalyysis from "@/modules/admin/dashbooard/box-analysis"
-import TotalListing from "@/modules/admin/dashbooard/total-listing"
-import TotalProfit from "@/modules/admin/dashbooard/total-profit"
-import TotalRevenue from "@/modules/admin/dashbooard/total-revenue"
+import BoxAnalyysis from "@/modules/host/dashbooard/box-analysis"
+import TotalListing from "@/modules/host/dashbooard/total-listing"
+import TotalProfit from "@/modules/host/dashbooard/total-profit"
+import TotalRevenue from "@/modules/host/dashbooard/total-revenue"
 
 const AdminDasboard = () => {
   return (

@@ -73,15 +73,15 @@ const UserAccount = () => {
           <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
             <div>
               <p className="fs-500 text-[#5F5F5F]">Country</p>
-              <p className="fw-500 mt-1">United Kingdom</p>
+              <p className="fw-500 mt-1">{user.country}</p>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">State</p>
-              <p className="fw-500 mt-1">London</p>
+              <p className="fw-500 mt-1">{user.state}</p>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">City</p>
-              <p className="fw-500 mt-1">Tottheham</p>
+              <p className="fw-500 mt-1">{user.city}</p>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@ const UserAccount = () => {
         <UpdateProfileForm close={() => ShowProfile(false)}/>
       </ProfileInfo>
       <LocationInfo title="Update Location Information" size="xl">
-        <UpdateAddressForm />
+        <UpdateAddressForm close={() => ShowLocation(false)}/>
       </LocationInfo>
     </div>
   );

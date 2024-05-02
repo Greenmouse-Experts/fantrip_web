@@ -3,7 +3,7 @@ import { landingRooutes } from "./routes/landing-routes";
 import { ChakraProvider } from "@chakra-ui/react";
 import { authRooutes } from "./routes/auth-routes";
 import { userRoutes } from "./routes/user-routes";
-import { adminRoutes } from "./routes/admin-routes";
+import { adminRoutes } from "./routes/host-routes";
 
 const router = createBrowserRouter([
   ...landingRooutes,

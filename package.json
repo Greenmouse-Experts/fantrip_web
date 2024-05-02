@@ -17,6 +17,7 @@
     "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "country-state-city": "^3.2.1",
     "dayjs": "^1.11.10",
     "framer-motion": "^11.0.24",
     "lucide-react": "^0.364.0",
@@ -33,6 +34,7 @@
     "swiper": "^11.1.0",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
+    "use-debounce": "^10.0.0",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

@@ -100,7 +100,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
           <p className="text-xl fw-600 text-center">{user.name}</p>
           <div className="flex justify-center">
             <p className="mt-2 bg-green-100 text-green-700 fw-500 px-4 py-1">
-              Verified
+              Active
             </p>
           </div>
         </div>

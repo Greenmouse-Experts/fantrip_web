@@ -54,13 +54,12 @@ const LoginForm = () => {
           id: data.data.id,
           account: data.data.role,
           joined: data.data.createdDate,
-          bio: data.data.bio
+          bio: data.data.bio,
+          city: data.data.city,
+          state: data.data.state,
+          country: data.data.country
         })
-        if(data?.data.role === "student"){
           navigate('/user/profile')
-        }else if(data?.data.role === "admin"){
-          navigate('/admin')
-        }
       },
       onError: (error: any) => {
         toast({
@@ -131,7 +130,7 @@ const LoginForm = () => {
           <Button
             title={isBusy ? <BeatLoader size={12} color="white" /> : "Login"}
             type="int"
-            disabled={!isValid}
+            disabled={!isValid || isBusy}
           />
         </div>
       </form>
