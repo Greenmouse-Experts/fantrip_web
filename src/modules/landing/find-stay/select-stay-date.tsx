@@ -1,5 +1,4 @@
 import Button from "@/components/Button";
-import { BsInfoCircle } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa6";
 import { FiCalendar } from "react-icons/fi";
 import { PiCaretDownThin } from "react-icons/pi";
