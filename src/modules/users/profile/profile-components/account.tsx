@@ -7,7 +7,7 @@ import UpdateAddressForm from "./forms/update-address";
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
   const { Dialog: LocationInfo, setShowModal: ShowLocation } = useDialog();
-  const { firstName, lastName, user } = useAuth();
+  const { firstName, lastName, user, isHost } = useAuth();
   return (
     <div>
       <div>
@@ -21,7 +21,7 @@ const UserAccount = () => {
             />
             <div>
               <p className="fw-600">{user.name}</p>
-              <p className="mt-1 fs-500">User</p>
+              <p className="mt-1 fs-500">{isHost? 'Host' : 'Guest'}</p>
             </div>
           </div>
         </div>

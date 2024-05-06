@@ -46,7 +46,7 @@ const UserReferrals = () => {
         <p className="text-sm text-gray-500">Insert your friend's email address and send them invitation to join Fantrip!</p>
         <div className="mt-3">
             <div className="border border-gray-400 rounded-[50px] flex gap-x-2 py-2 pr-2 pl-5 w-full">
-                <input type="email" className="outline-none py-1 px-2 w-full" />
+                <input type="email" className="outline-none bg-transparent py-1 px-2 w-full" />
                 <div className="w-12 h-12 shrink-0 circle place-center bg-[#9847fe] cursor-pointer">
                 <IoSend className="text-[#fff] text-2xl shrink-0"/>
                 </div>

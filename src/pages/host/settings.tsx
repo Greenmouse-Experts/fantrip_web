@@ -1,8 +1,11 @@
+import HostSettingsIndex from "@/modules/host/settings";
 
 const HostSettings = () => {
   return (
-    <div>HostSettings</div>
-  )
-}
+    <div className="pt-5">
+      <HostSettingsIndex />
+    </div>
+  );
+};
 
-export default HostSettings
+export default HostSettings;

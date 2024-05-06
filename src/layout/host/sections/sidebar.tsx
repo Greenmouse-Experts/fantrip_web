@@ -88,6 +88,7 @@ const SidebarLayout = () => {
             component={<Link to={"/host/settings"} />}
             icon={<BsGear className="text-xl" />}
             className="mt-12 border-t border-[#ffffff3a] pt-6"
+            active={path.pathname === "/host/settings" && true}
           >
             <div className="flex pr-4 justify-between items-center">
               <p className="fs-400">Settings</p>
