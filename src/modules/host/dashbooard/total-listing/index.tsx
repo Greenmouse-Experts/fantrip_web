@@ -1,5 +1,6 @@
 import { GoArrowUpRight } from "react-icons/go";
 import { RiAlarmLine } from "react-icons/ri";
+import TotalListingChart from "./components/line-chart";
 
 const TotalListing = () => {
   return (
@@ -17,7 +18,9 @@ const TotalListing = () => {
           </div>
         </div>
       </div>
-      <div className="h-24"></div>
+      <div className="py-3">
+        <TotalListingChart/>
+      </div>
       <div className="flex justify-between items-center">
         <p className="text-[#AEB9E1] fs-500">Last 5 months</p>
         <p className="text-[#9847FE] fs-500">View report</p>

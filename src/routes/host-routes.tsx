@@ -1,23 +1,40 @@
-import AdminDashboardLayout from "@/layout/host";
-import AdminDasboard from "@/pages/host/dashboard";
+import UserDashboardLayout from "@/layout/host";
+import HostBookings from "@/pages/host/booking";
+import UserDashboard from "@/pages/host/dashboard";
+import HostInbox from "@/pages/host/inbox";
+import HostListings from "@/pages/host/listings";
+import HostSettings from "@/pages/host/settings";
+import HostTransactions from "@/pages/host/transactions";
 
-export const adminRoutes = [
+export const hostRoutes = [
     {
-        path: '/admin/',
-        element: <AdminDashboardLayout />,
+        path: '/host/',
+        element: <UserDashboardLayout />,
         children: [
           {
             index: true,
-            element: <AdminDasboard/>,
+            element: <UserDashboard/>,
           },
-          // {
-          //   path: 'settings',
-          //   element: <UserProfile />,
-          // },
-          // {
-          //   path: 'host-setup',
-          //   element: <HostSetup />,
-          // },
+          {
+            path: 'listings',
+            element: <HostListings/>,
+          },
+          {
+            path: 'bookings',
+            element: <HostBookings/>,
+          },
+          {
+            path: 'transact',
+            element: <HostTransactions/>,
+          },
+          {
+            path: 'inbox',
+            element: <HostInbox/>,
+          },
+          {
+            path: 'settings',
+            element: <HostSettings/>,
+          },
         ],
       },
 ]

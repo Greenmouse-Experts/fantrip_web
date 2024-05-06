@@ -1,5 +1,5 @@
 import { MdOutlineDashboard } from "react-icons/md";
-import { IoExtensionPuzzleSharp, IoLocationOutline } from "react-icons/io5";
+import { IoExtensionPuzzleSharp } from "react-icons/io5";
 import { FaDollarSign, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 export interface RouteType {
@@ -16,37 +16,37 @@ export const Routes = [
   {
     name: "Dashboard",
     icon: <MdOutlineDashboard className="text-xl" />,
-    route: "/admin",
+    route: "/host",
     submenu: [],
   },
   {
     name: "Listings",
     icon: <FaStar className="text-xl" />,
-    route: "/admin/listings",
+    route: "/host/listings",
     submenu: [],
   },
   {
     name: "Bookings",
     icon: <FaUserAlt className="text-xl" />,
-    route: "/admin/bookings",
+    route: "/host/bookings",
     submenu: [],
   },
+  // {
+  //   name: "Locations",
+  //   icon: <IoLocationOutline className="text-xl" />,
+  //   route: "/host/locations",
+  //   submenu: [],
+  // },
   {
-    name: "Locations",
-    icon: <IoLocationOutline className="text-xl" />,
-    route: "/admin/locations",
-    submenu: [],
-  },
-  {
-    name: "Pricing",
+    name: "Transactions",
     icon: <FaDollarSign className="text-xl" />,
-    route: "/admin/pricing",
+    route: "/host/transact",
     submenu: [],
   },
   {
     name: "Inbox",
     icon: <IoExtensionPuzzleSharp className="text-xl" />,
-    route: "/admin/inbox",
+    route: "/host/inbox",
     submenu: [],
   },
 ];

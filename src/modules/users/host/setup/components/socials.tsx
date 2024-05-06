@@ -64,8 +64,8 @@ const SetupSocials: FC<Props> = ({ next, prev }) => {
             type={InputType.text}
             label="Linkedin"
             labelClassName="text-[#9F9F9F]"
-            value={socials.instagramUrl}
-            onChange={(e:ChangeEvent<HTMLInputElement>) => setSocials({...socials, instagramUrl: e.target.value})}
+            value={socials.linkedinUrl}
+            onChange={(e:ChangeEvent<HTMLInputElement>) => setSocials({...socials, linkedinUrl: e.target.value})}
           />
         </div>
       </div>

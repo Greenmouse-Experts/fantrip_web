@@ -8,6 +8,8 @@ import logo from "@/assets/images/logo_2.png";
 import BtnContent from "@/components/btn-content";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import useAuth from "@/hooks/authUser";
+import { FaChevronDown } from "react-icons/fa6";
+import { FaChevronRight } from "react-icons/fa";
 
 const SidebarLayout = () => {
   const path = useLocation();
@@ -34,20 +36,15 @@ const SidebarLayout = () => {
             button: ({ level, active }) => {
               if (level === 0)
                 return {
-                  color: active ? "white" : "#b5b3b3",
+                  color: active ? "#9847FE" : "#AEB9E1",
                   marginTop: "4px",
-                  // height: "auto",
                   padding: "3px 1px 3px 0px !important ",
-                  // textAlign: "left",
-                  // fontWeight: active ? "600" : "500",
-                  // borderLeft: active ? "5px solid #090979" : "",
-                  // background: active ? "#e3f9ff" : "",
-                  // "&:hover": {
-                  //   color: "black",
-                  //   background: "#e3f9ff",
-                  //   borderLeft: "5px solid #090979",
-                  //   fontWeight: "500",
-                  // },
+                  background: active ? "#E3E3E30D" : "",
+                  "&:hover": {
+                    color: "#9847FE",
+                    background: "#E3E3E30D",
+                    fontWeight: "500",
+                  },
                 };
             },
           }}
@@ -74,18 +71,32 @@ const SidebarLayout = () => {
                     active={path.pathname === item.route && true}
                     key={item.name}
                   >
-                    <p className="fs-400">{item.name}</p>
+                    <div className="flex pr-4 justify-between items-center">
+                      <p className="fs-400">{item.name}</p>
+                      {path.pathname === item.route ? (
+                        <FaChevronRight className="text-[10px]" />
+                      ) : (
+                        <FaChevronDown className="text-[10px]" />
+                      )}
+                    </div>
                   </MenuItem>
                 )}
               </div>
             );
           })}
           <MenuItem
-            component={<Link to={"/user/profile"} />}
+            component={<Link to={"/host/settings"} />}
             icon={<BsGear className="text-xl" />}
-            className="mt-12 border-t border-[#FFFFFF] pt-6"
+            className="mt-12 border-t border-[#ffffff3a] pt-6"
           >
-            <p className="fs-400">Settings</p>
+            <div className="flex pr-4 justify-between items-center">
+              <p className="fs-400">Settings</p>
+              {path.pathname === "/host/settings" ? (
+                <FaChevronRight className="text-[10px]" />
+              ) : (
+                <FaChevronDown className="text-[10px]" />
+              )}
+            </div>
           </MenuItem>
           <div className="mt-5">
             <div className="flex items-center gap-x-2">

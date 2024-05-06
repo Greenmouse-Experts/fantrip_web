@@ -73,7 +73,7 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
           <p className="fw-500">Profile Picture (max of 1mb)</p>
         </div>
         <div className="flex items-center gap-x-3 mt-3">
-          <div className="relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
+          <div className="w-44 relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
             <input
               type="file"
               accept="image/*"
@@ -107,7 +107,7 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
           <p className="fw-500">Room Picture (max of 1mb)</p>
         </div>
         <div className="flex mt-3 gap-x-3">
-          <div className="relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
+          <div className="w-44 relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
             <input
               type="file"
               onChange={(e) => handleUploadRoom(e)}

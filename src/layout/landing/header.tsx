@@ -20,7 +20,7 @@ import { PiMapPin } from "react-icons/pi";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isHost } = useAuth();
   return (
     <div>
       <div className="absolute z-10 left-0 top-6 w-full">
@@ -88,13 +88,19 @@ const LandingHeader = () => {
                     </MenuButton>
                     <MenuList>
                       <MenuItem className="border-b">
-                        <Link
+                        {isHost? <Link
+                          to={"/host"}
+                          className="flex gap-x-3 !py-3 items-center text-black"
+                        >
+                          <FaRegUser className="text-xl" />
+                          <p>Dashboard</p>
+                        </Link> : <Link
                           to={"/user/profile"}
                           className="flex gap-x-3 !py-3 items-center text-black"
                         >
                           <FaRegUser className="text-xl" />
                           <p>Profile</p>
-                        </Link>
+                        </Link>}
                       </MenuItem>
                       <MenuItem className="border-b3">
                         <Link

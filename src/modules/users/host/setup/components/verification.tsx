@@ -15,7 +15,7 @@ interface Props {
   prev: () => void;
 }
 const SetupVerification: FC<Props> = ({ prev }) => {
-  const { kyc, saveKyc } = useAuth();
+  const { kyc, saveKyc, saveUser, user } = useAuth();
   const [loading, setLoading] = useState(false);
   const handleUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) {
@@ -71,6 +71,13 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           position: "top",
         });
         setIsBusy(false);
+        saveUser({
+          ...user,
+          name: kyc.fullName,
+          bio: kyc.bio,
+          image: kyc.picture,
+          account: ['guest', 'host']
+        })
         setShowModal(true);
       },
       onError: (error: any) => {

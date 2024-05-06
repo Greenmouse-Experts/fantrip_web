@@ -1,5 +1,6 @@
 import { FaCalendar } from "react-icons/fa6";
 import { GoArrowUpRight } from "react-icons/go";
+import TotalRevenueChart from "./components/line-chart";
 
 const TotalRevenue = () => {
   return (
@@ -35,6 +36,9 @@ const TotalRevenue = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <TotalRevenueChart/>
       </div>
     </div>
   );

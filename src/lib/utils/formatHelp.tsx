@@ -22,8 +22,8 @@ export const formatNumber = (value: number | string) => {
 
 export const formatAsNgnMoney = (value: number | string) => {
   if (!value) return '';
-  const val = Number(value) / 10 ** 2;
-  return `₦${val
+  const val = Number(value)
+  return `$${val
     .toLocaleString('en-US')
     .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
 };
