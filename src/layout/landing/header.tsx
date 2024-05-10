@@ -16,7 +16,6 @@ import MobileMenu from "./mobileMenu";
 import useAuth from "@/hooks/authUser";
 import { FaCircleUser, FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
-import { PiMapPin } from "react-icons/pi";
 import { FiCompass } from "react-icons/fi";
 import { RiChat3Line } from "react-icons/ri";
 import { BiBarChartAlt2 } from "react-icons/bi";
