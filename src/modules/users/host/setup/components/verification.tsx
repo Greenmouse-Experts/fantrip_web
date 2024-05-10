@@ -76,7 +76,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           name: kyc.fullName,
           bio: kyc.bio,
           image: kyc.picture,
-          account: ['guest', 'host']
+          account: 'host'
         })
         setShowModal(true);
       },
