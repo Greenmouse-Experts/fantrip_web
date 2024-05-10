@@ -59,7 +59,8 @@ const LoginForm = () => {
           state: data.data.state,
           country: data.data.country
         })
-          navigate('/user/profile')
+        if(data.data.role === 'host'){navigate('/host')}
+        if(data.data.role === 'guest'){navigate('/user/profile')}
       },
       onError: (error: any) => {
         toast({
