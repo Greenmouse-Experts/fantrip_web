@@ -17,6 +17,10 @@ import useAuth from "@/hooks/authUser";
 import { FaCircleUser, FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
 import { PiMapPin } from "react-icons/pi";
+import { FiCompass } from "react-icons/fi";
+import { RiChat3Line } from "react-icons/ri";
+import { BiBarChartAlt2 } from "react-icons/bi";
+import { AiOutlineBulb } from "react-icons/ai";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
@@ -56,10 +60,37 @@ const LandingHeader = () => {
                       <MenuItem>
                       <Link
                           to={"/area-guide"}
-                          className="flex gap-x-3 !py-3 items-center text-black"
+                          className="flex gap-x-2 !py-[6px] items-center text-black"
                         >
-                          <PiMapPin className="text-xl" />
-                          <p>Area Guide</p>
+                          <FiCompass className="text-lg" />
+                          <p className="fs-500">Matchday Area Guide</p>
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                      <Link
+                          to={"/auth/login"}
+                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                        >
+                          <RiChat3Line className="text-lg" />
+                          <p className="fs-500">Chat Room</p>
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                      <Link
+                          to={"/auth/login"}
+                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                        >
+                          <BiBarChartAlt2 className="text-lg" />
+                          <p className="fs-500">Live quiz and predictions</p>
+                        </Link>
+                      </MenuItem>
+                      <MenuItem>
+                      <Link
+                          to={"/auth/login"}
+                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                        >
+                          <AiOutlineBulb className="text-lg" />
+                          <p className="fs-500">Exclusive sports content</p>
                         </Link>
                       </MenuItem>
                     </MenuList>

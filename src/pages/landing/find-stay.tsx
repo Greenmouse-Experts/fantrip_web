@@ -25,7 +25,7 @@ const FindStay = () => {
       </div>
       <div className="">
         <div className="box">
-          <div className="mt-12 grid lg:grid-cols-3 gap-8">
+          <div className="mt-12 grid items-stretch lg:grid-cols-3 gap-8">
             {meetData.map((item, i) => (
               <MeetComponent item={item} i={i} />
             ))}

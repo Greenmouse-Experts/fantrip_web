@@ -8,9 +8,9 @@ const ChatRoom = () => {
         <div className="lg:flex items-center justify-between flex-row-reverse">
           <div className="lg:w-6/12 lg:flex justify-end">
             <img
-              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711984694/fantrip/Group_1171275053_gyw3t9.png"
+              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1715337116/fantrip/Group_1171275072_m3mpk8.png"
               alt="fandom"
-              className="w-full lg:w-10/12 relative lg:-right-16"
+              className="w-full lg:w-10/12 relative lg:-right-3"
             />
           </div>
           <div className="text-white lg:w-6/12">

@@ -8,9 +8,9 @@ const AppAdvert = () => {
         <div className="lg:flex items-center justify-between">
           <div className="lg:w-5/12">
             <img
-              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711984698/fantrip/Group_1171275052_nbprsf.png"
+              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1715337114/fantrip/Group_1171275071_vzii0w.png"
               alt="fandom"
-              className="w-full"
+              className="w-full lg:w-11/12"
             />
           </div>
           <div className="lg:w-7/12 lg:mt-0 mt-12">
@@ -33,7 +33,7 @@ const AppAdvert = () => {
               winning recommendations, too!
             </p>
             <div className="lg:flex items-center gap-x-6 mt-6 lg:mt-12">
-              <Link to={""} className="btn-primary block px-8 py-4">
+              <Link to={"/area-guide"} className="btn-primary block px-8 py-4">
                 <BtnContent name="Explore matchday area guide" />
               </Link>
               <div className="flex justify-center lg:justify-normal mt-12 lg:mt-0 gap-x-6">
