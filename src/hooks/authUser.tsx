@@ -8,7 +8,7 @@ const useAuth = () => {
     const saveKyc = useAuthStore((state) => state.saveKyc)
     const clearUser = useAuthStore((state) => state.clearUser);
     const token = getToken()
-    const isHost = user.account.includes('host')? true : false
+    const isHost = user.account === "host"
     const isLoggedIn = token !== null? true : false
     const userId = user.id
     const nameRow = user.name?.split(" ");

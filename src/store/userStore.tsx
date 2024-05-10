@@ -17,7 +17,7 @@ interface userProps {
   address: string;
   phone: string;
   id: string;
-  account: string[];
+  account: string;
   joined: string;
   bio: string;
   country: string;
@@ -52,7 +52,7 @@ const userInitState = {
   token: "",
   image: "",
   address: "",
-  account: [],
+  account: "",
   phone: "",
   id: "",
   joined: "",
