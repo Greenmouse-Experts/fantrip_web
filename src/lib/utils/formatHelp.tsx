@@ -94,3 +94,7 @@ export const generatePaginationNumbers = (
   }
   return paginationNumbers;
 };
+
+export const removeDulicates = (data:string[]) => {
+  return data.filter((value,index) => data.indexOf(value) === index)
+}

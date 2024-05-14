@@ -6,6 +6,17 @@
   font-family: "Poppins", sans-serif;
 }
 
+input:checked {
+  background: #9847fe !important;
+}
+input[type="checkbox"] {
+  outline: 2px solid #fc819f;
+  background: #9847fe !important;
+}
+input[type="checkbox"]:checked {
+  accent-color: #9847fe !important;
+}
+
 .syne {
   font-family: "Syne", sans-serif;
 }
