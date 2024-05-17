@@ -132,18 +132,9 @@ const LandingHeader = () => {
                           <p>Profile</p>
                         </Link>}
                       </MenuItem>
-                      <MenuItem className="border-b3">
-                        <Link
-                          to={"/"}
-                          className="flex gap-x-3 !py-3 items-center text-black"
-                        >
-                          <FaRegUser className="text-xl" />
-                          <p>Guest</p>
-                        </Link>
-                      </MenuItem>
                       <MenuItem className="">
                         <Link
-                          to={"/user/host"}
+                          to={isHost? "/user/host" : "/user/host-setup"}
                           className="flex gap-x-3 items-center !py-3 text-black"
                         >
                           <LuKeyRound className="text-xl" />
