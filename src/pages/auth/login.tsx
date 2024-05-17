@@ -23,7 +23,7 @@ const LoginPage = () => {
             <LoginForm/>
           </div>
           <div className='mt-6 text-center'>
-            <p>Don’t have an account? <Link to={'/auth/register'} className='fw-500'>Register here</Link>.</p>
+            <p className='fs-300 sm:fs-500 lg:fs-600'>Don&apos;t have an account? <Link to={'/auth/register'} className='fw-500'>Register here</Link>.</p>
           </div>
         </div>
       </div>

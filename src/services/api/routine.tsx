@@ -6,6 +6,10 @@ export const uploadImage = async (payload: FormData) => {
   return axios.post(`/upload/image`, payload).then((response) => response.data);
 };
 
+export const uploadImages = async (payload: FormData) => {
+  return axios.post(`/upload/images`, payload).then((response) => response.data);
+};
+
 export const getProperties = async () => {
   return axios
     .get(ENDPOINT.GET_PROPERTY_TYPES)

@@ -17,7 +17,7 @@ const RegistrationPage = () => {
               Fill in the forms below to create a new Fantrip account.
             </p>
           </div>
-          <div className="mt-7 w-10/12 mx-auto">
+          <div className="mt-7 lg:w-10/12 mx-auto">
             <GoogleButton text={"Continue with Google"} />
           </div>
           <div className="relative flex justify-center mt-12">
@@ -28,7 +28,7 @@ const RegistrationPage = () => {
           </div>
           <div className="mt-6"><RegisterForm/></div>
           <div className="mt-6 text-center">
-            <p>
+            <p className='fs-300 sm:fs-500 lg:fs-600'>
               Don’t have an account?{" "}
               <Link to={"/auth/login"} className="fw-500">
                 Login here

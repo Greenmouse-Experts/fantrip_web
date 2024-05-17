@@ -1,7 +1,9 @@
 import ImageInput from "@/components/ImageInput";
 import BtnContent from "@/components/btn-content";
-// import { uploadImage } from "@/services/api/routine";
-// import { useMutation } from "@tanstack/react-query";
+import useStay from "@/hooks/useStay";
+import { uploadImages } from "@/services/api/routine";
+import { useToast } from "@chakra-ui/react";
+import { useMutation } from "@tanstack/react-query";
 import { FC, useEffect, useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 
@@ -10,31 +12,47 @@ interface Props {
   prev: () => void;
 }
 const StayPhotos: FC<Props> = ({ next, prev }) => {
+  const {stay, saveStay} = useStay()
   const [selectedImg, setSelectedImg] = useState<File[] | undefined>();
   const [preview, setPreview] = useState<string[] | undefined>([])
+  const toast = useToast()
   useEffect(() => {
     const selected = selectedImg?.map((item) => URL.createObjectURL(item))
     setPreview(selected)
   }, [selectedImg])
-  // const mutation = useMutation({
-  //   mutationFn: uploadImage,
-  //   })
+  const mutation = useMutation({
+    mutationFn: uploadImages,
+    })
 
   const handleAddImages = () => {
-    // if(!selectedImg?.length ) return;
-    // const fd = new FormData()
-    // selectedImg.forEach((item) => {
-    //     fd.append(`image`, item)
-    // });
-    // mutation.mutate(fd, {
-    //   onSuccess: () => {
-    //     next()
-    //   },
-    //   onError: () => {
-    //     next()
-    //   }
-    // })
-    next()
+    if(!selectedImg?.length ){
+      if(!!stay.photos.length){
+        next()
+        return;
+      }else return;
+    }
+    const fd = new FormData()
+    selectedImg.forEach((item) => {
+        fd.append(`image`, item)
+    });
+    mutation.mutate(fd, {
+      onSuccess: (data) => {
+        const imgs = data.map((item: {image: string}) => item.image)
+        saveStay({
+          ...stay,
+          photos: imgs
+        })
+        next()
+      },
+      onError: (err:any) => {
+        toast({
+          title: err.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+      }
+    })
   }
   return (
     <div>
