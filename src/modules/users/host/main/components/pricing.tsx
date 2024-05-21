@@ -27,7 +27,7 @@ const Pricing: FC<Props> = ({ next, prev }) => {
     if (!isValid) return;
     saveStay({
       ...stay,
-      ...data,
+      price: Number(data.price)
     });
     next();
   };

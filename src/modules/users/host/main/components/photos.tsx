@@ -33,14 +33,13 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
     }
     const fd = new FormData()
     selectedImg.forEach((item) => {
-        fd.append(`image`, item)
+        fd.append(`images`, item)
     });
     mutation.mutate(fd, {
       onSuccess: (data) => {
-        const imgs = data.map((item: {image: string}) => item.image)
         saveStay({
           ...stay,
-          photos: imgs
+          photos: data
         })
         next()
       },
@@ -71,6 +70,15 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
         <div className="md:flex gap-4 mt-2">
           {
             preview && !!preview.length && preview.map((item, i) => (
+              <div key={i}>
+                <img src={item} alt="room" className="w-36 h-36 object-cover" />
+              </div>
+            ))
+          }
+        </div>
+        <div className="md:flex gap-4 mt-2">
+          {
+            stay && !!stay.photos.length && stay.photos.map((item, i) => (
               <div key={i}>
                 <img src={item} alt="room" className="w-36 h-36 object-cover" />
               </div>

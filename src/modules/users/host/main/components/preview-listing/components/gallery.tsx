@@ -49,7 +49,7 @@ const StayGallery: FC<Props> = ({ data }) => {
           <img
             src={item}
             alt=""
-            className="w-full lg:h-[100px] rounded-lg object-cover"
+            className="w-full h-[100px] lg:h-[100px] rounded-lg object-cover"
           />
         </SwiperSlide>
       ))}</Swiper>

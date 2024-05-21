@@ -69,7 +69,7 @@ const Amenities: FC<Props> = ({ next, prev }) => {
       </div>
       <div className="mt-8">
         <div className="lg:w-10/12 grid gap-5 grid-cols-2">
-          {amenities.data.map((item: AmenityItem) => (
+          {amenities?.data?.map((item: AmenityItem) => (
             <div className="flex items-center gap-x-3" key={item.id}>
               <input
                 type="checkbox"

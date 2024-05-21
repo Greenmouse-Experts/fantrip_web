@@ -157,7 +157,20 @@ input[type="checkbox"]:checked {
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
 }
-
+.react-daterange-picker__wrapper{
+  background: #FFEDF2;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  padding: 10px 25px;
+}
+.react-daterange-picker__inputGroup__input{
+  background: #FFEDF2;
+}
+.react-daterange-picker__calendar-button{
+  margin-right: 3px;
+}
 
 @layer components {
   /* container settings */

@@ -15,6 +15,9 @@ export interface StayItemInput {
     photos: string[]
     specialOffers: string[]
     percentageOff: number;
+    availableFrom: string;
+    availableTo: string;
+    maxNights: number
 }
 
 export interface UpdateStayStatusInput {

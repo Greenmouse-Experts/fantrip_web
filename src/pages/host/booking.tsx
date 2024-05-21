@@ -1,7 +1,10 @@
+import BookingIndex from "@/modules/host/bookings"
 
 const HostBookings = () => {
   return (
-    <div>HostBookings</div>
+    <div>
+      <BookingIndex/>
+    </div>
   )
 }
 

@@ -1,7 +1,10 @@
+import HostListingindex from "@/modules/host/listings"
 
 const HostListings = () => {
   return (
-    <div>HostListings</div>
+    <div>
+      <HostListingindex/>
+    </div>
   )
 }
 

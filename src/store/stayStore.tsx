@@ -21,6 +21,9 @@ const stayInitState = {
   photos: [],
   specialOffers: [],
   percentageOff: 0,
+  availableFrom: "",
+    availableTo: "",
+    maxNights: 0
 };
 const useStayStore = create<Props>()(
   persist(
