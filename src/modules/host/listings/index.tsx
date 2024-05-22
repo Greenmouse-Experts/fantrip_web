@@ -1,4 +1,5 @@
-import ListingAnalytics from "./listing-analytics"
+import ListingAnalytics from "./component/listing-analytics"
+import StayListingTanle from "./component/stay-table"
 
 const HostListingindex = () => {
   return (
@@ -7,7 +8,7 @@ const HostListingindex = () => {
         <ListingAnalytics />
       </div>
       <div className="mt-6">
-        {/* <ListingTable /> */}
+        <StayListingTanle/>
       </div>
     </div>
   )

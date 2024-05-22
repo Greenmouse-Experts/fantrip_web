@@ -16,6 +16,7 @@ export const GET_ALL_STAY = `/stays`
 export const DISCLOSE_STAY = `/stays/change-status`
 export const UPDATE_STAY = `/stays/update-stay`
 export const REMOVE_STAY_AMENITY = `/stays/remove-amenity`
+export const GET_HOST_STAY = `/stays/fetch-host-stays`
 
 // Routine endpoint
 export const GET_PROPERTY_TYPES = `/properties`

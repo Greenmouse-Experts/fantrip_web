@@ -22,3 +22,14 @@ export interface PropertyItem {
   deletedDate: string | null;
   isPublished: boolean;
 }
+
+export interface FetchParam {
+  isDisclosed?: number,
+  page?:  number,
+  isPublished?: boolean,
+}
+
+export enum REUSABLE_MODAL_TYPES {
+  WARNING = "warning",
+  DELETE = "delete"
+}

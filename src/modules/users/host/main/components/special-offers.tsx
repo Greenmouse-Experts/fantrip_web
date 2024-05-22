@@ -15,7 +15,7 @@ const SpecialOffer: FC<Props> = ({ next, prev }) => {
   const [initListing, setInitLisitng] = useState([
     "Stay for 7 nights, get one night free",
     "Complimentary breakfast for two",
-    ...stay.specialOffers
+    ...stay.specialOffers,
   ]);
   const [selectedSpecial, setSelectedSpecial] = useState<string[]>(
     stay.specialOffers
@@ -64,8 +64,8 @@ const SpecialOffer: FC<Props> = ({ next, prev }) => {
       specialOffers: selectedSpecial,
       percentageOff: Number(watch("percentageOff")),
     };
-    saveStay(payload)
-    next()
+    saveStay(payload);
+    next();
   };
 
   return (

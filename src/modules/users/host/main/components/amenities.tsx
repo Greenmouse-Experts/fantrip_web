@@ -11,11 +11,14 @@ interface Props {
   prev: () => void;
 }
 const Amenities: FC<Props> = ({ next, prev }) => {
-  const {stay, saveStay} = useStay()
+  const { stay, saveStay } = useStay();
   const { amenities, createAmenity, amenityPending } = useRoutine();
-  const defaultVals = () => stay.amenities.map((item) => item.id)
-  const [selectedAmenities, setSelectedAmenities] = useState<string[]>(defaultVals);
-  const [selectedSpecial, setSelectedSpecial] = useState<string>(stay.uniqueFeature);
+  const defaultVals = () => stay.amenities.map((item) => item.id);
+  const [selectedAmenities, setSelectedAmenities] =
+    useState<string[]>(defaultVals);
+  const [selectedSpecial, setSelectedSpecial] = useState<string>(
+    stay.uniqueFeature
+  );
   const [showOther, setShowOther] = useState(false);
   const [newAmenity, setNewAmenity] = useState("");
 
@@ -43,19 +46,21 @@ const Amenities: FC<Props> = ({ next, prev }) => {
   };
 
   const handleAdd = () => {
-    const amenities = !!selectedAmenities.length && selectedAmenities.map((item) => ({
-      id: item
-    }))
+    const amenities =
+      !!selectedAmenities.length &&
+      selectedAmenities.map((item) => ({
+        id: item,
+      }));
     const payload = {
       ...stay,
       amenities: amenities || [],
-      uniqueFeature: selectedSpecial
-    }
+      uniqueFeature: selectedSpecial,
+    };
     saveStay({
       ...payload,
     });
     next();
-  }
+  };
   return (
     <div>
       <p className="text-xl lg:text-4xl fw-500">
@@ -121,7 +126,9 @@ const Amenities: FC<Props> = ({ next, prev }) => {
             borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
             altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
             value={selectedSpecial}
-            onChange={(e:ChangeEvent<HTMLInputElement>) => setSelectedSpecial(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSelectedSpecial(e.target.value)
+            }
           />
         </div>
       </div>

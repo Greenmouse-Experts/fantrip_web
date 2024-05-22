@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as ENDPOINT from "../constant";
 import { StayItemInput, UpdateStayStatusInput } from "@/lib/contracts/stay";
+import { FetchParam } from "@/lib/contracts/routine";
 
 export const createStay = async (payload:StayItemInput) => {
     return axios
@@ -19,4 +20,10 @@ export const createStay = async (payload:StayItemInput) => {
       .patch(`${ENDPOINT.UPDATE_STAY}/${id}`, payload)
       .then((response) => response.data);
   };
+
+  export const getHostStay = async (param:FetchParam) => {
+    return axios
+    .get(`${ENDPOINT.GET_HOST_STAY}?isDisclosed=${param.isDisclosed}`)
+    .then((response) => response.data);
+  }
   

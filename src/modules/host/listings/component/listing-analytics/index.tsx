@@ -1,7 +1,7 @@
-import all from "../../../../assets/svg/all.svg";
-import active from "../../../../assets/svg/active.svg";
-import saved from "../../../../assets/svg/saved.svg";
-import cancel from "../../../../assets/svg/cancel.svg";
+import all from "../../../../../assets/svg/all.svg";
+import active from "../../../../../assets/svg/active.svg";
+import saved from "../../../../../assets/svg/saved.svg";
+import cancel from "../../../../../assets/svg/cancel.svg";
 
 const ListingAnalytics = () => {
   const listing = [
@@ -29,7 +29,7 @@ const ListingAnalytics = () => {
   return (
     <div className="grid grid-cols-4 gap-5">
       {listing.map((item) => (
-        <div className="border border-[#343B4F] flex gap-x-2 p-4 rounded-[8px]">
+        <div key={item.name} className="border border-[#343B4F] flex gap-x-2 p-4 rounded-[8px]">
           <div>{item.img}</div>
           <div>
             <p className="fw-500">{item.name}</p>

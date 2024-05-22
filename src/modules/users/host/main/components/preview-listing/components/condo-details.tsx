@@ -17,13 +17,17 @@ const CondoDetails: FC<Props> = ({ setActive }) => {
   const myAmenity = amenities?.data?.filter((where: AmenityItem) =>
     stay.amenities.some((item) => item.id === where.id)
   );
-  const myPropName = properties?.data.filter((where: PropertyItem) => where.id === stay.property)
+  const myPropName = properties?.data.filter(
+    (where: PropertyItem) => where.id === stay.property
+  );
   return (
     <div>
       <div className="flex items-center justify-between pb-5 lg:pb-8 mt-6 lg:mt-10 border-b border-[#D2D2D2]">
         <div className="">
           <p className="text-lg lg:text-3xl fw-600">{stay.name}</p>
-          <p className="mt-2 text-[#494949]">{!!myPropName.length && myPropName[0].name }</p>
+          <p className="mt-2 text-[#494949]">
+            {!!myPropName.length && myPropName[0].name}
+          </p>
           <p className="mt-2 text-[#494949]">{stay.description}</p>
         </div>
         <div>
@@ -48,7 +52,7 @@ const CondoDetails: FC<Props> = ({ setActive }) => {
         <div className="mt-4">
           <ul className="grid lg:grid-cols-2 gap-5">
             {myAmenity.map((item: AmenityItem) => (
-              <li className="flex items-center gap-x-3">
+              <li className="flex items-center gap-x-3" key={item.id}>
                 {item.imageUrl ? (
                   <img
                     src={item.imageUrl}
@@ -77,14 +81,12 @@ const CondoDetails: FC<Props> = ({ setActive }) => {
         </div>
         <div className="mt-5">
           <ul className="grid gap-5">
-            {
-              stay.specialOffers.map((item, i) => (
-                <li className="flex items-center gap-x-3" key={i}>
+            {stay.specialOffers.map((item, i) => (
+              <li className="flex items-center gap-x-3" key={i}>
                 <CiDiscount1 className="text-[18px] text-[#9847FE]" />
                 <p className="fs-400">{item}</p>
               </li>
-              ))
-            }
+            ))}
           </ul>
         </div>
       </div>
@@ -103,11 +105,15 @@ const CondoDetails: FC<Props> = ({ setActive }) => {
           <ul className="grid gap-5">
             <li className="flex items-center gap-x-3">
               <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
-              <p className="fs-400">Weekdays: {formatAsNgnMoney(stay.price)}/night</p>
+              <p className="fs-400">
+                Weekdays: {formatAsNgnMoney(stay.price)}/night
+              </p>
             </li>
             <li className="flex items-center gap-x-3">
               <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
-              <p className="fs-400">Game Days/Weekends: {formatAsNgnMoney(stay.price)}/night</p>
+              <p className="fs-400">
+                Game Days/Weekends: {formatAsNgnMoney(stay.price)}/night
+              </p>
             </li>
           </ul>
         </div>

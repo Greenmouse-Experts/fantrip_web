@@ -1,58 +1,35 @@
 import StayGallery from "./components/gallery";
 import CondoDetails from "./components/condo-details";
-import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import "react-calendar/dist/Calendar.css";
-import { ChangeEvent, FC, useState } from "react";
+import { FC, useState } from "react";
 import BtnContent from "@/components/btn-content";
-import { BsDashLg } from "react-icons/bs";
 import useStay from "@/hooks/useStay";
-import dayjs from "dayjs";
 import { createStay } from "@/services/api/stay-api";
 import { useToast } from "@chakra-ui/react";
 import { BeatLoader } from "react-spinners";
+import Availability from "./components/availability";
+import useDialog from "@/hooks/useDialog";
+import StayCreateSuccess from "../modal/stay-create-success";
 
-type ValuePiece = Date | null;
-
-type Value = ValuePiece | [ValuePiece, ValuePiece];
 interface Props {
   setActive: React.Dispatch<React.SetStateAction<number>>;
 }
 const PreviewListing: FC<Props> = ({ setActive }) => {
-  const [openCal, setOpenCal] = useState(true);
-  const { stay, saveStay } = useStay();
-  const [value, setValue] = useState<Value>([
-    dayjs(stay.availableFrom).toDate() || new Date(),
-    dayjs(stay.availableTo).toDate() || null,
-  ]);
+  const { stay, clearStay } = useStay();
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
-  const [maxNight, setMaxNight] = useState<number | string>(stay.maxNights);
-
-  const handleChange = (val: Value) => {
-    setValue(val);
-    setOpenCal(false);
-    const daet = val as any;
-    saveStay({
-      ...stay,
-      availableFrom: val ? dayjs(daet[0]).format("YYYY-MM-DD") : "",
-      availableTo: val ? dayjs(daet[1]).format("YYYY-MM-DD") : "",
-    });
-  };
-
-  const handleMaxNight = () => {
-    saveStay({
-      ...stay,
-      maxNights: Number(maxNight),
-    });
-  };
+  const { Dialog, setShowModal } = useDialog();
 
   const handleCreate = async () => {
+    if (!checkStay()) {
+      return;
+    }
     setIsBusy(true);
     const payload = {
       ...stay,
       subHead: stay.description,
-      state: 'London'
-    }
+      state: "London",
+    };
     await createStay(payload)
       .then(() => {
         setIsBusy(false);
@@ -64,6 +41,8 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
           ),
           position: "top",
         });
+        setShowModal(true);
+        clearStay()
       })
       .catch((error: any) => {
         toast({
@@ -75,6 +54,23 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
         setIsBusy(false);
       });
   };
+  const checkStay = () => {
+    if (
+      !stay.photos.length ||
+      !stay.availableFrom ||
+      !stay.availableTo ||
+      !stay.maxNights ||
+      !stay.property ||
+      !stay.price
+    ) {
+      return false;
+    } else return true;
+  };
+
+  const handleClose = () => {
+    setActive(1);
+    setShowModal(false);
+  };
 
   return (
     <div className="w-11/12 mx-auto">
@@ -85,32 +81,7 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
         <div>
           <div>
             <p className="text-lg fw-500 mb-4">Select Available Dates</p>
-            <div>
-              <div>
-                <DateRangePicker
-                  onChange={handleChange}
-                  value={value}
-                  className={"whitespace-nowrap"}
-                  clearIcon={null}
-                  minDate={new Date()}
-                  rangeDivider={<BsDashLg className="mx-4" />}
-                  format="dd/MMM/y"
-                  closeCalendar={openCal}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="mt-5">
-            <p className="text-lg fw-500 mb-4">Maximum Stay Nights</p>
-            <input
-              type="number"
-              value={maxNight}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setMaxNight(e.target.value)
-              }
-              onBlur={handleMaxNight}
-              className="p-3 border border-gray-400 w-full outline-none rounded-[8px]"
-            />
+            <Availability />
           </div>
         </div>
       </div>
@@ -125,16 +96,19 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
           <BtnContent reverse name="Prev" />
         </div>
         <div
-          className="btn-primary cursor-pointer px-6 py-2 lg:py-3"
+          className={checkStay()? "btn-primary cursor-pointer px-6 py-2 lg:py-3" : "text-gray-100 rounded-full cursor-not-allowed fw-500 bg-gray-400 px-6 py-2 lg:py-3"}
           onClick={() => handleCreate()}
         >
-          {isBusy ? (
+          {checkStay() && isBusy ? (
             <BeatLoader size={12} color="white" />
           ) : (
             <BtnContent name="Create Listing" />
           )}
         </div>
       </div>
+      <Dialog title={""} size={"lg"}>
+        <StayCreateSuccess close={() => handleClose()} />
+      </Dialog>
     </div>
   );
 };
