@@ -23,14 +23,14 @@ const StayGallery: FC<Props> = ({ data }) => {
         thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
         modules={[Autoplay, EffectFade, Navigation, Thumbs]}
         slidesPerView={1}
-        className="w-full pb-6 rounded-lg h-[300px] lg:h-[400px]"
+        className="w-full pb-6 rounded-lg h-[300px] lg:h-[450px]"
       >
         {data.map((item: any, index: any) => (
           <SwiperSlide key={index}>
             <img
               src={item}
               alt=""
-              className="w-full h-[300px] lg:h-[400px] object-cover"
+              className="w-full h-[300px] lg:h-[450px] object-cover"
             />
           </SwiperSlide>
         ))}
@@ -49,7 +49,7 @@ const StayGallery: FC<Props> = ({ data }) => {
           <img
             src={item}
             alt=""
-            className="w-full lg:h-[100px] rounded-lg object-cover"
+            className="w-full lg:h-[120px] rounded-lg object-cover"
           />
         </SwiperSlide>
       ))}</Swiper>

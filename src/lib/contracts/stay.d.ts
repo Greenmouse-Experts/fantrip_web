@@ -43,6 +43,21 @@ export interface StayItem {
   deletedDate: string | null;
   isDisclosed: boolean;
   createdDate: string;
+  maxNights: number;
+  availableFrom: string;
+  availableTo: string;
   property: PropertyItem;
   amenities: AmenityItem[];
+}
+
+export interface AvailableStayItem extends StayItem {
+  host: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    picture: string;
+    state: string;
+    country: string;
+    bio: string;
+  };
 }

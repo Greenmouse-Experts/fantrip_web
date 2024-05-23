@@ -1,9 +1,17 @@
 import Button from "@/components/Button";
+import { FC } from "react";
 import { FaRegUser } from "react-icons/fa6";
 import { FiCalendar } from "react-icons/fi";
 import { PiCaretDownThin } from "react-icons/pi";
 
-const SelectStayDate = () => {
+interface Props{
+  from: string;
+  to: string;
+  price: number
+}
+const SelectStayDate:FC<Props> = ({from, to, price}) => {
+  console.log(from, to);
+  
   return (
     <div className="grid gap-3 mt-4 pb-6">
       <div className="px-2 grid gap-3">
@@ -46,7 +54,7 @@ const SelectStayDate = () => {
           <div className="mt-3 pt-2 border-t border-[#D2D2D2]">
           <div className="text-lg flex justify-between items-center">
               <p className="fw-500">Total (EU)</p>
-              <p className="fw-500 text-lg">€87</p>
+              <p className="fw-500 text-lg">€{price}</p>
             </div>
           </div>
         </div>

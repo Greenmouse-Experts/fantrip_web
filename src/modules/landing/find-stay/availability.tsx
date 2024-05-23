@@ -1,17 +1,16 @@
-import { useState } from "react";
+import dayjs from "dayjs";
+import { FC } from "react";
 import Calendar from "react-calendar";
 
-const Availability = () => {
-  const [params, setParams] = useState<any>({
-    checkIn: null,
-    checkOut: null,
-  });
-  const newDate = new Date();
-const add  = 5
-const test = newDate.setDate(newDate.getDate() + add)
-  const handleChange = (val: any, field: string) => {
-    setParams({ ...params, [field]: val });
-  };
+interface Props{
+  from: string;
+  to: string;
+}
+const Availability:FC<Props> = ({from, to}) => {
+  const date = {
+    from: dayjs(from).toDate(),
+    to: dayjs(to).toDate()
+  }
   return (
     <div className="pb-6 border-b border-[#D2D2D2]">
       <div>
@@ -19,16 +18,15 @@ const test = newDate.setDate(newDate.getDate() + add)
       </div>
       <div className="mt-6 flex">
         <div className="bg-[#FFEDF2] px-3 lg:px-6 fw-500 py-3">
-          Choose accurate date for fan stay booking
+          Calendar view of available dates for fan stay booking
         </div>
       </div>
       <div className="mt-12">
         <Calendar
-          onChange={(value) => handleChange(value, "checkIn")}
-          value={[params.checkIn, params.checkOut]}
+          // value={[params.checkIn, params.checkOut]}
           className={"lg:w-[400px] overflow-hidden"}
-          minDate={new Date()}
-          maxDate={new Date(test)}
+          minDate={date.from}
+          maxDate={date.to}
         />
       </div>
     </div>

@@ -13,10 +13,16 @@ export const UPDATE_PASSWORD = `/auth/update-password`
 export const CREATE_STAY = `/stays/create`
 export const GET_AVAILABLE_STAY = `/stays/available-stays`
 export const GET_ALL_STAY = `/stays`
+export const GET_SINGLE_STAY = `/stays/view`
 export const DISCLOSE_STAY = `/stays/change-status`
 export const UPDATE_STAY = `/stays/update-stay`
 export const REMOVE_STAY_AMENITY = `/stays/remove-amenity`
 export const GET_HOST_STAY = `/stays/fetch-host-stays`
+
+// booking endpoints
+export const CREATE_BOOKING = `/reservations/add-reservation`
+export const FETCH_CLIENT_BOOKINGS = `/reservations/fetch-guest-reservations`
+export const FETCH_SINGLE_CLIENT_BOOKING = `/reservations`
 
 // Routine endpoint
 export const GET_PROPERTY_TYPES = `/properties`

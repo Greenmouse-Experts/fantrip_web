@@ -138,7 +138,7 @@ const LandingHeader = () => {
                           className="flex gap-x-3 items-center !py-3 text-black"
                         >
                           <LuKeyRound className="text-xl" />
-                          <p>Host</p>
+                          <p>Create New Listing</p>
                         </Link>
                       </MenuItem>
                     </MenuList>

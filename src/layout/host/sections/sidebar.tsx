@@ -22,7 +22,7 @@ const SidebarLayout = () => {
         customBreakPoint="1024px"
         className="h-screen overflow-y-hidden !border-none scroll-pro fs-700 fw-500 px-4"
         backgroundColor=""
-        width="260px"
+        width="275px"
       >
         <div className="py-4 lg:py-6 lg:pb-8 items-center">
           <Link to="/" className="gap-x-1">

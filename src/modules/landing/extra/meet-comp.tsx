@@ -1,8 +1,10 @@
+import { AmenityItem } from "@/lib/contracts/routine";
+import { AvailableStayItem } from "@/lib/contracts/stay";
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
-  item: any;
+  item: AvailableStayItem;
   i: number;
 }
 const MeetComponent: FC<Props> = ({ item, i }) => {
@@ -10,11 +12,15 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
   return (
     <div className="stay-item-wrapper grid">
       <div
-        className="rounded-[13px] stay-item p-5 bg-black grid grid-cols-2 gap-5"
+        className="rounded-[13px] stay-item p-5 bg-black grid grid-cols-2 gap-3"
         key={i}
       >
         <div>
-          <img src={item.img} alt="fan_image" className="h-full object-cover" />
+          <img
+            src={item.host.picture}
+            alt="fan_image"
+            className="h-full rounded-lg object-cover"
+          />
         </div>
         <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
           <div className="">
@@ -24,7 +30,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="mt-2">
               <p className="fs-500">
-                {item.intro}{" "}
+                {item.host.bio}{" "}
                 <Link
                   to={`/find-stay/${i}`}
                   className="fw-500 fs-500 text-[#9847FE]"
@@ -35,29 +41,31 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
               <p className="h-[2px] bg-gradient w-full mt-2"></p>
             </div>
             <div className="grid gap-1 mt-2">
-              {item.perks.map((item: string, i: number) => (
-                <div className="flex gap-x-2" key={i}>
-                  <p className="w-[5px] h-[5px] relative top-[10px] circle bg-black"></p>
-                  <p className="fs-400">{item}</p>
-                </div>
-              ))}
+              {item.amenities
+                .slice(0, 3)
+                .map((item: AmenityItem, i: number) => (
+                  <div className="flex gap-x-2" key={i}>
+                    <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
+                    <p className="fs-300">{item.name}</p>
+                  </div>
+                ))}
             </div>
           </div>
           <div>
             <div
               className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3"
-              onClick={() => navigate(`/find-stay/67`)}
+              onClick={() => navigate(`/find-stay/${item.id}`)}
             >
               <p className="fs-500 fw-500">Liverpool</p>
-              <p className="fw-500">€ 25/ night</p>
+              <p className="fw-500">€ {item.price}/ night</p>
             </div>
           </div>
         </div>
         <div>
           <img
-            src={item.room_img}
+            src={item.photos[0]}
             alt="room_img"
-            className="h-full object-cover"
+            className="h-full rounded-lg object-cover"
           />
         </div>
       </div>

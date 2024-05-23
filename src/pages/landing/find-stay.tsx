@@ -1,10 +1,17 @@
-import { meetData } from "@/lib/fakedata/meet-data";
+import MeetDataSkeleton from "@/components/shimmers/meet-data";
+import { AvailableStayItem } from "@/lib/contracts/stay";
 import MeetComponent from "@/modules/landing/extra/meet-comp";
 import BookingTab from "@/modules/landing/homepage/booking-tab";
+import { getAllStay } from "@/services/api/stay-api";
+import { useQuery } from "@tanstack/react-query";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const FindStay = () => {
+  const {isLoading, data} = useQuery({
+    queryKey: ['get-all-stay'],
+    queryFn: getAllStay
+  })
   return (
     <div>
       <div className="pt-16 lg:pt-28 bg-layout-gradient">
@@ -26,7 +33,8 @@ const FindStay = () => {
       <div className="">
         <div className="box">
           <div className="mt-12 grid items-stretch lg:grid-cols-3 gap-8">
-            {meetData.map((item, i) => (
+            {isLoading && <MeetDataSkeleton count={6}/>}
+            {!isLoading && !!data?.data.length && data?.data.map((item:AvailableStayItem, i:number) => (
               <MeetComponent item={item} i={i} />
             ))}
           </div>
@@ -54,14 +62,6 @@ const FindStay = () => {
               Who needs standard hotel rooms or unavailable hosts when you can
               have a fan's den?
             </p>
-            {/* <div className="lg:flex items-center gap-x-4 mt-12 lg:mt-24">
-              <Link to={""} className="btn-primary block px-8 py-4">
-                <BtnContent name="Find your Fan Stay" />
-              </Link>
-              <Link to={""} className="btn-black mt-5 lg:mt-0 block px-8 py-4">
-                <BtnContent name="Host a Fan" />
-              </Link>
-            </div> */}
           </div>
         </div>
       </div>
