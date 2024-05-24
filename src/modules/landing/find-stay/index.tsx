@@ -12,6 +12,7 @@ interface Props {
 }
 const StayDetailsIndex: FC<Props> = ({ data }) => {
   const {
+    id,
     photos,
     price,
     amenities,
@@ -58,6 +59,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
                 from={availableFrom}
                 to={availableTo}
                 price={price}
+                id={id}
               />
             </div>
           </div>

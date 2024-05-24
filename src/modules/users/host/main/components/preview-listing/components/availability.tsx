@@ -2,7 +2,6 @@ import useStay from "@/hooks/useStay";
 import dayjs from "dayjs";
 import { ChangeEvent, useState } from "react";
 import Calendar from "react-calendar";
-import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { Menu, MenuButton, MenuList } from "@chakra-ui/react";
 import { FiCalendar } from "react-icons/fi";

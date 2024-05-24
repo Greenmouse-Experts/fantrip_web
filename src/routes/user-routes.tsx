@@ -1,4 +1,5 @@
 import UserLayout from "@/layout/users";
+import BookingPage from "@/pages/users/booking";
 import HostaFan from "@/pages/users/host";
 import HostSetup from "@/pages/users/host-setup";
 import UserProfile from "@/pages/users/user-profile";
@@ -23,6 +24,10 @@ export const userRoutes = [
           {
             path: 'host',
             element: <HostaFan />,
+          },
+          {
+            path: 'booking',
+            element: <BookingPage />,
           },
         ],
       },

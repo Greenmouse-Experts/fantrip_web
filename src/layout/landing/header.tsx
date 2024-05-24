@@ -17,7 +17,7 @@ import useAuth from "@/hooks/authUser";
 import { FaCircleUser, FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
 import { FiCompass } from "react-icons/fi";
-import { RiChat3Line } from "react-icons/ri";
+import { RiChat3Line, RiHotelLine } from "react-icons/ri";
 import { BiBarChartAlt2 } from "react-icons/bi";
 import { AiOutlineBulb } from "react-icons/ai";
 
@@ -57,7 +57,7 @@ const LandingHeader = () => {
                     </MenuButton>
                     <MenuList>
                       <MenuItem>
-                      <Link
+                        <Link
                           to={"/area-guide"}
                           className="flex gap-x-2 !py-[6px] items-center text-black"
                         >
@@ -66,7 +66,7 @@ const LandingHeader = () => {
                         </Link>
                       </MenuItem>
                       <MenuItem>
-                      <Link
+                        <Link
                           to={"/auth/login"}
                           className="flex gap-x-2 !py-[6px] items-center text-black"
                         >
@@ -75,7 +75,7 @@ const LandingHeader = () => {
                         </Link>
                       </MenuItem>
                       <MenuItem>
-                      <Link
+                        <Link
                           to={"/auth/login"}
                           className="flex gap-x-2 !py-[6px] items-center text-black"
                         >
@@ -84,7 +84,7 @@ const LandingHeader = () => {
                         </Link>
                       </MenuItem>
                       <MenuItem>
-                      <Link
+                        <Link
                           to={"/auth/login"}
                           className="flex gap-x-2 !py-[6px] items-center text-black"
                         >
@@ -109,41 +109,58 @@ const LandingHeader = () => {
                     <Link to={"/auth/login"}>Login</Link>
                   </li>
                 )}
-                {isLoggedIn && <li>
-                  <Menu>
-                    <MenuButton className="p-0 m-0">
-                      <div className="flex gap-x-2 items-center relative top-[2px]">
-                        <FaCircleUser className="text-xl xl:text-2xl" />
-                      </div>
-                    </MenuButton>
-                    <MenuList>
-                      <MenuItem className="border-b">
-                        {isHost? <Link
-                          to={"/host"}
-                          className="flex gap-x-3 !py-3 items-center text-black"
-                        >
-                          <FaRegUser className="text-xl" />
-                          <p>Dashboard</p>
-                        </Link> : <Link
-                          to={"/user/profile"}
-                          className="flex gap-x-3 !py-3 items-center text-black"
-                        >
-                          <FaRegUser className="text-xl" />
-                          <p>Profile</p>
-                        </Link>}
-                      </MenuItem>
-                      <MenuItem className="">
-                        <Link
-                          to={isHost? "/user/host" : "/user/host-setup"}
-                          className="flex gap-x-3 items-center !py-3 text-black"
-                        >
-                          <LuKeyRound className="text-xl" />
-                          <p>Create New Listing</p>
-                        </Link>
-                      </MenuItem>
-                    </MenuList>
-                  </Menu>
-                </li>}
+                {isLoggedIn && (
+                  <li>
+                    <Menu>
+                      <MenuButton className="p-0 m-0">
+                        <div className="flex gap-x-2 items-center relative top-[2px]">
+                          <FaCircleUser className="text-xl xl:text-2xl" />
+                        </div>
+                      </MenuButton>
+                      <MenuList>
+                        <MenuItem className="border-b">
+                          {isHost ? (
+                            <Link
+                              to={"/host"}
+                              className="flex gap-x-3 !py-3 items-center text-black"
+                            >
+                              <FaRegUser className="text-xl" />
+                              <p>Dashboard</p>
+                            </Link>
+                          ) : (
+                            <Link
+                              to={"/user/profile"}
+                              className="flex gap-x-3 !py-3 items-center text-black"
+                            >
+                              <FaRegUser className="text-xl" />
+                              <p>Profile</p>
+                            </Link>
+                          )}
+                        </MenuItem>
+                        {!isHost && (
+                          <MenuItem className="">
+                            <Link
+                              to={"/user/booking"}
+                              className="flex gap-x-3 items-center !py-3 text-black"
+                            >
+                              <RiHotelLine className="text-xl" />
+                              <p>Bookings/Reservations</p>
+                            </Link>
+                          </MenuItem>
+                        )}
+                        <MenuItem className="">
+                          <Link
+                            to={isHost ? "/user/host" : "/user/host-setup"}
+                            className="flex gap-x-3 items-center !py-3 text-black"
+                          >
+                            <LuKeyRound className="text-xl" />
+                            <p>Create New Listing</p>
+                          </Link>
+                        </MenuItem>
+                      </MenuList>
+                    </Menu>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
