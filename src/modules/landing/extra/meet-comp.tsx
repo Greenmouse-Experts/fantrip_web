@@ -1,5 +1,6 @@
 import { AmenityItem } from "@/lib/contracts/routine";
 import { AvailableStayItem } from "@/lib/contracts/stay";
+import { formatName } from "@/lib/utils/formatHelp";
 import { FC } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,7 +31,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="mt-2">
               <p className="fs-500">
-                {item.host.bio}{" "}
+                {formatName(item.host.bio, 44)}{" "}
                 <Link
                   to={`/find-stay/${i}`}
                   className="fw-500 fs-500 text-[#9847FE]"
@@ -57,7 +58,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
               onClick={() => navigate(`/find-stay/${item.id}`)}
             >
               <p className="fs-500 fw-500">Liverpool</p>
-              <p className="fw-500">€ {item.price}/ night</p>
+              <p className="fw-500">{item.currency}{item.price}/ night</p>
             </div>
           </div>
         </div>

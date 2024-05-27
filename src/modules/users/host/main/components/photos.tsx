@@ -66,7 +66,7 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
       <div className="mt-8">
         <div className="w-44 lg:w-10/12 place-center rounded-[14px]">
           <ImageInput
-            label="Amenity Image/Icon"
+            label="Stay Imgaes"
             setImage={setSelectedImg}
             containerClass="w-full"
           />

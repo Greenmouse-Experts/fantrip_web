@@ -1,11 +1,12 @@
 import TextInput, { InputType } from "@/components/TextInput";
 import BtnContent from "@/components/btn-content";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import InfoText from "./pricing/info-text";
 import useStay from "@/hooks/useStay";
 import { Controller, useForm } from "react-hook-form";
+import { ChevronDownIcon } from "lucide-react";
 
 interface Props {
   next: () => void;
@@ -13,6 +14,7 @@ interface Props {
 }
 const Pricing: FC<Props> = ({ next, prev }) => {
   const { stay, saveStay } = useStay();
+  const [selectedCurr, setSelectedCurr] = useState(stay.currency || "€");
   const {
     control,
     handleSubmit,
@@ -28,6 +30,7 @@ const Pricing: FC<Props> = ({ next, prev }) => {
     saveStay({
       ...stay,
       price: Number(data.price),
+      currency: selectedCurr
     });
     next();
   };
@@ -61,7 +64,22 @@ const Pricing: FC<Props> = ({ next, prev }) => {
                 borderClass="flex items-center pl-3 border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full outline-none"
                 icon={
-                  <MdOutlineEuro className="text-[#9F9F9F] shrink-0 lg:text-lg" />
+                  <Menu>
+                    <MenuButton>
+                      <div className="flex gap-x-2 items-center">
+                        <p className="fw-500 text-xl text-gray-600">{selectedCurr}</p>
+                        <ChevronDownIcon size={14} className="text-xs" />
+                      </div>
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem onClick={() => setSelectedCurr("€")}>
+                        Euro (€)
+                      </MenuItem>
+                      <MenuItem onClick={() => setSelectedCurr("$")}>
+                        Dollar ($)
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
                 }
                 error={errors.price?.message}
                 {...field}

@@ -7,7 +7,7 @@ const RegisterSuccess = () => {
         <FaCheckCircle className="text-[105px] text-green-600 animate-bounce mx-auto" />
       </div>
       <div className="w-9/12 mx-auto text-center mt-6">
-        <p className="fw-500 lg:text-lg syne mb-2">Hey Champ!</p>
+        <p className="fw-500 lg:text-xl syne mb-2 fw-500">Hey Champ 🏆!</p>
         <p>
           You've just signed up to level up your gameday fan experience with
           Fantrip. Your journey starts now! Keep your game face on. Go to your

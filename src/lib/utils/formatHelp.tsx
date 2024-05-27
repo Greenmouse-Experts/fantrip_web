@@ -19,10 +19,10 @@ export const formatNumber = (value: number | string) => {
   return `${val.toLocaleString("en-US").replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
 
-export const formatAsNgnMoney = (value: number | string) => {
+export const formatAsNgnMoney = (value: number | string, currency?: string) => {
   if (!value) return "";
   const val = Number(value);
-  return `$${val
+  return `${currency || '$'}${val
     .toLocaleString("en-US")
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };

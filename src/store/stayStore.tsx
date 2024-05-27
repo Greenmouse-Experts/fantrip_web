@@ -22,8 +22,9 @@ const stayInitState = {
   specialOffers: [],
   percentageOff: 0,
   availableFrom: "",
-    availableTo: "",
-    maxNights: 0
+  availableTo: "",
+  maxNights: 0,
+  currency: "€"
 };
 const useStayStore = create<Props>()(
   persist(

@@ -16,6 +16,7 @@ interface Props {
   address: string;
   price: number;
   percent: number;
+  currency: string;
 }
 const CondoDetails: FC<Props> = ({
   name,
@@ -27,6 +28,7 @@ const CondoDetails: FC<Props> = ({
   address,
   price,
   percent,
+  currency
 }) => {
   return (
     <div>
@@ -54,7 +56,7 @@ const CondoDetails: FC<Props> = ({
         <p className="fw-600 lg:text-lg">Amenities and Unique Features</p>
         <div className="mt-4">
           <ul className="grid lg:grid-cols-2 gap-5">
-            {amenities.length &&
+            {amenities?.length &&
               amenities.map((item) => (
                 <li className="flex items-center gap-x-3" key={item.id}>
                   {item.imageUrl ? (
@@ -80,7 +82,7 @@ const CondoDetails: FC<Props> = ({
         <p className="fw-600 lg:text-lg">Special Offers</p>
         <div className="mt-5">
           <ul className="grid gap-5">
-            {special.map((item, i) => (
+            {special?.map((item, i) => (
               <li className="flex items-center gap-x-3" key={i}>
                 <CiDiscount1 className="text-[18px] text-[#9847FE]" />
                 <p className="fs-400">{item}</p>
@@ -95,7 +97,7 @@ const CondoDetails: FC<Props> = ({
           <ul className="grid gap-5">
             <li className="flex items-center gap-x-3">
               <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
-              <p className="fs-400">All Days: €{price}/night</p>
+              <p className="fs-400">All Days: {currency}{price}/night</p>
             </li>
             {percent !== 0 && (
               <li className="flex items-center gap-x-3">

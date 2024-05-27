@@ -25,7 +25,7 @@ const BookingSuccess = () => {
         />
         <Button
           title={"View all bookings"}
-          onClick={() => navigate("/user/host")}
+          onClick={() => navigate("/user/booking")}
           altClassName="btn-primary px-5 lg:px-9 py-2 rounded-full"
         />
       </div>

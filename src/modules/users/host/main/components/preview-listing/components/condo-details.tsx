@@ -22,21 +22,24 @@ const CondoDetails: FC<Props> = ({ setActive }) => {
   );
   return (
     <div>
-      <div className="flex items-center justify-between pb-5 lg:pb-8 mt-6 lg:mt-10 border-b border-[#D2D2D2]">
+      <div className=" pb-5 lg:pb-8 mt-6 lg:mt-10 border-b border-[#D2D2D2]">
         <div className="">
+          <div className="flex justify-between">
           <p className="text-lg lg:text-3xl fw-600">{stay.name}</p>
-          <p className="mt-2 text-[#494949]">
-            {!!myPropName.length && myPropName[0].name}
-          </p>
-          <p className="mt-2 text-[#494949]">{stay.description}</p>
-        </div>
-        <div>
+          <div>
           <Button
             title={"Edit"}
             onClick={() => setActive(1)}
             altClassName="px-6 py-2 rounded-[20px] border border-[#000000]"
           />
         </div>
+          </div>
+          <p className="mt-2 text-[#494949]">
+            {!!myPropName.length && myPropName[0].name}
+          </p>
+          <p className="mt-2 text-[#494949]">{stay.description}</p>
+        </div>
+        
       </div>
       <div className="mt-6 border-b border-[#D2D2D2] pb-5 lg:pb-8">
         <div className="flex justify-between items-center mb-3">
@@ -106,15 +109,15 @@ const CondoDetails: FC<Props> = ({ setActive }) => {
             <li className="flex items-center gap-x-3">
               <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
               <p className="fs-400">
-                Weekdays: {formatAsNgnMoney(stay.price)}/night
+                Weekdays: {formatAsNgnMoney(stay.price, stay.currency)}/night
               </p>
             </li>
-            <li className="flex items-center gap-x-3">
-              <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
-              <p className="fs-400">
-                Game Days/Weekends: {formatAsNgnMoney(stay.price)}/night
-              </p>
-            </li>
+            {stay.percentageOff !== 0 && (
+              <li className="flex items-center gap-x-3">
+                <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
+                <p className="fs-400">{stay.percentageOff}% percentage off</p>
+              </li>
+            )}
           </ul>
         </div>
       </div>

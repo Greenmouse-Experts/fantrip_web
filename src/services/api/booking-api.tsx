@@ -15,6 +15,12 @@ export const hostFetchBooking = async () => {
 
   export const guestFetchBooking = async () => {
     return axios
-      .get(`${ENDPOINT.CREATE_STAY}`)
+      .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}`)
+      .then((response) => response.data);
+  };
+
+  export const guestCancelBooking = async (id:string) => {
+    return axios
+      .patch(`${ENDPOINT.GUEST_CANCEL_BOOKING}/${id}`)
       .then((response) => response.data);
   };

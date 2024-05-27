@@ -313,7 +313,9 @@ input[type="checkbox"]:checked {
   .bg-secondary {
     background: #e3f9ff;
   }
-
+  .text-secondary {
+    color: #fc819f
+  }
   .text-primary {
     color: #9847fe;
   }

@@ -22,9 +22,10 @@ interface Props {
   from: string;
   to: string;
   price: number;
+  currency: string;
   id: string;
 }
-const SelectStayDate: FC<Props> = ({ from, to, price, id }) => {
+const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
@@ -121,22 +122,22 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id }) => {
           <div>
             <div className="pt-3 flex justify-between items-center">
               <p className="fw-500">Price per night</p>
-              <p className="fw-500 text-lg">€{price}</p>
+              <p className="fw-500 text-lg">{currency}{price}</p>
             </div>
             <div className=" py-1 flex justify-between items-center">
               <p className="fw-500">Fantrip service fee</p>
-              <p className="fw-500 text-lg">€10</p>
+              <p className="fw-500 text-lg">{currency}10</p>
             </div>
             <div className=" flex justify-between items-center">
               <p className="fw-500">Taxes</p>
-              <p className="fw-500 text-lg">€7</p>
+              <p className="fw-500 text-lg">{currency}7</p>
             </div>
           </div>
           <div className="mt-3 pt-2 border-t border-[#D2D2D2]">
             <div className="text-lg flex justify-between items-center">
-              <p className="fw-500">Total (EU)</p>
+              <p className="fw-500">Total</p>
               <p className="fw-500 text-lg">
-                {getTotal() ? `€${getTotal()}` : `TBD`}
+                {getTotal() ? `${currency}${getTotal()}` : `TBD`}
               </p>
             </div>
           </div>

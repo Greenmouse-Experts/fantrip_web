@@ -25,7 +25,8 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     availableTo,
     address,
     percentageOff,
-    highlightFeature
+    highlightFeature,
+    currency
   } = data;
   return (
     <div>
@@ -60,6 +61,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
                 to={availableTo}
                 price={price}
                 id={id}
+                currency={currency}
               />
             </div>
           </div>
@@ -76,6 +78,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
           address={address}
           price={price}
         percent={percentageOff}
+        currency={currency}
         />
       </div>
       <div className="mt-7 lg:w-7/12">
