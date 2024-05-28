@@ -3,7 +3,6 @@ import BtnContent from "@/components/btn-content";
 import { useRoutine } from "@/hooks/useRoutine";
 import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
-import { getStateFromGoogle } from "@/lib/utils/helper-function";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
 import { FC } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
@@ -31,11 +30,11 @@ const StartListing: FC<Props> = ({ next }) => {
       highlightFeature: stay.highlightFeature || "",
     },
   });
-  const { ref:autoRef } = usePlacesWidget({
+  const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
       // register('state', getStateFromGoogle(place.address_components))
-      register('address', place?.formatted_address)
+      register("address", place?.formatted_address);
     },
   });
   const handleNext = (data: any) => {
@@ -110,32 +109,16 @@ const StartListing: FC<Props> = ({ next }) => {
             />
           </div>
           <div>
-            <p className="text-black fw-600 lg:text-lg block mb-3">Location Details</p>
-            <input ref={autoRef as any} type="text" placeholder="e.g., '5 min walk from Downtown Stadium'"  className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none" />
+            <p className="text-black fw-600 lg:text-lg block mb-3">
+              Location Details
+            </p>
+            <input
+              ref={autoRef as any}
+              type="text"
+              placeholder="e.g., '5 min walk from Downtown Stadium'"
+              className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+            />
           </div>
-          <Controller
-            name="address"
-            control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Please enter your stay address",
-              },
-            }}
-            render={({ field }) => (
-              <TextInput
-                type={InputType.text}
-                placeholder="e.g., '5 min walk from Downtown Stadium'"
-                label="Location Details"
-                labelClassName="text-black fw-600 lg:text-lg block mb-3"
-                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
-                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.address?.message}
-                {...field}
-                ref={null}
-              />
-            )}
-          />
           <Controller
             name="description"
             control={control}
