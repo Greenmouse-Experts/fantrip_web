@@ -23,6 +23,8 @@ export const GET_HOST_STAY = `/stays/fetch-host-stays`
 // booking endpoints
 export const CREATE_BOOKING = `/reservations/add-reservation`
 export const FETCH_CLIENT_BOOKINGS = `/reservations/fetch-guest-reservations`
+export const CONFIRM_CLIENT_RESERVATION = `/reservations/confirm`
+export const CANCEL_CLIENT_RESERVATION = `/reservations/cancel`
 export const FETCH_SINGLE_CLIENT_BOOKING = `/reservations`
 export const GUEST_CANCEL_BOOKING = `/reservations/cancel`
 

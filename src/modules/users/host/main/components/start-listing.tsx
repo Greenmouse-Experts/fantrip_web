@@ -3,8 +3,9 @@ import BtnContent from "@/components/btn-content";
 import { useRoutine } from "@/hooks/useRoutine";
 import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
+import { getStateFromGoogle } from "@/lib/utils/helper-function";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
 
@@ -14,10 +15,11 @@ interface Props {
 const StartListing: FC<Props> = ({ next }) => {
   const { stay, saveStay } = useStay();
   const { properties } = useRoutine();
+  const [stateVal, setStateVal] = useState("");
   const {
     control,
     handleSubmit,
-    register,
+    setValue,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
@@ -33,8 +35,10 @@ const StartListing: FC<Props> = ({ next }) => {
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
-      // register('state', getStateFromGoogle(place.address_components))
-      register("address", place?.formatted_address);
+      const state = getStateFromGoogle(place.address_components);
+      // setStateVal(state)
+      setValue("state", state);
+      setValue("address", place?.formatted_address);
     },
   });
   const handleNext = (data: any) => {
@@ -42,6 +46,7 @@ const StartListing: FC<Props> = ({ next }) => {
     saveStay({
       ...stay,
       ...data,
+      // state: stateVal || stay.state
     });
     next();
   };
@@ -112,11 +117,24 @@ const StartListing: FC<Props> = ({ next }) => {
             <p className="text-black fw-600 lg:text-lg block mb-3">
               Location Details
             </p>
-            <input
-              ref={autoRef as any}
-              type="text"
-              placeholder="e.g., '5 min walk from Downtown Stadium'"
-              className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+            <Controller
+              name="address"
+              control={control}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Please enter your stay name",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  ref={autoRef as any}
+                  type="text"
+                  placeholder="e.g., '5 min walk from Downtown Stadium'"
+                  className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                />
+              )}
             />
           </div>
           <Controller

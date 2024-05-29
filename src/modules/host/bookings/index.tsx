@@ -1,4 +1,5 @@
 import BookingAnalytics from "./booking-analytics"
+import BookingListingTable from "./booking-table"
 
 const BookingIndex = () => {
   return (
@@ -7,7 +8,7 @@ const BookingIndex = () => {
         <BookingAnalytics />
       </div>
       <div className="mt-6">
-        {/* <ListingTable /> */}
+        <BookingListingTable/>
       </div>
     </div>
   )

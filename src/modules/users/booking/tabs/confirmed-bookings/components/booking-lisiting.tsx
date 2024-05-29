@@ -11,7 +11,7 @@ interface Props {
   data: BookingItem[];
   refetch: () => void;
 }
-const PendingBookingList: FC<Props> = ({ data }) => {
+const ConfirmedBookingList: FC<Props> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const closeDrawer = () => setIsOpen(false);
@@ -102,4 +102,4 @@ const PendingBookingList: FC<Props> = ({ data }) => {
   );
 };
 
-export default PendingBookingList;
+export default ConfirmedBookingList;

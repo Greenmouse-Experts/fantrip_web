@@ -70,13 +70,10 @@ const SpecialOffer: FC<Props> = ({ next, prev }) => {
 
   return (
     <div>
-      <p className="text-xl lg:text-4xl fw-500">
-        Amenities and Unique Features
-      </p>
+      <p className="text-xl lg:text-4xl fw-500">Special Offers</p>
       <div className="mt-6">
         <p className="fs-400 lg:fs-600">
-          Hosts provide details about standard amenities and unique,
-          sports-related features.
+          Hosts can add special offers to attract more guests.
         </p>
       </div>
       <div className="mt-8">

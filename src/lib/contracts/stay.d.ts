@@ -50,6 +50,7 @@ export interface StayItem {
   property: PropertyItem;
   amenities: AmenityItem[];
   currency: string;
+  host: UserItem
 }
 
 export interface AvailableStayItem extends StayItem {

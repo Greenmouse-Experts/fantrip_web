@@ -27,6 +27,7 @@ export interface FetchParam {
   isDisclosed?: number,
   page?:  number,
   isPublished?: boolean,
+  status?: string
 }
 
 export enum REUSABLE_MODAL_TYPES {

@@ -21,7 +21,7 @@ const BookingIndex = () => {
   return (
     <div>
       <div className="pt-28 lg:pt-36 bg-layout-gradient"></div>
-      <div className="box py-6">
+      <div className="box py-6 min-h-[70vh]">
         <Tabs tabs={bookingTabs} type="charts"/>
       </div>
     </div>

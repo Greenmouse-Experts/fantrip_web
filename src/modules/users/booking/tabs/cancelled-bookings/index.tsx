@@ -1,13 +1,13 @@
 import PyramidSpin from "@/components/loaders/pyramid-spin";
 import { guestFetchBooking } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
-import PendingBookingList from "./components/booking-lisiting";
 import { useState } from "react";
+import CancelledBookingList from "./components/booking-lisiting";
 import EmptyNetState from "@/components/empty-states/empty-net";
 
-const PendingBookings = () => {
+const CancelledBookings = () => {
   const [params, setParams] = useState({
-    status: 'pending'
+    status: 'cancelled'
   })
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchBooking(params),
@@ -21,15 +21,15 @@ const PendingBookings = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <PendingBookingList refetch={refetch} data={data?.data} />
+        <CancelledBookingList refetch={refetch} data={data?.data} />
       )}
        {!isLoading && !data?.data?.length && (
         <div>
-          <EmptyNetState text="There is pending booking data available now." />
+          <EmptyNetState text="There is cancelled booking data available now." />
         </div>
       )}
     </div>
   );
 };
 
-export default PendingBookings;
+export default CancelledBookings;
