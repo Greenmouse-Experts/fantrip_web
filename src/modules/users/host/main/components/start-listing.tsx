@@ -5,7 +5,7 @@ import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
 import { getStateFromGoogle } from "@/lib/utils/helper-function";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
 
