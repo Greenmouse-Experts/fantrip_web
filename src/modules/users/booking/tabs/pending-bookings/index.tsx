@@ -4,15 +4,24 @@ import { useQuery } from "@tanstack/react-query";
 import PendingBookingList from "./components/booking-lisiting";
 import { useState } from "react";
 import EmptyNetState from "@/components/empty-states/empty-net";
+import { FetchParam } from "@/lib/contracts/routine";
+import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 
 const PendingBookings = () => {
-  const [params, setParams] = useState({
-    status: 'pending'
+  const [params, setParams] = useState<FetchParam>({
+    status: RESERVATION_STATUS.PENDING,
+    page: 1
   })
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchBooking(params),
     queryKey: ["get-guest-booking", params.status],
   });
+  const handleNext = () => {
+    setParams({
+      ...params,
+      page: 2
+    })
+  }
   return (
     <div>
       {isLoading && (
@@ -21,7 +30,7 @@ const PendingBookings = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <PendingBookingList refetch={refetch} data={data?.data} />
+        <PendingBookingList refetch={refetch} data={data?.data} next={handleNext}/>
       )}
        {!isLoading && !data?.data?.length && (
         <div>

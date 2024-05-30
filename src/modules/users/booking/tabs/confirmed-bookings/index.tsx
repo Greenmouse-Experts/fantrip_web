@@ -4,15 +4,26 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import ConfirmedBookingList from "./components/booking-lisiting";
 import EmptyNetState from "@/components/empty-states/empty-net";
+import { RESERVATION_STATUS } from "@/lib/contracts/enums";
+import { FetchParam } from "@/lib/contracts/routine";
 
 const ConfirmedBooking = () => {
-  const [params, setParams] = useState({
-    status: "completed",
+  const [params, setParams] = useState<FetchParam>({
+    status: RESERVATION_STATUS.CONFIRMED,
+    page: 1
   });
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchBooking(params),
     queryKey: ["get-guest-booking", params.status],
   });
+
+  const handleNext = () => {
+    setParams({
+      ...params,
+      page: 2
+    })
+  }
+
   return (
     <div>
       {isLoading && (
@@ -21,7 +32,7 @@ const ConfirmedBooking = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <ConfirmedBookingList refetch={refetch} data={data?.data} />
+        <ConfirmedBookingList refetch={refetch} data={data?.data} next={handleNext}/>
       )}
       {!isLoading && !data?.data?.length && (
         <div>

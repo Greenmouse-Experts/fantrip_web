@@ -26,7 +26,8 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     address,
     percentageOff,
     highlightFeature,
-    currency
+    currency,
+    maxNights,
   } = data;
   return (
     <div>
@@ -62,6 +63,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
                 price={price}
                 id={id}
                 currency={currency}
+                maxNight={maxNights}
               />
             </div>
           </div>

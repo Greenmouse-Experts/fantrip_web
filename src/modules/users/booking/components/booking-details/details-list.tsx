@@ -1,5 +1,5 @@
 import { BookingItemWithPricing } from "@/lib/contracts/booking";
-import { formatStatus } from "@/lib/utils/formatHelp";
+import { formatNumber, formatStatus } from "@/lib/utils/formatHelp";
 import dayjs from "dayjs";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa6";
@@ -23,7 +23,7 @@ const DetailsList: FC<Props> = ({ data }) => {
     status,
   } = data;
   return (
-    <div>
+    <div className="max-h-[calc(95vh_-_100px)] overflow-y-auto">
       <div className="flex gap-x-2">
         <p className="text-prima syne fw-600">Booking Status</p>
         <p className="fw-500">
@@ -96,19 +96,19 @@ const DetailsList: FC<Props> = ({ data }) => {
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Price for reserved night(s):</p>
-              <p className="fw-500">{stay.currency}{priceWithNightInclusion}</p>
+              <p className="fw-500">{stay.currency}{formatNumber(priceWithNightInclusion)}</p>
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Fantrip Service Fee:</p>
-              <p className="fw-500">{stay.currency}{serviceFee}</p>
+              <p className="fw-500">{stay.currency}{formatNumber(serviceFee)}</p>
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Tax Fee:</p>
-              <p className="fw-500">{stay.currency}{taxFee}</p>
+              <p className="fw-500">{stay.currency}{formatNumber(taxFee)}</p>
             </div>
             <div className="flex items-center gap-x-2">
               <p className="text-gray-600">Total:</p>
-              <p className="fw-500 text-lg">{stay.currency}{total}</p>
+              <p className="fw-500 text-lg">{stay.currency}{formatNumber(total)}</p>
             </div>
           </div>
         </div>

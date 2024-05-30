@@ -29,7 +29,7 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
             <LiaTimesSolid className="text-xl cursor-pointer" onClick={close}/>
           </div>
           {/* booking-details */}
-          <div className="mt-6">
+          <div className="mt-4">
             <DetailsList data={data}/>
           </div>
           {/* pay button */}

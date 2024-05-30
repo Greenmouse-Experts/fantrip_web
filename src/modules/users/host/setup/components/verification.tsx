@@ -50,7 +50,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
     const payload = {
       firstName: splitName[0],
       lastName: splitName.length > 1 && splitName[1],
-      picture: kyc.picture,
+      picture: kyc.picture? kyc.picture : user.image,
       roomPicture: kyc.roomPicture,
       facebookUrl: kyc.facebookUrl,
       twitterUrl: kyc.twitterUrl,
@@ -71,12 +71,14 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           position: "top",
         });
         setIsBusy(false);
+        sessionStorage.setItem('fantrip_token', data.accessToken)
         saveUser({
           ...user,
           name: kyc.fullName,
           bio: kyc.bio,
           image: kyc.picture,
-          account: 'host'
+          account: 'host',
+          token: data.accessToken
         })
         setShowModal(true);
       },

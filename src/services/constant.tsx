@@ -21,6 +21,7 @@ export const REMOVE_STAY_AMENITY = `/stays/remove-amenity`
 export const GET_HOST_STAY = `/stays/fetch-host-stays`
 
 // booking endpoints
+export const COMPUTE_PRICE = `/reservations/compute-price`
 export const CREATE_BOOKING = `/reservations/add-reservation`
 export const FETCH_CLIENT_BOOKINGS = `/reservations/fetch-guest-reservations`
 export const CONFIRM_CLIENT_RESERVATION = `/reservations/confirm`

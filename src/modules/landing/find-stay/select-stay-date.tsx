@@ -1,15 +1,16 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { FaCircleInfo } from "react-icons/fa6";
 import Button from "@/components/Button";
 import CheckInInput from "./booking-tab-comps/check-in-input";
 import CheckOutInput from "./booking-tab-comps/check-out-input";
 import GuestNoInput from "./booking-tab-comps/guest-no-input";
-import { createBooking } from "@/services/api/booking-api";
+import { computePrice, createBooking } from "@/services/api/booking-api";
 import { useToast } from "@chakra-ui/react";
 import useDialog from "@/hooks/useDialog";
 import BookingSuccess from "./booking-tab-comps/booking-success";
 import { BeatLoader } from "react-spinners";
+import { formatNumber } from "@/lib/utils/formatHelp";
 
 type ValuePiece = Date | null;
 interface SearchParam {
@@ -17,6 +18,7 @@ interface SearchParam {
   checkIn: ValuePiece | [ValuePiece, ValuePiece] | null;
   checkOut: ValuePiece | [ValuePiece, ValuePiece] | null;
   no_of_guests: number | null;
+  no_of_child: number | null;
 }
 interface Props {
   from: string;
@@ -24,15 +26,22 @@ interface Props {
   price: number;
   currency: string;
   id: string;
+  maxNight: number
 }
-const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
+const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight }) => {
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
     checkOut: null,
     no_of_guests: null,
+    no_of_child: null,
   });
   const [isBusy, setIsBusy] = useState(false);
+  const [pricing, setPricing] = useState({
+    tax: 0,
+    fee: 0,
+    total: 0
+  })
   const toast = useToast();
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
@@ -44,17 +53,40 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
     } else return true;
   };
 
-  const getTotal = () => {
-    if (!checkInput()) {
+  const getTotal = async () => {
+    if (!params.checkIn || !params.checkOut) {
       return null;
     }
-    const date1 = dayjs(params.checkOut as unknown as string);
-    const date2 = dayjs(params.checkIn as unknown as string);
-    const dayDiff = date1.diff(date2, "day");
-    const total = price * dayDiff;
-    const final = total + 10 + 7;
-    return final;
+    const payload={
+      checkIn: dayjs(params.checkIn as unknown as string).format("YYYY-MM-DD"),
+      checkOut: dayjs(params.checkOut as unknown as string).format(
+        "YYYY-MM-DD"
+      ),
+      stay: id,
+    }
+    setIsBusy(true)
+    await computePrice(payload)
+    .then((res:any) => {
+      setPricing({
+        tax: res.taxFee,
+        total: res.total,
+        fee: res.serviceFee,
+      })
+      setIsBusy(false)
+    })
+    .catch((error) => {
+      toast({
+        title: error.response.data.message,
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
+    })
   };
+
+  useEffect(() => {
+    getTotal()
+  }, [params.checkIn, params.checkOut])
 
   const reserveStay = async () => {
     setIsBusy(true);
@@ -109,6 +141,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
             to={to}
             checkin={params.checkIn}
             value={params.checkOut}
+            maxNight={maxNight}
             handleChange={handleChange}
           />
         </div>
@@ -116,6 +149,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
           <GuestNoInput
             handleChange={handleChange}
             no_of_guests={params.no_of_guests}
+            no_of_child={params.no_of_child}
           />
         </div>
         <div>
@@ -126,18 +160,18 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
             </div>
             <div className=" py-1 flex justify-between items-center">
               <p className="fw-500">Fantrip service fee</p>
-              <p className="fw-500 text-lg">{currency}10</p>
+              <p className="fw-500 text-lg">{pricing.fee ? `${currency}${formatNumber(pricing.fee)}` : `TBD`}</p>
             </div>
             <div className=" flex justify-between items-center">
               <p className="fw-500">Taxes</p>
-              <p className="fw-500 text-lg">{currency}7</p>
+              <p className="fw-500 text-lg">{pricing.tax ? `${currency}${formatNumber(pricing.tax)}` : `TBD`}</p>
             </div>
           </div>
           <div className="mt-3 pt-2 border-t border-[#D2D2D2]">
             <div className="text-lg flex justify-between items-center">
               <p className="fw-500">Total</p>
               <p className="fw-500 text-lg">
-                {getTotal() ? `${currency}${getTotal()}` : `TBD`}
+                {pricing.total ? `${currency}${formatNumber(pricing.total)}` : `TBD`}
               </p>
             </div>
           </div>
@@ -164,7 +198,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency }) => {
               ? "btn-primary"
               : "bg-gray-500 text-gray-200 cursor-not-allowed"
           } w-full py-3 !fw-600 syne lg:!text-lg rounded-[8px]`}
-          disabled={!checkInput()}
+          disabled={!checkInput() || isBusy}
           onClick={reserveStay}
         />
       </div>

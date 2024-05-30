@@ -84,7 +84,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
           <img
             src={user.image? user.image : "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"}
             alt="profile"
-            className="w-36 circle h-36"
+            className="w-36 circle h-36 object-cover"
           />
           <div className="absolute overflow-hidden bg-white top-0 right-2 cursor-pointer w-8 h-8 circle place-center circle-shadow p-1">
             {!isUpdate && <GoPencil className="text-xl" />}

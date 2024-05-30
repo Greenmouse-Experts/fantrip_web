@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as ENDPOINT from "../constant";
 import { FetchParam } from "@/lib/contracts/routine";
+import { ComputePricePayload } from "@/lib/contracts/booking";
 
 export const createBooking = async (payload:any) => {
   return axios
@@ -8,9 +9,15 @@ export const createBooking = async (payload:any) => {
     .then((response) => response.data);
 };
 
-export const hostFetchBooking = async () => {
+export const computePrice = async (payload:ComputePricePayload) => {
+  return axios
+    .post(`${ENDPOINT.COMPUTE_PRICE}`, payload)
+    .then((response) => response.data);
+};
+
+export const hostFetchBooking = async (params: FetchParam) => {
     return axios
-      .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}`)
+      .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?status=${params.status}`)
       .then((response) => response.data);
   };
 

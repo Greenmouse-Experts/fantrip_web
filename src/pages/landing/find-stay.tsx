@@ -32,7 +32,7 @@ const FindStay = () => {
       </div>
       <div className="">
         <div className="box">
-          <div className="mt-12 grid items-stretch lg:grid-cols-3 gap-8">
+          <div className="mt-12 grid items-stretch lg:grid-cols-3 gap-4 2xl:gap-8">
             {isLoading && <MeetDataSkeleton count={6}/>}
             {!isLoading && !!data?.data.length && data?.data.map((item:AvailableStayItem, i:number) => (
               <MeetComponent item={item} i={i} />

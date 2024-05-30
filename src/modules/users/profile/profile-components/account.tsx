@@ -12,7 +12,7 @@ const UserAccount = () => {
     <div>
       <div>
         <p className="fw-600 lg:text-lg">My Profile</p>
-        <div className="border border-[#E8EAED] rounded-[16px] mt-6">
+        <div className={`border ${isHost? 'border-gray-600' : 'border-[#E8EAED]'} rounded-[16px] mt-6`}>
           <div className="flex items-center gap-x-4 p-4">
             <img
               src={user.image? user.image : "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"}
@@ -25,7 +25,7 @@ const UserAccount = () => {
             </div>
           </div>
         </div>
-        <div className="border border-[#E8EAED] rounded-[16px] mt-6 p-4">
+        <div className={`border ${isHost? 'border-gray-600' : 'border-[#E8EAED]'} rounded-[16px] mt-6 p-4`}>
           <div className="flex justify-between items-center">
             <p className="fw-600 lg:text-lg">Personal Information</p>
             <div
@@ -59,7 +59,7 @@ const UserAccount = () => {
             </div>
           </div>
         </div>
-        <div className="border border-[#E8EAED] rounded-[16px] mt-6 p-4">
+        <div className={`border ${isHost? 'border-gray-600' : 'border-[#E8EAED]'} rounded-[16px] mt-6 p-4`}>
           <div className="flex justify-between items-center">
             <p className="fw-600 lg:text-lg">Address</p>
             <div

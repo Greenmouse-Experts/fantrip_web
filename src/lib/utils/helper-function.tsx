@@ -10,3 +10,9 @@ interface AddressType {
     const state = selectedAdd[0].long_name;
     return state;
   };
+
+  export const convertDaysToMilliSeconds = (days:number) => {
+    if(!days){return 0}
+    const milliseconds = days * 24 * 60 * 60 * 1000;
+    return milliseconds
+  };

@@ -10,7 +10,7 @@ interface Props {
   prev: () => void;
 }
 const SetupPhotos: FC<Props> = ({ next, prev }) => {
-  const { kyc, saveKyc } = useAuth();
+  const { kyc, saveKyc, user } = useAuth();
   const [profileLoading, setProfileLoading] = useState(false);
   const [roomLoading, setRoomLoading] = useState(false);
   const handleUploadProfile = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +73,7 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
           <p className="fw-500">Profile Picture (max of 1mb)</p>
         </div>
         <div className="flex items-center gap-x-3 mt-3">
-          <div className="w-44 relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
+          <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
             <input
               type="file"
               accept="image/*"
@@ -89,13 +89,19 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
             )}
           </div>
           <div>
-            {kyc.picture && (
+            {kyc.picture ? (
               <img
                 src={kyc.picture}
                 alt="profile-picture"
                 className="w-24 h-12 object-cover"
               />
-            )}
+            ) : user.image ? (
+              <img
+                src={user.image}
+                alt="profile-picture"
+                className="w-24 h-12 object-cover"
+              />
+            ) : null}
           </div>
         </div>
       </div>
@@ -107,16 +113,19 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
           <p className="fw-500">Room Picture (max of 1mb)</p>
         </div>
         <div className="flex mt-3 gap-x-3">
-          <div className="w-44 relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
+          <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
             <input
               type="file"
               onChange={(e) => handleUploadRoom(e)}
               className="opacity-0 absolute w-full h-full"
             />
-            {roomLoading? <BeatLoader color="#9847FE" /> : <p className="text-center text-[#9847FE] fw-500 px-5 py-1">
-              Upload photos
-            </p>}
-            
+            {roomLoading ? (
+              <BeatLoader color="#9847FE" />
+            ) : (
+              <p className="text-center text-[#9847FE] fw-500 px-5 py-1">
+                Upload photos
+              </p>
+            )}
           </div>
           <div>
             {kyc.roomPicture && (

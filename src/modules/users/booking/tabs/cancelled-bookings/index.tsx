@@ -4,15 +4,23 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import CancelledBookingList from "./components/booking-lisiting";
 import EmptyNetState from "@/components/empty-states/empty-net";
+import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 
 const CancelledBookings = () => {
   const [params, setParams] = useState({
-    status: 'cancelled'
+    status: RESERVATION_STATUS.CANCELLED,
+    page: 1
   })
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchBooking(params),
     queryKey: ["get-guest-booking", params.status],
   });
+  const handleNext = () => {
+    setParams({
+      ...params,
+      page: 2
+    })
+  }
   return (
     <div>
       {isLoading && (
@@ -21,7 +29,7 @@ const CancelledBookings = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <CancelledBookingList refetch={refetch} data={data?.data} />
+        <CancelledBookingList refetch={refetch} data={data?.data} next={handleNext}/>
       )}
        {!isLoading && !data?.data?.length && (
         <div>

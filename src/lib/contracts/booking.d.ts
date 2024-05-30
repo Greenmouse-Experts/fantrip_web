@@ -20,3 +20,9 @@ export interface BookingItemWithPricing extends BookingItem {
   taxFee: number;
   total: number;
 }
+
+export interface ComputePricePayload {
+  checkIn: string;
+  checkOut: string;
+  stay: string;
+}

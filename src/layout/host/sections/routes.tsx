@@ -27,6 +27,12 @@ export const Routes = [
     submenu: [],
   },
   {
+    name: "Reservations",
+    icon: <FaUserAlt className="text-lg" />,
+    route: "/host/reservations",
+    submenu: [],
+  },
+  {
     name: "Bookings",
     icon: <FaUserAlt className="text-lg" />,
     route: "/host/bookings",

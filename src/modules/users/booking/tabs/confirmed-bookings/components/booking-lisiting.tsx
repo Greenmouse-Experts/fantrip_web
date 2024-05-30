@@ -10,6 +10,7 @@ import BookingDetails from "../../../components/booking-details";
 interface Props {
   data: BookingItem[];
   refetch: () => void;
+  next: () => void
 }
 const ConfirmedBookingList: FC<Props> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);

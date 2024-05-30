@@ -129,12 +129,6 @@ const UpdateAddressForm:FC<Props> = ({close}) => {
           <Controller
             name="city"
             control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Value is required",
-              },
-            }}
             render={({ field }) => (
               <div>
                 <p className="text-[#000000B2] fw-500 mb-1">City</p>

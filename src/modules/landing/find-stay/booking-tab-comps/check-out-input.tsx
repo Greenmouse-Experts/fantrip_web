@@ -6,6 +6,7 @@ import Calendar from "react-calendar";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { PiCaretDownThin } from "react-icons/pi";
+import { convertDaysToMilliSeconds } from "@/lib/utils/helper-function";
 
 const DAYS_IN_MS = 86400000;
 type ValuePiece = Date | null;
@@ -17,9 +18,24 @@ interface Props {
     type: string
   ) => void;
   to: string;
+  maxNight: number;
 }
-const CheckOutInput: FC<Props> = ({ value, handleChange, to, checkin }) => {
+const CheckOutInput: FC<Props> = ({
+  value,
+  handleChange,
+  to,
+  checkin,
+  maxNight,
+}) => {
   const fromDate = dayjs(checkin as unknown as string).valueOf() + DAYS_IN_MS;
+  const maxSelection = () => {
+    const fromInUnix = dayjs(checkin as unknown as string).valueOf();
+    const AddMaxToFrom = fromInUnix + convertDaysToMilliSeconds(maxNight);
+    const ToInUnix = dayjs(to as unknown as string).valueOf();
+    if (AddMaxToFrom > ToInUnix) {
+      return dayjs(to).toDate();
+    } else return dayjs(AddMaxToFrom).toDate();
+  };
   const toast = useToast();
   const showToast = () => {
     toast({
@@ -58,7 +74,7 @@ const CheckOutInput: FC<Props> = ({ value, handleChange, to, checkin }) => {
                 onChange={(value) => handleChange(value, "checkOut")}
                 value={value}
                 minDate={dayjs(fromDate).toDate()}
-                maxDate={dayjs(to).toDate()}
+                maxDate={maxSelection()}
               />
             </div>
           </MenuList>
