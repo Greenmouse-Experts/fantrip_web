@@ -11,7 +11,7 @@ const BookingListingTable = () => {
   });
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["host-get-reservations", params],
-    queryFn: () => hostFetchBooking(),
+    queryFn: () => hostFetchBooking({status: 'pending'}),
   });
   return (
     <div>

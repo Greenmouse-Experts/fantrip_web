@@ -15,7 +15,6 @@ interface Props {
 const StartListing: FC<Props> = ({ next }) => {
   const { stay, saveStay } = useStay();
   const { properties } = useRoutine();
-  const [stateVal, setStateVal] = useState("");
   const {
     control,
     handleSubmit,
