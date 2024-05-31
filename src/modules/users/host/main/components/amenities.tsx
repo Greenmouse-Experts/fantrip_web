@@ -4,7 +4,6 @@ import { useRoutine } from "@/hooks/useRoutine";
 import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
 import { ChangeEvent, FC, useState } from "react";
-import { IoSend } from "react-icons/io5";
 
 interface Props {
   next: () => void;
@@ -12,15 +11,13 @@ interface Props {
 }
 const Amenities: FC<Props> = ({ next, prev }) => {
   const { stay, saveStay } = useStay();
-  const { amenities, createAmenity, amenityPending } = useRoutine();
+  const { amenities } = useRoutine();
   const defaultVals = () => stay.amenities.map((item) => item.id);
   const [selectedAmenities, setSelectedAmenities] =
     useState<string[]>(defaultVals);
   const [selectedSpecial, setSelectedSpecial] = useState<string>(
     stay.uniqueFeature
   );
-  const [showOther, setShowOther] = useState(false);
-  const [newAmenity, setNewAmenity] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -36,14 +33,6 @@ const Amenities: FC<Props> = ({ next, prev }) => {
     }
   };
 
-  const handleAddAmenity = () => {
-    if (!newAmenity.length) return;
-    const payload = {
-      name: newAmenity,
-    };
-    createAmenity(payload);
-    setNewAmenity("");
-  };
 
   const handleAdd = () => {
     const amenities =
@@ -87,33 +76,6 @@ const Amenities: FC<Props> = ({ next, prev }) => {
               <p>{item.name}</p>
             </div>
           ))}
-          <div className="col-span-2 lg:mt-5 flex gap-x-3 items-center">
-            <div className="flex items-center gap-x-3">
-              <input
-                type="checkbox"
-                checked={showOther}
-                name="other"
-                className="w-4 h-4"
-                onChange={() => setShowOther(!showOther)}
-              />
-              <p>Others</p>
-            </div>
-            {showOther && (
-              <div className="lg:w-6/12 flex justify-between items-center pr-3 border rounded border-[#D2D2D2]">
-                <input
-                  type="text"
-                  className=" p-2 w-full outline-none"
-                  onChange={(e) => setNewAmenity(e.target.value)}
-                />
-                {!amenityPending && (
-                  <IoSend
-                    className="text-lg text-gray-700"
-                    onClick={handleAddAmenity}
-                  />
-                )}
-              </div>
-            )}
-          </div>
         </div>
       </div>
       <div className="mt-7 lg:mt-12">

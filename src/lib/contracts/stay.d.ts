@@ -20,7 +20,8 @@ export interface StayItemInput {
   availableFrom: string;
   availableTo: string;
   maxNights: number;
-  currency: string
+  currency: string;
+  maxGuests: number;
 }
 
 export interface UpdateStayStatusInput {
@@ -50,7 +51,9 @@ export interface StayItem {
   property: PropertyItem;
   amenities: AmenityItem[];
   currency: string;
-  host: UserItem
+  host: UserItem;
+  state: string;
+  maxGuests: number
 }
 
 export interface AvailableStayItem extends StayItem {

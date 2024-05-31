@@ -1,14 +1,14 @@
 import PyramidSpin from "@/components/loaders/pyramid-spin";
 import { guestFetchBooking } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
-import PendingBookingList from "./components/booking-lisiting";
 import { useState } from "react";
 import EmptyNetState from "@/components/empty-states/empty-net";
-import { FetchParam } from "@/lib/contracts/routine";
+import { RESERVATION_STATUS } from "@/lib/contracts/enums";
+import CancelledReservationList from "./components/reservation-lisiting";
 
-const PendingBookings = () => {
-  const [params, setParams] = useState<FetchParam>({
-    status: 'CANCEL',
+const CancelledReservation = () => {
+  const [params, setParams] = useState({
+    status: RESERVATION_STATUS.CANCELLED,
     page: 1
   })
   const { isLoading, data, refetch } = useQuery({
@@ -29,15 +29,15 @@ const PendingBookings = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <PendingBookingList refetch={refetch} data={data?.data} next={handleNext}/>
+        <CancelledReservationList refetch={refetch} data={data?.data} next={handleNext}/>
       )}
        {!isLoading && !data?.data?.length && (
         <div>
-          <EmptyNetState text="There is pending booking data available now." />
+          <EmptyNetState text="There is cancelled booking data available now." />
         </div>
       )}
     </div>
   );
 };
 
-export default PendingBookings;
+export default CancelledReservation;

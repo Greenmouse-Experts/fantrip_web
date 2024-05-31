@@ -28,6 +28,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     highlightFeature,
     currency,
     maxNights,
+    maxGuests
   } = data;
   return (
     <div>
@@ -53,7 +54,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
           <div className="form-shadow p-4 rounded-[14px]">
             <div className="bg-[#FFEDF2] py-4 lg:py-6 rounded-t-[12px]">
               <p className="w-8/12 fw-600 text-center mx-auto">
-                Choose accurate date for fan stay booking
+                Choose an accurate date for your fan stay booking
               </p>
             </div>
             <div>
@@ -64,6 +65,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
                 id={id}
                 currency={currency}
                 maxNight={maxNights}
+                maxGuest={maxGuests}
               />
             </div>
           </div>

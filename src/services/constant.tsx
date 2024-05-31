@@ -27,7 +27,11 @@ export const FETCH_CLIENT_BOOKINGS = `/reservations/fetch-guest-reservations`
 export const CONFIRM_CLIENT_RESERVATION = `/reservations/confirm`
 export const CANCEL_CLIENT_RESERVATION = `/reservations/cancel`
 export const FETCH_SINGLE_CLIENT_BOOKING = `/reservations`
-export const GUEST_CANCEL_BOOKING = `/reservations/cancel`
+export const GUEST_CANCEL_RESERVATION = `/reservations/cancel`
+
+// payment endpoints
+export const INITIATE_PAYMENT = `/bookings/create`
+export const CONFIRM_PAYMENT = `/bookings/confirm`
 
 // Routine endpoint
 export const GET_PROPERTY_TYPES = `/properties`

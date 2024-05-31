@@ -1,17 +1,10 @@
-import MeetDataSkeleton from "@/components/shimmers/meet-data";
-import { AvailableStayItem } from "@/lib/contracts/stay";
-import MeetComponent from "@/modules/landing/extra/meet-comp";
-import BookingTab from "@/modules/landing/homepage/booking-tab";
-import { getAllStay } from "@/services/api/stay-api";
-import { useQuery } from "@tanstack/react-query";
+
+import FetchStayComponent from "@/modules/landing/find-stay/fetch-component";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const FindStay = () => {
-  const {isLoading, data} = useQuery({
-    queryKey: ['get-all-stay'],
-    queryFn: getAllStay
-  })
+ 
   return (
     <div>
       <div className="pt-16 lg:pt-28 bg-layout-gradient">
@@ -27,19 +20,7 @@ const FindStay = () => {
           </div>
         </div>
       </div>
-      <div className="py-12 lg:pt-0 lg:relative -top-10">
-        <BookingTab />
-      </div>
-      <div className="">
-        <div className="box">
-          <div className="mt-12 grid items-stretch lg:grid-cols-3 gap-4 2xl:gap-8">
-            {isLoading && <MeetDataSkeleton count={6}/>}
-            {!isLoading && !!data?.data.length && data?.data.map((item:AvailableStayItem, i:number) => (
-              <MeetComponent item={item} i={i} />
-            ))}
-          </div>
-        </div>
-      </div>
+      <FetchStayComponent/>
       <div className="section bg-[#EDEDFF] mt-24">
       <div className="box">
         <div className="lg:flex flex-row-reverse items-center">

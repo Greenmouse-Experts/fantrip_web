@@ -45,7 +45,7 @@ const ListingFilter: FC<Props> = ({ param, setParams }) => {
           </MenuList>
         </Menu>
       </div>
-      <div onClick={() => navigate('/user/host')} className="border px-4 py-3 border-gray-700 rounded-lg flex items-center gap-x-2">
+      <div onClick={() => navigate('/user/host')} className="border px-4 py-3 cursor-pointer border-gray-700 rounded-lg flex items-center gap-x-2">
         <IoAddCircleOutline className="text-lg" />
         <p>Add New Stay</p>
       </div>

@@ -90,7 +90,7 @@ const BookingTab = () => {
             <div className="lg:flex justify-center">
               <div className="flex gap-x-6 cursor-pointer items-center">
                 <FaRegUser className="text-xl" />
-                <Select icon={<PiCaretDownThin />} variant='unstyled' placeholder='Guests' className="fw-500">
+                <Select icon={<PiCaretDownThin />} onChange={(value) => handleChange(value, "no_of_guests")} variant='unstyled' placeholder='Guests' className="fw-500">
                   <option value="1">1 (one)</option>
                   <option value="2">2 (two)</option>
                   <option value="3">3 (three)</option>

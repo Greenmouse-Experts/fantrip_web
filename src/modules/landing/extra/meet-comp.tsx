@@ -57,7 +57,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
               className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3"
               onClick={() => navigate(`/find-stay/${item.id}`)}
             >
-              <p className="fs-500 fw-500">Liverpool</p>
+              <p className="fs-500 fw-500">{item.state || 'London'}</p>
               <p className="fw-500">{item.currency}{item.price}/ night</p>
             </div>
           </div>

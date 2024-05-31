@@ -45,8 +45,26 @@ export const hostFetchBooking = async (params: FetchParam) => {
       .then((response) => response.data);
   };
 
+  export const guestCancelReservation = async (id:string) => {
+    return axios
+      .patch(`${ENDPOINT.GUEST_CANCEL_RESERVATION}/${id}`)
+      .then((response) => response.data);
+  };
+
   export const guestCancelBooking = async (id:string) => {
     return axios
-      .patch(`${ENDPOINT.GUEST_CANCEL_BOOKING}/${id}`)
+      .patch(`${ENDPOINT.GUEST_CANCEL_RESERVATION}/${id}`)
+      .then((response) => response.data);
+  };
+
+  export const guestInitatePayment = async (payload: {reservation: string}) => {
+    return axios
+      .post(`${ENDPOINT.INITIATE_PAYMENT}`, payload)
+      .then((response) => response.data);
+  };
+
+  export const guestConfirmPayment = async (payload: {thirdPartyRef: string}) => {
+    return axios
+      .post(`${ENDPOINT.CONFIRM_PAYMENT}`, payload)
       .then((response) => response.data);
   };

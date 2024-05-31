@@ -6,11 +6,11 @@ import PendingBookings from "./tabs/pending-bookings";
 const BookingIndex = () => {
   const bookingTabs = [
     {
-      title: <p>Pending Bookings</p>,
+      title: <p>Confirmed Bookings</p>,
       content: <PendingBookings/>
     },
     {
-      title: <p>Confirmed Bookings</p>,
+      title: <p>Completed Bookings</p>,
       content: <ConfirmedBooking/>
     },
     {

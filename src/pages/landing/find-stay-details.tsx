@@ -1,5 +1,5 @@
 import PyramidSpin from "@/components/loaders/pyramid-spin";
-import StayDetailsIndex from "@/modules/landing/find-stay";
+import StayDetailsIndex from "@/modules/landing/find-stay-details";
 import { getSingleStay } from "@/services/api/stay-api";
 import { useQuery } from "@tanstack/react-query";
 

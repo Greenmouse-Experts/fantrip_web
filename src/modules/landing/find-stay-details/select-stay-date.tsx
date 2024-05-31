@@ -26,9 +26,10 @@ interface Props {
   price: number;
   currency: string;
   id: string;
-  maxNight: number
+  maxNight: number;
+  maxGuest: number;
 }
-const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight }) => {
+const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, maxGuest }) => {
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
@@ -97,6 +98,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight }) 
         "YYYY-MM-DD"
       ),
       adults: params.no_of_guests,
+      children: params.no_of_child
     };
     await createBooking(payload)
       .then((res) => {
@@ -150,6 +152,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight }) 
             handleChange={handleChange}
             no_of_guests={params.no_of_guests}
             no_of_child={params.no_of_child}
+            maxGuest={maxGuest}
           />
         </div>
         <div>

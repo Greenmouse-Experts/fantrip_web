@@ -20,6 +20,7 @@ import { FiCompass } from "react-icons/fi";
 import { RiChat3Line, RiHotelLine } from "react-icons/ri";
 import { BiBarChartAlt2 } from "react-icons/bi";
 import { AiOutlineBulb } from "react-icons/ai";
+import { GiBlackBook } from "react-icons/gi";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
@@ -138,13 +139,24 @@ const LandingHeader = () => {
                           )}
                         </MenuItem>
                         {!isHost && (
-                          <MenuItem className="">
+                          <MenuItem className="border-b">
+                            <Link
+                              to={"/user/reservation"}
+                              className="flex gap-x-3 items-center !py-3 text-black"
+                            >
+                              <RiHotelLine className="text-xl" />
+                              <p>Reservations</p>
+                            </Link>
+                          </MenuItem>
+                        )}
+                        {!isHost && (
+                          <MenuItem className="border-b">
                             <Link
                               to={"/user/booking"}
                               className="flex gap-x-3 items-center !py-3 text-black"
                             >
-                              <RiHotelLine className="text-xl" />
-                              <p>Bookings/Reservations</p>
+                              <GiBlackBook className="text-lg" />
+                              <p>Bookings</p>
                             </Link>
                           </MenuItem>
                         )}

@@ -4,11 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import CancelledBookingList from "./components/booking-lisiting";
 import EmptyNetState from "@/components/empty-states/empty-net";
-import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 
 const CancelledBookings = () => {
   const [params, setParams] = useState({
-    status: RESERVATION_STATUS.CANCELLED,
+    status: 'cc',
     page: 1
   })
   const { isLoading, data, refetch } = useQuery({

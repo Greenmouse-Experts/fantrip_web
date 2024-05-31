@@ -8,17 +8,19 @@ interface Props {
   handleChange: (val: number, type: string) => void;
   no_of_guests: number | null;
   no_of_child: number | null;
+  maxGuest: number
 }
 const GuestNoInput: FC<Props> = ({
   handleChange,
   no_of_guests,
   no_of_child,
+  maxGuest
 }) => {
   const [adultVal, setAdultVal] = useState(no_of_guests || 0);
   const [childVal, setChildVal] = useState(no_of_child || 0);
   const handleAdultChange = (type: string) => {
     if (type === "add") {
-      if (adultVal < 5) {
+      if (adultVal < maxGuest) {
         const val = adultVal + 1;
         setAdultVal(val);
         handleChange(val, "no_of_guests");

@@ -2,6 +2,8 @@ import axios from "axios";
 import * as ENDPOINT from "../constant";
 import { StayItemInput, UpdateStayStatusInput } from "@/lib/contracts/stay";
 import { FetchParam } from "@/lib/contracts/routine";
+import { FetchStayParamItem } from "@/lib/contracts/utils";
+import { objectToQueryString } from "@/lib/utils/helper-function";
 
 export const createStay = async (payload: StayItemInput) => {
   return axios
@@ -30,9 +32,10 @@ export const getHostStay = async (param: FetchParam) => {
     .then((response) => response.data);
 };
 
-export const getAllStay = async () => {
+export const getAllStay = async (params?: FetchStayParamItem) => {
+  const payload = params? objectToQueryString(params) : null
   return axios
-    .get(`${ENDPOINT.GET_AVAILABLE_STAY}`)
+    .get(`${ENDPOINT.GET_AVAILABLE_STAY}?${payload}`)
     .then((response) => response.data);
 };
 

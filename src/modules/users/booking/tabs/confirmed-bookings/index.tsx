@@ -4,12 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import ConfirmedBookingList from "./components/booking-lisiting";
 import EmptyNetState from "@/components/empty-states/empty-net";
-import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 import { FetchParam } from "@/lib/contracts/routine";
 
 const ConfirmedBooking = () => {
   const [params, setParams] = useState<FetchParam>({
-    status: RESERVATION_STATUS.CONFIRMED,
+    status: 'confi',
     page: 1
   });
   const { isLoading, data, refetch } = useQuery({

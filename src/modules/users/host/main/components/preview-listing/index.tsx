@@ -28,7 +28,6 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
     const payload = {
       ...stay,
       subHead: stay.description,
-      state: "London",
     };
     await createStay(payload)
       .then(() => {
@@ -61,7 +60,8 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
       !stay.availableTo ||
       !stay.maxNights ||
       !stay.property ||
-      !stay.price
+      !stay.price ||
+      !stay.maxGuests
     ) {
       return false;
     } else return true;
