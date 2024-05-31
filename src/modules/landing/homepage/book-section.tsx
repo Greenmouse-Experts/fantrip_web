@@ -9,7 +9,7 @@ import MeetDataSkeleton from "@/components/shimmers/meet-data";
 const BookSection = () => {
   const { isLoading, data } = useQuery({
     queryKey: ["get-all-stay"],
-    queryFn: getAllStay,
+    queryFn: () => getAllStay(),
   });
 
   return (
