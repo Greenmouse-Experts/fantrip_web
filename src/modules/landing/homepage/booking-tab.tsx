@@ -9,31 +9,44 @@ import "react-calendar/dist/Calendar.css";
 import dayjs from "dayjs";
 import { Menu, MenuButton, MenuList, Select } from "@chakra-ui/react";
 import CitySearch from "./booking-tab/city-search";
+import { useUtils } from "@/hooks/useUtils";
 
-type ValuePiece = Date | null;
+// type ValuePiece = Date | null;
 interface SearchParam {
-  city: string;
-  checkIn: ValuePiece | [ValuePiece, ValuePiece] | null;
-  checkOut: ValuePiece | [ValuePiece, ValuePiece] | null;
-  no_of_guests: number | null;
+  state: string;
+  checkIn: string
+  checkOut: string
+  guests: number
 }
 const BookingTab = () => {
+  const {stayParams, saveStayParam} = useUtils()
   const [params, setParams] = useState<SearchParam>({
-    city: "",
-    checkIn: null,
-    checkOut: null,
-    no_of_guests: null,
+    state: "",
+    checkIn: "",
+    checkOut: "",
+    guests: 1,
   });
+  console.log(params);
+  
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
   };
+
+  const handleSearch = () => {
+    const payload = {
+      ...stayParams,
+      ...params,
+    }
+    saveStayParam(payload)
+  }
+
   return (
     <div className="box">
       <div className="w-full bg-white lg:rounded-[100px] book-tab-border px-6 py-3 lg:pl-12">
         <div className="lg:flex w-full ">
           <div className="grid items-center gap-9 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
             <div>
-              <CitySearch/>
+              <CitySearch handleChange={handleChange}/>
             </div>
             <div className="relative lg:flex justify-center">
               <Menu >
@@ -42,9 +55,7 @@ const BookingTab = () => {
                     <FiCalendar className="text-xl" />
                     {params.checkIn ? (
                       <p className="fw-500">
-                        {dayjs(params?.checkIn as unknown as string).format(
-                          "DD - MM - YYYY"
-                        )}
+                        {params?.checkIn}
                       </p>
                     ) : (
                       <p className="fw-500">Check In</p>
@@ -54,8 +65,10 @@ const BookingTab = () => {
                 <MenuList className="!pt-0 !pb-0 !rounded-[10px]">
                   <div className="">
                     <Calendar
-                      onChange={(value) => handleChange(value, "checkIn")}
-                      value={params.checkIn}
+                      onChange={(value) => handleChange(dayjs(value as unknown as string).format(
+                        "YYYY-MM-DD"
+                      ), "checkIn")}
+                      value={params.checkIn? dayjs(params.checkIn).toDate() : dayjs().toDate()}
                     />
                   </div>
                 </MenuList>
@@ -68,9 +81,7 @@ const BookingTab = () => {
                     <FiCalendar className="text-xl" />
                     {params.checkOut ? (
                       <p className="fw-500">
-                        {dayjs(params?.checkOut as unknown as string).format(
-                          "DD - MM - YYYY"
-                        )}
+                        {params?.checkOut}
                       </p>
                     ) : (
                       <p className="fw-500">Check Out</p>
@@ -80,8 +91,10 @@ const BookingTab = () => {
                 <MenuList className="!pt-0 !pb-0 !rounded-[10px]">
                   <div className="">
                     <Calendar
-                      onChange={(value) => handleChange(value, "checkOut")}
-                      value={params.checkOut}
+                      onChange={(value) => handleChange(dayjs(value as unknown as string).format(
+                        "YYYY-MM-DD"
+                      ), "checkOut")}
+                      value={params.checkOut? dayjs(params.checkOut).toDate() : dayjs().toDate()}
                     />
                   </div>
                 </MenuList>
@@ -103,6 +116,7 @@ const BookingTab = () => {
             <Button
               title={"Search"}
               altClassName="btn-primary w-full lg:w-auto shrink-0 py-4 lg:py-5 lg:px-16 fw-600 px-12"
+              onClick={handleSearch}
             />
           </div>
         </div>

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { LiaTimesSolid } from "react-icons/lia";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
-import { fetchBookingDetails } from "@/services/api/booking-api";
+import { fetchReservationDetails } from "@/services/api/booking-api";
 import DetailsList from "./details-list";
 import PaymentButton from "../payment";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
@@ -13,8 +13,8 @@ interface Props {
 }
 const BookingDetails: FC<Props> = ({ id, close }) => {
   const { isLoading, data } = useQuery({
-    queryKey: ["get-booking-details", id],
-    queryFn: () => fetchBookingDetails(id),
+    queryKey: ["get-reservation-details", id],
+    queryFn: () => fetchReservationDetails(id),
   });
   return (
     <div className="h-full">

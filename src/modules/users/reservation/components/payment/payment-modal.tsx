@@ -5,6 +5,7 @@ import CheckoutForm from './payment-element';
 import { useMutation } from '@tanstack/react-query';
 import { guestInitatePayment } from '@/services/api/booking-api';
 import { useToast } from '@chakra-ui/react';
+import PaymentFieldShimmer from '@/components/shimmers/payment-fields';
 
 const stripePromise = loadStripe(
     "pk_test_51HoQfvKiOZXcwcTbQS0xwfzkxRYCPWQ7VT4Xl6sObmhguPXhX5agZY88UrCsPcAQLKa071M8lQh3kA6DMe42L7IB00ibW8gtHu"
@@ -23,7 +24,14 @@ const PaymentModal:FC<Props> = ({id}) => {
             reservation: id
         }, {
             onSuccess: (data) => {
-                console.log(data);
+                toast({
+                  render: () => (
+                    <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+                      {data.message}
+                    </div>
+                  ),
+                  position: "top",
+                });
             },
             onError: (err:any) => {
                 toast({
@@ -42,7 +50,8 @@ const PaymentModal:FC<Props> = ({id}) => {
     clientSecret: `${data?.data?.clientSecret}`,
   };
   return (
-    <div>
+    <div className='py-6 px-2'>
+        {(isPending && !data) && <PaymentFieldShimmer/>}
          {(!isPending && data) && (
           <Elements stripe={stripePromise} options={options}>
             <CheckoutForm id={id} secret_key={data.data?.clientSecret || ""} />

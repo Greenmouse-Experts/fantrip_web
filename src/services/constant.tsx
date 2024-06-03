@@ -23,11 +23,13 @@ export const GET_HOST_STAY = `/stays/fetch-host-stays`
 // booking endpoints
 export const COMPUTE_PRICE = `/reservations/compute-price`
 export const CREATE_BOOKING = `/reservations/add-reservation`
-export const FETCH_CLIENT_BOOKINGS = `/reservations/fetch-guest-reservations`
+export const FETCH_CLIENT_RESERVATION = `/reservations/fetch-guest-reservations`
 export const CONFIRM_CLIENT_RESERVATION = `/reservations/confirm`
 export const CANCEL_CLIENT_RESERVATION = `/reservations/cancel`
-export const FETCH_SINGLE_CLIENT_BOOKING = `/reservations`
+export const FETCH_SINGLE_CLIENT_RESERVATION = `/reservations`
 export const GUEST_CANCEL_RESERVATION = `/reservations/cancel`
+export const FETCH_CLIENT_BOOKINGS = `/bookings/fetch-guest-trx`
+export const FETCH_SINGLE_CLIENT_BOOKING = `/bookings/fetch-trx`
 
 // payment endpoints
 export const INITIATE_PAYMENT = `/bookings/create`

@@ -13,7 +13,7 @@ const utilsInitState = {
     property: "",
     name: "",
     state: "",
-    guests: 0,
+    guests: 1,
     city: "",
     checkIn: "",
     checkOut: "",

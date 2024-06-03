@@ -1,11 +1,11 @@
 export interface FetchStayParamItem{
         property: string
         name: string
-        state: string
+        state: string 
         guests: number
-        city: string
-        checkIn: string
-        checkOut: string
+        city: string 
+        checkIn: string 
+        checkOut: string 
 }
 export interface UtilsStoreItem{
     fetchStay: FetchStayParamItem

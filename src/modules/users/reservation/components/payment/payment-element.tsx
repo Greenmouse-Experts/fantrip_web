@@ -1,4 +1,5 @@
 // import { Button } from "@material-tailwind/react";
+import Button from "@/components/Button";
 import { guestConfirmPayment } from "@/services/api/booking-api";
 import { useToast } from "@chakra-ui/react";
 import {
@@ -18,7 +19,7 @@ interface Props {
 const CheckoutForm: FC<Props> = ({id}) => {
   const stripe = useStripe();
   const elements = useElements();
-  const {mutate, data } = useMutation({
+  const {mutate } = useMutation({
     mutationFn: guestConfirmPayment,
     mutationKey: ['guest-confirm-payment']
 })
@@ -29,7 +30,7 @@ const CheckoutForm: FC<Props> = ({id}) => {
    mutate({
     thirdPartyRef: secret || ''
    }, {
-    onSuccess: () => {
+    onSuccess: (data) => {
         toast({
             render: () => (
               <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
@@ -41,6 +42,8 @@ const CheckoutForm: FC<Props> = ({id}) => {
           navigate(`/user/booking-success/${id}`)
     },
     onError: (err:any) => {
+      console.log(err);
+      
         toast({
             title: err.response.data.message,
             isClosable: true,
@@ -74,8 +77,14 @@ const CheckoutForm: FC<Props> = ({id}) => {
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
       console.log(result.error.message);
+      toast({
+        title: result.error.message,
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
     } else {
-      confirmPayment(result.paymentIntent.client_secret)
+      confirmPayment(result.paymentIntent.id)
       // Your customer will be redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
@@ -85,6 +94,9 @@ const CheckoutForm: FC<Props> = ({id}) => {
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
+      <div className="mt-8 flex justify-end">
+        <Button title={'Proceed'} type="int" altClassName="px-6 rounded-lg py-3 fw-600 text-lg btn-int"/>
+      </div>
     </form>
   );
 };

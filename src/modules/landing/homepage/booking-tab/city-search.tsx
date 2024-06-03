@@ -1,12 +1,17 @@
 import { IoSearch } from "react-icons/io5";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
+import { FC } from "react";
+import { getStateFromGoogle } from "@/lib/utils/helper-function";
 
-const CitySearch = () => {
+interface Props{
+  handleChange: (val: any, field: string) => void
+}
+const CitySearch:FC<Props> = ({handleChange}) => {
   const { ref } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
-      console.log(place);
+      handleChange(getStateFromGoogle(place.address_components), 'state')
     },
   });
   return (

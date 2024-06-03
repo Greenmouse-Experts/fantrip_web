@@ -33,9 +33,21 @@ export const hostFetchBooking = async (params: FetchParam) => {
       .then((response) => response.data);
   };
 
+  export const guestFetchReservation = async (params: FetchParam) => {
+    return axios
+      .get(`${ENDPOINT.FETCH_CLIENT_RESERVATION}?status=${params.status}`)
+      .then((response) => response.data);
+  };
+
   export const guestFetchBooking = async (params: FetchParam) => {
     return axios
       .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?status=${params.status}`)
+      .then((response) => response.data);
+  };
+
+  export const fetchReservationDetails = async (id:string) => {
+    return axios
+      .get(`${ENDPOINT.FETCH_SINGLE_CLIENT_RESERVATION}/${id}`)
       .then((response) => response.data);
   };
 
