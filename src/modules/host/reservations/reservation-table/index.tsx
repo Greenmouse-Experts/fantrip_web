@@ -1,5 +1,5 @@
 import HueSpinner from "@/components/loaders/hue-spinner";
-import { guestFetchReservation, hostFetchBooking } from "@/services/api/booking-api";
+import { guestFetchReservation } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
 import ReserveItemDisplay from "./reserve-item";
 import { BookingItem } from "@/lib/contracts/booking";
