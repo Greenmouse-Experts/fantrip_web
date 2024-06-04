@@ -1,5 +1,5 @@
 import HueSpinner from "@/components/loaders/hue-spinner";
-import { hostFetchBooking } from "@/services/api/booking-api";
+import { guestFetchReservation, hostFetchBooking } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
 import ReserveItemDisplay from "./reserve-item";
 import { BookingItem } from "@/lib/contracts/booking";
@@ -13,7 +13,7 @@ const ReservationListingTable = () => {
   });
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["host-get-reservations", params],
-    queryFn: () => hostFetchBooking(params),
+    queryFn: () => guestFetchReservation(params),
   });
   return (
     <div>

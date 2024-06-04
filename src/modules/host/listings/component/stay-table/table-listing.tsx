@@ -138,7 +138,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                 <div className="flex gap-x-3 justify-end relative">
                   <Link
                     className="underline relative block"
-                    to={`/find-stay/${item.id}`}
+                    to={`/host/listings/${item.id}`}
                   >
                     <Tooltip
                       label="Edit Lisiting"

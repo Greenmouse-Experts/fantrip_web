@@ -1,6 +1,7 @@
 import UserDashboardLayout from "@/layout/host";
 import HostBookings from "@/pages/host/booking";
 import UserDashboard from "@/pages/host/dashboard";
+import HostEditListing from "@/pages/host/edit-listing";
 import HostInbox from "@/pages/host/inbox";
 import HostListings from "@/pages/host/listings";
 import HostReservationPage from "@/pages/host/reservation";
@@ -19,6 +20,10 @@ export const hostRoutes = [
           {
             path: 'listings',
             element: <HostListings/>,
+          },
+          {
+            path: 'listings/:id',
+            element: <HostEditListing/>,
           },
           {
             path: 'bookings',

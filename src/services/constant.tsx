@@ -39,3 +39,4 @@ export const CONFIRM_PAYMENT = `/bookings/confirm`
 export const GET_PROPERTY_TYPES = `/properties`
 export const GET_AMENITIES = `/amenities`
 export const CREATE_AMENITY = `/amenities/add-amenity`
+export const REMOVE_AMENITY = `/stays/remove-amenity`

@@ -11,7 +11,7 @@ import {
 interface ModalProps{
   title: string;
     children: JSX.Element;
-    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 }
 const useDialog = () => {
   const [showModal, setModal] = useState(false);

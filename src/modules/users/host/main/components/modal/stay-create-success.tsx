@@ -12,8 +12,11 @@ const StayCreateSuccess: FC<Props> = ({ close }) => {
         <FaCheckCircle className="text-[105px] text-green-600 animate-bounce mx-auto" />
       </div>
       <div className="w-9/12 mx-auto text-center mt-6">
-        <p>
-          Dummy text for Successfully creating a stay which will be changed later on.
+        <p>You're In the league now!</p>
+        <p className="mt-2">
+          Big Cheers for Joining Fantrip! You've just set your listing live and
+          have officially joined the Fantrip league, turning your space into a
+          key player for sports fans around the globe
         </p>
       </div>
       <div className="flex justify-between items-center mt-4">

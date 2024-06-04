@@ -205,7 +205,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
           onClick={reserveStay}
         />
       </div>
-      <Dialog title="" size="md">
+      <Dialog title="" size="2xl">
         <BookingSuccess />
       </Dialog>
     </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as ENDPOINT from "../constant";
-import { StayItemInput, UpdateStayStatusInput } from "@/lib/contracts/stay";
+import { StayItemInput, StayItemUpdate, UpdateStayStatusInput } from "@/lib/contracts/stay";
 import { FetchParam } from "@/lib/contracts/routine";
 import { FetchStayParamItem } from "@/lib/contracts/utils";
 import { objectToQueryString } from "@/lib/utils/helper-function";
@@ -20,7 +20,7 @@ export const updateStayStatus = async (
     .then((response) => response.data);
 };
 
-export const updateStay = async (id: string, payload: StayItemInput) => {
+export const updateStay = async (id: string, payload: StayItemUpdate) => {
   return axios
     .patch(`${ENDPOINT.UPDATE_STAY}/${id}`, payload)
     .then((response) => response.data);

@@ -6,7 +6,7 @@ import { useState } from "react";
 import EmptyNetState from "@/components/empty-states/empty-net";
 import { FetchParam } from "@/lib/contracts/routine";
 
-const PendingBookings = () => {
+const CompletedBookings = () => {
   const [params, setParams] = useState<FetchParam>({
     status: 'CANCEL',
     page: 1
@@ -40,4 +40,4 @@ const PendingBookings = () => {
   );
 };
 
-export default PendingBookings;
+export default CompletedBookings;

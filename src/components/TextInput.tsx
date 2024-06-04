@@ -177,7 +177,7 @@ const TextInput: React.FC<Props> = ({
 
   return (
     <div
-      className={`mt-3 ${
+      className={` ${
         type === InputType.checkbox &&
         'flex gap-x-4 justify-end flex-row-reverse items-start'
       }`}
