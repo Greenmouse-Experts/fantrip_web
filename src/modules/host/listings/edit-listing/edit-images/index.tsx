@@ -5,7 +5,7 @@ interface Props {
   images: string[];
   id: string;
 }
-const EditListingImage: FC<Props> = ({ images, id }) => {
+const EditListingImage: FC<Props> = ({ images}) => {
   return (
     <div className="">
         <p className="mb-4 fw-600 text-lg">Stay Images</p>
