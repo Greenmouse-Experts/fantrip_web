@@ -26,6 +26,10 @@ export const addAmenity = async (payload: AmenityItemInput) => {
     .then((response) => response.data);
 };
 
+export const getHostAmenities = async () => {
+  return axios.get(ENDPOINT.GET_HOST_AMENITIES).then((response) => response.data);
+};
+
 export const removeStayAmenity = async (id: string , payload: {amenity: string}) => {
   return axios
     .patch(`${ENDPOINT.REMOVE_AMENITY}/${id}`, payload)

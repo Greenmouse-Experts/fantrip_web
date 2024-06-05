@@ -11,6 +11,7 @@ export interface AmenityItem {
 
 export interface AmenityItemInput {
     name: string;
+    imageUrl?: string
 }
 export interface PropertyItem {
   id: string;

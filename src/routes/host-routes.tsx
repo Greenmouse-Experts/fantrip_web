@@ -1,4 +1,5 @@
 import UserDashboardLayout from "@/layout/host";
+import HostAmenityPage from "@/pages/host/amenities";
 import HostBookings from "@/pages/host/booking";
 import UserDashboard from "@/pages/host/dashboard";
 import HostEditListing from "@/pages/host/edit-listing";
@@ -40,6 +41,10 @@ export const hostRoutes = [
           {
             path: 'inbox',
             element: <HostInbox/>,
+          },
+          {
+            path: 'amenities',
+            element: <HostAmenityPage/>,
           },
           {
             path: 'settings',

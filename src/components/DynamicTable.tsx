@@ -28,18 +28,18 @@ interface Props {
     });
     return (
       <div>
-        <div className="flex flex-col border-t-2 border-l border-b border-gray-400 dark:border-gray-800">
+        <div className="flex flex-col border-t-2 border-l border-b border-gray-800">
           <div className="overflow-x-auto">
             <div className="align-middle inline-block min-w-full ">
               <table className="items-center w-full bg-transparent border-collapse">
-                <thead className="thead-light bg-light dark:bg-[#131313]">
+                <thead className="thead-light bg-[#131313]">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
                         <th
                           key={header.id}
                           scope="col"
-                          className="px-6 align-middle border-r-2 border-b-2 border-gray-400 dark:border-gray-800 py-3 fs-500 whitespace-nowrap text-left"
+                          className="px-6 align-middle border-r-2 border-b-2 border-gray-800 py-3 fs-500 whitespace-nowrap text-left"
                         >
                           {header.isPlaceholder
                             ? null
