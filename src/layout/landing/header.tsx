@@ -16,10 +16,7 @@ import MobileMenu from "./mobileMenu";
 import useAuth from "@/hooks/authUser";
 import { FaCircleUser, FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
-import { FiCompass } from "react-icons/fi";
-import { RiChat3Line, RiHotelLine } from "react-icons/ri";
-import { BiBarChartAlt2 } from "react-icons/bi";
-import { AiOutlineBulb } from "react-icons/ai";
+import { RiHotelLine } from "react-icons/ri";
 import { GiBlackBook } from "react-icons/gi";
 import icon_1 from "@/assets/svg/nav_icon_1.svg"
 import icon_2 from "@/assets/svg/nav_icon_2.svg"
