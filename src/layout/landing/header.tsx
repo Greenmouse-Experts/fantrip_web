@@ -21,6 +21,10 @@ import { RiChat3Line, RiHotelLine } from "react-icons/ri";
 import { BiBarChartAlt2 } from "react-icons/bi";
 import { AiOutlineBulb } from "react-icons/ai";
 import { GiBlackBook } from "react-icons/gi";
+import icon_1 from "@/assets/svg/nav_icon_1.svg"
+import icon_2 from "@/assets/svg/nav_icon_2.svg"
+import icon_3 from "@/assets/svg/nav_icon_3.svg"
+import icon_4 from "@/assets/svg/nav_icon_4.svg"
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
@@ -46,7 +50,7 @@ const LandingHeader = () => {
               </div>
               <ul className="hidden lg:flex items-center gap-x-6 lg:gap-x-10 text-white">
                 <li className="hidden xl:block">
-                  <Link to={""}>Get the app</Link>
+                  <Link to={"/get-app"}>Get the app</Link>
                 </li>
                 <li>
                   <Menu>
@@ -60,36 +64,44 @@ const LandingHeader = () => {
                       <MenuItem>
                         <Link
                           to={"/area-guide"}
-                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                          className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
-                          <FiCompass className="text-lg" />
+                          <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                            <img src={icon_1} alt="icons"  />
+                          </div>
                           <p className="fs-500">Matchday Area Guide</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
                         <Link
                           to={"/auth/login"}
-                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                          className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
-                          <RiChat3Line className="text-lg" />
+                          <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                            <img src={icon_2} alt="icons"  />
+                          </div>
                           <p className="fs-500">Chat Room</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
                         <Link
                           to={"/auth/login"}
-                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                          className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
-                          <BiBarChartAlt2 className="text-lg" />
+                          <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                            <img src={icon_3} alt="icons"  />
+                          </div>
                           <p className="fs-500">Live quiz and predictions</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
                         <Link
                           to={"/auth/login"}
-                          className="flex gap-x-2 !py-[6px] items-center text-black"
+                          className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
-                          <AiOutlineBulb className="text-lg" />
+                          <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                            <img src={icon_4} alt="icons"  />
+                          </div>
                           <p className="fs-500">Exclusive sports content</p>
                         </Link>
                       </MenuItem>

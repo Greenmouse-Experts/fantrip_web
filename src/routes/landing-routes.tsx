@@ -4,6 +4,7 @@ import { AreaGuide } from "@/pages/landing/area-guide";
 import CookiePage from "@/pages/landing/cookie";
 import FindStay from "@/pages/landing/find-stay";
 import FindStayDetails from "@/pages/landing/find-stay-details";
+import GetAppPage from "@/pages/landing/get-app";
 import LandingHomepage from "@/pages/landing/homepage";
 import PrivacyPage from "@/pages/landing/privacy";
 import TermsPage from "@/pages/landing/terms";
@@ -32,6 +33,10 @@ export const landingRooutes = [
           {
             path: 'area-guide',
             element: <AreaGuide />,
+          },
+          {
+            path: 'get-app',
+            element: <GetAppPage/>,
           },
           {
             path: 'privacy',

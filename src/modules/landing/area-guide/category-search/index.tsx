@@ -4,8 +4,10 @@ import tree from "@/assets/svg/tree.svg";
 import wine from "@/assets/svg/wine.svg";
 import park from "@/assets/svg/park.svg";
 import dunk from "@/assets/svg/dunk.svg";
-import { Link } from "react-router-dom";
 import BtnContent from "@/components/btn-content";
+import { ComponentModal } from "@/components/modal-component";
+import { useState } from "react";
+import SubmitRecommendIndex from "../submit-recommend";
 
 const AreaCategorySearch = () => {
   const filters = [
@@ -34,6 +36,7 @@ const AreaCategorySearch = () => {
       image: dunk,
     },
   ];
+  const [showSubmit, setShowSubmit] = useState(false);
   return (
     <div className="pb-16 lg:pb-20">
       <div className="box">
@@ -58,20 +61,31 @@ const AreaCategorySearch = () => {
             ))}
           </div>
           <div className="grid gap-4 lg:flex justify-center gap-x-6 mt-4 lg:mt-6">
-          {filters.slice(4).map((item) => (
+            {filters.slice(4).map((item) => (
               <div className="border cursor-pointer p-3 px-5 lg:px-10 rounded-full border-[#9847FE] flex items-center gap-x-2 lg:gap-x-4">
                 <img src={item.image} alt="icon-names" className="w-9" />
                 <p>{item.name}</p>
               </div>
             ))}
             <div>
-                <Link to={'/'} className="block px-6 btn-primary py-[19px]">
-                    <BtnContent name="Submit a Recommendation"/>
-                </Link>
+              <button
+                className="block px-6 btn-primary py-[19px]"
+                onClick={() => setShowSubmit(true)}
+              >
+                <BtnContent name="Submit a Recommendation" />
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <ComponentModal
+        title="Submit a Recommendation"
+        shouldShow={showSubmit}
+        onClose={() => setShowSubmit(false)}
+        type="recommend"
+      >
+        <SubmitRecommendIndex close={() => setShowSubmit(false)}/>
+      </ComponentModal>
     </div>
   );
 };

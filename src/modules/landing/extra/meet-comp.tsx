@@ -11,7 +11,8 @@ interface Props {
 const MeetComponent: FC<Props> = ({ item, i }) => {
   const navigate = useNavigate();
   return (
-    <div className="stay-item-wrapper grid">
+   <div>
+     <div className="stay-item-wrapper grid">
       <div
         className="rounded-[13px] stay-item p-5 bg-black grid grid-cols-2 gap-3"
         key={i}
@@ -72,6 +73,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
       </div>
       <div className="stay-bg"></div>
     </div>
+   </div>
   );
 };
 

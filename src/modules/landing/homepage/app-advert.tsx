@@ -1,7 +1,11 @@
 import BtnContent from "@/components/btn-content";
+import { ComponentModal } from "@/components/modal-component";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import MeetProfileIndex from "../extra/meet-profile";
 
 const AppAdvert = () => {
+  const [showMore, setShowMore] = useState(false)
   return (
     <div className="section">
       <div className="box">
@@ -15,7 +19,7 @@ const AppAdvert = () => {
           </div>
           <div className="lg:w-7/12 lg:mt-0 mt-12">
             <div className="flex">
-              <p className="border border-[#9847FE] rounded-[50px] px-7 py-2 fs-400">
+              <p className="border border-[#9847FE] rounded-[50px] px-7 py-2 fs-400" onClick={() => setShowMore(true)}>
                 We cater to every aspect of your sports passion
               </p>
             </div>
@@ -56,6 +60,14 @@ const AppAdvert = () => {
           </div>
         </div>
       </div>
+      <ComponentModal
+        title=""
+        shouldShow={showMore}
+        onClose={() => setShowMore(false)}
+        type={'more'}
+      >
+        <MeetProfileIndex close={() => setShowMore(false)}/>
+      </ComponentModal>
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const AreaGuide = () => {
         <div className="lg:pb-12">
           <div className="py-16 text-white text-center">
             <p className="px-4 lg:px-0 text-2xl lg:text-4xl fw-600 text-center text-white">
-              Area Guide
+            Cheer hard, explore harder!
             </p>
           </div>
         </div>
