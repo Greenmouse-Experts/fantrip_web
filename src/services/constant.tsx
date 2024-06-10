@@ -38,5 +38,6 @@ export const CONFIRM_PAYMENT = `/bookings/confirm`
 // Routine endpoint
 export const GET_PROPERTY_TYPES = `/properties`
 export const GET_AMENITIES = `/amenities`
+export const GET_HOST_AMENITIES = `amenities/fetch-host-amenities`
 export const CREATE_AMENITY = `/amenities/add-amenity`
 export const REMOVE_AMENITY = `/stays/remove-amenity`

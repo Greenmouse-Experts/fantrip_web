@@ -1,4 +1,4 @@
-import { MdOutlineDashboard, MdQuiz } from "react-icons/md";
+import { MdAutoMode, MdOutlineDashboard, MdQuiz } from "react-icons/md";
 import { FaDollarSign, FaLocationDot, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { BsChatFill, BsCompassFill } from "react-icons/bs";
@@ -66,6 +66,12 @@ export const Routes = [
     name: "Exclusive sports content",
     icon: <IoFootball className="text-xl" />,
     route: "/host/locations",
+    submenu: [],
+  },
+  {
+    name: "Host Amenities",
+    icon: <MdAutoMode className="text-xl" />,
+    route: "/host/amenities",
     submenu: [],
   },
   {
