@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 // type ValuePiece = Date | null;
 interface SearchParam {
+  name: string
   state: string;
   checkIn: string;
   checkOut: string;
@@ -26,12 +27,12 @@ const BookingTab: FC<Props> = ({ home }) => {
   const navigate = useNavigate();
   const { stayParams, saveStayParam } = useUtils();
   const [params, setParams] = useState<SearchParam>({
+    name: stayParams.name || '',
     state: stayParams.city || stayParams.state || "",
     checkIn: stayParams.checkIn || "",
     checkOut: stayParams.checkOut || "",
     guests: stayParams.guests || 1,
   });
-  console.log(params);
 
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
@@ -56,7 +57,7 @@ const BookingTab: FC<Props> = ({ home }) => {
             <div>
               <CitySearch
                 handleChange={handleChange}
-                prevValue={params.state}
+                prevValue={params.name}
               />
             </div>
             <div className="relative lg:flex justify-center">
@@ -138,6 +139,7 @@ const BookingTab: FC<Props> = ({ home }) => {
                 <FaRegUser className="text-xl" />
                 <Select
                   icon={<PiCaretDownThin />}
+                  value={params.guests}
                   onChange={(value) => handleChange(value, "no_of_guests")}
                   variant="unstyled"
                   placeholder="Guests"

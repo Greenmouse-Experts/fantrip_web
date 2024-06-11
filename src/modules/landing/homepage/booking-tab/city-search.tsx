@@ -14,6 +14,7 @@ const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
       handleChange(getStateFromGoogle(place.address_components), 'state')
+      handleChange(val, 'name')
     },
   });
   return (
