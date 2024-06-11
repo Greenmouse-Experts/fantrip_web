@@ -2,7 +2,7 @@ import Button from "../../../components/Button";
 import { FiCalendar } from "react-icons/fi";
 import { FaRegUser } from "react-icons/fa6";
 import { PiCaretDownThin } from "react-icons/pi";
-import { useState } from "react";
+import { FC, useState } from "react";
 import Calendar from "react-calendar";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
@@ -10,24 +10,29 @@ import dayjs from "dayjs";
 import { Menu, MenuButton, MenuList, Select } from "@chakra-ui/react";
 import CitySearch from "./booking-tab/city-search";
 import { useUtils } from "@/hooks/useUtils";
+import { useNavigate } from "react-router-dom";
 
 // type ValuePiece = Date | null;
 interface SearchParam {
   state: string;
-  checkIn: string
-  checkOut: string
-  guests: number
+  checkIn: string;
+  checkOut: string;
+  guests: number;
 }
-const BookingTab = () => {
-  const {stayParams, saveStayParam} = useUtils()
+interface Props {
+  home?: boolean;
+}
+const BookingTab: FC<Props> = ({ home }) => {
+  const navigate = useNavigate();
+  const { stayParams, saveStayParam } = useUtils();
   const [params, setParams] = useState<SearchParam>({
-    state: "",
-    checkIn: "",
-    checkOut: "",
-    guests: 1,
+    state: stayParams.city || stayParams.state || "",
+    checkIn: stayParams.checkIn || "",
+    checkOut: stayParams.checkOut || "",
+    guests: stayParams.guests || 1,
   });
   console.log(params);
-  
+
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
   };
@@ -36,9 +41,12 @@ const BookingTab = () => {
     const payload = {
       ...stayParams,
       ...params,
+    };
+    saveStayParam(payload);
+    if (home) {
+      navigate("/find-stay", { state: { targetId: "results" } });
     }
-    saveStayParam(payload)
-  }
+  };
 
   return (
     <div className="box">
@@ -46,17 +54,22 @@ const BookingTab = () => {
         <div className="lg:flex w-full ">
           <div className="grid items-center gap-9 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
             <div>
-              <CitySearch handleChange={handleChange}/>
+              <CitySearch
+                handleChange={handleChange}
+                prevValue={params.state}
+              />
             </div>
             <div className="relative lg:flex justify-center">
-              <Menu >
-                <MenuButton borderRadius={'xl'} className="!rounded-[10px]"  transition='all 0.2s'>
+              <Menu>
+                <MenuButton
+                  borderRadius={"xl"}
+                  className="!rounded-[10px]"
+                  transition="all 0.2s"
+                >
                   <div className="flex gap-x-4 cursor-pointer items-center">
                     <FiCalendar className="text-xl" />
                     {params.checkIn ? (
-                      <p className="fw-500">
-                        {params?.checkIn}
-                      </p>
+                      <p className="fw-500">{params?.checkIn}</p>
                     ) : (
                       <p className="fw-500">Check In</p>
                     )}
@@ -65,24 +78,35 @@ const BookingTab = () => {
                 <MenuList className="!pt-0 !pb-0 !rounded-[10px]">
                   <div className="">
                     <Calendar
-                      onChange={(value) => handleChange(dayjs(value as unknown as string).format(
-                        "YYYY-MM-DD"
-                      ), "checkIn")}
-                      value={params.checkIn? dayjs(params.checkIn).toDate() : dayjs().toDate()}
+                      onChange={(value) =>
+                        handleChange(
+                          dayjs(value as unknown as string).format(
+                            "YYYY-MM-DD"
+                          ),
+                          "checkIn"
+                        )
+                      }
+                      value={
+                        params.checkIn
+                          ? dayjs(params.checkIn).toDate()
+                          : dayjs().toDate()
+                      }
                     />
                   </div>
                 </MenuList>
               </Menu>
             </div>
             <div className="relative lg:flex justify-center">
-              <Menu >
-                <MenuButton borderRadius={'xl'}  transition='all 0.2s' className="!rounded-[10px]">
+              <Menu>
+                <MenuButton
+                  borderRadius={"xl"}
+                  transition="all 0.2s"
+                  className="!rounded-[10px]"
+                >
                   <div className="flex gap-x-4 cursor-pointer items-center">
                     <FiCalendar className="text-xl" />
                     {params.checkOut ? (
-                      <p className="fw-500">
-                        {params?.checkOut}
-                      </p>
+                      <p className="fw-500">{params?.checkOut}</p>
                     ) : (
                       <p className="fw-500">Check Out</p>
                     )}
@@ -91,10 +115,19 @@ const BookingTab = () => {
                 <MenuList className="!pt-0 !pb-0 !rounded-[10px]">
                   <div className="">
                     <Calendar
-                      onChange={(value) => handleChange(dayjs(value as unknown as string).format(
-                        "YYYY-MM-DD"
-                      ), "checkOut")}
-                      value={params.checkOut? dayjs(params.checkOut).toDate() : dayjs().toDate()}
+                      onChange={(value) =>
+                        handleChange(
+                          dayjs(value as unknown as string).format(
+                            "YYYY-MM-DD"
+                          ),
+                          "checkOut"
+                        )
+                      }
+                      value={
+                        params.checkOut
+                          ? dayjs(params.checkOut).toDate()
+                          : dayjs().toDate()
+                      }
                     />
                   </div>
                 </MenuList>
@@ -103,7 +136,13 @@ const BookingTab = () => {
             <div className="lg:flex justify-center">
               <div className="flex gap-x-6 cursor-pointer items-center">
                 <FaRegUser className="text-xl" />
-                <Select icon={<PiCaretDownThin />} onChange={(value) => handleChange(value, "no_of_guests")} variant='unstyled' placeholder='Guests' className="fw-500">
+                <Select
+                  icon={<PiCaretDownThin />}
+                  onChange={(value) => handleChange(value, "no_of_guests")}
+                  variant="unstyled"
+                  placeholder="Guests"
+                  className="fw-500"
+                >
                   <option value="1">1 (one)</option>
                   <option value="2">2 (two)</option>
                   <option value="3">3 (three)</option>

@@ -1,13 +1,15 @@
 import { IoSearch } from "react-icons/io5";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { getStateFromGoogle } from "@/lib/utils/helper-function";
 
 interface Props{
-  handleChange: (val: any, field: string) => void
+  handleChange: (val: any, field: string) => void;
+  prevValue: string
 }
-const CitySearch:FC<Props> = ({handleChange}) => {
+const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
+  const [val, setVal] = useState(prevValue)
   const { ref } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
@@ -21,6 +23,8 @@ const CitySearch:FC<Props> = ({handleChange}) => {
         <input
           type="text"
           ref={ref as any}
+          value={val}
+          onChange={(e) => setVal(e.target.value)}
           className="w-full lg:w-auto outline-none p-2 placeholder:text-black"
           placeholder="Enter city or region"
         />

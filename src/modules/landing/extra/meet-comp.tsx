@@ -12,9 +12,9 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
   const navigate = useNavigate();
   return (
    <div>
-     <div className="stay-item-wrapper grid">
+     <div className="stay-item-wrapper grid h-full">
       <div
-        className="rounded-[13px] stay-item p-5 bg-black grid grid-cols-2 gap-3"
+        className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
         key={i}
       >
         <div className="min-h-[200px]">
@@ -58,7 +58,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
               className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3"
               onClick={() => navigate(`/find-stay/${item.id}`)}
             >
-              <p className="fs-500 fw-500">{item.state || 'London'}</p>
+              <p className="fs-500 fw-500 capitalize">{item.state || 'London'}</p>
               <p className="fw-500">{item.currency}{item.price}/ night</p>
             </div>
           </div>

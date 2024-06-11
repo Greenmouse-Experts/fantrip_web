@@ -31,11 +31,11 @@ const LandingFooter = () => {
     },
     {
       name: "FAQs",
-      route: "/",
+      route: "/faqs",
     },
     {
       name: "Community Guildlines",
-      route: "/",
+      route: "/community-guidelines",
     },
   ];
   return (

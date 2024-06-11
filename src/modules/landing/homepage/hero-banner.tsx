@@ -80,7 +80,7 @@ const HeroBanner = () => {
         </div>
       </div>
       <div className="py-12 lg:pt-0 lg:relative -top-10">
-        <BookingTab />
+        <BookingTab home/>
       </div>
     </div>
   );

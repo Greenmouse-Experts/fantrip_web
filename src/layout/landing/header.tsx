@@ -112,7 +112,7 @@ const LandingHeader = () => {
                   <Link to={"/user/host-setup"}>Host a fan</Link>
                 </li>
                 <li>
-                  <Link to={""}>FAQs</Link>
+                  <Link to={"/faqs"}>FAQs</Link>
                 </li>
                 {!isLoggedIn && (
                   <li>

@@ -17,17 +17,17 @@ const GetAppPage = () => {
       {/* content */}
       <div className="section">
         <div className="box">
-          <div className="flex">
-            <div className="w-6/12">
+          <div className="lg:flex">
+            <div className="lg:w-6/12">
               <img
                 src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1718032473/fantrip/Group_1171275109_1_qtdup5.png"
                 alt="mobile-app"
-                className="w-full lg:w-8/12 mx-auto"
+                className="w-10/12 lg:w-8/12 mx-auto"
               />
             </div>
-            <div className="w-6/12">
+            <div className="lg:w-6/12 mt-8 lg:mt-0">
               <div>
-                <p className="syne text-xl lg:text-4xl fw-600">
+                <p className="syne text-2xl lg:text-4xl fw-600">
                   Download the <span className="text-gradient">fantrip</span>{" "}
                   Mobile App
                 </p>
