@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { BookingItem } from "@/lib/contracts/booking";
+import { PaidBookingItem } from "@/lib/contracts/booking";
 import dayjs from "dayjs";
 import { FaLocationPin } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -8,7 +8,7 @@ import { Drawer, DrawerOverlay, DrawerContent } from "@chakra-ui/react";
 import BookingDetails from "../../../components/booking-details";
 
 interface Props {
-  data: BookingItem[];
+  data: PaidBookingItem[];
   refetch: () => void;
   next: () => void
 }
@@ -22,14 +22,14 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
   };
   return (
     <div className="grid gap-4 mt-4">
-      {data.map((item: BookingItem) => (
+      {data.map((item: PaidBookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
           <div className="bg-white rounded-lg flex gap-x-4 p-1 h-full">
             <div className="w-[160px] h-[100%] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={
-                  !!item.stay.photos
-                    ? item.stay.photos[0]
+                  !!item.reservation.stay.photos
+                    ? item.reservation.stay.photos[0]
                     : "https://i.insider.com/6418b4bc50c7b20018f151c1?width=800&format=jpeg&auto=webp"
                 }
                 alt="stay-image"
@@ -39,26 +39,26 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
             <div className="w-full flex items-center justify-between lg:pr-4">
               <div>
                 <p className="lg:text-2xl fw-500">
-                  {item.stay.name}{" "}
-                  <span className="text-[#fc819f] relative bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-[#fc81a01b]">
-                    {item.status}
+                  {item.reservation.stay.name}{" "}
+                  <span className="text-green-600 relative bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-green-50">
+                    confirmed
                   </span>
                 </p>
                 <div className="flex gap-x-2 my-2">
                   <ProfileAvatar
-                    name={`${item?.stay?.host?.firstName} ${item.stay?.host?.lastName}`}
-                    url={item?.stay?.host?.picture}
+                    name={`${item?.reservation.stay?.host?.firstName} ${item.reservation.stay?.host?.lastName}`}
+                    url={item?.reservation.stay?.host?.picture}
                     size={40}
                     font={14}
                   />
                   <div>
-                    <p className="fw-500">{`${item?.stay?.host?.firstName} ${item?.stay?.host?.lastName}`}</p>
+                    <p className="fw-500">{`${item?.reservation.stay?.host?.firstName} ${item?.reservation.stay?.host?.lastName}`}</p>
                     <p className="fw-500">Host</p>
                   </div>
                 </div>
                 <div className="text-sec gap-x-1 flex items-center">
                   <FaLocationPin className="text-md" />
-                  <p className="fs-500">{item.stay.address}</p>
+                  <p className="fs-500">{item.reservation.stay.address}</p>
                 </div>
               </div>
               <div className="grid gap-3 justify-end p-2">
@@ -70,13 +70,13 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
                 <div className="flex gap-x-3 justify-end relative">
                   <p
                     className="underline text-[#9847fe] relative block cursor-pointer"
-                    onClick={() => openDetail(item.id)}
+                    onClick={() => openDetail(item.trx.id)}
                   >
                     View Details
                   </p>
                   <Link
                     className="underline text-[#9847fe] relative block"
-                    to={`/find-stay/${item.stay.id}`}
+                    to={`/find-stay/${item.reservation.stay.id}`}
                   >
                     View Listing
                   </Link>

@@ -26,3 +26,38 @@ export interface ComputePricePayload {
   checkOut: string;
   stay: string;
 }
+
+interface TransactItem {
+    id: string;
+    reference: string;
+    thirdPartyRes: {
+      ref: string;
+      clientSecret: string;
+      status: string;
+    };
+    status: string;
+    amount: number ;
+    subAmount: number;
+    narration: string;
+    gateway: string;
+    purpose: string;
+    createdDate: string;
+    updatedDate: string;
+    deletedDate: string | null;
+}
+export interface PaidBookingItem {
+  id: string;
+  number: string
+  currency: string;
+  price: number;
+  pricePerNight: number;
+  serviceFee: number;
+  tax: number;
+  total: number;
+  status: string
+  createdDate: string
+  updatedDate: string
+  deletedDate: string | null;
+  trx: TransactItem;
+  reservation: BookingItemWithPricing
+}

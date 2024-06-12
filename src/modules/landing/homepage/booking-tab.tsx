@@ -11,10 +11,11 @@ import { Menu, MenuButton, MenuList, Select } from "@chakra-ui/react";
 import CitySearch from "./booking-tab/city-search";
 import { useUtils } from "@/hooks/useUtils";
 import { useNavigate } from "react-router-dom";
+import { LiaTimesSolid } from "react-icons/lia";
 
 // type ValuePiece = Date | null;
 interface SearchParam {
-  name: string
+  name: string;
   state: string;
   checkIn: string;
   checkOut: string;
@@ -25,9 +26,9 @@ interface Props {
 }
 const BookingTab: FC<Props> = ({ home }) => {
   const navigate = useNavigate();
-  const { stayParams, saveStayParam } = useUtils();
+  const { stayParams, saveStayParam, resetParams } = useUtils();
   const [params, setParams] = useState<SearchParam>({
-    name: stayParams.name || '',
+    name: stayParams.name || "",
     state: stayParams.city || stayParams.state || "",
     checkIn: stayParams.checkIn || "",
     checkOut: stayParams.checkOut || "",
@@ -36,6 +37,12 @@ const BookingTab: FC<Props> = ({ home }) => {
 
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
+  };
+
+  const checkField = () => {
+    if (stayParams.state || stayParams.checkIn || stayParams.checkOut) {
+      return true;
+    } else return false;
   };
 
   const handleSearch = () => {
@@ -54,11 +61,8 @@ const BookingTab: FC<Props> = ({ home }) => {
       <div className="w-full bg-white lg:rounded-[100px] book-tab-border px-6 py-3 lg:pl-12">
         <div className="lg:flex w-full ">
           <div className="grid items-center gap-9 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
-            <div>
-              <CitySearch
-                handleChange={handleChange}
-                prevValue={params.name}
-              />
+            <div className="w-full">
+              <CitySearch handleChange={handleChange} prevValue={params.name} />
             </div>
             <div className="relative lg:flex justify-center">
               <Menu>
@@ -153,12 +157,20 @@ const BookingTab: FC<Props> = ({ home }) => {
               </div>
             </div>
           </div>
-          <div className="mt-8 lg:mt-0">
+          <div className="mt-8 lg:mt-0 flex items-center gap-x-2">
             <Button
               title={"Search"}
               altClassName="btn-primary w-full lg:w-auto shrink-0 py-4 lg:py-5 lg:px-16 fw-600 px-12"
               onClick={handleSearch}
             />
+            {checkField() && (
+              <div
+                className="w-12 h-12 bg-red-600 text-white cursor-pointer place-center circle"
+                onClick={() => resetParams()}
+              >
+                <LiaTimesSolid />
+              </div>
+            )}
           </div>
         </div>
       </div>

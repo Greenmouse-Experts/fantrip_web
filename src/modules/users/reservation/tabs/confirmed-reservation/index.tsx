@@ -14,7 +14,7 @@ const ConfirmedReservation = () => {
   });
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchReservation(params),
-    queryKey: ["get-guest-booking", params.status],
+    queryKey: ["get-guest-resevation", params.status],
   });
 
   const handleNext = () => {

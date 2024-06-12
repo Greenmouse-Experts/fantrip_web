@@ -12,9 +12,24 @@ export function useUtils() {
       fetchStay: { ...param },
     });
   };
+  const resetParams = () => {
+    saveUtils({
+      ...utils,
+      fetchStay: {
+        property: "",
+        name: "",
+        state: "",
+        guests: 1,
+        city: "",
+        checkIn: "",
+        checkOut: "",
+      }
+    })
+  }
   return {
     stayParams,
     utils,
     saveStayParam,
+    resetParams,
   };
 }

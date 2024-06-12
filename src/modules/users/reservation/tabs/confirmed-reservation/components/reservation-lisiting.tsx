@@ -29,7 +29,7 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
             <div className="w-[160px] h-[100%] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={
-                  !!item.stay.photos
+                  !!item?.stay?.photos?.length
                     ? item.stay.photos[0]
                     : "https://i.insider.com/6418b4bc50c7b20018f151c1?width=800&format=jpeg&auto=webp"
                 }

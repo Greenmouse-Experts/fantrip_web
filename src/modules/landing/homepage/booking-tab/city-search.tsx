@@ -10,15 +10,19 @@ interface Props{
 }
 const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
   const [val, setVal] = useState(prevValue)
+  console.log(prevValue);
+  
   const { ref } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
+      console.log(place.address_components);
+      
       handleChange(getStateFromGoogle(place.address_components), 'state')
-      handleChange(place.address_components.formatted_address, 'name')
+      // handleChange(place.formatted_addres, 'name')
     },
   });
   return (
-    <div className="relative">
+    <div className="relative overflow-hidden">
       <div className="flex gap-x-2 items-center relative top-4 lg:top-0">
         <IoSearch className="text-xl" />
         <input
