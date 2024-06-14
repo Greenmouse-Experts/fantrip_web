@@ -1,8 +1,7 @@
 import { MdAutoMode, MdOutlineDashboard } from "react-icons/md";
-import { FaDollarSign, FaLocationDot, FaStar } from "react-icons/fa6";
+import { FaDollarSign, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { BsChatFill, BsCompassFill } from "react-icons/bs";
-import { IoFootball } from "react-icons/io5";
 export interface RouteType {
   name: string;
   icon: any;
