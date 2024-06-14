@@ -1,7 +1,6 @@
 import { AvailableStayItem } from "@/lib/contracts/stay";
 import { getAllStay } from "@/services/api/stay-api";
 import { useQuery } from "@tanstack/react-query";
-import MeetComponent from "../meet-comp";
 import SmallMeetComponent from "../small-meet-comp";
 
 const PreviousListing = () => {

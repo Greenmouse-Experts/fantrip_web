@@ -10,7 +10,7 @@ interface Props {
   data: BookingItem[];
   refetch: () => void;
 }
-const BookingTableListing: FC<Props> = ({ data, refetch }) => {
+const BookingTableListing: FC<Props> = ({ data }) => {
   const columnHelper = createColumnHelper<PaidBookingItem>();
   const columns = [
     columnHelper.accessor((row) => row.reservation.guest.firstName, {
