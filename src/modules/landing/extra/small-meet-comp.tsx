@@ -10,7 +10,7 @@ interface Props {
   item: AvailableStayItem;
   i: number;
 }
-const MeetComponent: FC<Props> = ({ item, i }) => {
+const SmallMeetComponent: FC<Props> = ({ item, i }) => {
   const [showMore, setShowMore] = useState(false)
   const navigate = useNavigate();
   return (
@@ -20,11 +20,11 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
         key={i}
       >
-        <div className="min-h-[200px]">
+        <div className="min-h-[150px]">
           <img
             src={item.host.picture}
             alt="fan_image"
-            className="h-full w-full max-h-[350px] rounded-lg object-cover"
+            className="h-full w-full max-h-[250px] rounded-lg object-cover"
           />
         </div>
         <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
@@ -35,7 +35,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="mt-2">
               <p className="fs-500">
-                {formatName(item.host.bio, 84)}{" "}
+                {formatName(item.host.bio, 44)}{" "}
                 <button
                   className="fw-500 fs-500 text-[#9847FE]"
                   onClick={() => setShowMore(true)}
@@ -47,7 +47,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="grid gap-1 mt-2">
               {item.amenities
-                .slice(0, 3)
+                .slice(0, 2)
                 .map((item: AmenityItem, i: number) => (
                   <div className="flex gap-x-2" key={i}>
                     <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
@@ -66,11 +66,11 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
           </div>
         </div>
-        <div className="min-h-[200px]">
+        <div className="min-h-[150px]">
           <img
             src={item.photos[0]}
             alt="room_img"
-            className="h-full w-full max-h-[350px] rounded-lg object-cover"
+            className="h-full w-full max-h-[250px] rounded-lg object-cover"
           />
         </div>
       </div>
@@ -88,4 +88,4 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
   );
 };
 
-export default MeetComponent;
+export default SmallMeetComponent;

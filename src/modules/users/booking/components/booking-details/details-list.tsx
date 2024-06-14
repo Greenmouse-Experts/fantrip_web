@@ -21,7 +21,7 @@ const DetailsList: FC<Props> = ({ data }) => {
     trx
   } = data;
   return (
-    <div className="overflow-y-auto">
+    <div className="h-[93vh] overflow-y-auto">
       <div className="flex gap-x-2">
         <p className="text-prima syne fw-600">Stay Status</p>
         <p className="fw-500">

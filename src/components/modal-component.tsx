@@ -21,12 +21,12 @@ export const ComponentModal: FC<Props> = ({
       onClick={onClose}
     >
       <div
-        className={` bg-white ${
+        className={` ${
           type === "recommend"
-            ? "w-3/4 lg:w-[50%]"
+            ? "bg-white w-3/4 lg:w-[50%]"
              : type === "more"? 
-            "w-3/4 lg:w-[500px] rounded-lg p-5 bg-[#EDEDFF]"
-            : "p-5 rounded-lg w-3/4 [@media(min-width:1410px)]:w-[60%]"
+            "w-3/4 lg:w-[550px] rounded-lg p-5 bg-[#EDEDFF]"
+            : "bg-white p-5 rounded-lg w-3/4 [@media(min-width:1410px)]:w-[60%]"
         }`}
         onClick={(e) => {
           e.stopPropagation();
@@ -50,7 +50,9 @@ export const ComponentModal: FC<Props> = ({
             </button>
           </div>
         )}
+        <div className={`${type === 'more' && 'px-3'}`}>
         {children}
+        </div>
       </div>
     </div>
   ) : null;
