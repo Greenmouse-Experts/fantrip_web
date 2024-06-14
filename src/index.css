@@ -35,6 +35,44 @@ input[type="checkbox"]:checked {
   }
 }
 
+/* resizabe modal */
+.flexible-modal {
+  position: fixed !important;
+  z-index: 1;
+  border: 1px solid #ccc;
+  background: white;
+}
+.flexible-modal-mask {
+  position: fixed;
+  height: 100%;
+  background: transparent !important;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+}
+.flexible-modal-resizer {
+  position:fixed;
+  right:0;
+  bottom:0;
+  cursor:se-resize;
+  margin:5px;
+  border-bottom: solid 2px #333;
+  border-right: solid 2px #333;
+}
+.flexible-modal-drag-area{
+  background: linear-gradient(90deg, #9847fe 0%, #fc819f 100%) !important;
+  opacity: 0;
+  height: 50px;
+  position:absolute;
+  right:0;
+  top:0;
+  cursor:move;
+}
+.pac-container {
+  z-index: 90000 !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

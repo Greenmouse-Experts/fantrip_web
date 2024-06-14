@@ -20,6 +20,7 @@ const utilsInitState = {
   },
   guestReserveTab: 0,
   guestBookTab: 0,
+  stayModal: false
 };
 const useUtilsStore = create<Props>()(
   persist(

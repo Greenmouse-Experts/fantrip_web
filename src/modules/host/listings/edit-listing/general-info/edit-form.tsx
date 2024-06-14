@@ -64,7 +64,7 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
         maxNights: Number(datas.maxNights),
         maxGuests: Number(datas.maxGuests),
         percentageOff: Number(datas.percentageOff),
-        state: 'lagos'
+        state: datas.state
     }
     await updateStay(data.id, payload)
       .then((res) => {
@@ -154,7 +154,7 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
             )}
           />
         </div>
-        <div>
+        <div className="relative">
           <p className="text-black fw-600 lg:text-lg block mb-3">
             Location Details
           </p>

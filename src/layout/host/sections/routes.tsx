@@ -1,4 +1,4 @@
-import { MdAutoMode, MdOutlineDashboard, MdQuiz } from "react-icons/md";
+import { MdAutoMode, MdOutlineDashboard } from "react-icons/md";
 import { FaDollarSign, FaLocationDot, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { BsChatFill, BsCompassFill } from "react-icons/bs";
@@ -41,33 +41,33 @@ export const Routes = [
   {
     name: "Chat Room",
     icon: <BsChatFill className="text-lg" />,
-    route: "/host/locations",
+    route: "/host/inbox",
     submenu: [],
   },
   {
     name: "Matchday Area guide",
     icon: <BsCompassFill className="text-xl" />,
-    route: "/host/locations",
+    route: "/host/area-guide",
     submenu: [],
   },
-  {
-    name: "Live quiz & predictions",
-    icon: <MdQuiz className="text-xl" />,
-    route: "/host/locations",
-    submenu: [],
-  },
-  {
-    name: "Locations",
-    icon: <FaLocationDot className="text-xl" />,
-    route: "/host/locations",
-    submenu: [],
-  },
-  {
-    name: "Exclusive sports content",
-    icon: <IoFootball className="text-xl" />,
-    route: "/host/locations",
-    submenu: [],
-  },
+  // {
+  //   name: "Live quiz & predictions",
+  //   icon: <MdQuiz className="text-xl" />,
+  //   route: "/host/locations",
+  //   submenu: [],
+  // },
+  // {
+  //   name: "Locations",
+  //   icon: <FaLocationDot className="text-xl" />,
+  //   route: "/host/locations",
+  //   submenu: [],
+  // },
+  // {
+  //   name: "Exclusive sports content",
+  //   icon: <IoFootball className="text-xl" />,
+  //   route: "/host/locations",
+  //   submenu: [],
+  // },
   {
     name: "Host Amenities",
     icon: <MdAutoMode className="text-xl" />,
@@ -75,9 +75,9 @@ export const Routes = [
     submenu: [],
   },
   {
-    name: "Transactions",
+    name: "Payments",
     icon: <FaDollarSign className="text-xl" />,
-    route: "/host/transact",
+    route: "/host/payments",
     submenu: [],
   },
 ];

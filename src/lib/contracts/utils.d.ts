@@ -11,4 +11,5 @@ export interface UtilsStoreItem{
     fetchStay: FetchStayParamItem
     guestReserveTab: number,
     guestBookTab: number,
+    stayModal: boolean,
 }

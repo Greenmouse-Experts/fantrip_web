@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { Drawer, DrawerOverlay, DrawerContent } from "@chakra-ui/react";
 import BookingDetails from "../../../components/booking-details";
+import ChatForStay from "@/modules/chat/stay-chat";
 
 interface Props {
   data: PaidBookingItem[];
@@ -80,8 +81,9 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
                   >
                     View Listing
                   </Link>
-
-                  {/* <CancelBooking id={item.id} refetch={refetch} /> */}
+                </div>
+                <div className="flex justify-end">
+                <ChatForStay id=""/>
                 </div>
               </div>
             </div>

@@ -5,6 +5,7 @@ export function useUtils() {
   const utils = useUtilsStore((state) => state.utils);
   const stayParams = utils.fetchStay;
   const saveUtils = useUtilsStore((state) => state.saveUtils);
+  const stayChatModal = utils.stayModal
 
   const saveStayParam = (param: FetchStayParamItem) => {
     saveUtils({
@@ -26,10 +27,18 @@ export function useUtils() {
       }
     })
   }
+  const toggleStayChatmodal = (val:boolean) => {
+    saveUtils({
+      ...utils,
+     stayModal: val
+    })
+  }
   return {
     stayParams,
     utils,
     saveStayParam,
     resetParams,
+    stayChatModal,
+    toggleStayChatmodal
   };
 }

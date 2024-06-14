@@ -7,11 +7,12 @@ import BookingTableListing from "./table-listing";
 
 const BookingListingTable = () => {
   const [params, setParams] = useState({
-    isDisclosed: 1,
+    status:  'pending',
+    page: 1
   });
   const { isLoading, data, refetch } = useQuery({
-    queryKey: ["host-get-reservations", params],
-    queryFn: () => hostFetchBooking({status: 'pending'}),
+    queryKey: ["host-get-bookings", params],
+    queryFn: () => hostFetchBooking(params),
   });
   return (
     <div>

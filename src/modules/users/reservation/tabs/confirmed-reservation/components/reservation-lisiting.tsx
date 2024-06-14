@@ -7,6 +7,7 @@ import ProfileAvatar from "@/components/ProfileAvatar";
 import { Drawer, DrawerOverlay, DrawerContent } from "@chakra-ui/react";
 import BookingDetails from "../../../components/reservation-details";
 import { BsChatDots } from "react-icons/bs";
+import ChatForStay from "@/modules/chat/stay-chat";
 
 interface Props {
   data: BookingItem[];
@@ -83,10 +84,7 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
                   </Link>
                 </div>
                 <div className="flex justify-end">
-                  <div className="flex gap-x-2 items-center fw-500">
-                    <BsChatDots/>
-                    Chat with Host
-                  </div>
+                <ChatForStay id=""/>
                 </div>
               </div>
             </div>
