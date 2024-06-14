@@ -20,7 +20,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i }) => {
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
         key={i}
       >
-        <div className="min-h-[150px]">
+        <div className="min-h-[200px]">
           <img
             src={item.host.picture}
             alt="fan_image"
@@ -35,7 +35,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="mt-2">
               <p className="fs-500">
-                {formatName(item.host.bio, 44)}{" "}
+                {formatName(item.host.bio, 34)}{" "}
                 <button
                   className="fw-500 fs-500 text-[#9847FE]"
                   onClick={() => setShowMore(true)}
@@ -66,7 +66,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i }) => {
             </div>
           </div>
         </div>
-        <div className="min-h-[150px]">
+        <div className="min-h-[200px]">
           <img
             src={item.photos[0]}
             alt="room_img"
