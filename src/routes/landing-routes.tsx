@@ -9,7 +9,9 @@ import FindStayDetails from "@/pages/landing/find-stay-details";
 import GetAppPage from "@/pages/landing/get-app";
 import HelpPage from "@/pages/landing/help-page";
 import LandingHomepage from "@/pages/landing/homepage";
+import PriceBooking from "@/pages/landing/price-booking";
 import PrivacyPage from "@/pages/landing/privacy";
+import RefundPolicy from "@/pages/landing/refund-policy";
 import TermsPage from "@/pages/landing/terms";
 
 export const landingRooutes = [
@@ -60,6 +62,14 @@ export const landingRooutes = [
           {
             path: 'cookie',
             element: <CookiePage />,
+          },
+          {
+            path: 'refund-policy',
+            element: <RefundPolicy />,
+          },
+          {
+            path: 'booking-pricing',
+            element: <PriceBooking />,
           },
           {
             path: 'community-guidelines',
