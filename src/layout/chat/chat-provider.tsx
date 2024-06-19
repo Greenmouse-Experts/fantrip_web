@@ -12,7 +12,7 @@ const ChatProvider = () => {
         minHeight={500}
         initWidth={400}
         initHeight={500}
-        onFocus={() => console.log("Modal is clicked")}
+        onFocus={() => console.log("Modal is click")}
         className={"rounded-xl overflow-hidden"}
         onRequestClose={() => setShowModal(true)}
         isOpen={showModal}
