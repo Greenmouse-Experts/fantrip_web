@@ -1,13 +1,13 @@
-import { useUtils } from '@/hooks/useUtils';
-import ChatInterface from '@/modules/chat/stay-chat/components/chat-interface';
+import { useUtils } from "@/hooks/useUtils";
+import ChatInterface from "@/modules/chat/stay-chat/components/chat-interface";
 import ReactModal from "react-modal-resizable-draggable";
 
 const ChatProvider = () => {
-    const { stayChatModal: showModal, toggleStayChatmodal: setShowModal } =
+  const { stayChatModal: showModal, toggleStayChatmodal: setShowModal } =
     useUtils();
   return (
     <div>
-        <ReactModal
+      <ReactModal
         minWidth={400}
         minHeight={500}
         initWidth={400}
@@ -20,7 +20,7 @@ const ChatProvider = () => {
         <ChatInterface close={() => setShowModal(false)} />
       </ReactModal>
     </div>
-  )
-}
+  );
+};
 
-export default ChatProvider
+export default ChatProvider;
