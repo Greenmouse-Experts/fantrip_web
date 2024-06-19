@@ -3,6 +3,7 @@ import LandingHeader from "../landing/header";
 import LandingFooter from "../landing/footer";
 import ScrollToTop from "@/lib/utils/scrollTop";
 import { useEffect } from "react";
+import ChatProvider from "../chat/chat-provider";
 
 const UserLayout = () => {
   const token = sessionStorage.getItem('fantrip_token')
@@ -19,6 +20,7 @@ const UserLayout = () => {
     <div>
       <ScrollToTop />
       <LandingHeader />
+      <ChatProvider/>
       <Outlet />
       <LandingFooter />
     </div>
