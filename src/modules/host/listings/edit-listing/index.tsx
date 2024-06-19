@@ -25,7 +25,7 @@ const EditListingIndex: FC<Props> = ({ data, refetch }) => {
     <div>
       <p className="text-2xl syne fw-600">{name}</p>
       <div className="mt-6 grid gap-10">
-        <EditListingImage images={photos} id={id} />
+        <EditListingImage images={photos} id={id} refetch={refetch}/>
         <GeneralInformation data={data} refetch={refetch} />
         <AmenitiesInfo
           amenities={amenities}

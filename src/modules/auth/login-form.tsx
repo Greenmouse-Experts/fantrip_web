@@ -60,7 +60,7 @@ const LoginForm = () => {
           country: data.data.country
         })
         if(data.data.role === 'host'){navigate('/host')}
-        if(data.data.role === 'guest'){navigate('/user/profile')}
+        if(data.data.role === 'guest'){navigate(-1)}
       },
       onError: (error: any) => {
         toast({

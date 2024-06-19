@@ -11,6 +11,8 @@ import useDialog from "@/hooks/useDialog";
 import BookingSuccess from "./booking-tab-comps/booking-success";
 import { BeatLoader } from "react-spinners";
 import { formatNumber } from "@/lib/utils/formatHelp";
+import useAuth from "@/hooks/authUser";
+import { useNavigate } from "react-router-dom";
 
 type ValuePiece = Date | null;
 interface SearchParam {
@@ -30,6 +32,8 @@ interface Props {
   maxGuest: number;
 }
 const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, maxGuest }) => {
+  const {isLoggedIn} = useAuth()
+  const navigate = useNavigate()
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
@@ -90,6 +94,10 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
   }, [params.checkIn, params.checkOut])
 
   const reserveStay = async () => {
+    if(!isLoggedIn){
+      navigate('/auth/login')
+      return ;
+    }
     setIsBusy(true);
     const payload = {
       stay: id,

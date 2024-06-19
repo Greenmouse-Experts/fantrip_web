@@ -8,12 +8,12 @@ const ChatProvider = () => {
   return (
     <div>
       <ReactModal
-        minWidth={400}
-        minHeight={500}
+        minWidth={250}
+        minHeight={400}
         initWidth={400}
         initHeight={500}
         onFocus={() => console.log("Modal is click")}
-        className={"rounded-xl overflow-hidden"}
+        className={"rounded-xl !-z-0 overflow-hidden"}
         onRequestClose={() => setShowModal(true)}
         isOpen={showModal}
       >

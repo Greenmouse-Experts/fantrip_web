@@ -10,13 +10,9 @@ interface Props{
 }
 const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
   const [val, setVal] = useState(prevValue)
-  console.log(prevValue);
-  
   const { ref } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
-      console.log(place.address_components);
-      
       handleChange(getStateFromGoogle(place.address_components), 'state')
       // handleChange(place.formatted_addres, 'name')
     },

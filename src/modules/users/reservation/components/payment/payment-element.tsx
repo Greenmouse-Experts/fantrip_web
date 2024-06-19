@@ -39,6 +39,8 @@ const CheckoutForm: FC<Props> = ({id}) => {
             ),
             position: "top",
           });
+          console.log(data);
+          
           navigate(`/user/booking-success/${id}`)
     },
     onError: (err:any) => {

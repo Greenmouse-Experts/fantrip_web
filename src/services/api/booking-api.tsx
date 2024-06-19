@@ -17,7 +17,7 @@ export const computePrice = async (payload:ComputePricePayload) => {
 
 export const hostFetchBooking = async (params: FetchParam) => {
     return axios
-      .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?status=${params.status}&`)
+      .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?status=${params.status}&page=${params.page}`)
       .then((response) => response.data);
   };
 

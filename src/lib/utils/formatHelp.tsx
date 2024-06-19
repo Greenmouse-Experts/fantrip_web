@@ -119,6 +119,45 @@ export const formatStatus = {
       <span className="syne fw-600 text-[#fc819f]">Pending</span>
     </p>
   ),
+  checkedin: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-purple-600"></span>
+      <span className="syne fw-600 text-purple-600">Checked-In</span>
+    </p>
+  ),
+  checkedout: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-blue-600"></span>
+      <span className="syne fw-600 text-blue-600">Checked-Out</span>
+    </p>
+  ),
+  cancelled: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-red-500"></span>
+      <span className="syne fw-600 text-red-500">Cancelled</span>
+    </p>
+  ),
+};
+
+export const formatStayStatus = {
+  pending: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-[#fc819f]"></span>
+      <span className="syne fw-600 text-[#fc819f]">Awaiting</span>
+    </p>
+  ),
+  checkedin: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-purple-600"></span>
+      <span className="syne fw-600 text-purple-600">Checked-In</span>
+    </p>
+  ),
+  checkedout: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-blue-600"></span>
+      <span className="syne fw-600 text-blue-600">Checked-Out</span>
+    </p>
+  ),
   cancelled: (
     <p className="flex gap-x-2 items-center">
       <span className="w-3 h-3 block circle bg-red-500"></span>

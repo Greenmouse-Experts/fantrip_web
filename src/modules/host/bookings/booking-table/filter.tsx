@@ -15,29 +15,53 @@ const BookingFilter: FC<Props> = ({ param, setParams }) => {
           <MenuButton>
             <div className="flex gap-x-2 items-center">
               <p>Status:</p>
-              {param.isDisclosed === 0
-                ? formatStatus["draft"]
-                : formatStatus["active"]}
+              {
+                formatStatus[
+                  param.status?.toLowerCase() as keyof typeof formatStatus
+                ]
+              }
             </div>
           </MenuButton>
           <MenuList className="">
             <MenuItem
               onClick={() =>
                 setParams({
-                  isDisclosed: 1,
+                  ...param,
+                  status: "Pending",
                 })
               }
             >
-              <p className="text-black">Active Listings</p>
+              <p className="text-black">Upcoming Booking</p>
             </MenuItem>
             <MenuItem
               onClick={() =>
                 setParams({
-                  isDisclosed: 0,
+                  ...param,
+                  status: "Checkedin",
                 })
               }
             >
-              <p className="text-black">Draft Listings</p>
+              <p className="text-black">Checked In</p>
+            </MenuItem>
+            <MenuItem
+              onClick={() =>
+                setParams({
+                  ...param,
+                  status: "Checkedout",
+                })
+              }
+            >
+              <p className="text-black">Checked Out</p>
+            </MenuItem>
+            <MenuItem
+              onClick={() =>
+                setParams({
+                  ...param,
+                  status: "Cancelled",
+                })
+              }
+            >
+              <p className="text-black">Cancelled Bookings</p>
             </MenuItem>
           </MenuList>
         </Menu>
