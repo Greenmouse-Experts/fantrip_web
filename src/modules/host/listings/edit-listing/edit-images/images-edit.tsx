@@ -110,7 +110,7 @@ const EditImages: FC<Props> = ({ images, id, refetch, close }) => {
       </div>
       <div className="flex justify-end mt-6">
         <Button
-          title={"Save Changes"}
+          title={isBusy?  <BeatLoader color="white"/> : "Save Changes"}
           onClick={saveChanges}
           altClassName="btn-int px-5 py-3 "
         />
