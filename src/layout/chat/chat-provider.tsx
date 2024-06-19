@@ -17,9 +17,7 @@ const ChatProvider = () => {
         onRequestClose={() => setShowModal(true)}
         isOpen={showModal}
       >
-        <div>
         <ChatInterface close={() => setShowModal(false)} />
-        </div>
       </ReactModal>
     </div>
   )
