@@ -1,5 +1,5 @@
 import { useUtils } from '@/hooks/useUtils';
-// import ChatInterface from '@/modules/chat/stay-chat/components/chat-interface';
+import ChatInterface from '@/modules/chat/stay-chat/components/chat-interface';
 import ReactModal from "react-modal-resizable-draggable";
 
 const ChatProvider = () => {
@@ -17,7 +17,9 @@ const ChatProvider = () => {
         onRequestClose={() => setShowModal(true)}
         isOpen={showModal}
       >
-        {/* <ChatInterface close={() => setShowModal(false)} /> */}
+        <div>
+        <ChatInterface close={() => setShowModal(false)} />
+        </div>
       </ReactModal>
     </div>
   )
