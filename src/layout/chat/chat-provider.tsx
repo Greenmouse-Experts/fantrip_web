@@ -1,5 +1,5 @@
 import { useUtils } from '@/hooks/useUtils';
-import ChatInterface from '@/modules/chat/stay-chat/components/chat-interface';
+// import ChatInterface from '@/modules/chat/stay-chat/components/chat-interface';
 import ReactModal from "react-modal-resizable-draggable";
 
 const ChatProvider = () => {
