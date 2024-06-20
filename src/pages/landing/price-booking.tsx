@@ -23,7 +23,7 @@ const PriceBooking = () => {
               What is the pricing range for accommodations on Fantrip?
             </p>
             <div className="grid gap-5">
-              <PolicyList text=" The pricing range on our platform is strictly set between €25 to €75. This range is intended to make accommodations affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
+              <PolicyList text=" Booking fees on fantrip is intended to make accommodation affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
             </div>
             <p className="fw-500 mb-3 lg:mb-4 mt-5">
               Are there any additional fees for guests?
