@@ -16,7 +16,7 @@ interface Props {
   secret_key: string;
   id: string;
 }
-const CheckoutForm: FC<Props> = ({id}) => {
+const CheckoutForm: FC<Props> = ({}) => {
   const stripe = useStripe();
   const elements = useElements();
   const {mutate } = useMutation({
@@ -41,7 +41,7 @@ const CheckoutForm: FC<Props> = ({id}) => {
           });
           console.log(data);
           
-          navigate(`/user/booking-success/${id}`)
+          navigate(`/user/booking-success/${data.id}`)
     },
     onError: (err:any) => {
       console.log(err);
