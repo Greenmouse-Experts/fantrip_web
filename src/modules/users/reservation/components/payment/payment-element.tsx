@@ -41,11 +41,9 @@ const CheckoutForm: FC<Props> = ({}) => {
           });
           console.log(data);
           
-          navigate(`/user/booking-success/${data.id}`)
+          navigate(`/user/booking-success/${data.data.trxId}`)
     },
     onError: (err:any) => {
-      console.log(err);
-      
         toast({
             title: err.response.data.message,
             isClosable: true,

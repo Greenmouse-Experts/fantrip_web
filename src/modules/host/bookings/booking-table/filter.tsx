@@ -2,6 +2,7 @@ import { FetchParam } from "@/lib/contracts/routine";
 import React, { FC } from "react";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { formatStatus } from "@/lib/utils/formatHelp";
+import { FaChevronDown } from "react-icons/fa6";
 
 interface Props {
   setParams: React.Dispatch<React.SetStateAction<any>>;
@@ -20,6 +21,7 @@ const BookingFilter: FC<Props> = ({ param, setParams }) => {
                   param.status?.toLowerCase() as keyof typeof formatStatus
                 ]
               }
+              <FaChevronDown className="ml-2 opacity-70 relative -top-[1px]"/>
             </div>
           </MenuButton>
           <MenuList className="">

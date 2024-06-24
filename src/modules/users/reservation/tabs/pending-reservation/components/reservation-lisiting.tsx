@@ -84,7 +84,7 @@ const PendingReservationList: FC<Props> = ({ data }) => {
                   {/* <CancelBooking id={item.id} refetch={refetch} /> */}
                 </div>
                 <div className="flex justify-end">
-                <ChatForStay id=""/>
+                <ChatForStay id="" host={item.stay.host}/>
                 </div>
               </div>
             </div>

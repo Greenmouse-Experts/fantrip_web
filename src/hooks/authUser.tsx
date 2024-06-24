@@ -27,6 +27,7 @@ const useAuth = () => {
     isLoggedIn,
     kyc,
     isHost,
+    token,
     saveKyc,
     saveUser,
     signOut

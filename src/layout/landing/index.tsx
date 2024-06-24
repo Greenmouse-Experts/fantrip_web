@@ -4,6 +4,7 @@ import LandingFooter from "./footer"
 import ScrollToTop from "@/lib/utils/scrollTop"
 import ChatProvider from "../chat/chat-provider"
 
+
 const LandingLayout = () => {
   return (
     <div>

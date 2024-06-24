@@ -73,7 +73,10 @@ const BookingTableListing: FC<Props> = ({ data }) => {
     }),
     columnHelper.accessor((row) => row.reservation.adults, {
       id: "Guests",
-      cell: (info) => dayjs(info.getValue()).format("DD-MMM-YYYY"),
+      cell: (info) =>  <div>
+      <p>{info.getValue()} Adults</p>
+      <p>{info.row.original.reservation.children} Children</p>
+    </div>,
       header: (info) => info.column.id,
     }),
     columnHelper.accessor((row) => row.status, {

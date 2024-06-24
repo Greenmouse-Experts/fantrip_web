@@ -83,7 +83,7 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
                   </Link>
                 </div>
                 <div className="flex justify-end">
-                <ChatForStay id=""/>
+                <ChatForStay id="" host={item.reservation.stay.host}/>
                 </div>
               </div>
             </div>

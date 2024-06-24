@@ -1,7 +1,10 @@
+import HostInboxIndex from "@/modules/host/inbox"
 
 const HostInbox = () => {
   return (
-    <div>HostInbox</div>
+    <div>
+      <HostInboxIndex/>
+    </div>
   )
 }
 

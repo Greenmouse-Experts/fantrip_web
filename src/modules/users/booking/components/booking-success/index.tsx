@@ -3,15 +3,18 @@ import { fetchBookingDetails } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
 import { FaCheck } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import favicon from "@/assets/favicon.png";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
+import { formatNumber, formatStatus } from "@/lib/utils/formatHelp";
+import dayjs from "dayjs";
 
 interface Props {
   id: string;
 }
 const BookingSuccessIndex: FC<Props> = ({ id }) => {
-  const { isLoading } = useQuery({
+  const navigate = useNavigate();
+  const { data, isLoading } = useQuery({
     queryKey: ["get-booking-details"],
     queryFn: () => fetchBookingDetails(id),
   });
@@ -31,13 +34,18 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
                 Booking confirmed successfully!
               </p>
               <p className="mt-6 text-gray-700">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Incidunt placeat a quisquam! Nesciunt, obcaecati fugiat. Nostrum
-                tempore est quos perspiciatis reprehenderit, quasi nisi illo
-                accusamus impedit consequatur eum earum neque?
+                We are delighted to confirm your booking with us. Your payment
+                of{" "}
+                <span className="fw-500">{`${data.currency}${data.total}`}</span>{" "}
+                has been successfully processed. Thank you for choosing our
+                services. We look forward to welcoming you on{" "}
+                <span className="fw-500">{data.reservation.checkIn}</span>.
+                Should you have any questions or require further assistance,
+                please do not hesitate to contact
               </p>
               <div className="mt-10 flex gap-x-4 items-center">
                 <Button
+                  onClick={() => navigate("/user/booking")}
                   title={"View All Bookings"}
                   altClassName="btn-primary px-5 py-3 fw-600"
                 />
@@ -49,7 +57,10 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
             <div className="gap-6">
               <div className="bg-light rounded-lg p-5 flex items-center justify-between">
                 <div>
-                  <p className="fw-600 text-3xl">$456.09</p>
+                  <p className="fw-600 text-3xl">
+                    {data.currency}
+                    {formatNumber(data.total)}
+                  </p>
                   <p className="text-gray-600 fw-500 fs-400">Payment success</p>
                 </div>
                 <div>
@@ -63,25 +74,36 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
               <div className="rounded-t-xl bg-light mt-6 p-6 min-h-[350px]">
                 <p className="text-lg syne fw-600">Payment Details</p>
                 <div className="grid gap-6 mt-7">
-                  <div>
+                  <div className="flex gap-x-2">
                     <p>Date:</p>
-                    <p></p>
+                    <p>{dayjs(data.createdDate).format("MM:HH, DD-MM-YYYY")}</p>
                   </div>
-                  <div>
+                  <div className="flex gap-x-2">
                     <p>Reference Number:</p>
-                    <p></p>
+                    <p className="fw-500">{data.trx.reference}</p>
                   </div>
-                  <div>
+                  <div className="flex gap-x-2">
                     <p>Amount:</p>
-                    <p></p>
+                    <p className="fw-600">
+                      {data.currency}
+                      {formatNumber(data.total)}
+                    </p>
                   </div>
-                  <div>
+                  <div className="flex gap-x-2">
                     <p>Payment Method:</p>
-                    <p></p>
+                    <p className="text-prima fw-600 capitalize">
+                      {data.trx.gateway}
+                    </p>
                   </div>
-                  <div>
+                  <div className="flex gap-x-2">
                     <p>Payment Status:</p>
-                    <div></div>
+                    <div>
+                      {
+                        formatStatus[
+                          data.trx.status as keyof typeof formatStatus
+                        ]
+                      }
+                    </div>
                   </div>
                 </div>
               </div>
