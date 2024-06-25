@@ -8,15 +8,14 @@ import { formatStatus } from "@/lib/utils/formatHelp";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 
 interface Props {
-  key: string;
   data: BookingItem;
   refetch: () => void;
 }
-const ReserveItemDisplay: FC<Props> = ({ data, refetch, key }) => {
+const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
   const { guest, checkIn, checkOut, children, adults, createdDate, stay, id, status } =
     data;
   return (
-    <div className="bg-gradient p-[1px] rounded-lg" key={key}>
+    <div className="bg-gradient p-[1px] rounded-lg">
       <div className="bg-[#0D0D0D] h-full rounded-lg p-3">
         <div>
           <div className="flex items-center">
@@ -71,7 +70,7 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch, key }) => {
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-300">Status:</p>
-              <p className="fw-500">{formatStatus[status as keyof typeof formatStatus]}</p>
+              <div className="fw-500">{formatStatus[status as keyof typeof formatStatus]}</div>
             </div>
           </div>
           <div className="border border-gray-600 p-3 mt-3 rounded-lg">

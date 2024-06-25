@@ -4,16 +4,53 @@ import { useState } from "react";
 import ListingFilter from "./filter";
 import { hostFetchBooking } from "@/services/api/booking-api";
 import BookingTableListing from "./table-listing";
+import { useToast } from "@chakra-ui/react";
 
 const BookingListingTable = () => {
+  const toast = useToast();
   const [params, setParams] = useState({
-    status:  'pending',
-    page: 1
+    status: "pending",
+    page: 1,
   });
+
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["host-get-bookings", params],
     queryFn: () => hostFetchBooking(params),
   });
+
+  const count = data?.count;
+
+  const handleNext = () => {
+    if (params.page * 10 >= count) {
+      toast({
+        title: "This is the last page",
+        isClosable: true,
+        position: "top",
+        status: "info",
+      });
+    } else {
+      setParams({
+        ...params,
+        page: params.page + 1,
+      });
+    }
+  };
+
+  const handlePrev = () => {
+    if (params.page === 1) {
+      toast({
+        title: "This is the first page",
+        isClosable: true,
+        position: "top",
+        status: "info",
+      });
+    } else {
+      setParams({
+        ...params,
+        page: params.page - 1,
+      });
+    }
+  };
   return (
     <div>
       {isLoading && (
@@ -25,8 +62,15 @@ const BookingListingTable = () => {
         <ListingFilter setParams={setParams} param={params} />
       )}
       {!isLoading && !!data?.data?.length && (
-        <div>
-          <BookingTableListing data={data?.data} refetch={refetch} />
+        <div className="mt-4">
+          <BookingTableListing
+            data={data?.data}
+            refetch={refetch}
+            next={handleNext}
+            prev={handlePrev}
+            count={count}
+            page={params.page}
+          />
         </div>
       )}
     </div>

@@ -25,32 +25,29 @@ export interface ChatItem {
 }
 
 export interface ChatItem2 {
-    id: string;
-    message: string;
-    isArchived: boolean;
-    read: boolean;
+  id: string;
+  message: string;
+  isArchived: boolean;
+  read: boolean;
+  createdDate: string;
+  chat: {
     createdDate: string;
-    initiator: {
-      id: string;
-      firstName: string;
-      lastName: string;
-      nickname: string;
-      verifiedAsHost: boolean;
-      role: string;
-      picture: string;
-    };
-    chatBuddy: {
-      id: string;
-      firstName: string;
-      lastName: string;
-      nickname: string | null;
-      verifiedAsHost: boolean;
-      role: string;
-      picture: string | null;
-    };
-  }
-
-export interface UserChatInfo{
+    id: string;
+    isArchived: boolean;
+    lastMessage: string;
+    read: boolean;
+    updatedDate:  string;
+  };
+  initiator: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    nickname: string;
+    verifiedAsHost: boolean;
+    role: string;
+    picture: string;
+  };
+  chatBuddy: {
     id: string;
     firstName: string;
     lastName: string;
@@ -58,12 +55,23 @@ export interface UserChatInfo{
     verifiedAsHost: boolean;
     role: string;
     picture: string | null;
-  }
+  };
+}
+
+export interface UserChatInfo {
+  id: string;
+  firstName: string;
+  lastName: string;
+  nickname: string | null;
+  verifiedAsHost: boolean;
+  role: string;
+  picture: string | null;
+}
 
 export interface ChatUserItem {
   page: number;
   activeId: string;
-  user: UserChatInfo
+  user: UserChatInfo;
   chats: ChatItem2[];
 }
 

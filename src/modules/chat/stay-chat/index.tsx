@@ -9,7 +9,7 @@ interface Props {
   host: UserItem;
 }
 const ChatForStay: FC<Props> = ({ host }) => {
-  const { saveHostInfo } = useChat();
+  const { saveHostInfo} = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
   const openChatWithHost = () => {
     const payload = {

@@ -11,8 +11,12 @@ dayjs.extend(relativeTime);
 interface Props {
   data: BookingItem[];
   refetch: () => void;
+  next: () => void;
+  prev: () => void;
+  page: number;
+  count: number;
 }
-const BookingTableListing: FC<Props> = ({ data }) => {
+const BookingTableListing: FC<Props> = ({ data, next, prev, page, count }) => {
   const columnHelper = createColumnHelper<PaidBookingItem>();
   const columns = [
     columnHelper.accessor((row) => row.reservation.guest.picture, {
@@ -91,10 +95,10 @@ const BookingTableListing: FC<Props> = ({ data }) => {
         <DynamicTable
           columns={columns}
           data={data}
-          next={() => false}
-          prev={() => false}
-          page={1}
-          count={5}
+          next={next}
+          prev={prev}
+          page={page}
+          count={count}
         />
       </div>
     </div>

@@ -49,14 +49,14 @@ const HeroBanner = () => {
                   </span>
                 </p>
                 <div className="monts mt-8 lg:text-lg">
-                  <p>
+                  <div>
                     Why stay with just anyone when you can live the match with a
                     fellow fan? <br />
                     Discover{" "}
                     <div className="inline-block relative px-2"><span className="text-gradient monts">fan-fan</span> <img src={circle} alt="circle" className="absolute -left-[2px] -top-[1.5px] w-36" /></div>{" "}
                     accommodation, matchday travel logistics, and <br />{" "}
                     community in one play!
-                  </p>
+                  </div>
                 </div>
                 <div className="sm:flex ites-center gap-x-8 mt-8">
                   <div className="flex sm:block mb-3 sm:mb-0">

@@ -1,18 +1,22 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import ChatBubble from "./component/chat-bubble";
 import { useChat } from "@/hooks/useChat";
 import useAuth from "@/hooks/authUser";
+import { ChatItem2 } from "@/lib/contracts/chat";
 
 interface Props {
   socket: any;
 }
 const ChatBody: FC<Props> = ({ socket }) => {
-  const { hostId, chatWithHostPage } = useChat();
-  const { token , userId} = useAuth();
+  const { hostId, chatWithHost, chatWithHostPage, saveChatWithHost } =
+    useChat();
+  const { token, userId } = useAuth();
+  const [newMsg, setNewMsg] = useState<ChatItem2>();
 
+  // on load get previous messages or message history
   const getMessages = () => {
     const onListenEvent = (value: any) => {
-     console.log(value.data.result);
+      saveChatWithHost(value.data.result);
     };
     socket.on(`messagesRetrieved:${userId}`, onListenEvent);
 
@@ -20,30 +24,67 @@ const ChatBody: FC<Props> = ({ socket }) => {
     return () => socket.off(`messagesRetrieved:${userId}`);
   };
 
+  // get current updates fro sent messages or received msgs
+  const getUpdates = () => {
+    const onListenEvent = (value: any) => {
+      setNewMsg(value.data);
+    };
+    socket.on(`messageSent:${chatWithHost[0].chat.id}`, onListenEvent);
+
+    // Remove event listener on component unmount
+    return () => socket.off(`messageSent:${chatWithHost[0].chat.id}`);
+  };
+
+   // connect to the chat room once page loads or when chat id is changed
   useEffect(() => {
     const payload = {
       token: token,
       chatBuddy: hostId,
       page: chatWithHostPage,
     };
-    socket.emit("retrieveMessages", payload)
-  },[])
+    socket.emit("retrieveMessages", payload);
+  }, []);
+
   useEffect(() => {
-    getMessages();
+    if(!chatWithHost.length){
+      getMessages();
+    }
+    if (!!chatWithHost.length) {
+      getUpdates();
+    }
   }, [socket]);
+
+   // add updated messages to the chat message array
+   useEffect(() => {
+    if (newMsg) {
+      const filtered = chatWithHost.filter((where) => where.id === newMsg.id);
+      if (!filtered.length) {
+        const newChat = [...chatWithHost, newMsg];
+        saveChatWithHost(newChat);
+      }
+    }
+  }, [newMsg]);
+
+    // Scroll to the bottom of the div when new message is added
+    const scrollRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+      if (scrollRef.current) {
+        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+      }
+    }, [chatWithHost]);
+
   return (
-    <div className="h-full overflow-y-auto">
+    <div className="h-full overflow-y-auto" ref={scrollRef}>
       <div className="p-2">
         <div className="grid gap-4">
-          <ChatBubble
-            type="guest"
-            text="Hello Green, your stay looks nice and clean, i want to inquire about
-          the weather and temperature"
-          />
-          <ChatBubble
-            type="host"
-            text="Yeah, the weather is great and the room temperature is 14 deg."
-          />
+          {chatWithHost.map((item) => (
+            <div className="flex" key={item.id}>
+              <ChatBubble
+                type={item.initiator.role}
+                text={item.message || ""}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

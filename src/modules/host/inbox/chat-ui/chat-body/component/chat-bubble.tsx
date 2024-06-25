@@ -14,7 +14,7 @@ const ChatBubble: FC<Props> = ({ type, text }) => {
   else if (type === "host")
     return (
       <div className="w-full flex justify-end">
-        <div className="rounded-l-[18px] rounded-b-[18px] bg-[#fc81a0b5] text-black p-3 max-w-[80%]">
+        <div className="rounded-l-[18px] rounded-b-[18px] bg-[#fc81a0] text-black p-3 max-w-[80%]">
           <p className="fs-500">{text}</p>
         </div>
       </div>
