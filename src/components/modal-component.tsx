@@ -25,7 +25,7 @@ export const ComponentModal: FC<Props> = ({
           type === "recommend"
             ? "bg-white w-3/4 lg:w-[50%]"
              : type === "more"? 
-            "w-3/4 lg:w-[550px] rounded-lg p-5 bg-[#EDEDFF]"
+            "w-11/12 lg:w-[550px] rounded-lg p-2 lg:p-5 bg-[#EDEDFF]"
             : "bg-white p-5 rounded-lg w-3/4 [@media(min-width:1410px)]:w-[60%]"
         }`}
         onClick={(e) => {

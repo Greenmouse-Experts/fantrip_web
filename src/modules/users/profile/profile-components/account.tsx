@@ -75,7 +75,7 @@ const UserAccount = () => {
   return (
     <div>
       <div>
-        <p className="fw-600 lg:text-lg">My Profile</p>
+        <p className="hidden lg:block fw-600 lg:text-lg">My Profile</p>
         <div
           className={`border ${
             isHost ? "border-gray-600" : "border-[#E8EAED]"
@@ -142,7 +142,7 @@ const UserAccount = () => {
               <p className="fs-500 text-[#5F5F5F]">Phone</p>
               <p className="fw-500 mt-1">+1 (409) 939 35535</p>
             </div>
-            <div className="col-span-2">
+            <div className="lg:col-span-2">
               <p className="fs-500 text-[#5F5F5F]">Bio</p>
               <p className="fw-500 mt-1">{user.bio}</p>
             </div>

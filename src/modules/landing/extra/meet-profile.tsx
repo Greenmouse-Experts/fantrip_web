@@ -11,7 +11,7 @@ interface Props {
 const MeetProfileIndex: FC<Props> = ({}) => {
   return (
     <div className="max-h-[80vh] overflow-y-auto">
-      <div className="m-2 p-4 meet-drop rounded-[23px] bg-white">
+      <div className="lg:m-2 p-4 meet-drop rounded-[23px] bg-white">
         <div className="flex">
           <div className="w-6/12 text-center">
             <div className="w-7/12 mx-auto aspect-square rounded-full bg-gray-400"></div>

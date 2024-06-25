@@ -20,7 +20,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i }) => {
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
         key={i}
       >
-        <div className="min-h-[200px]">
+        <div className="min-h-[170px]">
           <img
             src={item.host.picture}
             alt="fan_image"
@@ -51,7 +51,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i }) => {
                 .map((item: AmenityItem, i: number) => (
                   <div className="flex gap-x-2" key={i}>
                     <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
-                    <p className="fs-400">{item.name}</p>
+                    <p className="fs-400">{formatName(item.name, 24)}</p>
                   </div>
                 ))}
             </div>
@@ -66,7 +66,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i }) => {
             </div>
           </div>
         </div>
-        <div className="min-h-[200px]">
+        <div className="min-h-[170px]">
           <img
             src={item.photos[0]}
             alt="room_img"

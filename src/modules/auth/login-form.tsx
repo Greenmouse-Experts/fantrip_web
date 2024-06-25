@@ -121,7 +121,7 @@ const LoginForm = () => {
               />
             )}
           />
-          <div className="absolute top-2 right-0">
+          <div className="absolute top-0 right-0">
             <Link to={"/auth/forget"} className="text-[#9847fe]">
               Forget Password?
             </Link>

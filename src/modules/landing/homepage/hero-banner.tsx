@@ -58,21 +58,23 @@ const HeroBanner = () => {
                     community in one play!
                   </div>
                 </div>
-                <div className="sm:flex ites-center gap-x-8 mt-8">
-                  <div className="flex sm:block mb-3 sm:mb-0">
+                <div className="flex ites-center gap-x-2 md:gap-x-8 mt-8">
+                  <div className="mb-1 sm:mb-0">
                     <Link
                       to={"/auth/register"}
-                      className="block btn-primary py-2 px-10"
+                      className="inline-block btn-primary py-2 px-6 md:px-10"
                     >
                       <BtnContent name="Join" />
                     </Link>
                   </div>
+                  <div>
                   <Link
                     to={"/auth/login"}
-                    className="sm:block mt-4 sm:mt-0 btn-feel px-10 py-2"
+                    className="inline-block sm:mt-0 btn-feel px-6 md:px-10 py-2"
                   >
                     Sign In
                   </Link>
+                  </div>
                 </div>
               </div>
             </div>

@@ -22,17 +22,26 @@ import icon_1 from "@/assets/svg/nav_icon_1.svg"
 import icon_2 from "@/assets/svg/nav_icon_2.svg"
 import icon_3 from "@/assets/svg/nav_icon_3.svg"
 import icon_4 from "@/assets/svg/nav_icon_4.svg"
+import { MdAttractions } from "react-icons/md";
+import MobileSheet from "./mobileSheet";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
+  const [show, setShow] = useState(false);
   const { isLoggedIn, isHost } = useAuth();
   return (
     <div>
       <div className="absolute z-10 left-0 top-6 w-full">
         <div className="box duration-100">
           <div
-            className={` bg-[#FFFFFF33] rounded-[50px] p-5 lg:px-12 flex justify-between items-center`}
+            className={` bg-[#FFFFFF33] rounded-[50px] px-5 py-4 lg:py-5 lg:px-12 flex justify-between items-center`}
           >
+             <div className="lg:hidden text-white">
+                <TiThMenuOutline
+                  className="text-xl cursor-pointer"
+                  onClick={() => setOpen(true)}
+                />
+              </div>
             <div>
               <Link to={"/"}>
                 <img src={logo} alt="logo" className="w-28 lg:w-auto" />
@@ -40,9 +49,9 @@ const LandingHeader = () => {
             </div>
             <div>
               <div className="lg:hidden text-white">
-                <TiThMenuOutline
-                  className="text-xl cursor-pointer"
-                  onClick={() => setOpen(true)}
+                <MdAttractions
+                  className="text-2xl cursor-pointer"
+                  onClick={() => setShow(true)}
                 />
               </div>
               <ul className="hidden lg:flex items-center gap-x-6 lg:gap-x-10 text-white">
@@ -187,6 +196,17 @@ const LandingHeader = () => {
           </div>
         </div>
       </div>
+      <Drawer
+        isOpen={show}
+        placement="bottom"
+        size={"xs"}
+        onClose={() => setShow(false)}
+      >
+        <DrawerOverlay />
+        <DrawerContent>
+          <MobileSheet close={() => setShow(false)}/>
+        </DrawerContent>
+      </Drawer>
       <Drawer
         isOpen={open}
         placement="left"

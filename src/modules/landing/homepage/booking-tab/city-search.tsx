@@ -18,7 +18,7 @@ const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
     },
   });
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative lg:overflow-hidden">
       <div className="flex gap-x-2 items-center relative top-4 lg:top-0">
         <IoSearch className="text-xl" />
         <input

@@ -59,7 +59,7 @@ const UserSecurity = () => {
   };
   return (
     <div>
-      <p className="fw-600 lg:text-lg">Change Password</p>
+      <p className="hidden lg:block fw-600 lg:text-lg">Change Password</p>
       <div className="border border-[#E8EAED] rounded-[16px] mt-6 p-4">
        <form onSubmit={handleSubmit(onSubmit)}>
        <div className="grid gap-4 py-4">

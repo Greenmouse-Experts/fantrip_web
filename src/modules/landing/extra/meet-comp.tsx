@@ -5,6 +5,7 @@ import { formatName } from "@/lib/utils/formatHelp";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MeetProfileIndex from "./meet-profile";
+import { useMediaQuery } from "@chakra-ui/react";
 
 interface Props {
   item: AvailableStayItem;
@@ -13,6 +14,7 @@ interface Props {
 const MeetComponent: FC<Props> = ({ item, i }) => {
   const [showMore, setShowMore] = useState(false)
   const navigate = useNavigate();
+  const [isBigSize] = useMediaQuery('(min-width: 520px)')
   return (
    <div>
      <div className="stay-item-wrapper grid h-full">
@@ -20,7 +22,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
         key={i}
       >
-        <div className="min-h-[200px]">
+        <div className="min-h-[140px] md:min-h-[200px]">
           <img
             src={item.host.picture}
             alt="fan_image"
@@ -35,7 +37,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="mt-2">
               <p className="fs-500">
-                {formatName(item.host.bio, 84)}{" "}
+                {formatName(item.host.bio, isBigSize? 84 : 40)}{" "}
                 <button
                   className="fw-500 fs-500 text-[#9847FE]"
                   onClick={() => setShowMore(true)}
@@ -47,7 +49,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
             <div className="grid gap-1 mt-2">
               {item.amenities
-                .slice(0, 3)
+                .slice(0, isBigSize? 3 : 2)
                 .map((item: AmenityItem, i: number) => (
                   <div className="flex gap-x-2" key={i}>
                     <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
@@ -66,7 +68,7 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
             </div>
           </div>
         </div>
-        <div className="min-h-[200px]">
+        <div className="min-h-[140px] md:min-h-[200px]">
           <img
             src={item.photos[0]}
             alt="room_img"
