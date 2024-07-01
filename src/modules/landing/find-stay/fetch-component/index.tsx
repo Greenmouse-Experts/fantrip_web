@@ -41,7 +41,7 @@ const FetchStayComponent = () => {
             {!isLoading &&
               !!data?.data.length &&
               data?.data.map((item: AvailableStayItem, i: number) => (
-                <MeetComponent item={item} i={i} />
+                <MeetComponent item={item} key={i} />
               ))}
           </div>
           {!isLoading && !data?.data.length && <EmptyStay />}
