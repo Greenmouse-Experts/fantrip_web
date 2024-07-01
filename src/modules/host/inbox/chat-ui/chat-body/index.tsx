@@ -3,6 +3,7 @@ import ChatBubble from "./component/chat-bubble";
 import { useChat } from "@/hooks/useChat";
 import useAuth from "@/hooks/authUser";
 import { ChatItem2 } from "@/lib/contracts/chat";
+import EmptyChat from "@/components/empty-states/empty-chat";
 
 interface Props {
   socket: any;
@@ -10,11 +11,13 @@ interface Props {
 const ChatBodyIndex: FC<Props> = ({ socket }) => {
   const { guestId, guestInfo, chatWithGuest, saveChatWithGuest } = useChat();
   const { token, userId } = useAuth();
+  const [isLoaded, setIsLoaded] = useState(false)
   const [newMsg, setNewMsg] = useState<ChatItem2>();
 
   // on load get previous messages or message history
   const getMessages = () => {
     const onListenEvent = (value: any) => {
+      setIsLoaded(true)
       saveChatWithGuest(value.data.result);
     };
     socket.on(`messagesRetrieved:${guestId}:${userId}`, onListenEvent);
@@ -41,18 +44,22 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
       chatBuddy: guestInfo.id,
       page: 1,
     };
+    setIsLoaded(false)
     socket.emit("retrieveMessages", payload);
-  }, [guestId]);
+  }, [socket, guestInfo]);
 
   // to monitor if there are messages to carry its respective functions
   useEffect(() => {
     if (!chatWithGuest.length) {
       getMessages();
     }
-    if (!!chatWithGuest.length) {
+  }, [socket, guestId]);
+
+  useEffect(() => {
+    if (isLoaded) {
       getUpdates();
     }
-  }, [socket, guestId]);
+  }, [socket, isLoaded]);
 
   // add updated messages to the chat message array
   useEffect(() => {
@@ -75,22 +82,26 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
 
   return (
     <div className="w-full h-full p-1 pr-2">
-      <div className="bg-[#1A1A1A] p-1 pr-2 rounded-lg h-full">
-        <div className="h-full overflow-y-auto scroll-pro" ref={scrollRef}>
-          <div className="p-2">
-            <div className="grid gap-4 scroll-pro">
-              {chatWithGuest.map((item) => (
-                <div className="flex" key={item?.id}>
-                  <ChatBubble
-                    type={item?.initiator?.role}
-                    text={item.message || ""}
-                  />
-                </div>
-              ))}
+      {guestId ? (
+        <div className="bg-[#1A1A1A] p-1 pr-2 rounded-lg h-full">
+          <div className="h-full overflow-y-auto scroll-pro" ref={scrollRef}>
+            <div className="p-2">
+              <div className="grid gap-4 scroll-pro">
+                {chatWithGuest.map((item) => (
+                  <div className="flex" key={item?.id}>
+                    <ChatBubble
+                      type={item?.initiator?.role}
+                      text={item.message || ""}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <EmptyChat bg="bg-[#1A1A1A]" />
+      )}
     </div>
   );
 };

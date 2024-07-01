@@ -34,7 +34,7 @@ const AppAdvert = () => {
               winning recommendations, too!
             </p>
             <div className="lg:flex items-center gap-x-6 mt-6 lg:mt-12">
-              <Link to={"/area-guide"} className="btn-primary block px-8 py-4">
+              <Link to={"/area-guide"} className="btn-primary block px-4 md:px-8 py-4">
                 <BtnContent name="Explore matchday area guide" />
               </Link>
               <div className="flex justify-center lg:justify-normal mt-12 lg:mt-0 gap-x-6">

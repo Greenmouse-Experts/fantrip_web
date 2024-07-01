@@ -14,13 +14,13 @@ const Tabs: FC<Props> = ({ tabs, broadcastCurrentIndex, type }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const navStyle = {
     charts:
-      "bg-light dark:bg-[#272727] p-4 rounded-[10px] flex lg:space-x-2 space-x-2 overflow-x-auto",
+      "bg-light dark:bg-[#272727] p-2 md:p-4 rounded-[10px] flex lg:space-x-2 space-x-2 overflow-x-auto",
     norm: "flex lg:space-x-4 space-x-2 overflow-x-auto",
     "": "-mb-px tab-bar flex lg:space-x-2 space-x-2 overflow-x-auto",
   };
   const navClass = {
     charts:
-      "whitespace-nowrap grow text-center cursor-pointer py-[10px] fs-500",
+      "whitespace-nowrap grow px-4 text-center cursor-pointer py-[10px] fs-500",
     norm: "whitespace-nowrap text-center cursor-pointer py-[5px] px-6 fs-500",
     "": "px-5 cursor-pointer",
   };

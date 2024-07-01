@@ -29,11 +29,11 @@ const BookSection = () => {
             data?.data
               .slice(0, 3)
               .map((item: AvailableStayItem, i: number) => (
-                <MeetComponent item={item} i={i} />
+                <MeetComponent item={item} key={i} />
               ))}
         </div>
         <div className="mt-12 lg:mt-24 flex justify-center">
-          <Link to={"/find-stay"} className="btn-primary py-5 px-16">
+          <Link to={"/find-stay"} className="btn-primary px-6 py-3 md:py-5 lg:px-16">
             <BtnContent name="Book a stay with a fan" />
           </Link>
         </div>

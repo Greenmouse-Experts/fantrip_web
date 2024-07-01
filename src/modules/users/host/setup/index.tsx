@@ -9,7 +9,7 @@ import SetupVerification from './components/verification'
 const HostSetupIndex = () => {
     const [active, setActive] = useState(1)
   return (
-    <div className='flex lg:gap-x-12'>
+    <div className='lg:flex lg:gap-x-12'>
         <div className='lg:w-[35%]'>
             <SetupSidebar active={active}/>
         </div>

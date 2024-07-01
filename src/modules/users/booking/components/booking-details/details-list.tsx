@@ -24,9 +24,9 @@ const DetailsList: FC<Props> = ({ data }) => {
     <div className="h-[93vh] overflow-y-auto">
       <div className="flex gap-x-2">
         <p className="text-prima syne fw-600">Stay Status</p>
-        <p className="fw-500">
+        <div className="fw-500">
           {formatStatus[status as keyof typeof formatStatus]}
-        </p>
+        </div>
       </div>
       <div>
         <div className="mt-4">
@@ -96,9 +96,9 @@ const DetailsList: FC<Props> = ({ data }) => {
           <div className="grid gap-3 bg-gray-100 p-4 rounded">
           <div className="flex gap-x-2">
               <p className="text-gray-600">Payment Status:</p>
-              <p className="fw-500">
+              <div className="fw-500">
                 {formatStatus[trx.status as keyof typeof formatStatus]}
-              </p>
+              </div>
             </div>
           <div className="flex gap-x-2">
               <p className="text-gray-600">Payment Reference:</p>

@@ -25,71 +25,70 @@ const PendingReservationList: FC<Props> = ({ data }) => {
     <div className="grid gap-4 mt-4">
       {data.map((item: BookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
-          <div className="bg-white rounded-lg flex gap-x-4 p-1 h-full">
-            <div className="w-[160px] h-[100%] shrink-0 overflow-hidden rounded-[8px]">
-              <img
-                src={
-                  !!item?.stay?.photos?.length
-                    ? item.stay.photos[0]
-                    : "https://i.insider.com/6418b4bc50c7b20018f151c1?width=800&format=jpeg&auto=webp"
-                }
-                alt="stay-image"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full flex items-center justify-between lg:pr-4">
-              <div>
-                <p className="lg:text-2xl fw-500">
-                  {item.stay.name}{" "}
-                  <span className="text-[#fc819f] relative bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-[#fc81a01b]">
-                    {item.status}
-                  </span>
-                </p>
-                <div className="flex gap-x-2 my-2">
-                  <ProfileAvatar
-                    name={`${item?.stay?.host?.firstName} ${item.stay?.host?.lastName}`}
-                    url={item?.stay?.host?.picture}
-                    size={40}
-                    font={14}
-                  />
-                  <div>
-                    <p className="fw-500">{`${item?.stay?.host?.firstName} ${item?.stay?.host?.lastName}`}</p>
-                    <p className="fw-500">Host</p>
-                  </div>
-                </div>
-                <div className="text-sec gap-x-1 flex items-center">
-                  <FaLocationPin className="text-md" />
-                  <p className="fs-500">{item.stay.address}</p>
+        <div className="bg-white rounded-lg md:flex  gap-x-2 md:gap-x-4 p-1 h-full">
+          <div className="w-full h-[130px] md:w-[160px] md:h-[100%] shrink-0 overflow-hidden rounded-[8px]">
+            <img
+              src={
+                !!item?.stay?.photos?.length
+                  ? item.stay.photos[0]
+                  : "https://i.insider.com/6418b4bc50c7b20018f151c1?width=800&format=jpeg&auto=webp"
+              }
+              alt="stay-image"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="w-full md:flex items-center justify-between lg:pr-4">
+            <div>
+              <p className="lg:text-2xl fw-500">
+                {item.stay.name}{" "}
+                <span className="text-green-600 relative bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-green-50">
+                  {item.status}
+                </span>
+              </p>
+              <div className="flex gap-2 my-1 md:my-2">
+                <ProfileAvatar
+                  name={`${item?.stay?.host?.firstName} ${item.stay?.host?.lastName}`}
+                  url={item?.stay?.host?.picture}
+                  size={40}
+                  font={14}
+                />
+                <div>
+                  <p className="fw-500">{`${item?.stay?.host?.firstName} ${item?.stay?.host?.lastName}`}</p>
+                  <p className="fw-500">Host</p>
                 </div>
               </div>
-              <div className="grid gap-3 justify-end p-2">
-                <div className="flex justify-end">
-                  <p className="mt-2 text-[#9847fe] fw-600 fs-500">
-                    Booked: {dayjs(item.createdDate).fromNow()}
-                  </p>
-                </div>
-                <div className="flex gap-x-3 justify-end relative">
-                  <p
-                    className="underline text-[#9847fe] relative block cursor-pointer"
-                    onClick={() => openDetail(item.id)}
-                  >
-                    View Details
-                  </p>
-                  <Link
-                    className="underline text-[#9847fe] relative block"
-                    to={`/find-stay/${item.stay.id}`}
-                  >
-                    View Listing
-                  </Link>
-                  {/* <CancelBooking id={item.id} refetch={refetch} /> */}
-                </div>
-                <div className="flex justify-end">
-                <ChatForStay id="" host={item.stay.host}/>
-                </div>
+              <div className="text-sec gap-x-1 flex items-center">
+                <FaLocationPin className="text-md" />
+                <p className="fs-500">{item.stay.address}</p>
+              </div>
+            </div>
+            <div className="grid gap-1 md:gap-3 md:justify-end pb-2 md:p-2">
+              <div className="flex md:justify-end">
+                <p className="mt-2 text-[#9847fe] fw-600 fs-300 md:fs-500">
+                  Booked: {dayjs(item.createdDate).fromNow()}
+                </p>
+              </div>
+              <div className="flex gap-x-3 md:justify-end relative">
+                <p
+                  className="underline text-[#9847fe] relative block cursor-pointer"
+                  onClick={() => openDetail(item.id)}
+                >
+                  View Details
+                </p>
+                <Link
+                  className="underline text-[#9847fe] relative block"
+                  to={`/find-stay/${item.stay.id}`}
+                >
+                  View Listing
+                </Link>
+              </div>
+              <div className="flex md:justify-end">
+              <ChatForStay id="" host={item.stay.host}/>
               </div>
             </div>
           </div>
         </div>
+      </div>
       ))}
       <Drawer
         isOpen={isOpen}

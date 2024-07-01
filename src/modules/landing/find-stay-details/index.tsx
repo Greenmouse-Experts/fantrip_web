@@ -35,7 +35,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
       <div className="lg:flex gap-7 lg:gap-x-12">
         <div className="lg:w-7/12 relative">
           <StayGallery data={photos} />
-          <div className="absolute z-20 top-3 left-3 w-[150px]">
+          <div className="hidden lg:block absolute z-20 top-3 left-3 w-[150px]">
             <div className="bg-[#FFEDF2] rounded-t-[10px] text-center p-4 pb-7">
               <p className="fs-300 fw-500">5 Star Rating</p>
             </div>

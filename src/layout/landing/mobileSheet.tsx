@@ -3,6 +3,7 @@ import { FC } from "react";
 import { FaRegUser } from "react-icons/fa6";
 import { GiBlackBook } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
+import { LuKeyRound } from "react-icons/lu";
 import { RiHotelLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 interface Props {
@@ -11,11 +12,11 @@ interface Props {
 const MobileSheet: FC<Props> = ({ close }) => {
   const { isHost } = useAuth();
   return (
-    <div className="relative p-8 pb-12">
+    <div className="relative p-8 pb-12" onClick={close}>
       <IoMdClose onClick={close} className="absolute top-4 right-4" />
       <div>
         <div>
-          {!isHost ? (
+          {isHost ? (
             <Link
               to={"/host"}
               className="flex gap-x-3 !py-3 items-center text-black"
@@ -52,6 +53,13 @@ const MobileSheet: FC<Props> = ({ close }) => {
               </Link>
             </div>
           )}
+          <Link
+            to={isHost ? "/user/host" : "/user/host-setup"}
+            className="flex gap-x-3 items-center !py-3 text-black"
+          >
+            <LuKeyRound className="text-xl" />
+            <p>Create New Listing</p>
+          </Link>
         </div>
       </div>
     </div>

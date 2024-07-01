@@ -6,10 +6,10 @@ interface Props {
 }
 const SetupSidebar: FC<Props> = ({ active }) => {
   return (
-    <div>
+    <div className="mb-4 lg:mb-0">
       <div className="bg-layout-gradient p-8 rounded-[13px] sidebar-shadow">
         <div className="text-white">
-          <ul className="grid gap-7">
+          <ul className="flex w-full overflow-x-auto scroll-pro whitespace-nowrap lg:grid gap-7">
             <li className="flex items-center gap-x-4">
               <FaCircleCheck
                 className={`text-lg ${

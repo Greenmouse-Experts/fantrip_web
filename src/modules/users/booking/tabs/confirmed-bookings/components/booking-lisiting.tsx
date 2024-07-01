@@ -11,7 +11,7 @@ import ChatForStay from "@/modules/chat/stay-chat";
 interface Props {
   data: PaidBookingItem[];
   refetch: () => void;
-  next: () => void
+  next: () => void;
 }
 const ConfirmedBookingList: FC<Props> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +25,8 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
     <div className="grid gap-4 mt-4">
       {data.map((item: PaidBookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
-          <div className="bg-white rounded-lg flex gap-x-4 p-1 h-full">
-            <div className="w-[160px] h-[100%] shrink-0 overflow-hidden rounded-[8px]">
+          <div className="bg-white rounded-lg md:flex gap-x-4 p-1 h-full">
+            <div className="w-full h-[130px] md:w-[160px] md:h-[100%] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={
                   !!item.reservation.stay.photos
@@ -37,11 +37,11 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full flex items-center justify-between lg:pr-4">
-              <div>
-                <p className="lg:text-2xl fw-500">
+            <div className="w-full md:flex items-center justify-between lg:pr-4">
+              <div className="mt-2 md:mt-0">
+                <p className="flex md:block items-center lg:text-2xl fw-500">
                   {item.reservation.stay.name}{" "}
-                  <span className="text-green-600 relative bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-green-50">
+                  <span className="text-green-600 relative md:bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-green-50">
                     confirmed
                   </span>
                 </p>
@@ -62,13 +62,13 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
                   <p className="fs-500">{item.reservation.stay.address}</p>
                 </div>
               </div>
-              <div className="grid gap-3 justify-end p-2">
-                <div className="flex justify-end">
+              <div className="grid gap-1 md:gap-3 md:justify-end p-2">
+                <div className="flex md:justify-end">
                   <p className="mt-2 text-[#9847fe] fw-600 fs-500">
                     Booked: {dayjs(item.createdDate).fromNow()}
                   </p>
                 </div>
-                <div className="flex gap-x-3 justify-end relative">
+                <div className="flex gap-x-3 md:justify-end relative">
                   <p
                     className="underline text-[#9847fe] relative block cursor-pointer"
                     onClick={() => openDetail(item.trx.id)}
@@ -82,8 +82,8 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
                     View Listing
                   </Link>
                 </div>
-                <div className="flex justify-end">
-                <ChatForStay id="" host={item.reservation.stay.host}/>
+                <div className="flex md:justify-end">
+                  <ChatForStay id="" host={item.reservation.stay.host} />
                 </div>
               </div>
             </div>

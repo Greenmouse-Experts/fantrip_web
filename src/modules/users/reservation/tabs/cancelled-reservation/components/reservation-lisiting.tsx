@@ -24,19 +24,19 @@ const CancelledReservationList: FC<Props> = ({ data }) => {
     <div className="grid gap-4 mt-4">
       {data.map((item: BookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
-          <div className="bg-white rounded-lg flex gap-x-4 p-1 h-full">
-            <div className="w-[160px] h-[100%] shrink-0 overflow-hidden rounded-[8px]">
-              <img
-                src={
-                  !!item.stay.photos
-                    ? item.stay.photos[0]
-                    : "https://i.insider.com/6418b4bc50c7b20018f151c1?width=800&format=jpeg&auto=webp"
-                }
-                alt="stay-image"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="w-full flex items-center justify-between lg:pr-4">
+          <div className="bg-white rounded-lg md:flex gap-x-4 p-1 h-full">
+          <div className="w-full h-[130px] md:w-[160px] md:h-[100%] shrink-0 overflow-hidden rounded-[8px]">
+            <img
+              src={
+                !!item?.stay?.photos?.length
+                  ? item.stay.photos[0]
+                  : "https://i.insider.com/6418b4bc50c7b20018f151c1?width=800&format=jpeg&auto=webp"
+              }
+              alt="stay-image"
+              className="w-full h-full object-cover"
+            />
+          </div>
+            <div className="w-full md:flex items-center justify-between lg:pr-4">
               <div>
                 <p className="lg:text-2xl fw-500">
                   {item.stay.name}{" "}
@@ -44,7 +44,7 @@ const CancelledReservationList: FC<Props> = ({ data }) => {
                     {item.status}
                   </span>
                 </p>
-                <div className="flex gap-x-2 my-2">
+                <div className="flex gap-x-2 my-1 md:my-2">
                   <ProfileAvatar
                     name={`${item?.stay?.host?.firstName} ${item.stay?.host?.lastName}`}
                     url={item?.stay?.host?.picture}
@@ -61,29 +61,27 @@ const CancelledReservationList: FC<Props> = ({ data }) => {
                   <p className="fs-500">{item.stay.address}</p>
                 </div>
               </div>
-              <div className="grid gap-3 justify-end p-2">
-                <div className="flex justify-end">
-                  <p className="mt-2 text-[#9847fe] fw-600 fs-500">
-                    Booked: {dayjs(item.createdDate).fromNow()}
-                  </p>
-                </div>
-                <div className="flex gap-x-3 justify-end relative">
-                  <p
-                    className="underline text-[#9847fe] relative block cursor-pointer"
-                    onClick={() => openDetail(item.id)}
-                  >
-                    View Details
-                  </p>
-                  <Link
-                    className="underline text-[#9847fe] relative block"
-                    to={`/find-stay/${item.stay.id}`}
-                  >
-                    View Listing
-                  </Link>
-
-                  {/* <CancelBooking id={item.id} refetch={refetch} /> */}
-                </div>
-              </div>
+              <div className="grid gap-1 md:gap-3 md:justify-end pb-2 md:p-2">
+               <div className="flex md:justify-end">
+                 <p className="mt-2 text-[#9847fe] fw-600 fs-300 md:fs-500">
+                   Booked: {dayjs(item.createdDate).fromNow()}
+                 </p>
+               </div>
+               <div className="flex gap-x-3 md:justify-end relative">
+                 <p
+                   className="underline text-[#9847fe] relative block cursor-pointer"
+                   onClick={() => openDetail(item.id)}
+                 >
+                   View Details
+                 </p>
+                 <Link
+                   className="underline text-[#9847fe] relative block"
+                   to={`/find-stay/${item.stay.id}`}
+                 >
+                   View Listing
+                 </Link>
+               </div>
+             </div>
             </div>
           </div>
         </div>

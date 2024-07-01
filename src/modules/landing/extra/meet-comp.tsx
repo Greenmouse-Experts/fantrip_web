@@ -9,9 +9,8 @@ import { useMediaQuery } from "@chakra-ui/react";
 
 interface Props {
   item: AvailableStayItem;
-  i: number;
 }
-const MeetComponent: FC<Props> = ({ item, i }) => {
+const MeetComponent: FC<Props> = ({ item}) => {
   const [showMore, setShowMore] = useState(false)
   const navigate = useNavigate();
   const [isBigSize] = useMediaQuery('(min-width: 520px)')
@@ -20,7 +19,6 @@ const MeetComponent: FC<Props> = ({ item, i }) => {
      <div className="stay-item-wrapper grid h-full">
       <div
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
-        key={i}
       >
         <div className="min-h-[140px] md:min-h-[200px]">
           <img

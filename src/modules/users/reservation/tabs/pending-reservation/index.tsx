@@ -10,8 +10,8 @@ import PendingReservationList from "./components/reservation-lisiting";
 const PendingReservation = () => {
   const [params, setParams] = useState<FetchParam>({
     status: RESERVATION_STATUS.PENDING,
-    page: 1
-  })
+    page: 1,
+  });
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchReservation(params),
     queryKey: ["get-guest-reservation", params.status],
@@ -19,9 +19,9 @@ const PendingReservation = () => {
   const handleNext = () => {
     setParams({
       ...params,
-      page: 2
-    })
-  }
+      page: 2,
+    });
+  };
   return (
     <div>
       {isLoading && (
@@ -30,9 +30,13 @@ const PendingReservation = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <PendingReservationList refetch={refetch} data={data?.data} next={handleNext}/>
+        <PendingReservationList
+          refetch={refetch}
+          data={data?.data}
+          next={handleNext}
+        />
       )}
-       {!isLoading && !data?.data?.length && (
+      {!isLoading && !data?.data?.length && (
         <div>
           <EmptyNetState text="There is pending Reservation data available now." />
         </div>

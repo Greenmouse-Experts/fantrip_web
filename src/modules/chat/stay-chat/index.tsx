@@ -28,7 +28,7 @@ const ChatForStay: FC<Props> = ({ host }) => {
     <div>
       <button
         onClick={() => openChatWithHost()}
-        className="flex gap-x-2 items-center fw-500"
+        className="flex gap-x-2 fs-400 md:fs-600 items-center fw-500"
       >
         <BsChatDots />
         Chat with Host

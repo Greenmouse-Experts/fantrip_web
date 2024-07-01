@@ -8,14 +8,16 @@ interface Props {
   socket: any;
 }
 const ChatBody: FC<Props> = ({ socket }) => {
-  const { hostId, chatWithHost, chatWithHostPage, saveChatWithHost } =
+  const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
     useChat();
   const { token, userId } = useAuth();
   const [newMsg, setNewMsg] = useState<ChatItem2>();
+  const [isLoaded, setIsLoaded] = useState(false)
 
   // on load get previous messages or message history
   const getMessages = () => {
     const onListenEvent = (value: any) => {
+      setIsLoaded(true)
       saveChatWithHost(value.data.result);
     };
     socket.on(`messagesRetrieved:${userId}`, onListenEvent);
@@ -27,6 +29,7 @@ const ChatBody: FC<Props> = ({ socket }) => {
   // get current updates fro sent messages or received msgs
   const getUpdates = () => {
     const onListenEvent = (value: any) => {
+      console.log(value.data, 'inside listener');
       setNewMsg(value.data);
     };
     socket.on(`messageSent:${chatWithHost[0].chat.id}`, onListenEvent);
@@ -43,16 +46,19 @@ const ChatBody: FC<Props> = ({ socket }) => {
       page: chatWithHostPage,
     };
     socket.emit("retrieveMessages", payload);
-  }, []);
+  }, [socket, hostInfo]);
 
   useEffect(() => {
     if(!chatWithHost.length){
       getMessages();
     }
-    if (!!chatWithHost.length) {
+  }, [socket, hostId]);
+
+  useEffect(() => {
+    if (isLoaded) {
       getUpdates();
     }
-  }, [socket]);
+  }, [socket, isLoaded]);
 
    // add updated messages to the chat message array
    useEffect(() => {
@@ -63,7 +69,8 @@ const ChatBody: FC<Props> = ({ socket }) => {
         saveChatWithHost(newChat);
       }
     }
-  }, [newMsg]);
+  }, [newMsg, socket]);
+  
 
     // Scroll to the bottom of the div when new message is added
     const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -76,7 +83,7 @@ const ChatBody: FC<Props> = ({ socket }) => {
   return (
     <div className="h-full overflow-y-auto" ref={scrollRef}>
       <div className="p-2">
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {chatWithHost.map((item) => (
             <div className="flex" key={item.id}>
               <ChatBubble

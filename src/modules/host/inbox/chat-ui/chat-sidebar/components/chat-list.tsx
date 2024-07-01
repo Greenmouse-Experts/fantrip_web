@@ -9,6 +9,7 @@ interface Props {
 const ChatList: FC<Props> = ({ prevChats }) => {
   const { saveGuestInfo, guestId } = useChat();
   const selectThisGuest = (guest: ChatItem) => {
+    if(guest.id === guestId)return;
     const payload = {
       id: guest.initiator.id,
       firstName: guest.initiator.firstName,
@@ -20,6 +21,7 @@ const ChatList: FC<Props> = ({ prevChats }) => {
     };
     saveGuestInfo(payload, guest.id);
   };
+
   return (
     <div className="grid gap-4">
       {prevChats &&
@@ -41,7 +43,7 @@ const ChatList: FC<Props> = ({ prevChats }) => {
               <div>
                 <p className="fw-500">{`${item.initiator.firstName} ${item.initiator.lastName}`}</p>
                 <p className="mt-[2px] opacity-70 fs-400">
-                  {formatName(item?.lastMessage, 27)}
+                  {formatName(item?.lastMessage, 25)}
                 </p>
               </div>
             </div>

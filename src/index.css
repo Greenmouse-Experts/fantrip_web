@@ -180,6 +180,20 @@ input[type="checkbox"]:checked {
   transition: filter .4s ease-in;
 }
 
+.scroll-pro::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scroll-pro {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.mobile-chat-container{
+  height: 80vh;
+}
+
 
 @-webkit-keyframes AnimateBorder {
     0%{background-position:0% 50%}
