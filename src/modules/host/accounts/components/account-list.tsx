@@ -11,6 +11,10 @@ const AccountList = () => {
               className="border grid gap-3 border-gray-600 rounded-lg p-4"
               key={item.id}
             >
+              <div className="flex gap-x-2 items-center">
+                <input type="checkbox" className="w-5 h-5" />
+                <p className="fw-500">Active Account Info</p>
+              </div>
               <div className="flex gap-x-2">
                 <p className="opacity-70">Account Name:</p>
                 <p className=" fw-500">{item.accountName}</p>
