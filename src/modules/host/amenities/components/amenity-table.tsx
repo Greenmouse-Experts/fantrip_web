@@ -8,7 +8,6 @@ interface Props {
   data: AmenityItem[];
 }
 const AmenitiesTableListing: FC<Props> = ({ data }) => {
-
   // table column configuration and formating
   const columnHelper = createColumnHelper<AmenityItem>();
   const columns = [

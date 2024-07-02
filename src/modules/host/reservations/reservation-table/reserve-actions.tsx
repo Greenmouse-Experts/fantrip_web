@@ -3,7 +3,7 @@ import ReusableModal from "@/components/ReusableModal";
 import useDialog from "@/hooks/useDialog";
 import {
   hostApproveBooking,
-  hostCancelBooking,
+  hostCancelReservation,
 } from "@/services/api/booking-api";
 import { useToast } from "@chakra-ui/react";
 import { FC, useState } from "react";
@@ -19,7 +19,7 @@ const ReserveActions: FC<Props> = ({ id, refetch }) => {
   const toast = useToast();
   const rejectReserve = async () => {
     setIsBusy(true);
-    await hostCancelBooking(id)
+    await hostCancelReservation(id)
       .then((data) => {
         toast({
           render: () => (

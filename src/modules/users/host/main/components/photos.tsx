@@ -64,28 +64,28 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
         </p>
       </div>
       <div className="mt-8">
-        <div className="w-44 lg:w-10/12 place-center rounded-[14px]">
+        <div className="w-[280px] lg:w-10/12 place-center rounded-[14px]">
           <ImageInput
             label="Stay Imgaes"
             setImage={setSelectedImg}
             containerClass="w-full"
           />
         </div>
-        <div className="md:flex gap-4 mt-2">
+        <div className="grid grid-cols-2 md:flex gap-4 mt-2">
           {preview &&
             !!preview.length &&
             preview.map((item, i) => (
               <div key={i}>
-                <img src={item} alt="room" className="w-36 h-36 object-cover" />
+                <img src={item} alt="room" className="h-32 lg:w-36 lg:h-36 object-cover" />
               </div>
             ))}
         </div>
-        <div className="md:flex gap-4 mt-2">
+        <div className="grid grid-cols-2 md:flex gap-4 mt-2">
           {stay &&
             !!stay.photos.length &&
             stay.photos.map((item, i) => (
               <div key={i}>
-                <img src={item} alt="room" className="w-36 h-36 object-cover" />
+                <img src={item} alt="room" className="lg:w-36 lg:h-36 object-cover" />
               </div>
             ))}
         </div>

@@ -78,7 +78,7 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
         <div className="lg:w-7/12 relative">
           <StayGallery data={stay.photos} />
         </div>
-        <div>
+        <div className="mt-4 lg:mt-0">
           <div>
             <p className="text-lg fw-500 mb-4">Select Available Dates</p>
             <Availability />

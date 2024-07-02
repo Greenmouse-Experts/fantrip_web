@@ -1,7 +1,8 @@
 import { MdAutoMode, MdOutlineDashboard } from "react-icons/md";
 import { FaDollarSign, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
-import { BsChatFill, BsCompassFill } from "react-icons/bs";
+import { BsBank, BsChatFill, BsCompassFill } from "react-icons/bs";
+import { GiBlackBook } from "react-icons/gi";
 export interface RouteType {
   name: string;
   icon: any;
@@ -20,6 +21,12 @@ export const Routes = [
     submenu: [],
   },
   {
+    name: "Bank Accounts",
+    icon: <BsBank className="text-xl" />,
+    route: "/host/accounts",
+    submenu: [],
+  },
+  {
     name: "Listings",
     icon: <FaStar className="text-xl" />,
     route: "/host/listings",
@@ -33,7 +40,7 @@ export const Routes = [
   },
   {
     name: "Bookings",
-    icon: <FaUserAlt className="text-lg" />,
+    icon: <GiBlackBook className="text-lg" />,
     route: "/host/bookings",
     submenu: [],
   },

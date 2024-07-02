@@ -38,7 +38,7 @@ const StayGallery: FC<Props> = ({ data }) => {
             <img
               src={item}
               alt=""
-              className="w-full h-[300px] lg:h-[400px] object-cover"
+              className="w-full h-[280px] lg:h-[400px] object-cover"
             />
           </SwiperSlide>
         ))}
@@ -51,7 +51,7 @@ const StayGallery: FC<Props> = ({ data }) => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper rounded-lg mt-4"
+        className="mySwiper rounded-lg lg:mt-4"
       >
         {" "}
         {data.map((item: any, index: any) => (
@@ -59,7 +59,7 @@ const StayGallery: FC<Props> = ({ data }) => {
             <img
               src={item}
               alt=""
-              className="w-full h-[100px] lg:h-[100px] rounded-lg object-cover"
+              className="w-full h-[60px] lg:h-[100px] rounded-lg object-cover"
             />
           </SwiperSlide>
         ))}

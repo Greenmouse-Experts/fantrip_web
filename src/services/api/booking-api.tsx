@@ -27,7 +27,7 @@ export const hostFetchBooking = async (params: FetchParam) => {
       .then((response) => response.data);
   };
 
-  export const hostCancelBooking = async (id:string) => {
+  export const hostCancelReservation = async (id:string) => {
     return axios
       .patch(`${ENDPOINT.CANCEL_CLIENT_RESERVATION}/${id}`)
       .then((response) => response.data);
@@ -54,6 +54,12 @@ export const hostFetchBooking = async (params: FetchParam) => {
   export const fetchBookingDetails = async (id:string) => {
     return axios
       .get(`${ENDPOINT.FETCH_SINGLE_CLIENT_BOOKING}/${id}`)
+      .then((response) => response.data);
+  };
+
+  export const hostCancelBooking = async (id:string) => {
+    return axios
+      .post(`${ENDPOINT.CANCEL_CLIENT_BOOKING}/${id}`)
       .then((response) => response.data);
   };
 

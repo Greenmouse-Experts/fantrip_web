@@ -52,24 +52,24 @@ const AreaCategorySearch = () => {
           </p>
         </div>
         <div className="mt-5 lg:mt-12">
-          <div className="grid gap-4 lg:flex justify-center gap-x-6">
+          <div className="grid grid-cols-2 gap-3 lg:flex justify-center lg:gap-x-6">
             {filters.slice(0, 4).map((item) => (
-              <div className="w-[290px] lg:w-auto border cursor-pointer p-3 px-5 lg:px-10 rounded-full border-[#9847FE] flex items-center gap-x-2 lg:gap-x-4">
-                <img src={item.image} alt="icon-names" className="w-9" />
-                <p>{item.name}</p>
+              <div className="lg:w-auto border cursor-pointer p-3 px-5 lg:px-10 rounded-full border-[#9847FE] flex items-center gap-x-2 lg:gap-x-4">
+                <img src={item.image} alt="icon-names" className="w-4 lg:w-9" />
+                <p className="fs-200 lg:fs-600">{item.name}</p>
               </div>
             ))}
           </div>
-          <div className="grid gap-4 lg:flex justify-center gap-x-6 mt-4 lg:mt-6">
+          <div className="grid grid-cols-2 gap-4 lg:flex justify-center gap-x-6 mt-4 lg:mt-6">
             {filters.slice(4).map((item) => (
               <div className="border cursor-pointer p-3 px-5 lg:px-10 rounded-full border-[#9847FE] flex items-center gap-x-2 lg:gap-x-4">
-                <img src={item.image} alt="icon-names" className="w-9" />
-                <p>{item.name}</p>
+                <img src={item.image} alt="icon-names" className="w-4 lg:w-9" />
+                <p className="fs-200 lg:fs-600">{item.name}</p>
               </div>
             ))}
-            <div>
+            <div className="col-span-2">
               <button
-                className="block px-6 btn-primary py-[19px]"
+                className="block fs-500 lg:fs-600 px-6 btn-primary py-[19px]"
                 onClick={() => setShowSubmit(true)}
               >
                 <BtnContent name="Submit a Recommendation" />

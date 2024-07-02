@@ -1,4 +1,5 @@
 import UserDashboardLayout from "@/layout/host";
+import HostAccounts from "@/pages/host/accounts";
 import HostAmenityPage from "@/pages/host/amenities";
 import HostAreaGuide from "@/pages/host/area-guide";
 import HostBookings from "@/pages/host/booking";
@@ -35,6 +36,10 @@ export const hostRoutes = [
           {
             path: 'reservations',
             element: <HostReservationPage/>,
+          },
+          {
+            path: 'accounts',
+            element: <HostAccounts />,
           },
           {
             path: 'transact',

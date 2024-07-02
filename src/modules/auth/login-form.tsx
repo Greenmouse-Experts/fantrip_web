@@ -15,7 +15,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
-  const {saveUser} = useAuth()
+  const {saveUser, saveAccount} = useAuth()
   const {
     control,
     handleSubmit,
@@ -58,6 +58,9 @@ const LoginForm = () => {
           city: data.data.city,
           state: data.data.state,
           country: data.data.country
+        })
+        saveAccount({
+          accounts: data.data.bankAccounts
         })
         if(data.data.role === 'host'){navigate('/host')}
         if(data.data.role === 'guest'){navigate('/user/profile')}

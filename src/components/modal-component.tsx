@@ -23,24 +23,24 @@ export const ComponentModal: FC<Props> = ({
       <div
         className={` ${
           type === "recommend"
-            ? "bg-white w-3/4 lg:w-[50%]"
+            ? "bg-white w-11/12 lg:w-[50%]"
              : type === "more"? 
             "w-11/12 lg:w-[550px] rounded-lg p-2 lg:p-5 bg-[#EDEDFF]"
-            : "bg-white p-5 rounded-lg w-3/4 [@media(min-width:1410px)]:w-[60%]"
+            : "bg-white p-5 rounded-lg w-11/12 [@media(min-width:1410px)]:w-[60%]"
         }`}
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
         {type === "recommend" ? (
-          <div className="bg-[#EDEDFF] flex justify-between px-3 text-center py-4">
+          <div className="bg-[#EDEDFF] relative flex justify-between px-3 text-center py-4">
             <button
-              className="monts text-[#5E5E5E] fw-500 text-lg"
+              className="absolute top-1 md:block monts text-[#5E5E5E] fw-500 lg:text-lg"
               onClick={onClose}
             >
               Close
             </button>
-            <p className="fw-600 text-xl">{title}</p> <p></p>
+            <p className="fw-600 text-xl pt-4 md:pt-0">{title}</p> <p></p>
           </div>
         ) : (
           <div className="flex justify-between items-center">

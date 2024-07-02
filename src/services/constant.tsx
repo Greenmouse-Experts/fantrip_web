@@ -30,6 +30,7 @@ export const FETCH_SINGLE_CLIENT_RESERVATION = `/reservations`
 export const GUEST_CANCEL_RESERVATION = `/reservations/cancel`
 export const FETCH_CLIENT_BOOKINGS = `/bookings/fetch-guest-trx`
 export const FETCH_SINGLE_CLIENT_BOOKING = `/bookings/fetch-trx`
+export const CANCEL_CLIENT_BOOKING = `bookings/cancel-guest-booking`
 
 // payment endpoints
 export const INITIATE_PAYMENT = `/bookings/create`
@@ -41,3 +42,7 @@ export const GET_AMENITIES = `/amenities`
 export const GET_HOST_AMENITIES = `amenities/fetch-host-amenities`
 export const CREATE_AMENITY = `/amenities/add-amenity`
 export const REMOVE_AMENITY = `/stays/remove-amenity`
+export const GET_ACCOUNTS = `/bank-accounts`
+export const CREATE_ACCOUNT = `/bank-accounts/create`
+export const SELECT_ACCOUNT = `/bank-accounts/select`
+export const ADD_FCM_TOKEN = `/notification-tokens/add`

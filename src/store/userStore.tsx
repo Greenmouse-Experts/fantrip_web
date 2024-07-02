@@ -1,3 +1,4 @@
+import { BankAccountFullItem } from "@/lib/contracts/routine";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -6,8 +7,11 @@ interface Props {
   saveUser: (data: userProps) => void;
   clearUser: () => void;
   kyc: kycProps;
+  account: accountProps;
+  saveAccounts: (data: accountProps) => void;
   saveKyc: (data: kycProps) => void;
   clearKyc: () => void;
+  clearAccount: () => void;
 }
 interface userProps {
   name: string;
@@ -23,6 +27,9 @@ interface userProps {
   country: string;
   state: string;
   city: string;
+}
+export interface accountProps {
+  accounts: BankAccountFullItem[];
 }
 export interface kycProps {
   fullName: string;
@@ -61,14 +68,22 @@ const userInitState = {
   state: "",
   city: "",
 };
+const accountsInitState = {
+  accounts: [],
+};
 const useAuthStore = create<Props>()(
   persist(
     (set) => ({
       user: userInitState,
       kyc: kycInitState,
+      account: accountsInitState,
       saveUser: (data: userProps) =>
         set(() => ({
           user: data,
+        })),
+      saveAccounts: (data: accountProps) =>
+        set(() => ({
+          account: data,
         })),
       saveKyc: (data: kycProps) =>
         set(() => ({
@@ -81,6 +96,10 @@ const useAuthStore = create<Props>()(
       clearKyc: () =>
         set(() => ({
           kyc: kycInitState,
+        })),
+      clearAccount: () =>
+        set(() => ({
+          account: accountsInitState,
         })),
     }),
     {
