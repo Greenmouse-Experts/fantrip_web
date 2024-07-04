@@ -46,12 +46,12 @@ const MobileMenu: FC<Props> = ({ close }) => {
             </Link>
           </li>
           <li className="border-b">
-            <Link to={"/"} className="px-3">
+            <Link to={"/auth/login"} className="px-3">
               Chat Room
             </Link>
           </li>
           <li className="border-b">
-            <Link to={"/"} className="px-3">
+            <Link to={"/auth/login"} className="px-3">
               Live quiz and predictions
             </Link>
           </li>
