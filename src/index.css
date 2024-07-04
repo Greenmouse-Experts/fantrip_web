@@ -180,6 +180,13 @@ input[type="checkbox"]:checked {
   transition: filter .4s ease-in;
 }
 
+@media (max-width: 576px) {
+  .stay-item-wrapper:hover .stay-bg {
+    filter: none;
+    transition: none;
+  }
+}
+
 .scroll-pro::-webkit-scrollbar {
   display: none;
 }
