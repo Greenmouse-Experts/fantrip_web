@@ -21,7 +21,7 @@ const HostAmenityIndex = () => {
           onClick={() => setShowModal(true)}
         >
           <IoAddCircle />
-          Add New Amenity
+          Add <span className="hidden md:inline">New</span> Amenity
         </button>
       </div>
       <div className="mt-6">

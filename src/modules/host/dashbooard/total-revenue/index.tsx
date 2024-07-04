@@ -5,7 +5,7 @@ import TotalRevenueChart from "./components/line-chart";
 const TotalRevenue = () => {
   return (
     <div>
-      <div className="flex items-center justify-between">
+      <div className="lg:flex items-center justify-between">
         <div>
           <p className="text-[#AEB9E1] fw-500 fs-400">Total revenue</p>
           <div className="flex items-center gap-x-2">
@@ -16,7 +16,7 @@ const TotalRevenue = () => {
             </div>
           </div>
         </div>
-        <div className="flex gap-x-4 items-center">
+        <div className="lg:flex mt-2 lg:mt-0 gap-x-4 items-center">
           <div>
             <ul className="flex gap-x-2">
               <li className="flex gap-x-2 items-center">
@@ -29,7 +29,7 @@ const TotalRevenue = () => {
               </li>
             </ul>
           </div>
-          <div>
+          <div className="flex lg:block mt-2 lg:mt-0">
             <div className="flex items-center gap-x-2 cursor-pointer bg-[#0A1330] text-[#AEB9E1] px-2 py-1 rounded">
                 <FaCalendar className="text-sm"/>
                 <p>Jan 2024 - Jun 2024</p>

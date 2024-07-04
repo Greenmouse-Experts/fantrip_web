@@ -27,7 +27,7 @@ const BookingAnalytics = () => {
     },
   ];
   return (
-    <div className="grid grid-cols-4 gap-5">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
       {listing.map((item) => (
         <div className="border border-[#343B4F] flex gap-x-2 p-4 rounded-[8px]" key={item.name}>
           <div>{item.img}</div>

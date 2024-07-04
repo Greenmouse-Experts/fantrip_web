@@ -7,7 +7,7 @@ const UserDashboard = () => {
   return (
     <div className="pt-4">
       <BoxAnalyysis/>
-      <div className="mt-8 flex border border-[#343B4F] rounded-[16px]">
+      <div className="mt-8 lg:flex border border-[#343B4F] rounded-[16px]">
         <div className="lg:w-[67%] px-4 py-8 border-r  border-[#343B4F]">
           <TotalRevenue/>
         </div>

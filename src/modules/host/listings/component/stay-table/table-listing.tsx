@@ -77,7 +77,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
             className="flex gap-x-4 border border-[#343B4F] rounded p-1"
             key={item.id}
           >
-            <div className="w-[160px] h-[110px] shrink-0 overflow-hidden rounded-[8px]">
+            <div className="w-[160px] md:h-[110px] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={
                   !!item.photos.length
@@ -88,7 +88,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full flex items-center justify-between lg:pr-4">
+            <div className="w-full md:flex items-center justify-between lg:pr-4">
               <div>
                 <p className="lg:text-xl fw-500">{item.name}</p>
                 <p className="syne text-gray-300">{item.description}</p>
@@ -96,7 +96,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                   <FaLocationPin className="text-sm" />
                   <p className="fs-400">{item.address}</p>
                 </div>
-                <p className="mt-2 text-gray-400 fs-400">
+                <p className="lg:mt-2 text-gray-400 fs-400">
                   {dayjs(item.createdDate).fromNow()}
                 </p>
               </div>
@@ -132,10 +132,11 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                     </MenuList>
                   </Menu>
                 </div>
-                <p className="synce text-2xl text-end fw-600">
+                <div className="flex mt-1 md:mt-0 items-center gap-x-2 md:block">
+                <p className="syne text-2xl lg:text-3xl text-end fw-600">
                   {formatAsDollar(item.price)}
                 </p>
-                <div className="flex gap-x-3 justify-end relative">
+                <div className="flex gap-x-3 justify-end relative top-[6px] md:top-0">
                   <Link
                     className="underline relative block"
                     to={`/host/listings/${item.id}`}
@@ -164,6 +165,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                       <TbViewportWide className="text-xl" />
                     </Tooltip>
                   </Link>
+                </div>
                 </div>
               </div>
             </div>

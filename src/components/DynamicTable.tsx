@@ -73,8 +73,8 @@ interface Props {
             </div>
           </div>
         </div>
-        <div className="lg:flex items-center justify-between px-6 border border-gray-400 dark:border-gradient py-2">
-          <div className="lg:flex w-full justify-between items-center gap-2">
+        <div className="flex items-center justify-between px-6 border border-gray-400 dark:border-gradient py-2">
+          <div className="flex w-full justify-between items-center gap-2">
             <div className="flex gap-x-2">
               <span className="flex items-center gap-1">
                 <div>Page</div>
@@ -85,7 +85,7 @@ interface Props {
               </span>
             </div>
             <div className="lg:flex gap-x-1 lg:gap-x-3">
-              <div className="flex justify-center lg:justify-normal mt-3 lg:mt-0">
+              <div className="flex justify-center lg:justify-normal">
                 <button
                   className="border-none rounded p-1"
                   onClick={prev}

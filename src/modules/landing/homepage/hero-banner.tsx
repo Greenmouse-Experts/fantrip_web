@@ -41,10 +41,10 @@ const HeroBanner = () => {
             </div>
             <div className="lg:w-7/12 mt-12 lg:mt-0 pb-24 lg:pb-0">
               <div className="text-white ">
-                <p className="text-3xl lg:text-6xl fw-600 2xl:text-6xl syne ">
+                <p className="text-3xl lg:text-4xl xl:text-6xl fw-600 2xl:text-6xl syne ">
                   Home Field{" "}
                   <span className="text-gradient syne">Advantage</span>,
-                  <span className="syne block mt-3 lg:mt-6">
+                  <span className="syne block mt-3 2xl:mt-6">
                     Wherever You Go
                   </span>
                 </p>

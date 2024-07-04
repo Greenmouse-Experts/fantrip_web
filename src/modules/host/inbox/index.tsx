@@ -9,9 +9,9 @@ const socket = io("https://fantrip-backend-c114b512035b.herokuapp.com");
 const HostInboxIndex = () => {
   return (
     <div>
-      <div className="border border-gray-600 h-[85vh] overflow-hidden rounded-lg">
+      <div className="border border-gray-600 h-[1000px] lg:h-[85vh] overflow-hidden rounded-lg">
         <div className="lg:flex h-full">
-          <div className="w-[300px] shrink-0">
+          <div className="lg:w-[300px] shrink-0">
             <ChatSidebarIndex socket={socket} />
           </div>
           <div className="w-full h-full border-l border-gray-800 pl-2">

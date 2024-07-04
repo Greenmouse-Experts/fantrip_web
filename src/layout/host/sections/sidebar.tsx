@@ -10,21 +10,28 @@ import ProfileAvatar from "@/components/ProfileAvatar";
 import useAuth from "@/hooks/authUser";
 import { FaChevronDown } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
+import { FC } from "react";
 
-const SidebarLayout = () => {
+interface Props {
+  toggled: boolean;
+  setToggled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const SidebarLayout:FC<Props> = ({toggled, setToggled}) => {
   const path = useLocation();
   const { Dialog, setShowModal } = useDialog();
   const { user } = useAuth();
 
   return (
-    <div className="left-0 top-0  fixed overflow-y-hidden  bg-[#0D0D0D] text-white">
+    <div className="left-0 top-0 z-[3000] fixed overflow-y-hidden  bg-[#0D0D0D] text-white">
       <Sidebar
         customBreakPoint="1024px"
-        className="h-screen overflow-y-hidden !border-none scroll-pro fs-700 fw-500 px-4"
+        className="h-screen bg-[#0D0D0D] overflow-y-hidden !border-none scroll-pro fs-700 fw-500 px-4"
         backgroundColor=""
         width="275px"
+        toggled={toggled}
+        onClick={() => setToggled(false)}
       >
-        <div className="py-4 lg:py-6 lg:pb-8 items-center">
+        <div className="py-2 pt-4 lg:py-6 lg:pb-8 items-center">
           <Link to="/" className="gap-x-1">
             <img src={logo} alt="logo" className="w-7/12 2xl:w-8/12" />
           </Link>

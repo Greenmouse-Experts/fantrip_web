@@ -4,8 +4,8 @@ import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 
 const UserReferrals = () => {
   return (
-    <div>
-      <p className="hidden lg:block fw-600 lg:text-lg">My Referrals</p>
+    <div className="mt-3 lg:mt-0">
+      <p className="hidden lg:block fw-600 text-lg">My Referrals</p>
       <p className="text-sm text-gray-500">Invite your friends to fantrip. If they sign up you will get amazing bonuses</p>
       <div className="border border-[#E8EAED] rounded-[16px] mt-6 p-4">
         {/* <div className="rounded-[14px] bg-layout-gradient p-6 text-white">
