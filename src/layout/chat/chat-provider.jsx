@@ -17,7 +17,7 @@ const ChatProvider = () => {
     <div>
       {isMobile ? (
         <Suspense fallback={<div>Loading...</div>}>
-          <ReactModal
+          {/* <ReactModal
             minWidth={250}
             minHeight={400}
             initWidth={400}
@@ -28,7 +28,8 @@ const ChatProvider = () => {
             isOpen={showModal}
           >
             <ChatInterface close={() => setShowModal(false)} />
-          </ReactModal>
+          </ReactModal> */}
+          <></>
         </Suspense>
       ) : (
         <Drawer
