@@ -6,7 +6,8 @@ import {
   DrawerOverlay,
   useMediaQuery,
 } from "@chakra-ui/react";
-import ReactModal from "react-modal-resizable-draggable";
+const ReactModal = React.lazy(() => import("react-modal-resizable-draggable"));
+// import ReactModal from "react-modal-resizable-draggable";
 
 const ChatProvider = () => {
   const { stayChatModal: showModal, toggleStayChatmodal: setShowModal } =
@@ -15,18 +16,20 @@ const ChatProvider = () => {
   return (
     <div>
       {isMobile ? (
-        <ReactModal
-          minWidth={250}
-          minHeight={400}
-          initWidth={400}
-          initHeight={500}
-          onFocus={() => console.log("Modal is click")}
-          className={"rounded-xl !-z-0 overflow-hidden"}
-          onRequestClose={() => setShowModal(true)}
-          isOpen={showModal}
-        >
-          <ChatInterface close={() => setShowModal(false)} />
-        </ReactModal>
+        <Suspense fallback={<div>Loading...</div>}>
+          <ReactModal
+            minWidth={250}
+            minHeight={400}
+            initWidth={400}
+            initHeight={500}
+            onFocus={() => console.log("Modal is click")}
+            className={"rounded-xl !-z-0 overflow-hidden"}
+            onRequestClose={() => setShowModal(true)}
+            isOpen={showModal}
+          >
+            <ChatInterface close={() => setShowModal(false)} />
+          </ReactModal>
+        </Suspense>
       ) : (
         <Drawer
           isOpen={showModal}
