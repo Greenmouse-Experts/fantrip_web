@@ -59,9 +59,7 @@ const LoginForm = () => {
           state: data.data.state,
           country: data.data.country
         })
-        saveAccount({
-          accounts: data.data.bankAccounts
-        })
+        saveAccount(data.data.bankAccounts)
         if(data.data.role === 'host'){navigate('/host')}
         if(data.data.role === 'guest'){navigate('/user/profile')}
       },

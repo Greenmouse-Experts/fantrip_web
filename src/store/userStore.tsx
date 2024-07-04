@@ -7,8 +7,8 @@ interface Props {
   saveUser: (data: userProps) => void;
   clearUser: () => void;
   kyc: kycProps;
-  account: accountProps;
-  saveAccounts: (data: accountProps) => void;
+  account: BankAccountFullItem[];
+  saveAccounts: (data: BankAccountFullItem[]) => void;
   saveKyc: (data: kycProps) => void;
   clearKyc: () => void;
   clearAccount: () => void;
@@ -68,9 +68,7 @@ const userInitState = {
   state: "",
   city: "",
 };
-const accountsInitState = {
-  accounts: [],
-};
+const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(
   persist(
     (set) => ({
@@ -81,7 +79,7 @@ const useAuthStore = create<Props>()(
         set(() => ({
           user: data,
         })),
-      saveAccounts: (data: accountProps) =>
+      saveAccounts: (data: BankAccountFullItem[]) =>
         set(() => ({
           account: data,
         })),

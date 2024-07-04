@@ -9,6 +9,7 @@ import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import RadioButtonGroup from "@/components/radio-group-input";
 import { Country } from "country-state-city";
+import useAuth from "@/hooks/authUser";
 
 const currencyOptions = [
   {
@@ -25,8 +26,9 @@ const currencyOptions = [
 interface Props {
   close: () => void;
 }
-const AddHostAccount: FC<Props> = ({}) => {
+const AddHostAccount: FC<Props> = ({close}) => {
   const [isBusy, setIsBusy] = useState(false);
+  const {account, saveAccount} = useAuth()
   const toast = useToast();
   const {
     control,
@@ -61,6 +63,7 @@ const AddHostAccount: FC<Props> = ({}) => {
           position: "top",
         });
         setIsBusy(false);
+        saveAccount([...account, data.data])
         close();
       },
       onError: (error: any) => {

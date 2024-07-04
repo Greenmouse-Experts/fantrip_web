@@ -61,7 +61,7 @@ export const removeHostAccount = async (id: string) => {
 
 export const selectHostAccount = async (id: string) => {
   return axios
-    .delete(`${ENDPOINT.SELECT_ACCOUNT}/${id}`)
+    .patch(`${ENDPOINT.SELECT_ACCOUNT}/${id}`)
     .then((response) => response.data);
 };
 

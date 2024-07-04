@@ -23,7 +23,7 @@ const PriceBooking = () => {
             What is the pricing range for accommodations on Fantrip?
           </p>
           <div className="grid gap-5">
-            <PolicyList text=" Booking fees on fantrip is intended to make accommodation affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
+            <PolicyList text=" Hosting prices on Fantrip are intended to make accommodations affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
           </div>
           <p className="fw-500 mb-3 lg:mb-4 mt-5">
             Are there any additional fees for guests?
@@ -35,7 +35,7 @@ const PriceBooking = () => {
             How is the service fee calculated for hosts?
           </p>
           <div className="grid gap-5">
-            <PolicyList text=" Fantrip charges a flat 12% service fee to hosts. This fee is deducted from the booking cost and covers the operational expenses of our platform, including customer support and secure payment processing." />
+            <PolicyList text=" Fantrip charges a 12% service fee, which is split between hosts and guests. This fee covers the operational expenses of our platform, including customer support and secure payment processing. The exact split and detailed breakdown will be shown during the booking process." />
           </div>
           <p className="fw-500 mb-3 lg:mb-4 mt-5">
             Do you charge for additional guests?
@@ -67,7 +67,7 @@ const PriceBooking = () => {
                   to={"/refund-policy"}
                   className="text-prima fw-500 underline"
                 >
-                  cancellation & refund policysection
+                  cancellation & refund policy section
                 </Link>
                 .
               </p>

@@ -4,7 +4,7 @@ import useAuthStore from '../store/userStore'
 const useAuth = () => {
     const user = useAuthStore((state) => state.user)
     const kyc = useAuthStore((state) => state.kyc)
-    const account = useAuthStore((state) => state.account.accounts)
+    const account = useAuthStore((state) => state.account)
     const saveUser = useAuthStore((state) => state.saveUser)
     const saveKyc = useAuthStore((state) => state.saveKyc)
     const saveAccount = useAuthStore((state) => state.saveAccounts)

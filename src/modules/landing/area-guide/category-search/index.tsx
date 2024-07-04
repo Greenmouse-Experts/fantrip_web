@@ -42,7 +42,7 @@ const AreaCategorySearch = () => {
       <div className="box">
         <div className="text-center">
           <p className="syne text-[19px] lg:text-xl fw-600">
-            Categorically search through recommended spots for your next fan
+            Search through recommended spots for your next fan
             trip 😉
           </p>
           <p className="lg:w-9/12 mb-6 lg:mb-0 text-center mx-auto mt-6 text-[#494949]">
