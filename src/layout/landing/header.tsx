@@ -24,6 +24,7 @@ import icon_3 from "@/assets/svg/nav_icon_3.svg"
 import icon_4 from "@/assets/svg/nav_icon_4.svg"
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
+import { FaRegThumbsUp } from "react-icons/fa";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
@@ -175,6 +176,17 @@ const LandingHeader = () => {
                             >
                               <GiBlackBook className="text-lg" />
                               <p>Bookings</p>
+                            </Link>
+                          </MenuItem>
+                        )}
+                        {!isHost && (
+                          <MenuItem className="border-b">
+                            <Link
+                              to={"/user/recommendations"}
+                              className="flex gap-x-3 items-center !py-3 text-black"
+                            >
+                              <FaRegThumbsUp className="text-xl" />
+                              <p>Recommendations</p>
                             </Link>
                           </MenuItem>
                         )}

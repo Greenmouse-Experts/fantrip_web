@@ -1,19 +1,26 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import SelectNaming from "./select-name";
 import ReviewForm from "./reveiw-form";
 import RecommendForm from "./recommend-form";
 // import { useToast } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { createPlace } from "@/services/api/places-api";
+import { uploadImages } from "@/services/api/routine";
+import { useToast } from "@chakra-ui/react";
+import { CreatePlaceInput } from "@/lib/contracts/place";
+import SubmitSuccess from "./submit-success";
 export enum NAME_CHOICE {
   REAL = "real",
   NICK = "nick",
 }
-interface Props{
-    close: () => void
+interface Props {
+  close: () => void;
 }
-const SubmitRecommendIndex:FC<Props> = ({close}) => {
+const SubmitRecommendIndex: FC<Props> = ({ close }) => {
   const [activeTab, setActiveTab] = useState(1);
   const [nameChoice, setNameChoice] = useState(NAME_CHOICE.REAL);
+  const [tags, setTags] = useState<string[]>([]);
   const nameOptions = [
     {
       name: "Use my real name",
@@ -27,8 +34,21 @@ const SubmitRecommendIndex:FC<Props> = ({close}) => {
   const handleNext = () => setActiveTab(activeTab + 1);
   const handlePrev = () => setActiveTab(activeTab - 1);
   const [isBusy, setIsBusy] = useState(false);
-  const [photos, setPhotos] = useState<Array<File>>();
-//   const toast = useToast();
+  const [photos, setPhotos] = useState<File[] | undefined>();
+  const [prevImgs, setPreviewImgs] = useState<string[]>([]);
+
+  console.log(photos);
+  
+
+  useEffect(() => {
+    if (!!photos?.length) {
+      const urls = Array.from(photos).map((file) => URL.createObjectURL(file));
+      setPreviewImgs(urls);
+    }
+  }, [photos]);
+
+  const toast = useToast();
+
   const {
     control,
     handleSubmit,
@@ -41,19 +61,79 @@ const SubmitRecommendIndex:FC<Props> = ({close}) => {
       recommend_type: "",
       name: "",
       location: "",
-      close_to_stadium: false,
-      public_transport: false,
       description: "",
     },
   });
-  const submitAction = (data:any) => {
-    setIsBusy(true)
+
+  const mutation = useMutation({
+    mutationFn: uploadImages,
+  });
+
+  const handleAction = async (id: string, payload: CreatePlaceInput) => {
+    await createPlace(id, payload)
+      .then((res) => {
+        setIsBusy(false);
+        toast({
+          render: () => (
+            <div className="text-white text-center fw-600 syne bg-gradient rounded p-3">
+              {res.message}
+            </div>
+          ),
+          position: "top",
+        });
+        setActiveTab(4)
+      })
+      .catch((err: any) => {
+        toast({
+          title: err.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+      });
+  };
+
+  const submitAction = (data: any) => {
+    setIsBusy(true);
     const payload = {
-        name: data.name
+      name: data.name,
+      location: data.location,
+      tags: tags,
+      description: data.description,
+      isDisclosed: false,
+    };
+    const id = data.recommend_type;
+    if(!photos?.length){
+      toast({
+        title: 'Add images to complement your reccomendations',
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
+      return;
     }
-    console.log(payload);
-    close()
-  }
+    const fd = new FormData();
+    Array.from(photos).map((file) => {
+      fd.append(`images`, file);
+    });
+    mutation.mutate(fd, {
+      onSuccess: (data) => {
+        const payloadWithImage = {
+          ...payload,
+          photos: data,
+        };
+        handleAction(id, payloadWithImage);
+      },
+      onError: (err: any) => {
+        toast({
+          title: err.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+      },
+    });
+  };
   return (
     <div className="p-3 lg:p-6 ">
       {activeTab === 1 && (
@@ -72,11 +152,25 @@ const SubmitRecommendIndex:FC<Props> = ({close}) => {
           next={handleNext}
           prev={handlePrev}
           setImage={setPhotos}
-          prevImage={photos}
+          prevImage={prevImgs}
+          tags={tags}
+          setTags={setTags}
           isValid={isValid}
         />
       )}
-      {activeTab === 3 && <ReviewForm getValues={getValues} prev={handlePrev} isBusy={isBusy} handleSubmit={handleSubmit(submitAction)}/>}
+      {activeTab === 3 && (
+        <ReviewForm
+          getValues={getValues}
+          images={prevImgs}
+          tags={tags}
+          prev={handlePrev}
+          isBusy={isBusy}
+          handleSubmit={handleSubmit(submitAction)}
+        />
+      )}
+      {activeTab === 4 && (
+        <SubmitSuccess close={close}/>
+      )}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import React, { Suspense } from "react";
 import { useUtils } from "@/hooks/useUtils";
 import ChatInterface from "@/modules/chat/stay-chat/components/chat-interface";
 import {
@@ -17,7 +18,7 @@ const ChatProvider = () => {
     <div>
       {isMobile ? (
         <Suspense fallback={<div>Loading...</div>}>
-          {/* <ReactModal
+          <ReactModal
             minWidth={250}
             minHeight={400}
             initWidth={400}
@@ -28,8 +29,7 @@ const ChatProvider = () => {
             isOpen={showModal}
           >
             <ChatInterface close={() => setShowModal(false)} />
-          </ReactModal> */}
-          <></>
+          </ReactModal>
         </Suspense>
       ) : (
         <Drawer

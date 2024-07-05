@@ -1,14 +1,33 @@
 import Button from "@/components/Button";
+import { SpotCategoryItem } from "@/lib/contracts/place";
+import { getSpotsCat } from "@/services/api/places-api";
+import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
 
 interface Props {
   getValues: any;
+  tags: string[];
+  images: string[];
   prev: () => void;
   isBusy: boolean;
   handleSubmit: () => void;
 }
-const ReviewForm: FC<Props> = ({ prev, getValues, handleSubmit}) => {
+const ReviewForm: FC<Props> = ({
+  prev,
+  tags,
+  images,
+  getValues,
+  handleSubmit,
+}) => {
+  console.log(tags);
+  console.log(images);
+  
+  const { data } = useQuery({
+    queryKey: ["get-spot-categories"],
+    queryFn: getSpotsCat,
+  });
   const values = getValues();
+  const selectedType = data?.data.filter((where:SpotCategoryItem) => where.id === values.recommend_type)
   return (
     <div>
       <div className="flex justify-between">
@@ -22,7 +41,7 @@ const ReviewForm: FC<Props> = ({ prev, getValues, handleSubmit}) => {
           <div>
             <p className="monts text-[#5E5E5E]">Type of Recommendation</p>
             <p className="text-[#000000] syne fw-600 text-lg">
-              {values.recommend_type}
+              {selectedType[0]?.name}
             </p>
           </div>
           <div className="pt-3">
@@ -31,25 +50,41 @@ const ReviewForm: FC<Props> = ({ prev, getValues, handleSubmit}) => {
           </div>
           <div className="pt-3">
             <p className="monts text-[#5E5E5E]">Address/Location</p>
-            <p className="text-[#000000] syne fw-600 text-lg">{values.name}</p>
+            <p className="text-[#000000] syne fw-600 text-lg">
+              {values.location}
+            </p>
           </div>
           <div className="pt-3">
             <p className="monts text-[#5E5E5E]">Category Tags</p>
-            <p className="text-[#000000] syne fw-600 text-lg">{values.name}</p>
+            <p className="text-[#000000] flex gap-x-2 syne fw-200">
+              {tags?.map((item, i) => (
+                <span key={i}>{item}</span>
+              ))}
+            </p>
           </div>
           <div className="pt-3">
             <p className="monts text-[#5E5E5E]">Description</p>
-            <p className="text-[#000000] syne fw-600 text-lg">{values.description}</p>
+            <p className="text-[#000000] syne fw-600 text-lg">
+              {values.description}
+            </p>
           </div>
         </div>
       </div>
-      <div className="mt-4 bg-gradient p-[2px] rounded-lg">
-        <div className="p-3 bg-white rounded-lg grid gap-3">
-          <div className="w-36 h-16 border-2 rounded-lg"></div>
-        </div>{" "}
+      <div className="mt-4 bg-gradient p-2 rounded-lg">
+        <div className="flex gap-x-2 overflow-x-auto scroll-pro">
+          {!!images?.length &&
+            images.map((item, i) => (
+              <img
+                src={item}
+                alt="reccomend"
+                className="w-[200px] h-[140px] rounded-lg"
+                key={i}
+              />
+            ))}
+        </div>
       </div>
       <div className="mt-9">
-        <Button title="Submit Recommendation" onClick={handleSubmit}/>
+        <Button title="Submit Recommendation" onClick={handleSubmit} />
       </div>
     </div>
   );

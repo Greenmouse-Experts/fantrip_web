@@ -35,7 +35,7 @@ export const ComponentModal: FC<Props> = ({
         {type === "recommend" ? (
           <div className="bg-[#EDEDFF] relative flex justify-between px-3 text-center py-4">
             <button
-              className="absolute top-1 md:block monts text-[#5E5E5E] fw-500 lg:text-lg"
+              className="absolute top-1 lg:top-0 md:relative monts text-[#5E5E5E] fw-500 lg:text-lg"
               onClick={onClose}
             >
               Close

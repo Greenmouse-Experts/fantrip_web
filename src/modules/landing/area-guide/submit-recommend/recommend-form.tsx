@@ -1,15 +1,18 @@
 import Button from "@/components/Button";
 import TextInput, { InputType } from "@/components/TextInput";
+import { SpotCategoryItem } from "@/lib/contracts/place";
+import { removeDulicates } from "@/lib/utils/formatHelp";
+import { getSpotsCat } from "@/services/api/places-api";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { FC } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { ChangeEvent, FC, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Control, Controller, FieldErrors } from "react-hook-form";
+import { IoSend } from "react-icons/io5";
 interface InputTyping {
   recommend_type: string;
   name: string;
   location: string;
-  close_to_stadium: boolean;
-  public_transport: boolean;
   description: string;
 }
 interface Props {
@@ -19,17 +22,33 @@ interface Props {
   next: () => void;
   prev: () => void;
   setImage: React.Dispatch<React.SetStateAction<File[] | undefined>>;
-  prevImage: File[] | undefined;
-  isValid: boolean
+  prevImage: string[] | undefined;
+  isValid: boolean;
+  tags: string[];
+  setTags: React.Dispatch<React.SetStateAction<string[]>>;
 }
 const RecommendForm: FC<Props> = ({
   control,
   errors,
   setValue,
   setImage,
+  prevImage,
   next,
+  tags,
+  setTags,
   isValid,
 }) => {
+  const [highlights, setHighlights] = useState<string[]>([
+    "Close to Stadium",
+    "Public Transport Friendly",
+    ...tags,
+  ]);
+  const [inputTags, setInputTags] = useState("");
+  const [showAdd, setShowAdd] = useState(false);
+  const { data: spots } = useQuery({
+    queryKey: ["get-spot-categories"],
+    queryFn: getSpotsCat,
+  });
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     onPlaceSelected: (place) => {
@@ -37,9 +56,33 @@ const RecommendForm: FC<Props> = ({
     },
   });
   const handlePhoto = async (e: any) => {
-    if (e.target.files?.length) 
-    setImage(e.target.files);
+    if (e.target.files?.length) setImage(e.target.files);
   };
+
+  // highlights
+  const handleCheck = (e: ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (e.target.checked) {
+      if (!tags.includes(val)) {
+        setTags([...tags, val]);
+      }
+    } else {
+      if (tags.includes(val)) {
+        const filtered = tags.filter((where) => where !== val);
+        setTags(filtered);
+      }
+    }
+  };
+  const handleInputTags = () => {
+    if (!inputTags.length) return;
+    if (!tags.includes(inputTags)) {
+      setHighlights([...highlights, inputTags]);
+      setTags([...tags, inputTags]);
+      setInputTags("");
+      setShowAdd(false);
+    }
+  };
+
   return (
     <div>
       <p className="syne fw-600 text-lg lg:text-2xl text-center">
@@ -51,14 +94,14 @@ const RecommendForm: FC<Props> = ({
             Type of Recommendation
           </p>
           <Controller
-            name="property"
+            name="recommend_type"
             control={control}
-            // rules={{
-            //   required: {
-            //     value: true,
-            //     message: "Please select a recommention type",
-            //   },
-            // }}
+            rules={{
+              required: {
+                value: true,
+                message: "Please select a recommention type",
+              },
+            }}
             render={({ field }) => (
               <div className="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none">
                 <select
@@ -69,6 +112,11 @@ const RecommendForm: FC<Props> = ({
                   <option value="" disabled>
                     Select type of recommendation
                   </option>
+                  {spots &&
+                    !!spots.data.length &&
+                    spots.data.map((item: SpotCategoryItem) => (
+                      <option value={item.id}>{item.name}</option>
+                    ))}
                 </select>
                 <p>{errors && errors.recommend_type?.message}</p>
               </div>
@@ -102,7 +150,7 @@ const RecommendForm: FC<Props> = ({
             Address/Location
           </p>
           <Controller
-            name="address"
+            name="location"
             control={control}
             rules={{
               required: {
@@ -120,45 +168,50 @@ const RecommendForm: FC<Props> = ({
             )}
           />
         </div>
-        <div className="flex gap-x-5 px-3">
-          <Controller
-            name="close_to_stadium"
-            control={control}
-            render={({ field }) => (
-              <div className="flex gap-x-4 items-center">
-                <div className="pt-1">
+        <div>
+          <p className="text-black fw-600 lg:text-lg block mb-3">
+            Recommendation Highlights
+          </p>
+          <div className="grid gap-5">
+            {removeDulicates(highlights).map((item, i) => (
+              <div className="flex items-center gap-x-3" key={i}>
+                <input
+                  type="checkbox"
+                  value={item}
+                  checked={tags.includes(item)}
+                  onChange={handleCheck}
+                  className="w-4 h-4"
+                />
+                <p>{item}</p>
+              </div>
+            ))}
+            <div className="lg:mt-5 flex gap-x-3 items-center">
+              <div className="flex items-center gap-x-3">
+                <input
+                  type="checkbox"
+                  checked={showAdd}
+                  name="other"
+                  className="w-4 h-4"
+                  onChange={() => setShowAdd(!showAdd)}
+                />
+                <p>Others</p>
+              </div>
+              {showAdd && (
+                <div className="lg:w-8/12 flex justify-between items-center pr-3 border rounded border-[#D2D2D2]">
                   <input
-                    type="checkbox"
-                    className="w-4 h-4"
-                    checked={field.value}
-                    onChange={field.onChange}
+                    type="text"
+                    className=" p-2 w-full outline-none"
+                    value={inputTags}
+                    onChange={(e) => setInputTags(e.target.value)}
+                  />
+                  <IoSend
+                    className="text-lg text-gray-700"
+                    onClick={handleInputTags}
                   />
                 </div>
-                <label className="text-[#121212] fw-500 ">
-                  Close to Stadium”
-                </label>
-              </div>
-            )}
-          />
-          <Controller
-            name="public_transport"
-            control={control}
-            render={({ field }) => (
-              <div className="flex gap-x-4 items-center">
-                <div className="pt-1">
-                  <input
-                    type="checkbox"
-                    className="w-4 h-4"
-                    checked={field.value}
-                    onChange={field.onChange}
-                  />
-                </div>
-                <label className="text-[#121212] fw-500 ">
-                  Public Transport Friendly
-                </label>
-              </div>
-            )}
-          />
+              )}
+            </div>
+          </div>
         </div>
         <Controller
           name="description"
@@ -166,7 +219,7 @@ const RecommendForm: FC<Props> = ({
           rules={{
             required: {
               value: true,
-              message: "Please enter your recommendation name",
+              message: "Please enter your recommendation description",
             },
           }}
           render={({ field }) => (
@@ -176,30 +229,48 @@ const RecommendForm: FC<Props> = ({
               placeholder="Include details like pricing, transport routes, and personal tips"
               labelClassName="text-black fw-600 lg:text-lg block mb-3"
               borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
-              altClassName="bg-[#F9FAFC] p-3 lg:p-4 h-24 rounded-[10px] w-full"
+              altClassName="bg-[#F9FAFC] p-3 lg:p-4 outline-none h-24 rounded-[10px] w-full"
               error={errors.description?.message}
               {...field}
               ref={null}
             />
           )}
         />
-        <div className="flex items-center gap-x-4">
-          <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => handlePhoto(e)}
-              className="opacity-0 absolute w-full h-full"
-            />
-            <p className="text-center text-[#9847FE] fw-500 px-5 py-1">
-              Upload photos
-            </p>
+        <div>
+          <div className="flex items-center gap-x-4">
+            <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
+              <input
+                type="file"
+                accept="image/*"
+                multiple
+                onChange={(e) => handlePhoto(e)}
+                className="opacity-0 absolute w-full h-full"
+              />
+              <p className="text-center text-[#9847FE] fw-500 px-5 py-1">
+                Upload photos
+              </p>
+            </div>
+            <p className="fw-600">(Optional)</p>
           </div>
-          <p className="fw-600">(Optional)</p>
+          <div className="flex gap-x-2 overflow-x-auto scroll-pro mt-2">
+            {!!prevImage?.length &&
+              prevImage.map((item, i) => (
+                <img
+                  src={item}
+                  alt="reccomend"
+                  className="w-[200px] h-[140px] rounded-lg"
+                  key={i}
+                />
+              ))}
+          </div>
         </div>
       </div>
       <div className="mt-9">
-        <Button disabled={!isValid} title={'Review and Submit'} onClick={next}/>
+        <Button
+          disabled={!isValid}
+          title={"Review and Submit"}
+          onClick={next}
+        />
       </div>
     </div>
   );

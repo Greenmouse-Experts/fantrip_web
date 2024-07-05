@@ -46,3 +46,11 @@ export const GET_ACCOUNTS = `/bank-accounts`
 export const CREATE_ACCOUNT = `/bank-accounts/create`
 export const SELECT_ACCOUNT = `/bank-accounts/select`
 export const ADD_FCM_TOKEN = `/notification-tokens/add`
+
+// area guide endpoints
+export const GET_SPOT_CATEGORY = `/spots/disclosed`
+export const CREATE_PLACE = `/places/create-place`
+export const UPDATE_PLACE = `/places/update-place`
+export const DELETE_PLACE = `/places`
+export const FETCH_PLACES = `/places/disclosed`
+export const FETCH_SINGLE_PLACE = `/places/disclosed`

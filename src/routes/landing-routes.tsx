@@ -1,6 +1,7 @@
 import LandingLayout from "@/layout/landing";
 import LandingAbout from "@/pages/landing/about";
 import { AreaGuide } from "@/pages/landing/area-guide";
+import AreaGuideCategory from "@/pages/landing/area-guide-catergory";
 import CommunityGuidelines from "@/pages/landing/community-guideline";
 import CookiePage from "@/pages/landing/cookie";
 import FaqsPage from "@/pages/landing/faqs";
@@ -46,6 +47,10 @@ export const landingRooutes = [
           {
             path: 'area-guide',
             element: <AreaGuide />,
+          },
+          {
+            path: 'area-guide/:name',
+            element: <AreaGuideCategory />,
           },
           {
             path: 'get-app',

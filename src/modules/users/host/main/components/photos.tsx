@@ -41,7 +41,7 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
           ...stay,
           photos: data,
         });
-        next();
+        next();   
       },
       onError: (err: any) => {
         toast({
