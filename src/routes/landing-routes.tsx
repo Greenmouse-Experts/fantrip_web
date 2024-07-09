@@ -1,5 +1,6 @@
 import LandingLayout from "@/layout/landing";
 import LandingAbout from "@/pages/landing/about";
+import AreaGuideCategoryPlace from "@/pages/landing/area-category-place";
 import { AreaGuide } from "@/pages/landing/area-guide";
 import AreaGuideCategory from "@/pages/landing/area-guide-catergory";
 import CommunityGuidelines from "@/pages/landing/community-guideline";
@@ -51,6 +52,10 @@ export const landingRooutes = [
           {
             path: 'area-guide/:name',
             element: <AreaGuideCategory />,
+          },
+          {
+            path: 'area-guide/:name/:id',
+            element: <AreaGuideCategoryPlace />,
           },
           {
             path: 'get-app',

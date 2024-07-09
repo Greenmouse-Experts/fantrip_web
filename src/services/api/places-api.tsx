@@ -8,6 +8,12 @@ export const createPlace = async (id:string, payload: CreatePlaceInput) => {
     .then((response) => response.data);
 };
 
+export const getMyPlaces = async () => {
+  return axios
+    .get(`${ENDPOINT.DELETE_PLACE}`)
+    .then((response) => response.data);
+};
+
 export const getPlaces = async (name:string) => {
   return axios
     .get(`${ENDPOINT.FETCH_PLACES}?spot[name]=${name}`)

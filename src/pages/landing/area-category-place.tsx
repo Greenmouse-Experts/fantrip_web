@@ -1,15 +1,15 @@
 import PyramidSpin from "@/components/loaders/pyramid-spin";
-import ViewCategoryRecommendations from "@/modules/landing/area-guide/category";
-import { getPlaces } from "@/services/api/places-api";
+import AreaCategoryPlaceIndex from "@/modules/landing/area-guide/place";
+import { getSinglePlace } from "@/services/api/places-api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-const AreaGuideCategory = () => {
-  const { name } = useParams();
-  const param = name?.toLowerCase();
+const AreaGuideCategoryPlace = () => {
+  const { id } = useParams();
+  const param = id?.toLowerCase();
   const { isLoading, data } = useQuery({
-    queryKey: ["get-category-places", param],
-    queryFn: () => getPlaces(`${param}`),
+    queryKey: ["get-single-place", param],
+    queryFn: () => getSinglePlace(`${param}`),
   });
   return (
     <div>
@@ -17,7 +17,7 @@ const AreaGuideCategory = () => {
         <div className="lg:pb-12">
           <div className="py-8 text-white text-center">
             <p className="px-4 lg:px-0 text-2xl lg:text-4xl fw-600 text-center text-white">
-              {`${name}`}
+              {`${data?.name}`}
             </p>
           </div>
         </div>
@@ -29,12 +29,10 @@ const AreaGuideCategory = () => {
             <PyramidSpin size={1.8} />
           </div>
         )}
-        {!isLoading && !!data?.data.length && (
-          <ViewCategoryRecommendations data={data?.data} />
-        )}
+        {!isLoading && data && <AreaCategoryPlaceIndex data={data} />}
       </div>
     </div>
   );
 };
 
-export default AreaGuideCategory;
+export default AreaGuideCategoryPlace;

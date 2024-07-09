@@ -1,7 +1,10 @@
+import ReccomendationsIndex from "@/modules/users/reccomendations"
 
 const GuestRecommendations = () => {
   return (
-    <div>GuestRecommendations</div>
+    <div>
+      <ReccomendationsIndex/>
+    </div>
   )
 }
 

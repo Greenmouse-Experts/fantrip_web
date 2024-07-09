@@ -1,3 +1,5 @@
+import { UserItem } from "./auth";
+
 export interface SpotCategoryItem {
   createdDate: string;
   icon: string | null;
@@ -35,4 +37,17 @@ export interface PlaceItem {
   id: string;
   tags: string;
   user: { id: string };
+}
+
+export interface ReccomendationItem {
+  createdDate: string;
+  description: string;
+  id: string;
+  isDisclosed: boolean;
+  location: string;
+  name: string;
+  photos: string;
+  tags: string;
+  spot: PlaceItem;
+  user: UserItem
 }
