@@ -38,7 +38,7 @@ const AreaCategorySearch = () => {
         {!isLoading && data && (
           <div className="mt-5 lg:mt-12">
             <div className="grid grid-cols-2 gap-3 lg:flex justify-center lg:gap-x-6">
-              {data?.data.slice(0, 4).map((item: SpotCategoryItem) => (
+              {data?.data?.slice(0, 4).map((item: SpotCategoryItem) => (
                 <div
                   className="lg:w-auto border cursor-pointer p-3 px-5 lg:px-10 rounded-full border-[#9847FE] flex items-center gap-x-2 lg:gap-x-4"
                   key={item.id}
@@ -54,7 +54,7 @@ const AreaCategorySearch = () => {
               ))}
             </div>
             <div className="grid grid-cols-2 gap-4 lg:flex justify-center gap-x-6 mt-4 lg:mt-6">
-              {data?.data.slice(4).map((item: SpotCategoryItem) => (
+              {data?.data?.slice(4).map((item: SpotCategoryItem) => (
                 <div
                   className="border cursor-pointer p-3 px-5 lg:px-10 rounded-full border-[#9847FE] flex items-center gap-x-2 lg:gap-x-4"
                   key={item.id}

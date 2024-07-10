@@ -8,6 +8,7 @@ import HostEditListing from "@/pages/host/edit-listing";
 import HostInbox from "@/pages/host/inbox";
 import HostListings from "@/pages/host/listings";
 import HostPayments from "@/pages/host/payments";
+import HostRecommendations from "@/pages/host/recommendations";
 import HostReservationPage from "@/pages/host/reservation";
 import HostSettings from "@/pages/host/settings";
 import HostTransactions from "@/pages/host/transactions";
@@ -51,7 +52,7 @@ export const hostRoutes = [
           },
           {
             path: 'area-guide',
-            element: <HostAreaGuide/>,
+            element: <HostRecommendations/>,
           },
           {
             path: 'payments',

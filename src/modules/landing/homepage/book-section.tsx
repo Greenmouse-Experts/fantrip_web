@@ -25,7 +25,7 @@ const BookSection = () => {
         <div className="mt-12 grid lg:grid-cols-3 gap-8">
           {isLoading && <MeetDataSkeleton count={3} />}
           {!isLoading &&
-            !!data?.data.length &&
+            !!data?.data?.length &&
             data?.data
               .slice(0, 3)
               .map((item: AvailableStayItem, i: number) => (
