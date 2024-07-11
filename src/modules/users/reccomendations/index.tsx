@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import ReccomendationListing from "./components/reccomendation-listing";
 
 const ReccomendationsIndex = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["get-my-places"],
     queryFn: getMyPlaces,
   });
@@ -19,7 +19,7 @@ const ReccomendationsIndex = () => {
         </div>
       </div>
       <div className="box py-6 min-h-[70vh]">
-        {!isLoading && <ReccomendationListing data={data.data} />}
+        {!isLoading && <ReccomendationListing refetch={refetch} data={data.data} />}
       </div>
     </div>
   );

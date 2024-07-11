@@ -5,39 +5,20 @@ import "swiper/css/bundle";
 import { register } from "swiper/element/bundle";
 import { FaStar } from "react-icons/fa6";
 import { formatNumber } from "@/lib/utils/formatHelp";
+import { ReccomendationItem } from "@/lib/contracts/place";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
 
 register();
-const FanChoiceSwiper = () => {
-  const data = [
-    {
-      name: "Martin Berasategui",
-      reviews: "1290",
-      location: "Lasarte-Oria, Spain",
-      rating: 5,
-      img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20118_l0vzwp.png",
-    },
-    {
-      name: "Maison Lameloise",
-      reviews: "1733",
-      location: "Chagny, France",
-      rating: 5,
-      img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20119_1_qofu8a.png",
-    },
-    {
-      name: "Le Manoir Restaurant",
-      reviews: "1290",
-      location: "Lasarte-Oria, Spain",
-      rating: 5,
-      img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20120_kkhvpf.png",
-    },
-    {
-      name: "L'Auberge De L'Ill",
-      reviews: "2093",
-      location: "Illhaeusern, France",
-      rating: 5,
-      img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20121_ughpcb.png",
-    },
-  ];
+interface Props {
+  data: ReccomendationItem[];
+}
+const FanChoiceSwiper: FC<Props> = ({ data }) => {
+  const navigate = useNavigate();
+  const getFirstPhoto = (item: string) => {
+    const img = JSON.parse(item);
+    return !img.length ? "" : img[0];
+  };
   return (
     <div>
       <Swiper
@@ -47,8 +28,12 @@ const FanChoiceSwiper = () => {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index} className="w-[300px] pb-3">
-            <div>
-              <img src={item.img} alt="location-img" className="w-full" />
+            <div onClick={() => navigate(`/area-guide/Restuarant/${item.id}`)}>
+              <img
+                src={getFirstPhoto(item.photos)}
+                alt="location-img"
+                className="w-full h-[230px] rounded-lg object-cover"
+              />
               <div className="mt-3">
                 <p className="syne fw-500 lg:text-lg">{item.name}</p>
                 <div className="mt-[5px] flex gap-x-2 items-center">
@@ -61,7 +46,7 @@ const FanChoiceSwiper = () => {
                   </div>
                   <div>
                     <p className="fs-400 text-[#565656]">
-                      {formatNumber(item.reviews)} Reviews
+                      {formatNumber(`231${index}`)} Reviews
                     </p>
                   </div>
                 </div>

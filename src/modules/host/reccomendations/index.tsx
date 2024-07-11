@@ -7,7 +7,7 @@ import SubmitRecommendIndex from "@/modules/landing/area-guide/submit-recommend"
 import { useState } from "react";
 
 const ReccomendationsIndex = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["get-my-places"],
     queryFn: getMyPlaces,
   });
@@ -25,7 +25,7 @@ const ReccomendationsIndex = () => {
         </button>
       </div>
       <div className="py-6 min-h-[70vh]">
-        {!isLoading && <ReccomendationListing data={data.data} />}
+        {!isLoading && <ReccomendationListing refetch={refetch} data={data.data} />}
       </div>
       <div className="text-black">
         <ComponentModal

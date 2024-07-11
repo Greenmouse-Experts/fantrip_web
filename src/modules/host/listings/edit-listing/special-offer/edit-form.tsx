@@ -13,12 +13,12 @@ interface Props {
   close: () => void;
 }
 const EditSpecialOffers: FC<Props> = ({ refetch, id, offers, close }) => {
-    const [isBusy, setIsBusy] = useState(false)
+  const [isBusy, setIsBusy] = useState(false);
   const [initListing, setInitLisitng] = useState([...offers]);
   const [selectedSpecial, setSelectedSpecial] = useState<string[]>([...offers]);
   const [specialInput, setSpecialInput] = useState("");
   const [showOther, setShowOther] = useState(false);
-  const toast = useToast()
+  const toast = useToast();
 
   const handleSpecialCheck = (e: ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
@@ -43,11 +43,11 @@ const EditSpecialOffers: FC<Props> = ({ refetch, id, offers, close }) => {
     }
   };
 
-  const handleSubmit = async() => {
-    setIsBusy(true)
+  const handleSubmit = async () => {
+    setIsBusy(true);
     const payload = {
-        specialOffers: selectedSpecial,
-    }
+      specialOffers: selectedSpecial,
+    };
     await updateStay(id, payload)
       .then((res) => {
         setIsBusy(false);
@@ -71,7 +71,7 @@ const EditSpecialOffers: FC<Props> = ({ refetch, id, offers, close }) => {
         });
         setIsBusy(false);
       });
-  }
+  };
   return (
     <div>
       <p className="mb-7 fw-500">Deals</p>
@@ -116,21 +116,21 @@ const EditSpecialOffers: FC<Props> = ({ refetch, id, offers, close }) => {
         </div>
       </div>
       <div className="mt-7 flex justify-end">
-          <div className="lg:w-6/12">
-            <Button
-              title={
-                isBusy ? (
-                  <BeatLoader size={12} color="white" />
-                ) : (
-                  "Update Stay Info"
-                )
-              }
-              type="int"
-              onClick={handleSubmit}
-              disabled={isBusy}
-            />
-          </div>
+        <div className="lg:w-6/12">
+          <Button
+            title={
+              isBusy ? (
+                <BeatLoader size={12} color="white" />
+              ) : (
+                "Update Stay Info"
+              )
+            }
+            type="int"
+            onClick={handleSubmit}
+            disabled={isBusy}
+          />
         </div>
+      </div>
     </div>
   );
 };

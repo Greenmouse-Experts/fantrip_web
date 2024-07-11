@@ -35,7 +35,7 @@ const ConfirmedBooking = () => {
       )}
       {!isLoading && !data?.data?.length && (
         <div>
-          <EmptyNetState text="There is confirmed booking data available now." />
+          <EmptyNetState text="There is no confirmed booking data available now." />
         </div>
       )}
     </div>

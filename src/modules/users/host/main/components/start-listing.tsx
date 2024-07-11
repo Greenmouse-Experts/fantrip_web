@@ -5,6 +5,7 @@ import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
 import { getStateFromGoogle } from "@/lib/utils/helper-function";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
+import { useToast } from "@chakra-ui/react";
 import { FC } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
@@ -15,6 +16,7 @@ interface Props {
 const StartListing: FC<Props> = ({ next }) => {
   const { stay, saveStay } = useStay();
   const { properties } = useRoutine();
+  const toast = useToast()
   const {
     control,
     handleSubmit,
@@ -41,6 +43,15 @@ const StartListing: FC<Props> = ({ next }) => {
     },
   });
   const handleNext = (data: any) => {
+    if(stay.state === ""){
+      toast({
+        title: "Plase select a state",
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
+      return;
+    }
     if (!isValid) return;
     saveStay({
       ...stay,
@@ -114,7 +125,7 @@ const StartListing: FC<Props> = ({ next }) => {
           </div>
           <div>
             <p className="text-black fw-600 lg:text-lg block mb-3">
-              Location Details
+              Stay Location
             </p>
             <Controller
               name="address"
@@ -130,7 +141,7 @@ const StartListing: FC<Props> = ({ next }) => {
                   {...field}
                   ref={autoRef as any}
                   type="text"
-                  placeholder="e.g., '5 min walk from Downtown Stadium'"
+                  placeholder="Input and Select your Stay Location"
                   className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 />
               )}

@@ -32,7 +32,7 @@ const CancelledBookings = () => {
       )}
        {!isLoading && !data?.data?.length && (
         <div>
-          <EmptyNetState text="There is cancelled booking data available now." />
+          <EmptyNetState text="There is no cancelled booking data available now." />
         </div>
       )}
     </div>
