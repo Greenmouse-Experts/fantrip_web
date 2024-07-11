@@ -100,7 +100,7 @@ const SubmitRecommendIndex: FC<Props> = ({ close }) => {
       location: data.location,
       tags: tags,
       description: data.description,
-      isDisclosed: false,
+      isDisclosed: true,
     };
     const id = data.recommend_type;
     if(!photos?.length){
