@@ -1,7 +1,6 @@
 import UserDashboardLayout from "@/layout/host";
 import HostAccounts from "@/pages/host/accounts";
 import HostAmenityPage from "@/pages/host/amenities";
-import HostAreaGuide from "@/pages/host/area-guide";
 import HostBookings from "@/pages/host/booking";
 import UserDashboard from "@/pages/host/dashboard";
 import HostEditListing from "@/pages/host/edit-listing";
