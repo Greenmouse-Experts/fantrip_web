@@ -13,6 +13,14 @@ export const getStateFromGoogle = (address: AddressType[]) => {
   return state;
 };
 
+export const getCountryFromGoogle = (address: AddressType[]) => {
+  const selectedAdd = address.filter((where) =>
+    where.types.includes("country")
+  );
+  const state = selectedAdd[0].long_name;
+  return state;
+};
+
 export const convertDaysToMilliSeconds = (days: number) => {
   if (!days) {
     return 0;

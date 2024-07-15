@@ -3,12 +3,18 @@ import BtnContent from "@/components/btn-content";
 import { useRoutine } from "@/hooks/useRoutine";
 import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
-import { getStateFromGoogle } from "@/lib/utils/helper-function";
+import {
+  getCountryFromGoogle,
+  getStateFromGoogle,
+} from "@/lib/utils/helper-function";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
+import { AfricanCountries } from "@/services/hard-data";
 import { useToast } from "@chakra-ui/react";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
+import { BsInfoCircle } from "react-icons/bs";
+import { PiCaretDownThin } from "react-icons/pi";
 
 interface Props {
   next: () => void;
@@ -16,7 +22,8 @@ interface Props {
 const StartListing: FC<Props> = ({ next }) => {
   const { stay, saveStay } = useStay();
   const { properties } = useRoutine();
-  const toast = useToast()
+  const [locationError, setLocationError] = useState(false);
+  const toast = useToast();
   const {
     control,
     handleSubmit,
@@ -35,15 +42,23 @@ const StartListing: FC<Props> = ({ next }) => {
   });
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
+    options: {
+      types: ["address"],
+    },
     onPlaceSelected: (place) => {
       const state = getStateFromGoogle(place.address_components);
-      // setStateVal(state)
+      const country = getCountryFromGoogle(place.address_components);
+      if (AfricanCountries.includes(country)) {
+        setLocationError(true);
+        return;
+      }
+      setLocationError(false);
       setValue("state", state);
       setValue("address", place?.formatted_address);
     },
   });
   const handleNext = (data: any) => {
-    if(stay.state === ""){
+    if (stay.state === "") {
       toast({
         title: "Plase select a state",
         isClosable: true,
@@ -137,15 +152,27 @@ const StartListing: FC<Props> = ({ next }) => {
                 },
               }}
               render={({ field }) => (
-                <input
+               <div className="relative">
+                 <input
                   {...field}
                   ref={autoRef as any}
                   type="text"
                   placeholder="Input and Select your Stay Location"
                   className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 />
+                <PiCaretDownThin className="absolute right-7 top-5"/>
+               </div>
               )}
             />
+            {locationError && (
+              <div className="flex gap-x-2 items-center">
+                <BsInfoCircle className="text-orange-500" />
+                <p className="fs-500 text-orange-600">
+                  We currently do not offer stay services in your choiced
+                  location.
+                </p>
+              </div>
+            )}
           </div>
           <Controller
             name="description"

@@ -3,29 +3,44 @@ import TextInput, { InputType } from "@/components/TextInput";
 import { useRoutine } from "@/hooks/useRoutine";
 import { AmenityItem } from "@/lib/contracts/routine";
 import { StayItem, StayItemUpdate } from "@/lib/contracts/stay";
-import { getStateFromGoogle } from "@/lib/utils/helper-function";
+import {
+  getCountryFromGoogle,
+  getStateFromGoogle,
+} from "@/lib/utils/helper-function";
 import { updateStay } from "@/services/api/stay-api";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
+import { AfricanCountries } from "@/services/hard-data";
 import { useToast } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
+import { BsInfoCircle } from "react-icons/bs";
 import { BeatLoader } from "react-spinners";
 
 interface Props {
   data: StayItem;
   close: () => void;
-  refetch: () => void
+  refetch: () => void;
 }
 const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
   const [isBusy, setIsBusy] = useState(false);
   const { properties } = useRoutine();
+  const [locationError, setLocationError] = useState(false);
   const toast = useToast();
 
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
+    options: {
+      types: ["address"],
+    },
     onPlaceSelected: (place) => {
       const state = getStateFromGoogle(place.address_components);
+      const country = getCountryFromGoogle(place.address_components);
+      if (AfricanCountries.includes(country)) {
+        setLocationError(true);
+        return;
+      }
+      setLocationError(false);
       setValue("state", state);
       setValue("address", place?.formatted_address);
     },
@@ -53,19 +68,19 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
   });
 
   const onSubmit = async (datas: StayItemUpdate) => {
-    setIsBusy(true)
+    setIsBusy(true);
     const payload = {
-        name: datas.name || "",
-        description: datas.description || "",
-        // property: data.property.id || "",
-        address: datas.address || "",
-        highlightFeature: datas.highlightFeature ,
-        price: Number(datas.price),
-        maxNights: Number(datas.maxNights),
-        maxGuests: Number(datas.maxGuests),
-        percentageOff: Number(datas.percentageOff),
-        state: datas.state
-    }
+      name: datas.name || "",
+      description: datas.description || "",
+      // property: data.property.id || "",
+      address: datas.address || "",
+      highlightFeature: datas.highlightFeature,
+      price: Number(datas.price),
+      maxNights: Number(datas.maxNights),
+      maxGuests: Number(datas.maxGuests),
+      percentageOff: Number(datas.percentageOff),
+      state: datas.state,
+    };
     await updateStay(data.id, payload)
       .then((res) => {
         setIsBusy(false);
@@ -77,8 +92,8 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
           ),
           position: "top",
         });
-        refetch()
-        close()
+        refetch();
+        close();
       })
       .catch((err) => {
         toast({
@@ -176,6 +191,15 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
               />
             )}
           />
+          {locationError && (
+            <div className="flex gap-x-2 items-center">
+              <BsInfoCircle className="text-orange-500" />
+              <p className="fs-500 text-orange-600">
+                We currently do not offer stay services in your choiced
+                location.
+              </p>
+            </div>
+          )}
         </div>
         <Controller
           name="description"

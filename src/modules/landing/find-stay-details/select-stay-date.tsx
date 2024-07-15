@@ -31,9 +31,17 @@ interface Props {
   maxNight: number;
   maxGuest: number;
 }
-const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, maxGuest }) => {
-  const {isLoggedIn} = useAuth()
-  const navigate = useNavigate()
+const SelectStayDate: FC<Props> = ({
+  from,
+  to,
+  price,
+  id,
+  currency,
+  maxNight,
+  maxGuest,
+}) => {
+  const { isLoggedIn, isHost } = useAuth();
+  const navigate = useNavigate();
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
@@ -45,8 +53,8 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
   const [pricing, setPricing] = useState({
     tax: 0,
     fee: 0,
-    total: 0
-  })
+    total: 0,
+  });
   const toast = useToast();
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
@@ -62,41 +70,52 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
     if (!params.checkIn || !params.checkOut) {
       return null;
     }
-    const payload={
+    const payload = {
       checkIn: dayjs(params.checkIn as unknown as string).format("YYYY-MM-DD"),
       checkOut: dayjs(params.checkOut as unknown as string).format(
         "YYYY-MM-DD"
       ),
       stay: id,
-    }
-    setIsBusy(true)
+    };
+    setIsBusy(true);
     await computePrice(payload)
-    .then((res:any) => {
-      setPricing({
-        tax: res.taxFee,
-        total: res.total,
-        fee: res.serviceFee,
+      .then((res: any) => {
+        setPricing({
+          tax: res.taxFee,
+          total: res.total,
+          fee: res.serviceFee,
+        });
+        setIsBusy(false);
       })
-      setIsBusy(false)
-    })
-    .catch((error) => {
-      toast({
-        title: error.response.data.message,
-        isClosable: true,
-        position: "top",
-        status: "error",
+      .catch((error) => {
+        toast({
+          title: error.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
       });
-    })
   };
 
   useEffect(() => {
-    getTotal()
-  }, [params.checkIn, params.checkOut])
+    getTotal();
+  }, [params.checkIn, params.checkOut]);
 
   const reserveStay = async () => {
-    if(!isLoggedIn){
-      navigate('/auth/login')
-      return ;
+    if (!isLoggedIn) {
+      navigate("/auth/login");
+      return;
+    }
+    if (isHost) {
+      toast({
+        render: () => (
+          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
+            Please switch to guest account to make reservations
+          </div>
+        ),
+        position: "top",
+      });
+      return;
     }
     setIsBusy(true);
     const payload = {
@@ -106,7 +125,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
         "YYYY-MM-DD"
       ),
       adults: params.no_of_guests,
-      children: params.no_of_child
+      children: params.no_of_child,
     };
     await createBooking(payload)
       .then((res) => {
@@ -119,7 +138,7 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
           position: "top",
         });
         setIsBusy(false);
-        setShowModal(true)
+        setShowModal(true);
       })
       .catch((error: any) => {
         toast({
@@ -167,22 +186,35 @@ const SelectStayDate: FC<Props> = ({ from, to, price, id, currency, maxNight, ma
           <div>
             <div className="pt-3 flex justify-between items-center">
               <p className="fw-500">Price per night</p>
-              <p className="fw-500 text-lg">{currency}{price}</p>
+              <p className="fw-500 text-lg">
+                {currency}
+                {price}
+              </p>
             </div>
             <div className=" py-1 flex justify-between items-center">
               <p className="fw-500">Fantrip service fee</p>
-              <p className="fw-500 text-lg">{pricing.fee ? `${currency}${formatNumber(pricing.fee)}` : `TBD`}</p>
+              <p className="fw-500 text-lg">
+                {pricing.fee
+                  ? `${currency}${formatNumber(pricing.fee)}`
+                  : `TBD`}
+              </p>
             </div>
             <div className=" flex justify-between items-center">
               <p className="fw-500">Taxes</p>
-              <p className="fw-500 text-lg">{pricing.tax ? `${currency}${formatNumber(pricing.tax)}` : `TBD`}</p>
+              <p className="fw-500 text-lg">
+                {pricing.tax
+                  ? `${currency}${formatNumber(pricing.tax)}`
+                  : `TBD`}
+              </p>
             </div>
           </div>
           <div className="mt-3 pt-2 border-t border-[#D2D2D2]">
             <div className="text-lg flex justify-between items-center">
               <p className="fw-500">Total</p>
               <p className="fw-500 text-lg">
-                {pricing.total ? `${currency}${formatNumber(pricing.total)}` : `TBD`}
+                {pricing.total
+                  ? `${currency}${formatNumber(pricing.total)}`
+                  : `TBD`}
               </p>
             </div>
           </div>
