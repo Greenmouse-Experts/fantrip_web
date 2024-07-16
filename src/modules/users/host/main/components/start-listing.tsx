@@ -58,7 +58,7 @@ const StartListing: FC<Props> = ({ next }) => {
     },
   });
   const handleNext = (data: any) => {
-    if (stay.state === "") {
+    if (data.state === "") {
       toast({
         title: "Plase select a state",
         isClosable: true,
