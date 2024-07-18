@@ -3,12 +3,13 @@ import ChatBody from "./chat-body"
 import ChatFooter from "./chat-footer"
 import ChatHeader from "./chat-header"
 import io from 'socket.io-client';
+import { BASE_URL } from "@/services/constant";
 
 interface Props{
     close: () => void
 }
 
-const socket = io('https://fantrip-backend-c114b512035b.herokuapp.com');
+const socket = io(BASE_URL);
 
 const ChatInterface:FC<Props> = ({close}) => {
   return (
