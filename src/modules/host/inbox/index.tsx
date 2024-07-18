@@ -1,10 +1,11 @@
+import { BASE_URL } from "@/services/constant";
 import ChatBodyIndex from "./chat-ui/chat-body";
 import ChatFooterIndex from "./chat-ui/chat-footer";
 import ChatHeaderIndex from "./chat-ui/chat-header";
 import ChatSidebarIndex from "./chat-ui/chat-sidebar";
 import io from "socket.io-client";
 
-const socket = io("https://fantrip-backend-c114b512035b.herokuapp.com");
+const socket = io(BASE_URL);
 
 const HostInboxIndex = () => {
   return (
