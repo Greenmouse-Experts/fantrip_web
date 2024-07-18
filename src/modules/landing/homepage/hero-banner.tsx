@@ -6,7 +6,7 @@ import circle from "@/assets/circle.svg"
 const HeroBanner = () => {
   return (
     <div className="">
-      <div className="hero-bg lg:h-[90vh] bg-fit overflow-hidden">
+      <div className="hero-bg lg:h-[650px] bg-fit overflow-hidden">
         <div className="box h-full">
           <div className="pt-40 lg:pt-16 2xl:pt-10 h-full items-center lg:flex flex-row-reverse">
             <div className="relative">
@@ -54,7 +54,7 @@ const HeroBanner = () => {
                     fellow fan? <br />
                     Discover{" "}
                     <div className="inline-block relative px-2"><span className="text-gradient monts">fan-fan</span> <img src={circle} alt="circle" className="absolute -left-[2px] -top-[1.5px] w-36" /></div>{" "}
-                    accommodation, matchday travel logistics, and <br />{" "}
+                    accommodation, matchday travel logistics, and <br className="hidden [@media(min-width:1399px)]:block" />{" "}
                     community in one play!
                   </div>
                 </div>
