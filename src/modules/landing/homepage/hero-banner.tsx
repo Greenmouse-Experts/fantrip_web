@@ -6,7 +6,7 @@ import circle from "@/assets/circle.svg"
 const HeroBanner = () => {
   return (
     <div className="">
-      <div className="hero-bg lg:h-[650px] bg-fit overflow-hidden">
+      <div className="hero-bg w-full lg:h-[650px] bg-fit overflow-hidden">
         <div className="box h-full">
           <div className="pt-40 lg:pt-16 2xl:pt-10 h-full items-center lg:flex flex-row-reverse">
             <div className="relative">
@@ -81,7 +81,7 @@ const HeroBanner = () => {
           </div>
         </div>
       </div>
-      <div className="py-12 lg:pt-0 lg:relative -top-10">
+      <div className="py-12 lg:pt-0 lg:relative overflow-hidden -top-10">
         <BookingTab home/>
       </div>
     </div>

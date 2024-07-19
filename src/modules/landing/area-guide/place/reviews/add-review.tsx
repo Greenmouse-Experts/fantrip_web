@@ -1,6 +1,9 @@
 import Button from "@/components/Button";
 import RatingComponent from "@/components/rating-component";
 import TextInput, { InputType } from "@/components/TextInput";
+import { createReview } from "@/services/api/places-api";
+import { useToast } from "@chakra-ui/react";
+import { useMutation } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
@@ -10,9 +13,11 @@ interface Props {
   close: () => void;
   id: string;
 }
-const AddReview: FC<Props> = ({}) => {
+const AddReview: FC<Props> = ({ id, close, refetch }) => {
   const [isBusy, setIsBusy] = useState(false);
   const [rate, setRate] = useState(0);
+  const toast = useToast();
+
   const {
     control,
     handleSubmit,
@@ -20,18 +25,52 @@ const AddReview: FC<Props> = ({}) => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      email: "",
-      password: "",
+      review: "",
     },
   });
-  const onSubmit = () => {
+
+  const mutation = useMutation({
+    mutationFn: createReview,
+  });
+
+  const onSubmit = async (data: any) => {
     setIsBusy(true);
+    const payload = {
+      rating: rate,
+      comment: data.review,
+      reviewFor: "place",
+      concern: id,
+    };
+    mutation.mutate(payload, {
+      onSuccess: (data) => {
+        toast({
+          render: () => (
+            <div className="text-white text-center fw-600 syne bg-gradient rounded p-3">
+              {data.message}
+            </div>
+          ),
+          position: "top",
+        });
+        setIsBusy(false);
+        refetch();
+        close();
+      },
+      onError: (err: any) => {
+        toast({
+          title: err.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+        setIsBusy(false);
+      },
+    });
   };
   return (
     <div className="p-6">
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="email"
+          name="review"
           control={control}
           rules={{
             required: {
@@ -45,7 +84,7 @@ const AddReview: FC<Props> = ({}) => {
               labelClassName="fw-500 lg:text-lg"
               placeholder="what are your thoughts on this reccomendation..."
               type={InputType.textarea}
-              error={errors.email?.message}
+              error={errors.review?.message}
               {...field}
               ref={null}
             />

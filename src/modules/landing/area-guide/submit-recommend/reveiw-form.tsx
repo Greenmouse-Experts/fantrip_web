@@ -3,6 +3,7 @@ import { SpotCategoryItem } from "@/lib/contracts/place";
 import { getSpotsCat } from "@/services/api/places-api";
 import { useQuery } from "@tanstack/react-query";
 import { FC } from "react";
+import { BeatLoader } from "react-spinners";
 
 interface Props {
   getValues: any;
@@ -18,10 +19,8 @@ const ReviewForm: FC<Props> = ({
   images,
   getValues,
   handleSubmit,
+  isBusy
 }) => {
-  console.log(tags);
-  console.log(images);
-  
   const { data } = useQuery({
     queryKey: ["get-spot-categories"],
     queryFn: getSpotsCat,
@@ -84,7 +83,7 @@ const ReviewForm: FC<Props> = ({
         </div>
       </div>
       <div className="mt-9">
-        <Button title="Submit Recommendation" onClick={handleSubmit} />
+        <Button title={isBusy? <BeatLoader/> : "Submit Recommendation"} onClick={handleSubmit} />
       </div>
     </div>
   );

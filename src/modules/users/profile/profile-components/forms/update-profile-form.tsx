@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import TextInput, { InputType } from "@/components/TextInput";
 import useAuth from "@/hooks/authUser";
 import { updateProfile } from "@/services/api/authApi";
-import { useToast } from "@chakra-ui/react";
+import { Switch, useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -25,6 +25,8 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
       firstName: firstName || "",
       lastName: lastName || "",
       bio: user.bio || "",
+      nickname: user.nickname || "",
+      isNickname: user.isNickname
     },
   });
   const mutation = useMutation({
@@ -46,7 +48,10 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
         setIsBusy(false);
         saveUser({
           ...user,
-          ...datas,
+          name: `${datas.firstName} ${datas.lastName}`,
+          bio: datas.bio,
+          nickname: datas.nickname,
+          isNickname: datas.isNickname
         });
         close();
       },
@@ -64,7 +69,7 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
   return (
     <div className="lg:px-3">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid lg:grid-cols-2 gap-4">
+        <div className="grid lg:grid-cols-2 items-center gap-4">
           <Controller
             name="firstName"
             control={control}
@@ -103,6 +108,43 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
                 {...field}
                 ref={null}
               />
+            )}
+          />
+          <Controller
+            name="nickname"
+            control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Value is required",
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                label="Nickname"
+                labelClassName="text-[#000000B2] fw-500"
+                error={errors.nickname?.message}
+                type={InputType.text}
+                {...field}
+                ref={null}
+              />
+            )}
+          />
+          <Controller
+            name="isNickname"
+            control={control}
+            render={({ field }) => (
+              <div className="flex gap-x-4 items-center lg:mt-4">
+                <label className="text-[#767676] fw-500 ">Use Nickname</label>
+                <div className="">
+                  <Switch
+                    isChecked={field.value}
+                    colorScheme="pink"
+                    onChange={field.onChange}
+                    size={'lg'}
+                  />
+                </div>
+              </div>
             )}
           />
           <div className="lg:col-span-2">

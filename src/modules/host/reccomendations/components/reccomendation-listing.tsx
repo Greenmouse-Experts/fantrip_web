@@ -4,10 +4,11 @@ import { FC, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { HiOutlineViewfinderCircle } from "react-icons/hi2";
-import { FaRegEdit } from "react-icons/fa";
+import { FaRegComments, FaRegEdit } from "react-icons/fa";
 import GuideImageSlider from "@/components/GuideImageSlider";
 import { ComponentModal } from "@/components/modal-component";
 import EditRecommendation from "./edit-modal";
+import RecommendationReviews from "./reviews";
 
 interface Props {
   data: ReccomendationItem[];
@@ -16,10 +17,18 @@ interface Props {
 const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const [selected, setSelected] = useState<ReccomendationItem>();
+  const [openReview, setOpenReview] = useState(false);
+
   const openToEdit = (item: ReccomendationItem) => {
     setSelected(item);
     setOpenEdit(true);
   };
+
+   const openToReview = (item: ReccomendationItem) => {
+     setSelected(item);
+     setOpenReview(true);
+   };
+
   return (
     <>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
@@ -53,6 +62,9 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
                     <button onClick={() => openToEdit(item)}>
                       <FaRegEdit className="text-lg relative -top-[2px]" />
                     </button>
+                    <button onClick={() => openToReview(item)}>
+                      <FaRegComments className="text-lg relative -top-[2px]" />
+                    </button>
                   </div>
                 </div>
                 <div className="mt-[5px] flex gap-x-2 items-center">
@@ -77,17 +89,29 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
           ))}
       </div>
       <div className="text-black">
-      <ComponentModal
-        shouldShow={openEdit}
-        title="Edit Recommendation"
-        onClose={() => setOpenEdit(false)}
-      >
-        <EditRecommendation
-          item={selected!}
-          close={() => setOpenEdit(false)}
-          refetch={refetch}
-        />
-      </ComponentModal>
+        <ComponentModal
+          shouldShow={openEdit}
+          title="Edit Recommendation"
+          onClose={() => setOpenEdit(false)}
+        >
+          <EditRecommendation
+            item={selected!}
+            close={() => setOpenEdit(false)}
+            refetch={refetch}
+          />
+        </ComponentModal>
+        <ComponentModal
+          shouldShow={openReview}
+          title="View Reviews"
+          onClose={() => setOpenReview(false)}
+          type="recommend"
+        >
+          <RecommendationReviews
+            id={selected?.id!}
+            close={() => setOpenReview(false)}
+            refetch={refetch}
+          />
+        </ComponentModal>
       </div>
     </>
   );

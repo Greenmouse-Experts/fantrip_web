@@ -5,9 +5,26 @@ interface Props {
   value: number;
   setValue: React.Dispatch<React.SetStateAction<number>>;
   size: number;
+  type?: "review" | "none"
 }
-const RatingComponent: FC<Props> = ({ value, setValue, size }) => {
+const RatingComponent: FC<Props> = ({ value, setValue, size, type }) => {
   const stars = Array(5).fill("");
+  if(type && type === "review"){
+    return (
+      <>
+        {" "}
+        {stars.map((_, i) => (
+          <FaStar
+            key={i}
+            size={size}
+            className={`cursor-pointer hover:text-[#9847FE] ${
+              value >= i + 1 ? "text-[#9847FE]" : "text-gray-500"
+            }`}
+          />
+        ))}
+      </>
+    );
+  }
   return (
     <div className="flex gap-x-4 lg:gap-x-8">
       <div className="flex gap-x-3 items-center">

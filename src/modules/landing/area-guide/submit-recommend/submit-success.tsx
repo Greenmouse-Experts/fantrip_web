@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import success from "@/assets/images/success.gif"
 import { FC } from "react";
+import useAuth from "@/hooks/authUser";
 
 interface Props{
     close: () => void
 }
 const SubmitSuccess:FC<Props> = ({close}) => {
+  const {isHost} = useAuth()
   return (
     <div>
       <div>
@@ -25,7 +27,10 @@ const SubmitSuccess:FC<Props> = ({close}) => {
         >
           Close
         </div>
-        <Link to={"/host/listings"} className="btn-primary px-4 py-2 lg:px-12 lg:py-3">
+        <Link
+          to={isHost ? "/host/area-guide" : "/user/recommendations"}
+          className="btn-primary px-4 py-2 lg:px-12 lg:py-3"
+        >
           View Listings
         </Link>
       </div>

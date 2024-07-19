@@ -1,6 +1,8 @@
 import { getMyPlaces } from "@/services/api/places-api";
 import { useQuery } from "@tanstack/react-query";
 import ReccomendationListing from "./components/reccomendation-listing";
+import PyramidSpin from "@/components/loaders/pyramid-spin";
+import EmptyNetState from "@/components/empty-states/empty-net";
 
 const ReccomendationsIndex = () => {
   const { data, isLoading, refetch } = useQuery({
@@ -19,7 +21,19 @@ const ReccomendationsIndex = () => {
         </div>
       </div>
       <div className="box py-6 min-h-[70vh]">
-        {!isLoading && <ReccomendationListing refetch={refetch} data={data.data} />}
+        {isLoading && (
+          <div className="py-12 lg:py-24 place-center">
+            <PyramidSpin size={1.8} />
+          </div>
+        )}
+        {!isLoading && !data?.data?.length && (
+          <div>
+            <EmptyNetState text="You have not recommended any location yet." />
+          </div>
+        )}
+        {!isLoading && (
+          <ReccomendationListing refetch={refetch} data={data.data} />
+        )}
       </div>
     </div>
   );

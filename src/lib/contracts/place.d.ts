@@ -49,5 +49,28 @@ export interface ReccomendationItem {
   photos: string;
   tags: string;
   spot: PlaceItem;
-  user: UserItem
+  user: UserItem;
+}
+
+export interface CreateReviewItem {
+  rating: number;
+  comment: string;
+  reviewFor: string;
+  concern: string;
+}
+
+export interface ReviewResult {
+  comment: string;
+  createdDate: string;
+  id: string;
+  muted: boolean;
+  place: ReccomendationItem;
+  rating: number;
+  reviewFor: string;
+  user: UserItem;
+}
+export interface ReviewItem {
+  avgRating: string;
+  results: ReviewResult[];
+  totalRating: string;
 }

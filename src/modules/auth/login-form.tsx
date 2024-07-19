@@ -57,8 +57,10 @@ const LoginForm = () => {
           bio: data.data.bio,
           city: data.data.city,
           state: data.data.state,
-          country: data.data.country
-        })
+          country: data.data.country,
+          nickname: data.data.nickname,
+          isNickname: data.data.isNickname,
+        });
         saveAccount(data.data.bankAccounts)
         if(data.data.role === 'host'){navigate('/host')}
         if(data.data.role === 'guest'){navigate('/user/profile')}

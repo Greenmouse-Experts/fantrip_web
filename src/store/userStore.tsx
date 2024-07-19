@@ -27,6 +27,8 @@ interface userProps {
   country: string;
   state: string;
   city: string;
+  nickname: string;
+  isNickname: boolean;
 }
 export interface accountProps {
   accounts: BankAccountFullItem[];
@@ -67,6 +69,8 @@ const userInitState = {
   country: "",
   state: "",
   city: "",
+  nickname: "",
+  isNickname: false,
 };
 const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(

@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "@/services/api/authApi";
 import { uploadImage } from "@/services/api/routine";
 import { GoPencil } from "react-icons/go";
+import dayjs from "dayjs";
 
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
@@ -140,7 +141,17 @@ const UserAccount = () => {
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Phone</p>
-              <p className="fw-500 mt-1">+1 (409) 939 35535</p>
+              <p className="fw-500 mt-1">{user.phone}</p>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Nickname</p>
+              <p className="fw-500 mt-1">{user.nickname}</p>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Joined On</p>
+              <p className="fw-500 mt-1">
+                {dayjs(user.joined).format("DD-MMMM-YYYY")}
+              </p>
             </div>
             <div className="lg:col-span-2">
               <p className="fs-500 text-[#5F5F5F]">Bio</p>
