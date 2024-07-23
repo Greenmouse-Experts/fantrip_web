@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { uploadImages } from "@/services/api/routine";
+import { uploadImage } from "@/services/api/routine";
 import { updateStay } from "@/services/api/stay-api";
 import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
@@ -26,7 +26,7 @@ const EditImages: FC<Props> = ({ images, id, refetch, close }) => {
   };
 
   const mutation = useMutation({
-    mutationFn: uploadImages,
+    mutationFn: uploadImage,
     onSuccess: (data) => {
       setSelected([...selected, data.image]);
       toast({

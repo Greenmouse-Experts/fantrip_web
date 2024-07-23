@@ -9,7 +9,7 @@ const SubmissionAlert: FC<Props> = ({ close }) => {
   return (
     <div>
       <div>
-        <FaCheckCircle className="text-[105px] text-green-600 animate-bounce mx-auto" />
+        <FaCheckCircle className="text-[105px] text-[#9847FE] animate-bounce mx-auto" />
       </div>
       <div className="w-9/12 mx-auto text-center mt-6">
         <p>

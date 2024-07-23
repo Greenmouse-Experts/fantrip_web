@@ -60,7 +60,7 @@ const StartListing: FC<Props> = ({ next }) => {
   const handleNext = (data: any) => {
     if (data.state === "") {
       toast({
-        title: "Plase select a state",
+        title: "Plase select a Stay location",
         isClosable: true,
         position: "top",
         status: "error",
@@ -191,7 +191,7 @@ const StartListing: FC<Props> = ({ next }) => {
                 labelClassName="text-black fw-600 lg:text-lg block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.address?.message}
+                error={errors.description?.message}
                 {...field}
                 ref={null}
               />
@@ -208,7 +208,7 @@ const StartListing: FC<Props> = ({ next }) => {
                 labelClassName="text-black fw-600 lg:text-lg block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.address?.message}
+                error={errors.highlightFeature?.message}
                 {...field}
                 ref={null}
               />

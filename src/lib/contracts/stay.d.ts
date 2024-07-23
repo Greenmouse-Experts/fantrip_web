@@ -53,7 +53,8 @@ export interface StayItem {
   currency: string;
   host: UserItem;
   state: string;
-  maxGuests: number
+  maxGuests: number;
+  approved: boolean;
 }
 
 export interface AvailableStayItem extends StayItem {

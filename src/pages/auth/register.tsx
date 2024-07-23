@@ -26,9 +26,11 @@ const RegistrationPage = () => {
             </p>
             <p className="h-[1px] w-full bg-[#E0E0E0] absolute top-6 left-0"></p>
           </div>
-          <div className="mt-6"><RegisterForm/></div>
+          <div className="mt-6">
+            <RegisterForm />
+          </div>
           <div className="mt-6 text-center">
-            <p className='fs-300 sm:fs-500 lg:fs-600'>
+            <p className="fs-300 sm:fs-500 lg:fs-600">
               Don’t have an account?{" "}
               <Link to={"/auth/login"} className="fw-500">
                 Login here

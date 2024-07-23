@@ -9,7 +9,7 @@ const StayCreateSuccess: FC<Props> = ({ close }) => {
   return (
     <div>
       <div>
-        <FaCheckCircle className="text-[105px] text-green-600 animate-bounce mx-auto" />
+        <FaCheckCircle className="text-[105px] text-[#9847FE] animate-bounce mx-auto" />
       </div>
       <div className="w-9/12 mx-auto text-center mt-6">
         <p>You're In the league now!</p>
@@ -21,7 +21,7 @@ const StayCreateSuccess: FC<Props> = ({ close }) => {
       </div>
       <div className="flex justify-between items-center mt-4">
         <div
-          className="btn-int px-6 py-2 bg-black rounded-full"
+          className="btn-int cursor-pointer px-6 py-2 bg-black rounded-full"
           onClick={close}
         >
           Close

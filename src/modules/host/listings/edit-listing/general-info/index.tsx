@@ -34,7 +34,7 @@ const GeneralInformation: FC<Props> = ({ data, refetch }) => {
         <div className="grid lg:grid-cols-2 gap-4">
           <StayDetailList name="Name" value={name} />
           <StayDetailList name="Property Type" value={property.name} />
-          <StayDetailList name="Description" value={description} />
+          <StayDetailList name="Number and Type of Beds" value={description} />
           <StayDetailList name="Location" value={address} />
           <StayDetailList
             name="Price"

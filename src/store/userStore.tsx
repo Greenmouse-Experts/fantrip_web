@@ -29,6 +29,7 @@ interface userProps {
   city: string;
   nickname: string;
   isNickname: boolean;
+  dob:string;
 }
 export interface accountProps {
   accounts: BankAccountFullItem[];
@@ -43,6 +44,7 @@ export interface kycProps {
   instagramUrl: string;
   bio: string;
   governmentID: string;
+  dob: string;
 }
 const kycInitState = {
   fullName: "",
@@ -54,6 +56,7 @@ const kycInitState = {
   instagramUrl: "",
   bio: "",
   governmentID: "",
+  dob: ""
 };
 const userInitState = {
   name: "",
@@ -71,6 +74,7 @@ const userInitState = {
   city: "",
   nickname: "",
   isNickname: false,
+  dob: ""
 };
 const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(

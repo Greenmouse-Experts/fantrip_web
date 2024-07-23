@@ -33,7 +33,13 @@ const SetupVerification: FC<Props> = ({ prev }) => {
         });
         setLoading(false);
       })
-      .catch(() => {
+      .catch((err) => {
+        toast({
+          title: err.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
         setLoading(false);
       });
   };
@@ -76,7 +82,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           ...user,
           name: kyc.fullName,
           bio: kyc.bio,
-          image: kyc.picture,
+          ...(kyc.picture && {image: kyc.picture}),
           account: 'host',
           token: data.accessToken
         })

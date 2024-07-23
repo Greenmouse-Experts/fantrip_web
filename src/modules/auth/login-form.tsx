@@ -60,6 +60,7 @@ const LoginForm = () => {
           country: data.data.country,
           nickname: data.data.nickname,
           isNickname: data.data.isNickname,
+          dob: data.data.dob,
         });
         saveAccount(data.data.bankAccounts)
         if(data.data.role === 'host'){navigate('/host')}

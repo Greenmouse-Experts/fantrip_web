@@ -1,6 +1,7 @@
 import TextInput, { InputType } from "@/components/TextInput";
 import BtnContent from "@/components/btn-content";
 import useAuth from "@/hooks/authUser";
+import { useToast } from "@chakra-ui/react";
 import { ChangeEvent, FC, useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 
@@ -9,15 +10,27 @@ interface Props {
   prev: () => void;
 }
 const SetupBio: FC<Props> = ({ next, prev }) => {
-    const { kyc, saveKyc, user } = useAuth();
-    const [bioInput, setBioInput] = useState(kyc?.bio || user?.bio || "");
-    const handleNext = () => {
-      saveKyc({
-        ...kyc,
-        bio: bioInput,
+  const { kyc, saveKyc, user } = useAuth();
+  const toast = useToast();
+  const [bioInput, setBioInput] = useState(kyc?.bio || user?.bio || "");
+  const handleNext = () => {
+    if (!bioInput.length) {
+      toast({
+        render: () => (
+          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847FE] rounded p-3">
+            Please enter a bio to proceed
+          </div>
+        ),
+        position: "top",
       });
-      next();
-    };
+      return;
+    }
+    saveKyc({
+      ...kyc,
+      bio: bioInput,
+    });
+    next();
+  };
   return (
     <div>
       <p className="text-xl lg:text-4xl">Fill in a Short Bio</p>
@@ -30,9 +43,11 @@ const SetupBio: FC<Props> = ({ next, prev }) => {
       </div>
       <div className="lg:w-9/12 mt-8">
         <TextInput
-            value={bioInput}
+          value={bioInput}
           type={InputType.textarea}
-          onChange={(e:ChangeEvent<HTMLInputElement>) => setBioInput(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setBioInput(e.target.value)
+          }
           label="Write your bio here"
           labelClassName="text-[#9F9F9F]"
           altClassName="h-32 w-full rounded-[4px] p-2"
@@ -42,7 +57,10 @@ const SetupBio: FC<Props> = ({ next, prev }) => {
         <div className="btn-primary cursor-pointer px-6 py-2" onClick={prev}>
           <BtnContent name="Prev" reverse />
         </div>
-        <div className="btn-primary cursor-pointer px-6 py-2" onClick={() => handleNext()}>
+        <div
+          className="btn-primary cursor-pointer px-6 py-2"
+          onClick={() => handleNext()}
+        >
           <BtnContent name="Continue" />
         </div>
       </div>

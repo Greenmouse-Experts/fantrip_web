@@ -12,7 +12,7 @@ import {
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { formatAsDollar, formatStatus } from "@/lib/utils/formatHelp";
-import { FaLocationPin } from "react-icons/fa6";
+import { FaChevronDown, FaLocationPin } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { TbViewportWide } from "react-icons/tb";
 import { BiEdit } from "react-icons/bi";
@@ -27,8 +27,8 @@ interface Props {
 }
 const StayTableListing: FC<Props> = ({ data, refetch }) => {
   const { Dialog, setShowModal } = useDialog();
-  const [isBusy, setIsBusy] = useState(false)
-  const toast = useToast()
+  const [isBusy, setIsBusy] = useState(false);
+  const toast = useToast();
   const [selected, setSelected] = useState({
     type: "",
     id: "",
@@ -41,33 +41,33 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
     setShowModal(true);
   };
   const handleStatus = async () => {
-    setIsBusy(true)
+    setIsBusy(true);
     const payload = {
-      isDisclosed: selected.type === "Disclose"? true : false
-    }
+      isDisclosed: selected.type === "Disclose" ? true : false,
+    };
     await updateStayStatus(selected.id, payload)
-    .then((res) => {
-      setIsBusy(false)
-      toast({
-        render: () => (
-          <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
-            {res.message}
-          </div>
-        ),
-        position: "top",
+      .then((res) => {
+        setIsBusy(false);
+        toast({
+          render: () => (
+            <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+              {res.message}
+            </div>
+          ),
+          position: "top",
+        });
+        setShowModal(false);
+        refetch();
+      })
+      .catch((err) => {
+        setIsBusy(false);
+        toast({
+          title: err.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
       });
-      setShowModal(false);
-      refetch()
-    })
-    .catch((err) => {
-      setIsBusy(false)
-      toast({
-        title: err.response.data.message,
-        isClosable: true,
-        position: "top",
-        status: "error",
-      });
-    })
   };
   return (
     <>
@@ -90,7 +90,18 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
             </div>
             <div className="w-full md:flex items-center justify-between lg:pr-4">
               <div>
-                <p className="lg:text-xl fw-500">{item.name}</p>
+                <div className="flex items-center gap-x-2">
+                  <p className="lg:text-xl fw-500">{item.name}</p>
+                  {item.approved ? (
+                    <p className="bg-green-50 text-green-500 px-3 fs-500 fw-500 leading-none py-[3px]">
+                      Active
+                    </p>
+                  ) : (
+                    <p className="bg-orange-50 text-orange-500 px-3 fs-500 fw-500 leading-none py-[3px]">
+                      Awaiting
+                    </p>
+                  )}
+                </div>
                 <p className="syne text-gray-300">{item.description}</p>
                 <div className="text-sec gap-x-1 flex items-center">
                   <FaLocationPin className="text-sm" />
@@ -109,6 +120,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         {item.isDisclosed
                           ? formatStatus["active"]
                           : formatStatus["draft"]}
+                        <FaChevronDown className="opacity-60 fs-500" />
                       </div>
                     </MenuButton>
                     <MenuList className="">
@@ -133,39 +145,39 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                   </Menu>
                 </div>
                 <div className="flex mt-1 md:mt-0 items-center gap-x-2 md:block">
-                <p className="syne text-2xl lg:text-3xl text-end fw-600">
-                  {formatAsDollar(item.price)}
-                </p>
-                <div className="flex gap-x-3 justify-end relative top-[6px] md:top-0">
-                  <Link
-                    className="underline relative block"
-                    to={`/host/listings/${item.id}`}
-                  >
-                    <Tooltip
-                      label="Edit Lisiting"
-                      shouldWrapChildren
-                      bg="gray.800"
-                      aria-label="A tooltip"
-                      fontSize="md"
+                  <p className="syne text-2xl lg:text-3xl text-end fw-600">
+                    {formatAsDollar(item.price)}
+                  </p>
+                  <div className="flex gap-x-3 justify-end relative top-[6px] md:top-0">
+                    <Link
+                      className="underline relative block"
+                      to={`/host/listings/${item.id}`}
                     >
-                      <BiEdit className="text-xl" />
-                    </Tooltip>
-                  </Link>
-                  <Link
-                    className="underline relative block"
-                    to={`/find-stay/${item.id}`}
-                  >
-                    <Tooltip
-                      label="View Details"
-                      shouldWrapChildren
-                      bg="gray.800"
-                      aria-label="A tooltip"
-                      fontSize="md"
+                      <Tooltip
+                        label="Edit Lisiting"
+                        shouldWrapChildren
+                        bg="gray.800"
+                        aria-label="A tooltip"
+                        fontSize="md"
+                      >
+                        <BiEdit className="text-xl" />
+                      </Tooltip>
+                    </Link>
+                    <Link
+                      className="underline relative block"
+                      to={`/find-stay/${item.id}`}
                     >
-                      <TbViewportWide className="text-xl" />
-                    </Tooltip>
-                  </Link>
-                </div>
+                      <Tooltip
+                        label="View Details"
+                        shouldWrapChildren
+                        bg="gray.800"
+                        aria-label="A tooltip"
+                        fontSize="md"
+                      >
+                        <TbViewportWide className="text-xl" />
+                      </Tooltip>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -180,7 +192,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
           cancelTitle="Close"
           title={`Are you sure you want to ${selected.type} this stay`}
           isBusy={isBusy}
-          type={'warning'}
+          type={"warning"}
         />
       </Dialog>
     </>

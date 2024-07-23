@@ -43,6 +43,17 @@ const Availability = () => {
 
   const toast = useToast()
   const handleAllAdd = () => {
+    if(!maxGuests || !maxNight || !stay.availableTo){
+      toast({
+        render: () => (
+          <div className="text-white text-center fw-600 syne bg-[#9847FE] rounded p-3">
+            All fields in this section are compulsory
+          </div>
+        ),
+        position: "top",
+      });
+      return;
+    }
     saveStay({
       ...stay,
       maxGuests: Number(maxGuests),
@@ -67,7 +78,7 @@ const Availability = () => {
       <div>
         <div className="mt-3">
           <p className="mb-2 text-gray-600 fw-500">Available From:</p>
-          <Menu closeOnSelect>
+          <Menu closeOnSelect={false}>
             <MenuButton
               borderRadius={"xl"}
               className="!rounded-[10px] "

@@ -18,6 +18,7 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
   const {
     control,
     handleSubmit,
+    watch,
     formState: { isValid, errors },
   } = useForm({
     mode: "onChange",
@@ -113,12 +114,6 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
           <Controller
             name="nickname"
             control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Value is required",
-              },
-            }}
             render={({ field }) => (
               <TextInput
                 label="Nickname"
@@ -130,7 +125,7 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
               />
             )}
           />
-          <Controller
+          {!!watch('nickname').length && <Controller
             name="isNickname"
             control={control}
             render={({ field }) => (
@@ -146,7 +141,7 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
                 </div>
               </div>
             )}
-          />
+          />}
           <div className="lg:col-span-2">
             <Controller
               name="bio"

@@ -1,6 +1,7 @@
 import BtnContent from "@/components/btn-content";
 import useAuth from "@/hooks/authUser";
 import { uploadImage } from "@/services/api/routine";
+import { useToast } from "@chakra-ui/react";
 import { ChangeEvent, FC, useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
 import { BeatLoader } from "react-spinners";
@@ -11,6 +12,7 @@ interface Props {
 }
 const SetupPhotos: FC<Props> = ({ next, prev }) => {
   const { kyc, saveKyc, user } = useAuth();
+  const toast = useToast()
   const [profileLoading, setProfileLoading] = useState(false);
   const [roomLoading, setRoomLoading] = useState(false);
   const handleUploadProfile = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +55,20 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
         setRoomLoading(false);
       });
   };
+  const handleNext = () => {
+    if(!user.image && !kyc.picture){
+      toast({
+        render: () => (
+          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847FE] rounded p-3">
+            Please input a profile picture
+          </div>
+        ),
+        position: "top",
+      });
+      return;
+    }
+    next()
+  }
   return (
     <div>
       <p className="text-xl lg:text-4xl lg:w-9/12">
@@ -142,7 +158,7 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
         <div className="btn-primary cursor-pointer px-6 py-2" onClick={prev}>
           <BtnContent name="Prev" reverse />
         </div>
-        <div className="btn-primary cursor-pointer px-6 py-2" onClick={next}>
+        <div className="btn-primary cursor-pointer px-6 py-2" onClick={handleNext}>
           <BtnContent name="Upload & continue" />
         </div>
       </div>

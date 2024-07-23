@@ -4,6 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { formatStatus } from "@/lib/utils/formatHelp";
 import { IoAddCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { FaChevronDown } from "react-icons/fa6";
 
 interface Props {
   setParams: React.Dispatch<React.SetStateAction<any>>;
@@ -21,6 +22,7 @@ const ListingFilter: FC<Props> = ({ param, setParams }) => {
               {param.isDisclosed === 0
                 ? formatStatus["draft"]
                 : formatStatus["active"]}
+                <FaChevronDown className="opacity-50"/>
             </div>
           </MenuButton>
           <MenuList className="">
