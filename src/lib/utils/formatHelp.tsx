@@ -165,3 +165,13 @@ export const formatStayStatus = {
     </p>
   ),
 };
+
+export const getMinimumDate = (val:number): Date => {
+  const currentDate = new Date();
+  const minimumDate = new Date(
+    currentDate.getFullYear() - val,
+    currentDate.getMonth(),
+    currentDate.getDate()
+  );
+  return minimumDate;
+};

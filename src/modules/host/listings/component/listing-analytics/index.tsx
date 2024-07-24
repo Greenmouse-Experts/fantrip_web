@@ -1,28 +1,34 @@
 import all from "../../../../../assets/svg/all.svg";
 import active from "../../../../../assets/svg/active.svg";
 import saved from "../../../../../assets/svg/saved.svg";
-import cancel from "../../../../../assets/svg/cancel.svg";
+import cancel from "../../../../../assets/svg/pending.svg";
+import { useQuery } from "@tanstack/react-query";
+import { getHostStayStat } from "@/services/api/stay-api";
 
 const ListingAnalytics = () => {
+  const {data} = useQuery({
+    queryKey: ['get-listing-stat'],
+    queryFn: getHostStayStat
+  })
   const listing = [
     {
       name: "Total listing",
-      number: "200",
-      img: <img src={all} alt=""/>,
+      number: data?.total || 0,
+      img: <img src={all} alt="" />,
     },
     {
       name: "Active listing",
-      number: "102",
+      number: data?.active || 0,
       img: <img src={active} alt="" />,
     },
     {
       name: "Drafts",
-      number: "20",
+      number: data?.drafts || 0,
       img: <img src={saved} alt="" />,
     },
     {
-      name: "Cancelled listing",
-      number: "200",
+      name: "Pending Approval",
+      number: "0",
       img: <img src={cancel} alt="" />,
     },
   ];

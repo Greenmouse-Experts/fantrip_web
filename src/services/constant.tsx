@@ -14,6 +14,7 @@ export const UPDATE_PASSWORD = `/auth/update-password`
 export const CREATE_STAY = `/stays/create`
 export const GET_AVAILABLE_STAY = `/stays/available-stays`
 export const GET_ALL_STAY = `/stays`
+export const GET_STAY_STATS = `/stays/count`;
 export const GET_SINGLE_STAY = `/stays/view`
 export const DISCLOSE_STAY = `/stays/change-status`
 export const UPDATE_STAY = `/stays/update-stay`
@@ -30,7 +31,8 @@ export const FETCH_SINGLE_CLIENT_RESERVATION = `/reservations`
 export const GUEST_CANCEL_RESERVATION = `/reservations/cancel`
 export const FETCH_CLIENT_BOOKINGS = `/bookings/fetch-guest-trx`
 export const FETCH_SINGLE_CLIENT_BOOKING = `/bookings/fetch-trx`
-export const CANCEL_CLIENT_BOOKING = `bookings/cancel-guest-booking`
+export const CANCEL_CLIENT_BOOKING = `/bookings/cancel-guest-booking`
+export const GET_BOOKING_STATS = `/bookings/count`;
 
 // payment endpoints
 export const INITIATE_PAYMENT = `/bookings/create`
