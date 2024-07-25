@@ -7,16 +7,19 @@ import {
   DrawerOverlay,
   useMediaQuery,
 } from "@chakra-ui/react";
-// const ReactModal = React.lazy(() => import("react-modal-resizable-draggable"));
+import LargeChatWrapper from "@/components/large-chat-wrapper";
 
 const ChatProvider = () => {
   const { stayChatModal: showModal, toggleStayChatmodal: setShowModal } =
     useUtils();
   const [isMobile] = useMediaQuery("(min-width: 980px)");
   return (
-    <div>
+    <div className="">
       {isMobile ? (
         <Suspense fallback={<div>Loading...</div>}>
+          <LargeChatWrapper open={showModal}>
+            <ChatInterface close={() => setShowModal(false)} />
+          </LargeChatWrapper>
           {/* <ReactModal
             minWidth={250}
             minHeight={400}

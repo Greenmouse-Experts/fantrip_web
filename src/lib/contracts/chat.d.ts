@@ -1,3 +1,13 @@
+export interface UserChatItem {
+  id: string;
+  firstName: string;
+  lastName: string;
+  nickname: string | null;
+  verifiedAsHost: boolean;
+  role: string;
+  picture: string | null;
+}
+
 export interface ChatItem {
   id: string;
   lastMessage: string;
@@ -36,7 +46,7 @@ export interface ChatItem2 {
     isArchived: boolean;
     lastMessage: string;
     read: boolean;
-    updatedDate:  string;
+    updatedDate: string;
   };
   initiator: {
     id: string;

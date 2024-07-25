@@ -3,6 +3,7 @@ import LandingAbout from "@/pages/landing/about";
 import AreaGuideCategoryPlace from "@/pages/landing/area-category-place";
 import { AreaGuide } from "@/pages/landing/area-guide";
 import AreaGuideCategory from "@/pages/landing/area-guide-catergory";
+import ChatPage from "@/pages/landing/chat-room";
 import CommunityGuidelines from "@/pages/landing/community-guideline";
 import CookiePage from "@/pages/landing/cookie";
 import FaqsPage from "@/pages/landing/faqs";
@@ -84,6 +85,10 @@ export const landingRooutes = [
           {
             path: 'community-guidelines',
             element: <CommunityGuidelines />,
+          },
+          {
+            path: 'chat-room',
+            element: <ChatPage/>,
           },
         ],
       },

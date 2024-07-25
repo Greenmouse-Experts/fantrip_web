@@ -17,10 +17,13 @@ const ChatList: FC<Props> = ({ prevChats }) => {
       nickname: guest.initiator.nickname,
       verifiedAsHost: guest.initiator.verifiedAsHost,
       role: guest.initiator.role,
-      picture: guest.initiator.picture,
+      picture: guest.initiator?.picture,
     };
     saveGuestInfo(payload, guest.id);
   };
+
+  console.log(prevChats);
+  
 
   return (
     <div className="grid gap-4">
@@ -34,14 +37,14 @@ const ChatList: FC<Props> = ({ prevChats }) => {
             <div className="flex gap-x-2">
               <img
                 src={
-                  item.initiator.picture ||
+                  item.initiator?.picture ||
                   "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"
                 }
                 alt="profile"
                 className="w-12 h-12 object-cover circle"
               />
               <div>
-                <p className="fw-500">{`${item.initiator.firstName} ${item.initiator.lastName}`}</p>
+                <p className="fw-500">{`${item.initiator?.firstName} ${item.initiator?.lastName}`}</p>
                 <p className="mt-[2px] opacity-70 fs-400">
                   {formatName(item?.lastMessage, 25)}
                 </p>

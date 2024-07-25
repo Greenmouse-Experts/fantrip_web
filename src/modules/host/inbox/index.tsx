@@ -1,11 +1,11 @@
-import { BASE_URL } from "@/services/constant";
+import { SOCKET_URL } from "@/services/constant";
 import ChatBodyIndex from "./chat-ui/chat-body";
 import ChatFooterIndex from "./chat-ui/chat-footer";
 import ChatHeaderIndex from "./chat-ui/chat-header";
 import ChatSidebarIndex from "./chat-ui/chat-sidebar";
 import io from "socket.io-client";
 
-const socket = io(BASE_URL);
+const socket = io(`${SOCKET_URL}`);
 
 const HostInboxIndex = () => {
   return (
