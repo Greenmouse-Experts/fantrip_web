@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from "react";
-import ChatListHistory from "./components/chat-list"
+import ChatListHistory from "./components/chat-list";
 import { ChatItem } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
 
 interface Props {
-    socket: any;
-  }
-const RoomChatListIndex:FC<Props> = ({socket}) => {
-    const [prevChats, setPrevChats] = useState<ChatItem[]>([]);
+  socket: any;
+}
+const RoomChatListIndex: FC<Props> = ({ socket }) => {
+  const [prevChats, setPrevChats] = useState<ChatItem[]>([]);
   const { token, userId } = useAuth();
 
   const getMessages = () => {
@@ -30,19 +30,19 @@ const RoomChatListIndex:FC<Props> = ({socket}) => {
   useEffect(() => {
     getMessages();
   }, [socket]);
-  
+
   return (
     <div className="h-full">
-        <div className="bg-[#EDEDFF] rounded-[12px] p-4 mt-4 h-full">
-            <div>
-                <p className="lg:text-xl fw-500">Messages</p>
-            </div>
-            <div>
-                <ChatListHistory prevChats={prevChats}/>
-            </div>
+      <div className="bg-[#EDEDFF] rounded-[12px] p-4 mt-4 h-full">
+        <div>
+          <p className="lg:text-xl fw-500">Messages</p>
         </div>
+        <div>
+          <ChatListHistory prevChats={prevChats} />
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default RoomChatListIndex
+export default RoomChatListIndex;

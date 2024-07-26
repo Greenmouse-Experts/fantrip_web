@@ -20,6 +20,7 @@ const ChatSidebarIndex: FC<Props> = ({ socket }) => {
     // Remove event listener on component unmount
     return () => socket.off("chatroom_listen");
   };
+  
   useEffect(() => {
     const payload = {
       token: token,

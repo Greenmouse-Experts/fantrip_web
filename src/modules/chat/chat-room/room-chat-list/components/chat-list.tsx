@@ -15,7 +15,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
 
   const openChatWithUser = (item: ChatItem) => {
     let receiver = {} as UserChatItem;
-    if (item.chatBuddy.id === userId) {
+    if (item?.chatBuddy.id === userId) {
       receiver = item.initiator;
     } else {
       receiver = item.chatBuddy;
@@ -33,18 +33,6 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
     setShowModal(true);
   };
 
-  const getRecieverPicture = (item: ChatItem) => {
-    if (item.initiator.id === userId) {
-      return item.chatBuddy.picture;
-    } else return item.initiator.picture;
-  };
-
-  const getRecieverName = (item: ChatItem) => {
-    if (item.initiator.id === userId) {
-      return `${item.chatBuddy.firstName} ${item.chatBuddy.lastName}`;
-    } else return `${item.initiator.firstName} ${item.initiator.lastName}`;
-  };
-
   return (
     <div className="mt-4">
       <ul className="grid gap-3 lg:gap-5">
@@ -56,7 +44,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
           >
             <img
               src={
-                getRecieverPicture(item) ||
+                (item.chatBuddy.picture) ||
                 "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
               }
               alt=""
@@ -64,7 +52,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
             />
             <div>
               <p className="fs-500 fw-500 leading-none">
-                {getRecieverName(item)}
+                {`${item.chatBuddy.firstName} ${item.chatBuddy.lastName}`}
               </p>
               <p className="opacity-70 text-[12px]">
                 {formatName(item.lastMessage, 25)}

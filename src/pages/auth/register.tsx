@@ -20,7 +20,7 @@ const RegistrationPage = () => {
           <div className="mt-7 lg:w-10/12 mx-auto">
             <GoogleButton text={"Continue with Google"} />
           </div>
-          <div className="relative flex justify-center mt-12">
+          <div className="relative flex justify-center">
             <p className="bg-white inter px-6 text-lg lg:px-10 py-2 relative z-10">
               Or
             </p>

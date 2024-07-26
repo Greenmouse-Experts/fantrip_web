@@ -1,6 +1,7 @@
 export const BASE_URL = import.meta.env.VITE_BASE_URL
 export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL
 export const GOOGLE_MAP_KEY = import.meta.env.VITE_GOOGLE_KEY
+export const GOOGLE_AUTH_KEY = import.meta.env.VITE_GOOGLE_AUTH_KEY
 
 
 // Auth endpoints
@@ -10,6 +11,7 @@ export const FORGET_PASSWORD = `/auth/reset-password-request`
 export const RESET_PASSWORD = `/auth/reset-password`
 export const UPDATE_PROFILE = `/auth/update-profile`
 export const UPDATE_PASSWORD = `/auth/update-password`
+export const SOCIAL_SIGNUP = `/auth/sso`
 
 // Stay endpoints
 export const CREATE_STAY = `/stays/create`
