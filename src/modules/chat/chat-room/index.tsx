@@ -16,7 +16,7 @@ const ChatRoomIndex = () => {
         </div>
         <div className="p-[.5px] bg-[#D2D2D2]"></div>
         <div className="box">
-         <div className="lg:flex gap-x-4 h-[70vh]">
+         <div className="lg:flex gap-x-4 h-[80vh]">
          <div className="lg:w-[28%] border-r-2 border-[#D2D2D2]">
             <RoomSidebarIndex />
           </div>

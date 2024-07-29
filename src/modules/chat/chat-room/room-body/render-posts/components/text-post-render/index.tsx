@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { GoComment } from "react-icons/go";
-import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
 import LeaveComment from "../leave-a-comment";
+import PostActions from "../post-actions";
+import ProfileMore from "../profile-more";
 
 interface Props {
   item: any;
@@ -10,7 +10,7 @@ const TextPostRender: FC<Props> = ({ item }) => {
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="bg-[#EDEDFF] rounded-[12px] p-4">
-        <div className="flex">
+        <div className="flex justify-between">
           <div className="flex gap-x-2 items-center">
             <div className="w-[35px] lg:w-[40px] h-[35px] lg:h-[40px] bg-gradient p-[1px] circle">
               <img
@@ -31,35 +31,18 @@ const TextPostRender: FC<Props> = ({ item }) => {
               </p>
             </div>
           </div>
+          <ProfileMore/>
         </div>
         <div className="my-3">
           <p>{item.post}</p>
         </div>
-        <div className="flex justify-between items-center">
-          <div className="flex justify-between items-center gap-x-3">
-            <button
-              type="button"
-              className="bg-white flex items-center gap-x-1 rounded-full px-4 py-[2px]"
-            >
-              <TbArrowBigUp />
-              <p>{item.like}</p>
-            </button>
-            <button
-              type="button"
-              className="bg-white flex items-center gap-x-1 rounded-full px-4 py-[2px]"
-            >
-              <TbArrowBigDown />
-              <p>{item.dislike}</p>
-            </button>
-          </div>
-          <button
-            type="button"
-            className="bg-white flex items-center gap-x-1 rounded-full px-4 py-[2px]"
-          >
-            <GoComment />
-            <p>{item.comment}</p>
-          </button>
-        </div>
+        <PostActions
+            id=""
+            like={item.like}
+            dislike={item.dislike}
+            comment={item.comment}
+            type="text"
+          />
       </div>
       <div className="mt-3">
         <LeaveComment />

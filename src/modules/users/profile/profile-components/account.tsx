@@ -10,6 +10,7 @@ import { updateProfile } from "@/services/api/authApi";
 import { uploadImage } from "@/services/api/routine";
 import { GoPencil } from "react-icons/go";
 import dayjs from "dayjs";
+import { formatPhoneNumber } from "react-phone-number-input";
 
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
@@ -141,7 +142,7 @@ const UserAccount = () => {
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Phone</p>
-              <p className="fw-500 mt-1">{user.phone}</p>
+              <p className="fw-500 mt-1">{formatPhoneNumber(user.phone)}</p>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Nickname</p>
