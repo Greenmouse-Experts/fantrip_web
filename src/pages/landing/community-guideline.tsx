@@ -18,7 +18,7 @@ const CommunityGuidelines = () => {
         <div>
           <PolicyHeader text="Introduction" />
           <p className="fw-500 mb-3 lg:mb-4">
-            Welcome to Fantrip&apos;s chat rooms! Our community is a place for
+            Welcome to fantrip&apos;s chat rooms! Our community is a place for
             fans to discuss and share their passion for sports in a respectful
             and engaging environment. Please take a moment to familiarize
             yourself with our guidelines to ensure a positive experience for

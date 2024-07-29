@@ -61,7 +61,7 @@ const RefundPolicy = () => {
           </div>
         </div>
         <div>
-          <PolicyHeader text="Event-specific adjustments for Fantrip's cancellation policies:" />
+          <PolicyHeader text="Event-specific adjustments for fantrip's cancellation policies:" />
           <p className="fw-500 mb-3 lg:mb-4">
             When a major sports event (for which the booking was made) gets
             rescheduled or significantly altered (e.g., change of venue, date,

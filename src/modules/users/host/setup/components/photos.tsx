@@ -86,7 +86,7 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
           <span className="w-6 h-6 circle place-center border border-gray-400 fs-500 fw-500">
             1
           </span>
-          <p className="fw-500">Profile Picture (max of 1mb)</p>
+          <p className="fw-500">Profile Picture (max of 1mb) <span className="text-red-500 fw-600">*</span></p>
         </div>
         <div className="flex items-center gap-x-3 mt-3">
           <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">

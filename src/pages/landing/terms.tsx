@@ -19,19 +19,19 @@ const TermsPage = () => {
         <div>
           <PolicyHeader text="Acceptance of Terms:" />
           <div>
-            <PolicyList text="Welcome to Fantrip. By accessing and utilizing the Fantrip platform, you acknowledge and agree to be bound by these Terms of Service ('Terms'), along with all applicable laws and regulations. It is your responsibility to ensure compliance with any local laws that might apply to your use of Fantrip. These Terms govern your use of our platform and services, forming a binding legal agreement between you and Fantrip." />
+            <PolicyList text="Welcome to fantrip. By accessing and utilizing the fantrip platform, you acknowledge and agree to be bound by these Terms of Service ('Terms'), along with all applicable laws and regulations. It is your responsibility to ensure compliance with any local laws that might apply to your use of fantrip. These Terms govern your use of our platform and services, forming a binding legal agreement between you and fantrip." />
           </div>
         </div>
         <div>
           <PolicyHeader text="Definitions:" />
           <div>
-            <PolicyList text="User/You/Your: Refers to you, the person accessing or using the Fantrip platform, whether as a guest looking for accommodation, a host offering accommodation, or a participant in our community features. Fantrip/We/Us/Our: Refers to the Fantrip platform, including all its features, services, and content provided to you." />
+            <PolicyList text="User/You/Your: Refers to you, the person accessing or using the fantrip platform, whether as a guest looking for accommodation, a host offering accommodation, or a participant in our community features. Fantrip/We/Us/Our: Refers to the fantrip platform, including all its features, services, and content provided to you." />
           </div>
         </div>
         <div>
           <PolicyHeader text="Communications:" />
           <div>
-            <PolicyList text="By creating an account and using the Fantrip platform, you consent to receive electronic communications from us, including emails, push notifications, and messages within our platform. These communications may pertain to your account, our services, promotions, updates, and more. You agree that any notices, agreements, disclosures, or other communications that we send to you electronically satisfy any legal communication requirements, including that such communications be in writing." />
+            <PolicyList text="By creating an account and using the fantrip platform, you consent to receive electronic communications from us, including emails, push notifications, and messages within our platform. These communications may pertain to your account, our services, promotions, updates, and more. You agree that any notices, agreements, disclosures, or other communications that we send to you electronically satisfy any legal communication requirements, including that such communications be in writing." />
           </div>
         </div>
         <div className="">
@@ -97,7 +97,7 @@ const TermsPage = () => {
           <div className="grid gap-4">
             <PolicyList
               head="Independent Hosts:"
-              text=" Individuals acting as hosts on Fantrip operate in an independent capacity and are not considered employees or agents of Fantrip. We value their contributions to our community but do not control their actions, advice, or interactions within the platform."
+              text=" Individuals acting as hosts on fantrip operate in an independent capacity and are not considered employees or agents of fantrip. We value their contributions to our community but do not control their actions, advice, or interactions within the platform."
             />
           </div>
         </div>
@@ -124,7 +124,7 @@ const TermsPage = () => {
             />
             <PolicyList
               head="Liability and Responsibility:"
-              text=" While Fantrip facilitates bookings and provides a platform for community interaction, the responsibility for the condition of accommodations and the conduct during stays lies primarily with hosts and users. Fantrip will not be held liable for direct issues arising from individual accommodations or interactions but will serve as a mediator to resolve disputes and support affected parties."
+              text=" While fantrip facilitates bookings and provides a platform for community interaction, the responsibility for the condition of accommodations and the conduct during stays lies primarily with hosts and users. Fantrip will not be held liable for direct issues arising from individual accommodations or interactions but will serve as a mediator to resolve disputes and support affected parties."
             />
           </div>
         </div>
@@ -137,7 +137,7 @@ const TermsPage = () => {
         <div>
           <PolicyHeader text="Feedback and Improvement:" />
           <div>
-            <PolicyList text="Encouraging feedback from users and hosts to continuously improve safety measures, support services, and overall user experience on the Fantrip platform." />
+            <PolicyList text="Encouraging feedback from users and hosts to continuously improve safety measures, support services, and overall user experience on the fantrip platform." />
           </div>
         </div>
         <div className="">
@@ -148,7 +148,7 @@ const TermsPage = () => {
             Policy, and Data Policy are designed to comply with the General Data
             Protection Regulation (GDPR) for European users and adhere to
             Canadian laws for operations outside of Europe. This dual compliance
-            ensures that Fantrip respects and protects the rights of all users,
+            ensures that fantrip respects and protects the rights of all users,
             regardless of their location.
           </p>
           <div className="grid gap-4">
@@ -166,12 +166,12 @@ const TermsPage = () => {
             />
           </div>
           <p className="fw-500 my-6">
-            By using Fantrip, you signify your acceptance of these Terms. Users
+            By using fantrip, you signify your acceptance of these Terms. Users
             and hosts agree to these governing laws and jurisdictions,
             acknowledging that legal proceedings, if any, will be conducted in
             English and within the designated jurisdictions, depending on the
             nature of the dispute and the involved parties' locations. These
-            Terms serve as the foundation for a fair and safe use of the Fantrip
+            Terms serve as the foundation for a fair and safe use of the fantrip
             platform for everyone.
           </p>
         </div>
@@ -185,7 +185,7 @@ const TermsPage = () => {
               <p>
                 For questions, concerns, or feedback regarding our Privacy
                 Policy, user support, or liability terms, please contact us at{" "}
-                <span className="fw-500">support@Fantrip.app</span> .
+                <span className="fw-500">support@fantrip.app</span> .
               </p>
             </div>
           </div>

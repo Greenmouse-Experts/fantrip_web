@@ -33,7 +33,7 @@ const GetAppPage = () => {
                 </p>
                 <p className="mt-8">
                   Stay connected to your favorite teams and never miss a game
-                  with the Fantrip Mobile App. Get real-time updates, exclusive
+                  with the fantrip Mobile App. Get real-time updates, exclusive
                   content, and seamless home booking all in one place.
                 </p>
                 <p className="mt-6">

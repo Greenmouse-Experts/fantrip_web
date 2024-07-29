@@ -55,7 +55,7 @@ const PrivacyPage = () => {
             />
             <PolicyList
               head="Service Improvement:"
-              text=" Continuously personalizing and enhancing your Fantrip experience based on your feedback and interactions."
+              text=" Continuously personalizing and enhancing your fantrip experience based on your feedback and interactions."
             />
             <PolicyList
               head="Analysis and Communication:"
@@ -109,7 +109,7 @@ const PrivacyPage = () => {
         <div>
           <PolicyHeader text="Indemnification and Liability" />
           <div>
-            <PolicyList text="While Fantrip facilitates connections between sports fans for accommodation bookings, we strive to maintain a safe and trustworthy platform. Users are encouraged to exercise judgment and care in their interactions. By using Fantrip, you agree to indemnify and hold harmless Fantrip and its affiliates from any claims, damages, losses, liabilities, and expenses directly arising from violations of our Terms of Service or unlawful use of the platform. However, this does not waive Fantrip's responsibility to provide a secure and reliable platform, nor does it absolve us of all liability for our actions. We are committed to supporting our users within the scope of our platform's services and features." />
+            <PolicyList text="While fantrip facilitates connections between sports fans for accommodation bookings, we strive to maintain a safe and trustworthy platform. Users are encouraged to exercise judgment and care in their interactions. By using fantrip, you agree to indemnify and hold harmless fantrip and its affiliates from any claims, damages, losses, liabilities, and expenses directly arising from violations of our Terms of Service or unlawful use of the platform. However, this does not waive fantrip's responsibility to provide a secure and reliable platform, nor does it absolve us of all liability for our actions. We are committed to supporting our users within the scope of our platform's services and features." />
           </div>
         </div>
         <div className="">
@@ -133,7 +133,7 @@ const PrivacyPage = () => {
             />
             <PolicyList
               head="Limited Liability:"
-              text=" Fantrip acts as an intermediary platform to connect sports fans for accommodation purposes. While we are committed to user satisfaction and safety, our liability is limited to the services provided directly through the Fantrip platform. We cannot be held liable for direct, incidental, or consequential damages arising from the use of booked accommodations. However, we pledge to work diligently to address and mitigate any issues arising from your interactions on our platform, demonstrating our commitment to your positive experience."
+              text=" Fantrip acts as an intermediary platform to connect sports fans for accommodation purposes. While we are committed to user satisfaction and safety, our liability is limited to the services provided directly through the fantrip platform. We cannot be held liable for direct, incidental, or consequential damages arising from the use of booked accommodations. However, we pledge to work diligently to address and mitigate any issues arising from your interactions on our platform, demonstrating our commitment to your positive experience."
             />
             <PolicyList
               head="Continuous Improvement:"
@@ -144,7 +144,7 @@ const PrivacyPage = () => {
         <div>
           <PolicyHeader text="Governing Law" />
           <div>
-            <PolicyList text="This Privacy Policy and your use of Fantrip are governed by Canadian law, in addition to respecting the GDPR and the laws of the countries we operate in. We are committed to complying with local regulations and ensuring that our platform meets international standards of privacy, safety, and reliability." />
+            <PolicyList text="This Privacy Policy and your use of fantrip are governed by Canadian law, in addition to respecting the GDPR and the laws of the countries we operate in. We are committed to complying with local regulations and ensuring that our platform meets international standards of privacy, safety, and reliability." />
           </div>
         </div>
         <div>
@@ -163,8 +163,8 @@ const PrivacyPage = () => {
               <p>
                 For questions, concerns, or feedback regarding our Privacy
                 Policy, user support, or liability terms, please contact us at{" "}
-                <span className="fw-500">support@Fantrip.app</span> . <br />
-                <br /> By engaging with Fantrip, you acknowledge and consent to
+                <span className="fw-500">support@fantrip.app</span> . <br />
+                <br /> By engaging with fantrip, you acknowledge and consent to
                 the practices outlined in this Privacy Policy, trusting us to
                 manage your data with the highest standards of privacy and
                 security.

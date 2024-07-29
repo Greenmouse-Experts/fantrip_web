@@ -12,12 +12,12 @@ import { Link } from "react-router-dom";
 const FaqList = () => {
   const faqList = [
     {
-      question: "What is Fantrip all about?",
+      question: "What is fantrip all about?",
       answer:
         "Fantrip is an all-in-one platform tailored for sports fans, blending travel, community engagement, and exclusive sports content into a seamless fan experience. We offer a unique and affordable way to book accommodations with fellow sports enthusiasts, ensuring your stay is part of your fan journey. Our community features, including chat rooms and quizzes, create a lively space for fans to connect and share their passion. The area guide, crafted with contributions from fans, provides insider tips on local eateries, pubs, and parking, making game day navigation a breeze. Fantrip is your go-to app for an enriched, comprehensive fan experience.",
     },
     {
-      question: "What is Fantrip's approach to fan accommodations",
+      question: "What is fantrip's approach to fan accommodations",
       answer:
         "Fantrip is about connecting fans with fellow enthusiasts for accommodations. Hosts can set fee prices for a night, encouraging affordable, fan-friendly stays. It’s about joining a fellow fan's home, sharing experiences, and the passion for the game. Fantrip holds payments and disburses them once the fan arrives, ensuring a smooth transaction. A small service fee of €5 applies if a host offers free accommodation.",
     },
@@ -27,10 +27,10 @@ const FaqList = () => {
         "From couches and sofas to beds, choose what suits your fan journey. We highly recommend hosts to be present during the stay to share and enhance the fan experience. Automated communications and reminders about bookings and reviews are sent to ensure a hassle-free experience. We advise booking in advance for major games as match information becomes available.",
     },
     {
-      question: "How does Fantrip ensure fair pricing for accommodations?",
+      question: "How does fantrip ensure fair pricing for accommodations?",
       answer: (
         <p>
-          At Fantrip, we encourage our hosts to set competitive and fair prices
+          At fantrip, we encourage our hosts to set competitive and fair prices
           within a maximum limit of €70. This approach is designed to foster a
           community-driven spirit, prioritizing the fan experience over profit.
           Hosts have the ability to view what others are charging, enabling them
@@ -90,12 +90,12 @@ const FaqList = () => {
         "Absolutely! Navigate to “Submit a Recommendation” in your dashboard, fill in the details, and submit. Your input helps fellow fans discover the best spots for their matchday experience.",
     },
     {
-      question: "What are Fantrip's Chat Room and Game Quiz features?",
+      question: "What are fantrip's Chat Room and Game Quiz features?",
       answer:
         "Our integrated chat room is a hub for fans to discuss games, share opinions, and participate in quizzes. The chat room allows for dynamic engagement, offering a virtual tailgate party experience. Quizzes provide a fun way to test your sports knowledge with real-time results and a community leaderboard.",
     },
     {
-      question: "How does Fantrip comply with GDPR?",
+      question: "How does fantrip comply with GDPR?",
       answer:
         "We take data privacy seriously. Informed consent is obtained for location data to be processed and protected under GDPR standards. We respect your data privacy rights, including the right to know what information is held about you and to request its deletion.",
     },

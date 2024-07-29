@@ -13,6 +13,7 @@ const useAuth = () => {
     const token = getToken()
     const isHost = user.account === "host"
     const isLoggedIn = token !== null? true : false
+    const isVerified = user.isVerified
     const userId = user.id
     const nameRow = user.name?.split(" ");
     const firstName = nameRow && nameRow[0]
@@ -28,6 +29,7 @@ const useAuth = () => {
     firstName,
     lastName,
     isLoggedIn,
+    isVerified,
     kyc,
     isHost,
     token,

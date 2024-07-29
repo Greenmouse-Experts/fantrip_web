@@ -64,7 +64,7 @@ const ChatList: FC<Props> = ({ prevChats }) => {
               <img
                 src={
                   getRecieverPicture(item) ||
-                  "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"
+                  "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
                 }
                 alt="profile"
                 className="w-12 h-12 object-cover circle"

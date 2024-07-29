@@ -26,7 +26,7 @@ const ContentList = () => {
           <div>
             <PolicyHeader text="What Are Cookies?" />
             <div>
-              <PolicyList text="Cookies are small text files stored on your device (computer, tablet, smartphone) when you visit our platform. They collect information about your device and your interactions with Fantrip, helping to improve your user experience, understand how our platform is used, and tailor our interactions with you." />
+              <PolicyList text="Cookies are small text files stored on your device (computer, tablet, smartphone) when you visit our platform. They collect information about your device and your interactions with fantrip, helping to improve your user experience, understand how our platform is used, and tailor our interactions with you." />
             </div>
           </div>
           <div className="">
@@ -111,7 +111,7 @@ const ContentList = () => {
             </div>
           </div>
           <div>
-            <PolicyHeader text="How can I share my Fantrip adventures and feedback?" />
+            <PolicyHeader text="How can I share my fantrip adventures and feedback?" />
             <div>
               <div className="flex gap-x-2">
                 <div className="relative top-[5px]">
@@ -122,9 +122,9 @@ const ContentList = () => {
                   strategy! We're all ears for your epic tips on how we can up
                   our game. Got a suggestion, a high-five moment, or even a
                   'could-be-better' thought? Don't hold back! <br /> <br />
-                  Send us an email to support@Fantrip.app. Spill all the
+                  Send us an email to support@fantrip.app. Spill all the
                   details, suggestions, and game-changing ideas you've got.
-                  Together, let's make Fantrip the ultimate fan journey!
+                  Together, let's make fantrip the ultimate fan journey!
                 </p>
               </div>
             </div>

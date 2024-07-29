@@ -89,7 +89,7 @@ const UserAccount = () => {
                 src={
                   user.image
                     ? user.image
-                    : "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"
+                    : "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
                 }
                 alt="profile"
                 className="w-[70px] h-[70px] circle object-cover"

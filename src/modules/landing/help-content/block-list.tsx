@@ -4,7 +4,7 @@ const BlockList = () => {
   const navigate = useNavigate();
   const list = [
     {
-      name: "How Fantrip works",
+      name: "How fantrip works",
       route: "",
     },
     {

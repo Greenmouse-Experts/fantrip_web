@@ -32,7 +32,7 @@ const SetupSocials: FC<Props> = ({ next, prev }) => {
       <div className="mt-6 flex gap-x-1">
         <BsInfoCircle className="shrink-0 text-sm relative top-[4px]" />
         <p className="fs-400">
-          Your social media is only visible to Fantrip for verification
+          Your social media is only visible to fantrip for verification
           purposes.
         </p>
       </div>

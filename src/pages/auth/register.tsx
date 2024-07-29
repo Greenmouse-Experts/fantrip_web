@@ -14,7 +14,7 @@ const RegistrationPage = () => {
           <div className="text-center mt-8 lg:mt-16">
             <p className="text-3xl fw-600">Sign Up</p>
             <p className="mt-5 text-[#828282]">
-              Fill in the forms below to create a new Fantrip account.
+              Fill in the forms below to create a new fantrip account.
             </p>
           </div>
           <div className="mt-7 lg:w-10/12 mx-auto">
@@ -53,7 +53,7 @@ const RegistrationPage = () => {
               home
             </p>
             <p className="mt-4 text-white 2xl:text-xl">
-              Sign up on Fantrip today where the sports spirit lives!
+              Sign up on fantrip today where the sports spirit lives!
             </p>
           </div>
           <div className=" backdrop-blur-sm bg-white/30 top-0 left-0 absolute z-0 w-full h-full"></div>

@@ -9,7 +9,7 @@ const ResetPasswordPage = () => {
           <Link to={'/'}><img src={logo} alt="logo" className='w-44 mx-auto' /></Link>
           <div className='text-center mt-8 lg:mt-16'>
             <p className='text-3xl fw-600'>Reset Password?</p>
-            <p className='mt-5 text-[#828282]'>Enter your new Fantrip account password.</p>
+            <p className='mt-5 text-[#828282]'>Enter your new fantrip account password.</p>
           </div>
           <div className='mt-6'>
             <ResetForm/>

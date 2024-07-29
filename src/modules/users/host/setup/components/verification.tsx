@@ -43,6 +43,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
         setLoading(false);
       });
   };
+
   const { Dialog, setShowModal } = useDialog();
   const mutation = useMutation({
     mutationFn: updateProfile,
@@ -51,12 +52,24 @@ const SetupVerification: FC<Props> = ({ prev }) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
   const handleSubmitKyc = () => {
+    const profilePic = kyc.picture ? kyc.picture : user.image;
+    if (!kyc.fullName || !kyc.dob || !profilePic) {
+      toast({
+        render: () => (
+          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847FE] rounded p-3">
+            Please fill required fields
+          </div>
+        ),
+        position: "top",
+      });
+      return;
+    }
     const splitName = kyc.fullName.split(" ");
 
     const payload = {
       firstName: splitName[0],
       lastName: splitName.length > 1 && splitName[1],
-      picture: kyc.picture? kyc.picture : user.image,
+      picture: profilePic,
       roomPicture: kyc.roomPicture,
       facebookUrl: kyc.facebookUrl,
       twitterUrl: kyc.twitterUrl,
@@ -64,7 +77,9 @@ const SetupVerification: FC<Props> = ({ prev }) => {
       instagramUrl: kyc.instagramUrl,
       bio: kyc.bio,
       governmentID: kyc.governmentID,
+      dob: kyc.dob,
     };
+
     setIsBusy(true);
     mutation.mutate(payload, {
       onSuccess: (data) => {
@@ -77,15 +92,15 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           position: "top",
         });
         setIsBusy(false);
-        sessionStorage.setItem('fantrip_token', data.accessToken)
+        sessionStorage.setItem("fantrip_token", data.accessToken);
         saveUser({
           ...user,
           name: kyc.fullName,
           bio: kyc.bio,
-          ...(kyc.picture && {image: kyc.picture}),
-          account: 'host',
-          token: data.accessToken
-        })
+          ...(kyc.picture && { image: kyc.picture }),
+          account: "host",
+          token: data.accessToken,
+        });
         setShowModal(true);
       },
       onError: (error: any) => {
@@ -133,7 +148,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
               <img
                 src={kyc.governmentID}
                 alt="profile-picture"
-                className="w-24 h-12 object-cover"
+                className="w-24 h-12 object-cover border"
               />
             )}
           </div>
@@ -152,6 +167,9 @@ const SetupVerification: FC<Props> = ({ prev }) => {
         <BsInfoCircle className="text-sm shrink-0 relative top-[4px]" />
         <p className="fs-400 ">
           Please upload a photo or scanned copy of your government-issued ID.
+          Don&apos;t have it available right now? No problem! Continue to create your
+          listing. You can return to upload your ID later to get a 'verified
+          badge.' Fans prefer verified hosts.
         </p>
       </div>
       <div className="mt-8 flex justify-between">
@@ -165,7 +183,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           {isBusy ? (
             <BeatLoader color="white" />
           ) : (
-            <BtnContent name="Create Host Profile" />
+            <BtnContent name="Continue" />
           )}
         </div>
       </div>

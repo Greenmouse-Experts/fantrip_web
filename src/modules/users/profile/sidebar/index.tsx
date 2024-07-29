@@ -82,7 +82,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
       <div>
         <div className="w-36 relative mx-auto">
           <img
-            src={user.image? user.image : "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"}
+            src={user.image? user.image : "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"}
             alt="profile"
             className="w-36 circle h-36 object-cover"
           />

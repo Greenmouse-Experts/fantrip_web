@@ -35,7 +35,7 @@ const ChatRoom = () => {
             </div>
             <div className="flex lg:mt-16 mt-6">
               <Link to={""} className="btn-primary block px-8 py-4">
-                <BtnContent name="Download Fantrip" type="download" />
+                <BtnContent name="Download fantrip" type="download" />
               </Link>
             </div>
           </div>

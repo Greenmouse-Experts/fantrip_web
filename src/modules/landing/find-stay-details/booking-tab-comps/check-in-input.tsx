@@ -25,6 +25,7 @@ const CheckInInput: FC<Props> = ({ value, handleChange, from, to }) => {
       return dayjs(from).toDate();
     } else return new Date();
   };
+  
   return (
     <div className="w-full">
       <Menu>

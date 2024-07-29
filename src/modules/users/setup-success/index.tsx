@@ -15,7 +15,7 @@ const SetupCompleted: FC<Props> = ({ showSetup }) => {
       <p className="lg:w-7/12 mt-4 mx-auto">
         Your host profile has been setup, you can now create your listings. Also
         note that your account can only be verified if informations submmited
-        during your setup meets Fantrip guildlines.
+        during your setup meets fantrip guildlines.
       </p>
       <div className="mt-6 flex justify-center items-center gap-x-5">
         <Button

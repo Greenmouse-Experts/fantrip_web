@@ -12,7 +12,7 @@ const ChatHeader:FC<Props> = ({close}) => {
       <div className="flex justify-between items-center">
         <div className="flex gap-x-2 items-center">
           <img
-            src={hostInfo.picture || "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"}
+            src={hostInfo.picture || "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"}
             alt="profile"
             className="w-12 h-12 object-cover circle"
           />

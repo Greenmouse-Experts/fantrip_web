@@ -40,3 +40,14 @@ export const objectToQueryString = (obj: FetchStayParamItem) => {
   });
   return keyValuePairs.join("&");
 };
+
+export const getFutureDate = (startDate: Date, future:number): Date => {
+  const currentDate = new Date(startDate);
+  currentDate.setDate(currentDate.getDate() + future);
+  return currentDate;
+}
+
+export const returnNumberOnly = (value:string) => {
+  const newValue = value.replace(/\D/g, "")
+  return newValue
+}

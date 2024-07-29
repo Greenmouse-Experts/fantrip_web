@@ -13,6 +13,7 @@ import { BeatLoader } from "react-spinners";
 import { formatNumber } from "@/lib/utils/formatHelp";
 import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
+import { getFutureDate, returnNumberOnly } from "@/lib/utils/helper-function";
 
 type ValuePiece = Date | null;
 interface SearchParam {
@@ -46,7 +47,7 @@ const SelectStayDate: FC<Props> = ({
     city: "",
     checkIn: null,
     checkOut: null,
-    no_of_guests: null,
+    no_of_guests: 1,
     no_of_child: null,
   });
   const [isBusy, setIsBusy] = useState(false);
@@ -54,7 +55,44 @@ const SelectStayDate: FC<Props> = ({
     tax: 0,
     fee: 0,
     total: 0,
+    night_fee: 0,
   });
+
+  const getInitDate = () => {
+    const check = dayjs().isAfter(dayjs(from));
+    if (!check) {
+      const val = dayjs(from).toDate();
+      setParams({ ...params, checkIn: val });
+      return val;
+    } else {
+      const val = dayjs().toDate();
+      setParams({ ...params, checkIn: val });
+      return val;
+    }
+  };
+
+  const getDefaultEndDate = () => {
+    const check = dayjs().isAfter(dayjs(from));
+    let start = check ? dayjs().toDate() : dayjs(from).toDate();
+    const init = getFutureDate(start, Number(maxNight));
+    const checkResult = dayjs(init).isAfter(dayjs(to));
+    const initEnd = checkResult ? dayjs(to).toDate() : init;
+    if (initEnd) {
+      setParams({ ...params, checkOut: initEnd });
+    }
+    return initEnd;
+  };
+
+  const getDiff = () => {
+    if (params.checkIn && params.checkOut) {
+      const checkIn = dayjs(params.checkIn as unknown as string);
+      const checkOut = dayjs(params.checkOut as unknown as string);
+      const diffence = checkIn.diff(checkOut, "day");
+      return returnNumberOnly(String(diffence));
+    }
+    return 1;
+  };
+
   const toast = useToast();
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
@@ -84,6 +122,7 @@ const SelectStayDate: FC<Props> = ({
           tax: res.taxFee,
           total: res.total,
           fee: res.serviceFee,
+          night_fee: res.priceWithNightInclusion,
         });
         setIsBusy(false);
       })
@@ -161,7 +200,7 @@ const SelectStayDate: FC<Props> = ({
           <CheckInInput
             to={to}
             from={from}
-            value={params.checkIn}
+            value={params.checkIn || getInitDate()}
             handleChange={handleChange}
           />
         </div>
@@ -169,7 +208,7 @@ const SelectStayDate: FC<Props> = ({
           <CheckOutInput
             to={to}
             checkin={params.checkIn}
-            value={params.checkOut}
+            value={params.checkOut || getDefaultEndDate()}
             maxNight={maxNight}
             handleChange={handleChange}
           />
@@ -185,10 +224,15 @@ const SelectStayDate: FC<Props> = ({
         <div>
           <div>
             <div className="pt-3 flex justify-between items-center">
-              <p className="fw-500">Price per night</p>
-              <p className="fw-500 text-lg">
+              <p className="fw-500">
                 {currency}
-                {price}
+                {price} &#215; {getDiff()}
+                {" night(s)"}
+              </p>
+              <p className="fw-500 text-lg">
+                {pricing.night_fee
+                  ? `${currency}${formatNumber(pricing.night_fee)}`
+                  : `TBD`}
               </p>
             </div>
             <div className=" py-1 flex justify-between items-center">
@@ -199,14 +243,14 @@ const SelectStayDate: FC<Props> = ({
                   : `TBD`}
               </p>
             </div>
-            <div className=" flex justify-between items-center">
+            {/* <div className=" flex justify-between items-center">
               <p className="fw-500">Taxes</p>
               <p className="fw-500 text-lg">
                 {pricing.tax
                   ? `${currency}${formatNumber(pricing.tax)}`
                   : `TBD`}
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="mt-3 pt-2 border-t border-[#D2D2D2]">
             <div className="text-lg flex justify-between items-center">

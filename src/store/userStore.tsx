@@ -30,6 +30,7 @@ interface userProps {
   nickname: string;
   isNickname: boolean;
   dob:string;
+  isVerified: boolean;
 }
 export interface accountProps {
   accounts: BankAccountFullItem[];
@@ -74,6 +75,7 @@ const userInitState = {
   city: "",
   nickname: "",
   isNickname: false,
+  isVerified: false,
   dob: ""
 };
 const accountsInitState = [] as BankAccountFullItem[];

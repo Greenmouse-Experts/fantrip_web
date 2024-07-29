@@ -61,6 +61,7 @@ const LoginForm = () => {
           nickname: data.data.nickname,
           isNickname: data.data.isNickname,
           dob: data.data.dob,
+          isVerified: data.data.verifiedAsHost
         });
         saveAccount(data.data.bankAccounts)
         if(data.data.role === 'host'){navigate('/host')}

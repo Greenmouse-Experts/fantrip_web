@@ -20,10 +20,10 @@ const PriceBooking = () => {
         <div>
           <PolicyHeader text="Fantrip booking pricing" />
           <p className="fw-500 mb-3 lg:mb-4">
-            What is the pricing range for accommodations on Fantrip?
+            What is the pricing range for accommodations on fantrip?
           </p>
           <div className="grid gap-5">
-            <PolicyList text=" Hosting prices on Fantrip are intended to make accommodations affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
+            <PolicyList text=" Hosting prices on fantrip are intended to make accommodations affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
           </div>
           <p className="fw-500 mb-3 lg:mb-4 mt-5">
             Are there any additional fees for guests?
@@ -44,13 +44,13 @@ const PriceBooking = () => {
             <PolicyList text="To maintain simplicity, we do not charge extra for additional guests up to a certain number (e.g., four guests). Beyond this number, a flat fee may apply, which will be clearly communicated in the listing." />
           </div>
           <p className="fw-500 mb-3 lg:mb-4 mt-5">
-            How does Fantrip handle security deposits?
+            How does fantrip handle security deposits?
           </p>
           <div className="grid gap-5">
             <PolicyList text="To protect both our hosts and guests, we have a simplified security deposit system. A flat-rate deposit is held for each booking, and the conditions for any deductions are clearly outlined. This process is automated for fairness and efficiency." />
           </div>
           <p className="fw-500 mb-3 lg:mb-4 mt-5">
-            What are Fantrip's cancellation policies?
+            What are fantrip&apos;s cancellation policies?
           </p>
           <div>
             <div className="flex gap-x-2">

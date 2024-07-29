@@ -19,13 +19,13 @@ const CookiePage = () => {
         <div>
           <PolicyHeader text="Introduction" />
           <div>
-            <PolicyList text="Fantrip uses cookies and similar technologies to enhance your experience on our platform. This Cookie Policy explains how we use cookies and how you can manage your preferences. By using Fantrip, you agree to our use of cookies in accordance with this policy." />
+            <PolicyList text="Fantrip uses cookies and similar technologies to enhance your experience on our platform. This Cookie Policy explains how we use cookies and how you can manage your preferences. By using fantrip, you agree to our use of cookies in accordance with this policy." />
           </div>
         </div>
         <div>
           <PolicyHeader text="What Are Cookies?" />
           <div>
-            <PolicyList text="Cookies are small text files stored on your device (computer, tablet, smartphone) when you visit our platform. They collect information about your device and your interactions with Fantrip, helping to improve your user experience, understand how our platform is used, and tailor our interactions with you." />
+            <PolicyList text="Cookies are small text files stored on your device (computer, tablet, smartphone) when you visit our platform. They collect information about your device and your interactions with fantrip, helping to improve your user experience, understand how our platform is used, and tailor our interactions with you." />
           </div>
         </div>
         <div className="">
@@ -33,15 +33,15 @@ const CookiePage = () => {
           <div className="grid gap-4">
             <PolicyList
               head="Strictly Necessary Cookies:"
-              text=" These are essential for you to browse Fantrip and use its features. Without these cookies, services like secure login and payment processing cannot be provided."
+              text=" These are essential for you to browse fantrip and use its features. Without these cookies, services like secure login and payment processing cannot be provided."
             />
             <PolicyList
               head="Performance and Analytics Cookies:"
-              text=" These cookies collect information about how you use Fantrip, such as which pages you visit and if you experience any errors. This data helps us improve the functionality and performance of our platform."
+              text=" These cookies collect information about how you use fantrip, such as which pages you visit and if you experience any errors. This data helps us improve the functionality and performance of our platform."
             />
             <PolicyList
               head="Functionality Cookies:"
-              text=" These cookies allow Fantrip to remember choices you make (such as your user name or language) and provide enhanced, more personal features."
+              text=" These cookies allow fantrip to remember choices you make (such as your user name or language) and provide enhanced, more personal features."
             />
             <PolicyList
               head="Targeting or Advertising Cookies:"
@@ -57,7 +57,7 @@ const CookiePage = () => {
           <div className="grid gap-4">
             <PolicyList
               head="Consent Mechanism:"
-              text=" When you first visit Fantrip, a consent banner will appear, allowing you to accept or reject the use of certain types of cookies."
+              text=" When you first visit fantrip, a consent banner will appear, allowing you to accept or reject the use of certain types of cookies."
             />
             <PolicyList
               head="Browser Settings:"
@@ -97,7 +97,7 @@ const CookiePage = () => {
               <p>
                 For questions, concerns, or feedback regarding our Privacy
                 Policy, user support, or liability terms, please contact us at{" "}
-                <span className="fw-500">support@Fantrip.app</span> .
+                <span className="fw-500">support@fantrip.app</span> .
               </p>
             </div>
           </div>

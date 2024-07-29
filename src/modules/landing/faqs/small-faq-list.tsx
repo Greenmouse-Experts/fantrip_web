@@ -9,7 +9,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 const SmallFaqList = () => {
   const faqList = [
     {
-      question: "What is Fantrip all about?",
+      question: "What is fantrip all about?",
       answer:
         "Fantrip is an all-in-one platform tailored for sports fans, blending travel, community engagement, and exclusive sports content into a seamless fan experience. We offer a unique and affordable way to book accommodations with fellow sports enthusiasts, ensuring your stay is part of your fan journey. ",
     },
@@ -24,7 +24,7 @@ const SmallFaqList = () => {
         "Once you’ve picked your listing, you can directly message the host or seller. It’s like passing the ball – simple and direct!",
     },
     {
-      question: "How does Fantrip comply with GDPR?",
+      question: "How does fantrip comply with GDPR?",
       answer:
         "We take data privacy seriously. Informed consent is obtained for location data to be processed and protected under GDPR standards. We respect your data privacy rights, including the right to know what information is held about you and to request its deletion.",
     },

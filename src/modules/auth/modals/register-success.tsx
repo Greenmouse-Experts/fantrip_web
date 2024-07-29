@@ -10,7 +10,7 @@ const RegisterSuccess = () => {
         <p className="fw-500 lg:text-xl syne mb-2 fw-500">Hey Champ 🏆!</p>
         <p>
           You've just signed up to level up your gameday fan experience with
-          Fantrip. Your journey starts now! Keep your game face on. Go to your
+          fantrip. Your journey starts now! Keep your game face on. Go to your
           mail to verify your account.
         </p>
       </div>

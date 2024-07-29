@@ -69,12 +69,13 @@ const ProfileSetup: FC<Props> = ({ next }) => {
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setFullname(e.target.value)
           }
+          required
           label="Enter Full Legal Names"
           labelClassName="text-[#9F9F9F]"
         />
       </div>
       <div className="mt-3">
-        <p className="mb-2 text-[#9F9F9F]">Date of Birth</p>
+        <p className="mb-2 text-[#9F9F9F]">Date of Birth <span className="text-red-500 fw-600">*</span></p>
         <Menu closeOnSelect={false}>
           <MenuButton
             borderRadius={"xl"}
@@ -106,7 +107,7 @@ const ProfileSetup: FC<Props> = ({ next }) => {
       </div>
       <div className="mt-8 flex gap-x-1 text-[#E50038]">
         <BsInfoCircle className="text-sm shrink-0 relative top-[4px]" />
-        <p className="fs-400 ">Users must be 18 and above to use Fantrip</p>
+        <p className="fs-400 ">Users must be 18 and above to use fantrip</p>
       </div>
       <div className="mt-8 flex justify-end">
         <div

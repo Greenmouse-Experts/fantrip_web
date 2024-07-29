@@ -6,7 +6,7 @@ const SearchInput = () => {
       <FiSearch className="text-xl shrink-0" />
       <input
         type="search"
-        placeholder="Search Fantrip"
+        placeholder="Search fantrip"
         className="border-none outline-none bg-transparent p-2 w-full"
       />
     </div>

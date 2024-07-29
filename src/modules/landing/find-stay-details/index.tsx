@@ -52,10 +52,8 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
         </div>
         <div className="lg:w-5/12 mt-6 lg:mt-0">
           <div className="form-shadow p-4 rounded-[14px]">
-            <div className="bg-[#FFEDF2] py-4 lg:py-6 rounded-t-[12px]">
-              <p className="w-8/12 fw-600 text-center mx-auto">
-                Choose an accurate date for your fan stay booking
-              </p>
+            <div className="px-2">
+              <p className="fw-500 lg:text-xl">{currency}{price} <span className="fs-600">/night</span></p>
             </div>
             <div>
               <SelectStayDate

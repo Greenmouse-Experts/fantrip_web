@@ -14,8 +14,8 @@ const StayCreateSuccess: FC<Props> = ({ close }) => {
       <div className="w-9/12 mx-auto text-center mt-6">
         <p>You're In the league now!</p>
         <p className="mt-2">
-          Big Cheers for Joining Fantrip! You've just set your listing live and
-          have officially joined the Fantrip league, turning your space into a
+          Big Cheers for Joining fantrip! You&apos;ve just set your listing live and
+          have officially joined the fantrip league, turning your space into a
           key player for sports fans around the globe
         </p>
       </div>

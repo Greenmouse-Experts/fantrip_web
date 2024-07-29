@@ -18,10 +18,10 @@ import { FaCircleUser, FaRegUser } from "react-icons/fa6";
 import { LuKeyRound } from "react-icons/lu";
 import { RiHotelLine } from "react-icons/ri";
 import { GiBlackBook } from "react-icons/gi";
-import icon_1 from "@/assets/svg/nav_icon_1.svg"
-import icon_2 from "@/assets/svg/nav_icon_2.svg"
-import icon_3 from "@/assets/svg/nav_icon_3.svg"
-import icon_4 from "@/assets/svg/nav_icon_4.svg"
+import icon_1 from "@/assets/svg/nav_icon_1.svg";
+import icon_2 from "@/assets/svg/nav_icon_2.svg";
+import icon_3 from "@/assets/svg/nav_icon_3.svg";
+import icon_4 from "@/assets/svg/nav_icon_4.svg";
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
 import { FaRegThumbsUp } from "react-icons/fa";
@@ -29,7 +29,7 @@ import { FaRegThumbsUp } from "react-icons/fa";
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
-  const { isLoggedIn, isHost } = useAuth();
+  const { isLoggedIn, isHost, isVerified } = useAuth();
   return (
     <div>
       <div className="absolute z-10 left-0 top-6 w-full">
@@ -37,12 +37,12 @@ const LandingHeader = () => {
           <div
             className={` bg-[#FFFFFF33] rounded-[50px] px-5 py-4 lg:py-5 lg:px-12 flex justify-between items-center`}
           >
-             <div className="lg:hidden text-white">
-                <TiThMenuOutline
-                  className="text-xl cursor-pointer"
-                  onClick={() => setOpen(true)}
-                />
-              </div>
+            <div className="lg:hidden text-white">
+              <TiThMenuOutline
+                className="text-xl cursor-pointer"
+                onClick={() => setOpen(true)}
+              />
+            </div>
             <div>
               <Link to={"/"}>
                 <img src={logo} alt="logo" className="w-28 lg:w-auto" />
@@ -74,7 +74,7 @@ const LandingHeader = () => {
                           className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                            <img src={icon_1} alt="icons"  />
+                            <img src={icon_1} alt="icons" />
                           </div>
                           <p className="fs-500">Matchday Area Guide</p>
                         </Link>
@@ -85,7 +85,7 @@ const LandingHeader = () => {
                           className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                            <img src={icon_2} alt="icons"  />
+                            <img src={icon_2} alt="icons" />
                           </div>
                           <p className="fs-500">Chat Room</p>
                         </Link>
@@ -96,20 +96,9 @@ const LandingHeader = () => {
                           className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                            <img src={icon_3} alt="icons"  />
+                            <img src={icon_3} alt="icons" />
                           </div>
                           <p className="fs-500">Live quiz and predictions</p>
-                        </Link>
-                      </MenuItem>
-                      <MenuItem>
-                        <Link
-                          to={"/auth/login"}
-                          className="flex gap-x-2 !py-[2px] items-center text-black"
-                        >
-                          <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                            <img src={icon_4} alt="icons"  />
-                          </div>
-                          <p className="fs-500">Exclusive sports content</p>
                         </Link>
                       </MenuItem>
                     </MenuList>
@@ -119,7 +108,9 @@ const LandingHeader = () => {
                   <Link to={"/find-stay"}>Find a fan stay</Link>
                 </li>
                 <li>
-                  <Link to={"/user/host-setup"}>Host a fan</Link>
+                  <Link to={isVerified ? "/user/host" : "/user/host-setup"}>
+                    Host a fan
+                  </Link>
                 </li>
                 <li>
                   <Link to={"/faqs"}>FAQs</Link>
@@ -216,7 +207,7 @@ const LandingHeader = () => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <MobileSheet close={() => setShow(false)}/>
+          <MobileSheet close={() => setShow(false)} />
         </DrawerContent>
       </Drawer>
       <Drawer
