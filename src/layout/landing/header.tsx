@@ -21,7 +21,6 @@ import { GiBlackBook } from "react-icons/gi";
 import icon_1 from "@/assets/svg/nav_icon_1.svg";
 import icon_2 from "@/assets/svg/nav_icon_2.svg";
 import icon_3 from "@/assets/svg/nav_icon_3.svg";
-import icon_4 from "@/assets/svg/nav_icon_4.svg";
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
 import { FaRegThumbsUp } from "react-icons/fa";
