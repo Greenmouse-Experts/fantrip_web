@@ -20,11 +20,11 @@ const MeetComponent: FC<Props> = ({ item}) => {
       <div
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
       >
-        <div className="min-h-[140px] md:min-h-[200px]">
+        <div className="min-h-[170px] max-h-[175px]">
           <img
             src={item.host.picture}
             alt="fan_image"
-            className="h-full w-full max-h-[350px] rounded-lg object-cover"
+            className="h-full w-full rounded-lg object-cover"
           />
         </div>
         <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
@@ -34,7 +34,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
               <p className="h-[2px] bg-gradient w-full mt-2"></p>
             </div>
             <div className="mt-2">
-              <p className="fs-500">
+              <p className="fs-400">
                 {formatName(item.host.bio, isBigSize? 84 : 40)}{" "}
                 <button
                   className="fw-500 fs-500 text-[#9847FE]"
@@ -66,11 +66,11 @@ const MeetComponent: FC<Props> = ({ item}) => {
             </div>
           </div>
         </div>
-        <div className="min-h-[140px] md:min-h-[200px]">
+        <div className="min-h-[170px] max-h-[175px]">
           <img
             src={item.photos[0]}
             alt="room_img"
-            className="h-full w-full max-h-[350px] rounded-lg object-cover"
+            className="h-full w-full rounded-lg object-cover"
           />
         </div>
       </div>

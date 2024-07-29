@@ -21,7 +21,7 @@ const HostFanIndex = () => {
       {active <= 5 && (
         <div className="lg:flex lg:gap-x-12">
           <div className="lg:w-[35%]">
-            <SetupSidebar active={active} />
+            <SetupSidebar active={active} setActive={setActive}/>
           </div>
           <div className="lg:w-[65%]">
             {active === 1 && <StartListing next={() => setActive(2)} />}

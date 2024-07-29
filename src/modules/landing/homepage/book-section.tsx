@@ -22,7 +22,7 @@ const BookSection = () => {
             team colours
           </p>
         </div>
-        <div className="mt-12 grid lg:grid-cols-3 gap-8">
+        <div className="mt-12 grid lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12">
           {isLoading && <MeetDataSkeleton count={3} />}
           {!isLoading &&
             !!data?.data?.length &&
