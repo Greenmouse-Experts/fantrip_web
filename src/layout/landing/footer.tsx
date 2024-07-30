@@ -76,7 +76,7 @@ const LandingFooter = () => {
         </div>
         <div className="py-12">
           <p className="text-center text-white fs-400">
-            © 2024 Fantrip. All rights reserved.{" "}
+            © 2024 fantrip. All rights reserved.{" "}
             <span className="block lg:inline">
               {" "}
               | Whistle Blower{" "}

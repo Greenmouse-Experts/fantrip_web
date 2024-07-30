@@ -72,7 +72,7 @@ const CookiePage = () => {
         <div>
           <PolicyHeader text="Your Rights" />
           <div>
-            <PolicyList text="GDPR grants you rights over your data, including the right to request access to, correct, delete, or restrict the processing of your personal data. You can exercise these rights at any time by contacting us at support@Fantrip.app." />
+            <PolicyList text="GDPR grants you rights over your data, including the right to request access to, correct, delete, or restrict the processing of your personal data. You can exercise these rights at any time by contacting us at support@fantrip.app." />
           </div>
         </div>
         <div>

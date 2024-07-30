@@ -106,7 +106,7 @@ const TermsPage = () => {
           <p className="fw-500 mb-3 lg:mb-4">
             Fantrip prioritizes the safety and satisfaction of our users. In
             instances of insecurity at a host's location, deceptive listings, or
-            any other concerns, Fantrip commits to providing support and
+            any other concerns, fantrip commits to providing support and
             mediation to resolve issues swiftly and fairly. This includes:
           </p>
           <div className="grid gap-4">

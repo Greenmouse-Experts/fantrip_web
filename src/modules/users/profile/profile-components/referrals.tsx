@@ -39,7 +39,7 @@ const UserReferrals = () => {
             <div>
               <p className="fw-500">Earn rewards</p>
               <p className="fs-300 text-gray-600 px-4">
-                Receive cool gifts from Fantrip when your friends join!
+                Receive cool gifts from fantrip when your friends join!
               </p>
             </div>
           </div>

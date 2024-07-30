@@ -6,6 +6,8 @@ import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { FC, useEffect, useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
+import { FcCancel } from "react-icons/fc";
+import { BeatLoader } from "react-spinners";
 
 interface Props {
   next: () => void;
@@ -13,37 +15,68 @@ interface Props {
 }
 const StayPhotos: FC<Props> = ({ next, prev }) => {
   const { stay, saveStay } = useStay();
+  const [prevPhotos, setPrevPhotos] = useState<string[]>(stay.photos);
+  const [isLoading, setIsLoading] = useState(false);
+  const [imagesSelected, setImagesSelected] = useState<File[]>([]);
   const [selectedImg, setSelectedImg] = useState<File[] | undefined>();
-  const [preview, setPreview] = useState<string[] | undefined>([]);
   const toast = useToast();
+
   useEffect(() => {
-    const selected = selectedImg?.map((item) => URL.createObjectURL(item));
-    setPreview(selected);
+    if (imagesSelected.length >= 4) {
+      toast({
+        title: "Hello, lets's have 4 for now",
+        isClosable: true,
+        position: "top",
+        status: "info",
+      });
+      return;
+    }
+    const selected = selectedImg || [];
+    const addedImages = [...imagesSelected, ...selected];
+    setImagesSelected(addedImages);
   }, [selectedImg]);
+
+  const handleRemove = (file: File) => {
+    const filtered = imagesSelected.filter((item) => item.name !== file.name);
+    setImagesSelected(filtered);
+  };
+
+  const handlePrevRemove = (file: string) => {
+    const filtered = prevPhotos.filter((item) => item !== file);
+    setPrevPhotos(filtered);
+  };
+
   const mutation = useMutation({
     mutationFn: uploadImages,
   });
 
   const handleAddImages = () => {
-    if (!selectedImg?.length) {
+    if (!imagesSelected?.length) {
       if (!!stay.photos.length) {
+        saveStay({
+          ...stay,
+          photos: prevPhotos,
+        });
         next();
         return;
       } else return;
     }
+    setIsLoading(true);
     const fd = new FormData();
-    selectedImg.forEach((item) => {
+    imagesSelected.forEach((item) => {
       fd.append(`images`, item);
     });
     mutation.mutate(fd, {
       onSuccess: (data) => {
         saveStay({
           ...stay,
-          photos: data,
+          photos: [...prevPhotos, ...data],
         });
-        next();   
+        setIsLoading(false);
+        next();
       },
       onError: (err: any) => {
+        setIsLoading(false);
         toast({
           title: err.response.data.message,
           isClosable: true,
@@ -71,21 +104,37 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
             containerClass="w-full"
           />
         </div>
-        <div className="grid grid-cols-2 md:flex gap-4 mt-2">
-          {preview &&
-            !!preview.length &&
-            preview.map((item, i) => (
-              <div key={i}>
-                <img src={item} alt="room" className="h-32 lg:w-36 lg:h-36 object-cover" />
+        <div className="grid grid-cols-2 md:flex gap-4 mt-4">
+          {imagesSelected &&
+            !!imagesSelected.length &&
+            imagesSelected.map((item, i) => (
+              <div className="relative" key={i}>
+                <FcCancel
+                  className="absolute -top-3 -right-3 cursor-pointer text-2xl lg:text-3xl"
+                  onClick={() => handleRemove(item)}
+                />
+                <img
+                  src={URL.createObjectURL(item)}
+                  alt="room"
+                  className="h-32 lg:w-36 lg:h-36 object-cover"
+                />
               </div>
             ))}
         </div>
         <div className="grid grid-cols-2 md:flex gap-4 mt-2">
           {stay &&
-            !!stay.photos.length &&
-            stay.photos.map((item, i) => (
-              <div key={i}>
-                <img src={item} alt="room" className="lg:w-36 lg:h-36 object-cover" />
+            !!prevPhotos.length &&
+            prevPhotos.map((item, i) => (
+              <div className="relative" key={i}>
+                <FcCancel
+                  className="absolute -top-3 -right-3 cursor-pointer text-2xl lg:text-3xl"
+                  onClick={() => handlePrevRemove(item)}
+                />
+                <img
+                  src={item}
+                  alt="room"
+                  className="lg:w-36 lg:h-36 object-cover"
+                />
               </div>
             ))}
         </div>
@@ -105,7 +154,7 @@ const StayPhotos: FC<Props> = ({ next, prev }) => {
           } cursor-pointer px-6 py-2 lg:py-3`}
           onClick={handleAddImages}
         >
-          <BtnContent name="Continue" />
+          {isLoading ? <BeatLoader /> : <BtnContent name="Continue" />}
         </div>
       </div>
     </div>

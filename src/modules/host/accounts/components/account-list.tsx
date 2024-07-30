@@ -37,7 +37,7 @@ const AccountList = () => {
   return (
     <div>
       <div className="grid lg:gap-4 lg:grid-cols-2">
-        {!!account.length &&
+        {!!account?.length &&
           account.map((item) => (
             <div
               className="border grid gap-3 border-gray-600 rounded-lg p-4"

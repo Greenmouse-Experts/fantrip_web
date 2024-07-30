@@ -5,6 +5,35 @@ interface AddressType {
   short_name: string;
   types: string[];
 }
+
+export const getPostalFromGoogle = (address: AddressType[]) => {
+  const selectedAdd = address.filter((where) =>
+    where.types.includes("postal_code")
+  );
+  const postal = selectedAdd[0].long_name;
+  return postal;
+};
+
+export const getStreetFromGoogle = (address: AddressType[]) => {
+  const selectedAdd = address.filter((where) =>
+    where.types.includes("route")
+  );
+  const street = selectedAdd[0].long_name;
+  return street;
+};
+
+export const getCityFromGoogle = (address: AddressType[]) => {
+  const selectedAdd = address.filter((where) =>
+    where.types.includes("political")
+  );
+  const anotherOption = address.filter((where) =>
+    where.types.includes("locality")
+  );
+  const final = [...selectedAdd, ...anotherOption]
+  const city = final[0].long_name;
+  return city;
+};
+
 export const getStateFromGoogle = (address: AddressType[]) => {
   const selectedAdd = address.filter((where) =>
     where.types.includes("administrative_area_level_1")

@@ -6,43 +6,77 @@ import { useMutation } from "@tanstack/react-query";
 import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
-import { Country, State, City } from "country-state-city";
+import { usePlacesWidget } from "react-google-autocomplete";
+import { GOOGLE_MAP_KEY } from "@/services/constant";
+import {
+  getCityFromGoogle,
+  getCountryFromGoogle,
+  getPostalFromGoogle,
+  getStateFromGoogle,
+  getStreetFromGoogle,
+} from "@/lib/utils/helper-function";
+import TextInput, { InputType } from "@/components/TextInput";
 
-interface Props{
-  close: () => void
+interface Props {
+  close: () => void;
 }
-const UpdateAddressForm:FC<Props> = ({close}) => {
+const UpdateAddressForm: FC<Props> = ({ close }) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
   const { user, saveUser } = useAuth();
+  const { ref: autoRef } = usePlacesWidget({
+    apiKey: GOOGLE_MAP_KEY,
+    options: {
+      types: ["address"],
+    },
+    onPlaceSelected: (place) => {
+      const state = getStateFromGoogle(place.address_components);
+      const country = getCountryFromGoogle(place.address_components);
+      const postal = getPostalFromGoogle(place.address_components)
+      const city = getCityFromGoogle(place.address_components)
+      const street = getStreetFromGoogle(place.address_components)
+
+      setValue("state", state);
+      setValue("country", country);
+      setValue("state", state);
+      setValue("address", place?.formatted_address);
+      setValue("postal", postal)
+      setValue("city", city)
+      setValue("street", street)
+    },
+  });
+
   const {
     control,
     handleSubmit,
-    watch,
-    formState: { isValid },
+    setValue,
+    formState: { isValid, errors },
   } = useForm({
     mode: "onChange",
     defaultValues: {
+      address: "",
+      street: "",
       country: user.country || "",
+      region: "",
+      postal: "",
       state: "",
       city: "",
+      suite: ""
     },
   });
+
   const mutation = useMutation({
     mutationFn: updateProfile,
     mutationKey: ["profileUpdate"],
   });
+
   const onSubmit = async (datas: any) => {
     setIsBusy(true);
     const payload = {
-      country: Country.getCountryByCode(datas.country)
-      ?.name || '',
-      state: State.getStateByCodeAndCountry(
-        datas.state,
-        datas.country
-      )?.name || '',
-      city: datas.city
-    }
+      country: datas.country,
+      state: datas.state,
+      city: datas.city,
+    };
     mutation.mutate(payload, {
       onSuccess: (data) => {
         toast({
@@ -72,82 +106,143 @@ const UpdateAddressForm:FC<Props> = ({close}) => {
     });
   };
   return (
-    <div className="lg:px-3">
+    <div className="lg:px-2">
+      <div>
+        <p className="text-[#000000B2] fw-500">
+          Please enter your address (Google Autocomplete)
+        </p>
+        <input
+          ref={autoRef as any}
+          type="text"
+          className="mt-1 p-3 relative z-[4000] lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+        />
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-4">
+        <div className="grid gap-4 grid-cols-2 mt-3">
           <Controller
             name="country"
             control={control}
             rules={{
               required: {
                 value: true,
-                message: "Value is required",
+                message: "Please enter your stay price",
               },
             }}
             render={({ field }) => (
-              <div>
-                <p className="text-[#000000B2] fw-500 mb-1">Country</p>
-                <select
-                  {...field}
-                  className="p-2 w-full border-2 border-gray-500 rounded-lg outline-none"
-                >
-                  {Country.getAllCountries().map((item) => (
-                    <option value={item.isoCode} key={item.isoCode}>
-                      {item.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <TextInput
+                type={InputType.text}
+                label="Country"
+                labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                error={errors.country?.message}
+                {...field}
+                ref={null}
+              />
             )}
           />
           <Controller
-            name="state"
+            name="street"
             control={control}
             rules={{
               required: {
                 value: true,
-                message: "Value is required",
+                message: "Please enter your stay price",
               },
             }}
             render={({ field }) => (
-              <div>
-                <p className="text-[#000000B2] fw-500 mb-1">State</p>
-                <select
-                  {...field}
-                  className="p-2 w-full border-2 border-gray-500 rounded-lg outline-none"
-                >
-                  {watch("country") &&
-                    State.getStatesOfCountry(watch("country")).map((item) => (
-                      <option value={item.isoCode} key={item.isoCode}>
-                        {item.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
+              <TextInput
+                type={InputType.text}
+                label="Street"
+                labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                error={errors.region?.message}
+                {...field}
+                ref={null}
+              />
             )}
           />
-          <Controller
+           <Controller
             name="city"
             control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Please enter your stay price",
+              },
+            }}
             render={({ field }) => (
-              <div>
-                <p className="text-[#000000B2] fw-500 mb-1">City</p>
-                <select
-                  {...field}
-                  className="p-2 w-full border-2 border-gray-500 rounded-lg outline-none"
-                >
-                  {watch("country") &&
-                    watch("state") &&
-                    City.getCitiesOfState(
-                      watch("country"),
-                      watch("state")
-                    ).map((item) => (
-                      <option value={item.name} key={item.name}>
-                        {item.name}
-                      </option>
-                    ))}
-                </select>
-              </div>
+              <TextInput
+                type={InputType.text}
+                label="City"
+                labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                error={errors.city?.message}
+                {...field}
+                ref={null}
+              />
+            )}
+          />
+           <Controller
+            name="region"
+            control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Please enter your stay price",
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                type={InputType.text}
+                label="Region"
+                labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                error={errors.region?.message}
+                {...field}
+                ref={null}
+              />
+            )}
+          />
+           <Controller
+            name="postal"
+            control={control}
+            rules={{
+              required: {
+                value: true,
+                message: "Please enter your stay price",
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                type={InputType.text}
+                label="Postal Code"
+                labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                error={errors.postal?.message}
+                {...field}
+                ref={null}
+              />
+            )}
+          />
+           <Controller
+            name="suite"
+            control={control}
+            render={({ field }) => (
+              <TextInput
+                type={InputType.text}
+                label="Apartment/Suite number, PO Box (optional)"
+                labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                error={errors.suite?.message}
+                {...field}
+                ref={null}
+              />
             )}
           />
         </div>

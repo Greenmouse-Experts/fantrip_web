@@ -66,7 +66,7 @@ const PrivacyPage = () => {
         <div>
           <PolicyHeader text="Data Security" />
           <div>
-            <PolicyList text="To protect your personal data against unauthorized access, alteration, disclosure, or destruction, Fantrip employs stringent technical and organizational measures. We are unwavering in our commitment to the security and confidentiality of your information." />
+            <PolicyList text="To protect your personal data against unauthorized access, alteration, disclosure, or destruction, fantrip employs stringent technical and organizational measures. We are unwavering in our commitment to the security and confidentiality of your information." />
           </div>
         </div>
         <div className="">
@@ -129,7 +129,7 @@ const PrivacyPage = () => {
             />
             <PolicyList
               head="User Support:"
-              text=" In the event of disputes, security concerns, or issues with accommodations, Fantrip will offer support to mediate and resolve such issues to the best of our ability. This includes assistance in communication between hosts and guests, providing information on rights and responsibilities, and, where applicable, facilitating refunds or rebookings in accordance with our policies."
+              text=" In the event of disputes, security concerns, or issues with accommodations, fantrip will offer support to mediate and resolve such issues to the best of our ability. This includes assistance in communication between hosts and guests, providing information on rights and responsibilities, and, where applicable, facilitating refunds or rebookings in accordance with our policies."
             />
             <PolicyList
               head="Limited Liability:"
