@@ -24,7 +24,7 @@ const ActionLists = () => {
         <li className="flex cursor-pointer lg:pr-2 justify-between items-center">
           <p className="flex items-center  gap-x-4">
             <FaFile className="text-lg lg:text-xl"/>
-            <span>Create Poll</span>
+            <span>Guidelines</span>
           </p>
           <GoChevronRight className="text-[#8C8C8C]" />
         </li>
