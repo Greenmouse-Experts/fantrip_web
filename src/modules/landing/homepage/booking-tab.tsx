@@ -60,7 +60,7 @@ const BookingTab: FC<Props> = ({ home }) => {
     <div className="box">
       <div className="w-full bg-white lg:rounded-[100px] book-tab-border px-6 py-3 lg:pl-12">
         <div className="lg:flex w-full ">
-          <div className="grid items-center gap-9 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
+          <div className="grid items-center gap-9 md:p-3 md:grid-cols-2 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
             <div className="w-full">
               <CitySearch handleChange={handleChange} prevValue={params.name} />
             </div>
@@ -80,8 +80,8 @@ const BookingTab: FC<Props> = ({ home }) => {
                     )}
                   </div>
                 </MenuButton>
-                <MenuList className="!pt-0 !pb-0 !rounded-[10px]">
-                  <div className="">
+                <MenuList className="overflow-hidden !pt-0 !pb-0 !rounded-[10px]">
+                  <div className="w-full">
                     <Calendar
                       onChange={(value) =>
                         handleChange(
@@ -117,8 +117,8 @@ const BookingTab: FC<Props> = ({ home }) => {
                     )}
                   </div>
                 </MenuButton>
-                <MenuList className="!pt-0 !pb-0 !rounded-[10px]">
-                  <div className="">
+                <MenuList className="overflow-hidden !pt-0 !pb-0 !rounded-[10px]">
+                  <div className="w-full">
                     <Calendar
                       onChange={(value) =>
                         handleChange(

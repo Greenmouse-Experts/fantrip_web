@@ -22,7 +22,7 @@ const BookSection = () => {
             team colours
           </p>
         </div>
-        <div className="mt-12 grid lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12">
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 xl:gap-12">
           {isLoading && <MeetDataSkeleton count={3} />}
           {!isLoading &&
             !!data?.data?.length &&
@@ -33,7 +33,10 @@ const BookSection = () => {
               ))}
         </div>
         <div className="mt-12 lg:mt-24 flex justify-center">
-          <Link to={"/find-stay"} className="btn-primary px-6 py-3 md:py-5 lg:px-16">
+          <Link
+            to={"/find-stay"}
+            className="btn-primary px-6 py-3 md:py-5 lg:px-16"
+          >
             <BtnContent name="Book a stay with a fan" />
           </Link>
         </div>
