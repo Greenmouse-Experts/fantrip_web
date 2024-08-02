@@ -5,11 +5,11 @@ interface Props {
   value: number;
   setValue: React.Dispatch<React.SetStateAction<number>>;
   size: number;
-  type?: "review" | "none"
+  type?: "review" | "none";
 }
 const RatingComponent: FC<Props> = ({ value, setValue, size, type }) => {
   const stars = Array(5).fill("");
-  if(type && type === "review"){
+  if (type && type === "review") {
     return (
       <>
         {" "}

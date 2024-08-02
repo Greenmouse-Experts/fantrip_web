@@ -24,8 +24,8 @@ export const ComponentModal: FC<Props> = ({
         className={` ${
           type === "recommend"
             ? "bg-white w-11/12 lg:w-[50%]"
-             : type === "more"? 
-            "w-11/12 lg:w-[550px] rounded-lg p-2 lg:p-5 bg-[#EDEDFF]"
+            : type === "more"
+            ? "w-11/12 lg:w-[550px] rounded-lg p-2 lg:p-5 bg-[#EDEDFF]"
             : "bg-white p-5 rounded-lg w-11/12 [@media(min-width:1410px)]:w-[60%]"
         }`}
         onClick={(e) => {
@@ -45,14 +45,15 @@ export const ComponentModal: FC<Props> = ({
         ) : (
           <div className="flex justify-between items-center">
             <p className="fw-500 lg:text-2xl text-center w-full">{title}</p>
-            <button className="text-xl bg-gray-100 p-1 rounded-lg" onClick={onClose}>
+            <button
+              className="text-xl bg-gray-100 p-1 rounded-lg"
+              onClick={onClose}
+            >
               <LiaTimesSolid />
             </button>
           </div>
         )}
-        <div className={`${type === 'more' && 'px-3'}`}>
-        {children}
-        </div>
+        <div className={`${type === "more" && "px-3"}`}>{children}</div>
       </div>
     </div>
   ) : null;
