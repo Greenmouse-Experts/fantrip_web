@@ -20,18 +20,6 @@ const ChatProvider = () => {
           <LargeChatWrapper open={showModal}>
             <ChatInterface close={() => setShowModal(false)} />
           </LargeChatWrapper>
-          {/* <ReactModal
-            minWidth={250}
-            minHeight={400}
-            initWidth={400}
-            initHeight={500}
-            onFocus={() => console.log("Modal is click")}
-            className={"rounded-xl !-z-0 overflow-hidden"}
-            onRequestClose={() => setShowModal(true)}
-            isOpen={showModal}
-          >
-            <ChatInterface close={() => setShowModal(false)} />
-          </ReactModal> */}
         </Suspense>
       ) : (
         <Drawer
