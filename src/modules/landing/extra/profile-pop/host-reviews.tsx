@@ -2,20 +2,20 @@ import EmptyReview from '@/components/empty-states/empty-review'
 import { IoArrowBack, IoArrowForward } from 'react-icons/io5'
 
 const HostReviews = () => {
-    const reviews = [
-        {
-            name: "Emily S.",
-            post: "Chris was an amazing host! The apartment was spotless and had everything we needed. The location was perfect, and Chris's local tips made our stay even better. Highly recommend!",
-            date: "june 2024",
-            picture: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1718361962/fantrip/Ellipse_974_ksptr4.png"
-        },
-        {
-            name: "Jennifer Lawrence",
-            post: "The apartment was spotless and had everything we needed.Chris was an amazing host!  The location was perfect, and Chris's local tips made our stay even better. Highly recommend!",
-            date: "April 2024",
-            picture: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"
-        },
-    ]
+    // const reviews = [
+    //     {
+    //         name: "Emily S.",
+    //         post: "Chris was an amazing host! The apartment was spotless and had everything we needed. The location was perfect, and Chris's local tips made our stay even better. Highly recommend!",
+    //         date: "june 2024",
+    //         picture: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1718361962/fantrip/Ellipse_974_ksptr4.png"
+    //     },
+    //     {
+    //         name: "Jennifer Lawrence",
+    //         post: "The apartment was spotless and had everything we needed.Chris was an amazing host!  The location was perfect, and Chris's local tips made our stay even better. Highly recommend!",
+    //         date: "April 2024",
+    //         picture: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1712921717/fantrip/Ellipse_56_frahhh.png"
+    //     },
+    // ]
   return (
     <div>
         <div className='flex justify-between items-center'>
