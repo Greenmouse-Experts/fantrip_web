@@ -20,7 +20,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
       <div
         className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3"
       >
-        <div className="min-h-[170px] max-h-[175px]">
+        <div className="min-h-[170px] max-h-[180px]">
           <img
             src={item.host.picture}
             alt="fan_image"
@@ -35,9 +35,9 @@ const MeetComponent: FC<Props> = ({ item}) => {
             </div>
             <div className="mt-2">
               <p className="fs-400">
-                {formatName(item.host.bio, isBigSize? 84 : 40)}{" "}
+                {formatName(item.host.bio, isBigSize? 66 : 40)}{" "}
                 <button
-                  className="fw-500 fs-500 text-[#9847FE]"
+                  className="fw-500 fs-400 text-[#9847FE]"
                   onClick={() => setShowMore(true)}
                 >
                   Read More
@@ -66,7 +66,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
             </div>
           </div>
         </div>
-        <div className="min-h-[170px] max-h-[175px]">
+        <div className="min-h-[170px] max-h-[180px]">
           <img
             src={item.photos[0]}
             alt="room_img"
@@ -82,7 +82,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
         onClose={() => setShowMore(false)}
         type={'more'}
       >
-        <MeetProfileIndex close={() => setShowMore(false)}/>
+        <MeetProfileIndex id={item.id} close={() => setShowMore(false)}/>
       </ComponentModal>
    </div>
   );

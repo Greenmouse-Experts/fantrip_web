@@ -36,7 +36,7 @@ const FetchStayComponent = () => {
       </div>
       <div className="" ref={resultRef}>
         <div className="box">
-          <div className="mt-12 grid items-stretch lg:grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
+          <div className="mt-12 items-stretch grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 xl:gap-8">
             {isLoading && <MeetDataSkeleton count={6} />}
             {!isLoading &&
               !!data?.data.length &&

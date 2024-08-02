@@ -197,6 +197,31 @@ input[type="checkbox"]:checked {
   scrollbar-width: none;  /* Firefox */
 }
 
+.scroll-pro {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* width */
+.tiny-bar::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.tiny-bar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.tiny-bar::-webkit-scrollbar-thumb {
+  background: #9847fe;
+}
+
+/* Handle on hover */
+.tiny-bar::-webkit-scrollbar-thumb:hover {
+  background: #601faf;
+}
+
 .mobile-chat-container{
   height: 80vh;
 }

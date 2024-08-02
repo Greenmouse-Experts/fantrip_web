@@ -50,6 +50,9 @@ export interface ReccomendationItem {
   tags: string;
   spot: PlaceItem;
   user: UserItem;
+  totalReviews: number;
+  reviews: ReviewResult[];
+  avgRating: string | number
 }
 
 export interface CreateReviewItem {

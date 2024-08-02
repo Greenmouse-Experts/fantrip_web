@@ -11,7 +11,7 @@ interface Props {
   param: FetchParam;
 }
 const ListingFilter: FC<Props> = ({ param, setParams }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div className="flex justify-between items-center">
       <div className="border px-4 py-3 border-gray-700 rounded-lg">
@@ -19,13 +19,24 @@ const ListingFilter: FC<Props> = ({ param, setParams }) => {
           <MenuButton>
             <div className="flex gap-x-2 items-center">
               <p>Status:</p>
-              {param.isDisclosed === 0
+              {param.isDisclosed === null
+                ? formatStatus["all"]
+                : param.isDisclosed === 0
                 ? formatStatus["draft"]
                 : formatStatus["active"]}
-                <FaChevronDown className="opacity-50"/>
+              <FaChevronDown className="opacity-50" />
             </div>
           </MenuButton>
           <MenuList className="">
+            <MenuItem
+              onClick={() =>
+                setParams({
+                  isDisclosed: null,
+                })
+              }
+            >
+              <p className="text-black">All Listings</p>
+            </MenuItem>
             <MenuItem
               onClick={() =>
                 setParams({
@@ -47,9 +58,14 @@ const ListingFilter: FC<Props> = ({ param, setParams }) => {
           </MenuList>
         </Menu>
       </div>
-      <div onClick={() => navigate('/user/host')} className="border px-4 py-3 cursor-pointer border-gray-700 rounded-lg flex items-center gap-x-2">
+      <div
+        onClick={() => navigate("/user/host")}
+        className="border px-4 py-3 cursor-pointer border-gray-700 rounded-lg flex items-center gap-x-2"
+      >
         <IoAddCircleOutline className="text-lg" />
-        <p>Add <span className="hidden lg:inline">New</span> Stay</p>
+        <p>
+          Add <span className="hidden lg:inline">New</span> Stay
+        </p>
       </div>
     </div>
   );

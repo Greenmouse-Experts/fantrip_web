@@ -25,7 +25,7 @@ export interface PropertyItem {
 }
 
 export interface FetchParam {
-  isDisclosed?: number;
+  isDisclosed?: number | null;
   page?: number;
   isPublished?: boolean;
   status?: string;

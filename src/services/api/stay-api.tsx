@@ -31,8 +31,10 @@ export const updateStay = async (id: string, payload: StayItemUpdate) => {
 };
 
 export const getHostStay = async (param: FetchParam) => {
+  const paramString =
+    param.isDisclosed === null ? "" : `?isDisclosed=${param.isDisclosed}`;
   return axios
-    .get(`${ENDPOINT.GET_HOST_STAY}?isDisclosed=${param.isDisclosed}`)
+    .get(`${ENDPOINT.GET_HOST_STAY}${paramString}`)
     .then((response) => response.data);
 };
 

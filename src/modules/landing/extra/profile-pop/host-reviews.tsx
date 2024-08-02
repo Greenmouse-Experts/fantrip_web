@@ -1,3 +1,4 @@
+import EmptyReview from '@/components/empty-states/empty-review'
 import { IoArrowBack, IoArrowForward } from 'react-icons/io5'
 
 const HostReviews = () => {
@@ -29,7 +30,10 @@ const HostReviews = () => {
         </div>
         </div>
         <div className='mt-4'>
-            <div className='flex gap-x-4 w-full overflow-x-auto scroll-pro'>
+            <div>
+                <EmptyReview/>
+            </div>
+            {/* <div className='flex gap-x-4 w-full overflow-x-auto scroll-pro'>
                 {
                     reviews.map((item) => (
                         <div className='bg-gradient rounded-[23px] p-[1px]'>
@@ -50,7 +54,7 @@ const HostReviews = () => {
                         </div>
                     ))
                 }
-            </div>
+            </div> */}
         </div>
     </div>
   )

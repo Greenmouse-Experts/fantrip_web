@@ -7,7 +7,7 @@ import StayTableListing from "./table-listing";
 
 const StayListingTable = () => {
   const [params, setParams] = useState({
-    isDisclosed: 1,
+    isDisclosed: null,
   });
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["get-host-stay", params],

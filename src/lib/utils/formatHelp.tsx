@@ -89,6 +89,12 @@ export const removeDulicates = (data: string[]) => {
 };
 
 export const formatStatus = {
+  all: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-green-500"></span>
+      <span className="syne fw-600 text-green-500">All</span>
+    </p>
+  ),
   active: (
     <p className="flex gap-x-2 items-center">
       <span className="w-3 h-3 block circle bg-green-500"></span>
