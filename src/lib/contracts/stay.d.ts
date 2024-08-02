@@ -89,3 +89,14 @@ export interface StayItemUpdate {
   currency?: string;
   maxGuests?: number;
 }
+
+export interface FilterStayParam {
+  // property?: string;
+  name: string;
+  state: string;
+  guests: number;
+  // city?: string;
+  checkIn: string;
+  checkOut: string;
+  // address?: string;
+}

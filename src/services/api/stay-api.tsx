@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as ENDPOINT from "../constant";
 import {
+  FilterStayParam,
   StayItemInput,
   StayItemUpdate,
   UpdateStayStatusInput,
@@ -44,7 +45,7 @@ export const getHostStayStat = async () => {
     .then((response) => response.data);
 };
 
-export const getAllStay = async (params?: FetchStayParamItem) => {
+export const getAllStay = async (params?: FilterStayParam) => {
   const payload = params ? objectToQueryString(params) : null;
   return axios
     .get(`${ENDPOINT.GET_AVAILABLE_STAY}?${payload}`)

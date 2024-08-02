@@ -20,6 +20,9 @@ interface SearchParam {
   checkIn: string;
   checkOut: string;
   guests: number;
+  address: string;
+  property: string;
+  city: string;
 }
 interface Props {
   home?: boolean;
@@ -33,12 +36,14 @@ const BookingTab: FC<Props> = ({ home }) => {
     checkIn: stayParams.checkIn || "",
     checkOut: stayParams.checkOut || "",
     guests: stayParams.guests || 1,
+    address: stayParams.address,
+    city: stayParams.city || "",
+    property: ""
   });
 
   const handleChange = (val: any, field: string) => {
     setParams({ ...params, [field]: val });
   };
-
   const checkField = () => {
     if (stayParams.state || stayParams.checkIn || stayParams.checkOut) {
       return true;
@@ -48,7 +53,9 @@ const BookingTab: FC<Props> = ({ home }) => {
   const handleSearch = () => {
     const payload = {
       ...stayParams,
-      ...params,
+      checkIn: params.checkIn,
+      checkOut: params.checkOut,
+      guests: params.guests,
     };
     saveStayParam(payload);
     if (home) {
@@ -62,7 +69,7 @@ const BookingTab: FC<Props> = ({ home }) => {
         <div className="lg:flex w-full ">
           <div className="grid items-center gap-9 md:p-3 md:grid-cols-2 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
             <div className="w-full">
-              <CitySearch handleChange={handleChange} prevValue={params.name} />
+              <CitySearch handleChange={handleChange}/>
             </div>
             <div className="relative lg:flex justify-center">
               <Menu>

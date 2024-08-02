@@ -17,6 +17,7 @@ const utilsInitState = {
     city: "",
     checkIn: "",
     checkOut: "",
+    address: ""
   },
   guestReserveTab: 0,
   guestBookTab: 0,

@@ -24,6 +24,7 @@ export function useUtils() {
         city: "",
         checkIn: "",
         checkOut: "",
+        address: ""
       }
     })
   }

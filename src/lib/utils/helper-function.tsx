@@ -1,4 +1,4 @@
-import { FetchStayParamItem } from "../contracts/utils";
+import { FilterStayParam } from "../contracts/stay";
 
 interface AddressType {
   long_name: string;
@@ -58,7 +58,7 @@ export const convertDaysToMilliSeconds = (days: number) => {
   return milliseconds;
 };
 
-export const objectToQueryString = (obj: FetchStayParamItem) => {
+export const objectToQueryString = (obj: FilterStayParam) => {
   const keys = Object.keys(obj);
   const keyValuePairs = keys.map((key) => {
     return (

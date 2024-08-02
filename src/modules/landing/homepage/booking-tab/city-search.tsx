@@ -1,20 +1,38 @@
 import { IoSearch } from "react-icons/io5";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { FC, useState } from "react";
-import { getStateFromGoogle } from "@/lib/utils/helper-function";
+import { FC, useEffect, useState } from "react";
+import {
+  getCityFromGoogle,
+  getStateFromGoogle,
+} from "@/lib/utils/helper-function";
+import { useUtils } from "@/hooks/useUtils";
 
-interface Props{
+interface Props {
   handleChange: (val: any, field: string) => void;
-  prevValue: string
 }
-const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
-  const [val, setVal] = useState(prevValue)
+const CitySearch: FC<Props> = ({}) => {
+  const { stayParams, saveStayParam } = useUtils();
+  const [initVal, setInitValue] = useState(stayParams.address);
+
+  useEffect(() => {
+    setInitValue(stayParams.address);
+  }, [stayParams]);
   const { ref } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
+    options: {
+      types: ["address"],
+    },
     onPlaceSelected: (place) => {
-      handleChange(getStateFromGoogle(place.address_components), 'state')
-      // handleChange(place.formatted_addres, 'name')
+      const state = getStateFromGoogle(place.address_components);
+      const city = getCityFromGoogle(place.address_components);
+      const address = place.formatted_address;
+      saveStayParam({
+        ...stayParams,
+        state: state,
+        city: city,
+        address: address,
+      });
     },
   });
   return (
@@ -24,8 +42,8 @@ const CitySearch:FC<Props> = ({handleChange, prevValue}) => {
         <input
           type="text"
           ref={ref as any}
-          value={val}
-          onChange={(e) => setVal(e.target.value)}
+          value={initVal}
+          onChange={(e) => setInitValue(e.target.value)}
           className="w-full lg:w-auto outline-none p-2 placeholder:text-black"
           placeholder="Enter city or region"
         />

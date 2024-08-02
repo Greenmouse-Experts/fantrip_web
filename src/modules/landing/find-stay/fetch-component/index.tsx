@@ -24,9 +24,17 @@ const FetchStayComponent = () => {
     }
   }, [targetId]);
   const { stayParams } = useUtils();
+  const payload = {
+    name: stayParams.name,
+    state: stayParams.state,
+    guests: stayParams.guests,
+    checkIn: stayParams.checkIn,
+    checkOut: stayParams.checkOut,
+  };
+  // const paramsToFetch = {}
   const { isLoading, data } = useQuery({
     queryKey: ["get-all-stay", stayParams],
-    queryFn: () => getAllStay(stayParams),
+    queryFn: () => getAllStay(payload),
   });
 
   return (
