@@ -7,7 +7,6 @@ import {
   UpdateStayStatusInput,
 } from "@/lib/contracts/stay";
 import { FetchParam } from "@/lib/contracts/routine";
-import { FetchStayParamItem } from "@/lib/contracts/utils";
 import { objectToQueryString } from "@/lib/utils/helper-function";
 
 export const createStay = async (payload: StayItemInput) => {
