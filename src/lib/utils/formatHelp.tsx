@@ -4,7 +4,8 @@ export const capitalizeFirstLetter = (string: string) => {
 };
 
 export const formatName = (string: string, number: number) => {
-  if (string.length > number) {
+  if(!string) return '';
+  if (string?.length > number) {
     return string.substring(0, number).concat("...");
   } else return string;
 };
