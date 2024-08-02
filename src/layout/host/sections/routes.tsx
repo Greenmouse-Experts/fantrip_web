@@ -45,7 +45,7 @@ export const Routes = [
     submenu: [],
   },
   {
-    name: "Chat Room",
+    name: "Messaging",
     icon: <BsChatFill className="text-lg" />,
     route: "/host/inbox",
     submenu: [],

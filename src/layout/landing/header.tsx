@@ -132,7 +132,7 @@ const LandingHeader = () => {
                           {isHost ? (
                             <Link
                               to={"/host"}
-                              className="flex gap-x-3 !py-3 items-center text-black"
+                              className="w-full flex gap-x-3 !py-3 items-center text-black"
                             >
                               <FaRegUser className="text-xl" />
                               <p>Dashboard</p>
@@ -140,7 +140,7 @@ const LandingHeader = () => {
                           ) : (
                             <Link
                               to={"/user/profile"}
-                              className="flex gap-x-3 !py-3 items-center text-black"
+                              className="w-full flex gap-x-3 !py-3 items-center text-black"
                             >
                               <FaRegUser className="text-xl" />
                               <p>Profile</p>
@@ -151,7 +151,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b">
                             <Link
                               to={"/user/reservation"}
-                              className="flex gap-x-3 items-center !py-3 text-black"
+                              className="w-full flex gap-x-3 items-center !py-3 text-black"
                             >
                               <RiHotelLine className="text-xl" />
                               <p>Reservations</p>
@@ -162,7 +162,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b">
                             <Link
                               to={"/user/booking"}
-                              className="flex gap-x-3 items-center !py-3 text-black"
+                              className="w-full flex gap-x-3 items-center !py-3 text-black"
                             >
                               <GiBlackBook className="text-lg" />
                               <p>Bookings</p>
@@ -173,7 +173,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b">
                             <Link
                               to={"/user/recommendations"}
-                              className="flex gap-x-3 items-center !py-3 text-black"
+                              className="w-full flex gap-x-3 items-center !py-3 text-black"
                             >
                               <FaRegThumbsUp className="text-xl" />
                               <p>Recommendations</p>
@@ -183,7 +183,7 @@ const LandingHeader = () => {
                         <MenuItem className="">
                           <Link
                             to={isHost ? "/user/host" : "/user/host-setup"}
-                            className="flex gap-x-3 items-center !py-3 text-black"
+                            className="w-full flex gap-x-3 items-center !py-3 text-black"
                           >
                             <LuKeyRound className="text-xl" />
                             <p>Create New Listing</p>

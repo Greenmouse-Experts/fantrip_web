@@ -9,7 +9,7 @@ const AppAdvert = () => {
         <div className="lg:flex items-center justify-between">
           <div className="lg:w-5/12">
             <img
-              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1715337114/fantrip/Group_1171275071_vzii0w.png"
+              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1722639536/fantrip/Group_1171275140_3_zrbv4i.png"
               alt="fandom"
               className="w-full lg:w-11/12"
             />
@@ -34,24 +34,27 @@ const AppAdvert = () => {
               winning recommendations, too!
             </p>
             <div className="lg:flex items-center gap-x-6 mt-6 lg:mt-12">
-              <Link to={"/area-guide"} className="btn-primary block px-4 md:px-8 py-4">
+              <Link
+                to={"/area-guide"}
+                className="btn-primary block px-4 md:px-8 py-4"
+              >
                 <BtnContent name="Explore matchday area guide" />
               </Link>
               <div className="flex justify-center lg:justify-normal mt-12 lg:mt-0 gap-x-6">
-              <Link to={""}>
-                <img
-                  src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711986112/fantrip/Frame_23_yu0vbi.png"
-                  alt="google"
-                  className="lg:w-full  h-[55px] object-fit"
-                />
-              </Link>
-              <Link to={""}>
-                <img
-                  src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711986113/fantrip/Frame_24_ii4i87.png"
-                  alt="apple"
-                  className="lg:w-full object-fit h-[55px]"
-                />
-              </Link>
+                <Link to={""}>
+                  <img
+                    src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711986112/fantrip/Frame_23_yu0vbi.png"
+                    alt="google"
+                    className="lg:w-full  h-[55px] object-fit"
+                  />
+                </Link>
+                <Link to={""}>
+                  <img
+                    src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1711986113/fantrip/Frame_24_ii4i87.png"
+                    alt="apple"
+                    className="lg:w-full object-fit h-[55px]"
+                  />
+                </Link>
               </div>
             </div>
           </div>
