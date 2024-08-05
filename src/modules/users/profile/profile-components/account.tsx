@@ -154,6 +154,12 @@ const UserAccount = () => {
                 {dayjs(user.joined).format("DD-MMMM-YYYY")}
               </p>
             </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Favourite Team</p>
+              <p className="fw-500 mt-1">
+                {user.favTeam}
+              </p>
+            </div>
             <div className="lg:col-span-2">
               <p className="fs-500 text-[#5F5F5F]">Bio</p>
               <p className="fw-500 mt-1">{user.bio}</p>

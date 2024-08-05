@@ -31,6 +31,7 @@ interface userProps {
   isNickname: boolean;
   dob:string;
   isVerified: boolean;
+  favTeam: string;
 }
 export interface accountProps {
   accounts: BankAccountFullItem[];
@@ -76,7 +77,8 @@ const userInitState = {
   nickname: "",
   isNickname: false,
   isVerified: false,
-  dob: ""
+  dob: "",
+  favTeam: ""
 };
 const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(

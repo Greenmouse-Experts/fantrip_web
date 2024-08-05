@@ -1,19 +1,19 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
 import { guestFetchBooking } from "@/services/api/booking-api";
-import { useQuery } from "@tanstack/react-query";
 import PendingBookingList from "./components/booking-lisiting";
-import { useState } from "react";
 import EmptyNetState from "@/components/empty-states/empty-net";
 import { FetchParam } from "@/lib/contracts/routine";
 
-const CompletedBookings = () => {
+const OngoingBookings = () => {
   const [params, setParams] = useState<FetchParam>({
-    status: "checked-out",
+    status: "checked-in",
     page: 1
   })
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchBooking(params),
-    queryKey: ["get-completed-booking", params],
+    queryKey: ["get-ongoing-booking", params],
   });
   const handleNext = () => {
     setParams({
@@ -33,11 +33,11 @@ const CompletedBookings = () => {
       )}
        {!isLoading && !data?.data?.length && (
         <div>
-          <EmptyNetState text="There is no pending booking data available now." />
+          <EmptyNetState text="There is no ongoing booking data available now." />
         </div>
       )}
     </div>
   );
 };
 
-export default CompletedBookings;
+export default OngoingBookings;

@@ -7,7 +7,7 @@ import EmptyNetState from "@/components/empty-states/empty-net";
 
 const CancelledBookings = () => {
   const [params, setParams] = useState({
-    status: 'cc',
+    status: 'cancelled',
     page: 1
   })
   const { isLoading, data, refetch } = useQuery({

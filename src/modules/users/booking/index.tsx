@@ -2,12 +2,17 @@ import Tabs from "@/components/Tabs";
 import CancelledBooking from "./tabs/cancelled-bookings";
 import ConfirmedBooking from "./tabs/confirmed-bookings";
 import CompletedBookings from "./tabs/completed-bookings";
+import OngoingBookings from "./tabs/ongoing-bookings";
 
 const BookingIndex = () => {
   const bookingTabs = [
     {
       title: <p>Confirmed Bookings</p>,
       content: <ConfirmedBooking/>
+    },
+    {
+      title: <p>Ongoing Bookings</p>,
+      content: <OngoingBookings/>
     },
     {
       title: <p>Completed Bookings</p>,

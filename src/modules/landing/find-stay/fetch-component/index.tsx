@@ -26,7 +26,8 @@ const FetchStayComponent = () => {
   const { stayParams } = useUtils();
   const payload = {
     name: stayParams.name,
-    state: stayParams.state,
+    city: stayParams.city,
+    state: stayParams.name,
     guests: stayParams.guests,
     checkIn: stayParams.checkIn,
     checkOut: stayParams.checkOut,

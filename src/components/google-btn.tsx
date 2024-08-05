@@ -50,7 +50,8 @@ const GoogleButton: FC<Props> = ({}) => {
           nickname: res.data.nickname,
           isNickname: res.data.isNickname,
           dob: res.data.dob,
-          isVerified: res.data.verifiedAsHost
+          isVerified: res.data.verifiedAsHost,
+          favTeam: res.data.favTeam
         });
         saveAccount(res.data.bankAccounts);
         if (res.data.role === "host") {

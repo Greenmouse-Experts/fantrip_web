@@ -27,7 +27,8 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
       lastName: lastName || "",
       bio: user.bio || "",
       nickname: user.nickname || "",
-      isNickname: user.isNickname
+      isNickname: user.isNickname,
+      favTeam: user.favTeam || ""
     },
   });
   const mutation = useMutation({
@@ -52,6 +53,7 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
           name: `${datas.firstName} ${datas.lastName}`,
           bio: datas.bio,
           nickname: datas.nickname,
+          favTeam: datas.favTeam,
           isNickname: datas.isNickname
         });
         close();
@@ -142,6 +144,26 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
               </div>
             )}
           />}
+          <Controller
+            name="favTeam"
+            control={control}
+            rules={{
+              required: {
+                value: false,
+                message: "Value is required",
+              },
+            }}
+            render={({ field }) => (
+              <TextInput
+                label="Favourite Team"
+                labelClassName="text-[#000000B2] fw-500"
+                error={errors.favTeam?.message}
+                type={InputType.text}
+                {...field}
+                ref={null}
+              />
+            )}
+          />
           <div className="lg:col-span-2">
             <Controller
               name="bio"
