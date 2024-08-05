@@ -15,9 +15,7 @@ export const getPostalFromGoogle = (address: AddressType[]) => {
 };
 
 export const getStreetFromGoogle = (address: AddressType[]) => {
-  const selectedAdd = address.filter((where) =>
-    where.types.includes("route")
-  );
+  const selectedAdd = address.filter((where) => where.types.includes("route"));
   const street = selectedAdd[0].long_name;
   return street;
 };
@@ -29,7 +27,7 @@ export const getCityFromGoogle = (address: AddressType[]) => {
   const anotherOption = address.filter((where) =>
     where.types.includes("locality")
   );
-  const final = [...selectedAdd, ...anotherOption]
+  const final = [...selectedAdd, ...anotherOption];
   const city = final[0].long_name;
   return city;
 };
@@ -70,13 +68,19 @@ export const objectToQueryString = (obj: FilterStayParam) => {
   return keyValuePairs.join("&");
 };
 
-export const getFutureDate = (startDate: Date, future:number): Date => {
+export const getFutureDate = (startDate: Date, future: number): Date => {
   const currentDate = new Date(startDate);
   currentDate.setDate(currentDate.getDate() + future);
   return currentDate;
-}
+};
 
-export const returnNumberOnly = (value:string) => {
-  const newValue = value.replace(/\D/g, "")
-  return newValue
-}
+export const returnNumberOnly = (value: string) => {
+  const newValue = value.replace(/\D/g, "");
+  return newValue;
+};
+
+export const getTempCity = (item: string) => {
+  const split = item.split(",");
+  const city = split.length > 1 ? split[1].replace(/[\W\d_]/g, '') : "";
+  return city;
+};

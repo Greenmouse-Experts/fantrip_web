@@ -6,6 +6,7 @@ import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MeetProfileIndex from "./meet-profile";
 import { useMediaQuery } from "@chakra-ui/react";
+import { getTempCity } from "@/lib/utils/helper-function";
 
 interface Props {
   item: AvailableStayItem;
@@ -61,7 +62,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
               className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3"
               onClick={() => navigate(`/find-stay/${item.id}`)}
             >
-              <p className="fs-500 fw-500 capitalize">{item.state || 'London'}</p>
+              <p className="fs-500 fw-500 capitalize">{formatName(getTempCity(item.address), 10)}</p>
               <p className="fw-500">{item.currency}{item.price}/ night</p>
             </div>
           </div>

@@ -5,7 +5,7 @@ import BookingTab from "./booking-tab";
 const HeroBanner = () => {
   return (
     <div className="">
-      <div className="hero-bg w-full lg:h-[650px] bg-fit overflow-hidden">
+      <div className="hero-bg w-full lg:h-[680px] bg-fit overflow-hidden">
         <div className="box h-full">
           <div className="pt-40 lg:pt-16 2xl:pt-10 h-full items-center lg:flex flex-row-reverse">
             <div className="relative">
@@ -40,8 +40,8 @@ const HeroBanner = () => {
             </div>
             <div className="lg:w-7/12 mt-12 lg:mt-0 pb-24 lg:pb-0">
               <div className="text-white ">
-                <p className="text-3xl lg:text-4xl xl:text-5xl fw-600 2xl:text-6xl syne ">
-                F* Cleaning Fees & Generic Travel Guides. 
+                <p className="text-3xl lg:text-4xl xl:text-[44px] xl:leading-[55px] fw-600 2xl:text-5xl syne ">
+                Screw Cleaning Fees & Generic Travel Guides. 
                   <span className="text-gradient syne"> Fan-to-Fan Stays</span>,
                   <span className="syne mt-3 2xl:mt-6">
                   {" "}Done Right.

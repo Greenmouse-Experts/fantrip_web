@@ -54,8 +54,8 @@ const BookingTab: FC<Props> = ({ home }) => {
   const handleSearch = () => {
     const payload = {
       ...stayParams,
-      ...(!stayParams.state && {state: initVal}),
-      ...(!stayParams.state && {address: initVal}),
+      ...(!stayParams.city && {state: initVal}),
+      ...(!stayParams.city && {address: initVal}),
       checkIn: params.checkIn,
       checkOut: params.checkOut,
       guests: params.guests,

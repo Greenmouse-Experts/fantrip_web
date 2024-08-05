@@ -22,7 +22,7 @@ const CitySearch: FC<Props> = ({initVal, setInitValue}) => {
   const { ref } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     options: {
-      types: ["address"],
+      types: ['(cities)'],
     },
     onPlaceSelected: (place) => {
       const state = getStateFromGoogle(place.address_components);
@@ -39,7 +39,7 @@ const CitySearch: FC<Props> = ({initVal, setInitValue}) => {
   return (
     <div className="relative lg:overflow-hidden">
       <div className="flex gap-x-2 items-center relative top-4 md:top-0 lg:top-0">
-        <IoSearch className="text-xl" />
+        <IoSearch className="text-xl shrink-0" />
         <input
           type="text"
           ref={ref as any}

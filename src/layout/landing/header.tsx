@@ -133,7 +133,7 @@ const LandingHeader = () => {
                           {isHost ? (
                             <Link
                               to={"/host"}
-                              className="w-full flex gap-x-3 !py-2 px-4 items-center text-black"
+                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
@@ -143,7 +143,7 @@ const LandingHeader = () => {
                           ) : (
                             <Link
                               to={"/user/profile"}
-                              className="w-full flex gap-x-3 !py-2 px-2 items-center text-black"
+                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
@@ -156,7 +156,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/reservation"}
-                              className="w-full flex gap-x-3 px-2 items-center !py-2 text-black"
+                              className="w-full flex gap-x-3 pl-2 items-center !py-2 text-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_5} alt="icons" />
@@ -169,7 +169,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/booking"}
-                              className="w-full flex gap-x-3 items-center !py-2 px-4 text-black"
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 text-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_6} alt="icons" />
@@ -182,7 +182,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/recommendations"}
-                              className="w-full flex gap-x-3 items-center !py-2 px-4 text-black"
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_7} alt="icons" />
@@ -194,7 +194,7 @@ const LandingHeader = () => {
                         <MenuItem className="!p-0">
                           <Link
                             to={isHost ? "/user/host" : "/user/host-setup"}
-                            className="w-full flex gap-x-3 items-center !py-2 px-4 text-black"
+                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black"
                           >
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                               <img src={icon_8} alt="icons" />

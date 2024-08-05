@@ -28,7 +28,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     highlightFeature,
     currency,
     maxNights,
-    maxGuests
+    maxGuests,
   } = data;
   return (
     <div>
@@ -49,11 +49,34 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
               </div>
             </div>
           </div>
+          <div className="mt-7">
+            <CondoDetails
+              name={name}
+              desc={description}
+              property_name={property.name}
+              amenities={amenities}
+              unique={uniqueFeature}
+              special={specialOffers}
+              address={address}
+              price={price}
+              percent={percentageOff}
+              currency={currency}
+            />
+          </div>
+          <div className="mt-7">
+            <CondoRatings />
+          </div>
+          <div className="mt-7">
+            <Availability from={availableFrom} to={availableTo} />
+          </div>
         </div>
         <div className="lg:w-5/12 mt-6 lg:mt-0">
-          <div className="form-shadow p-4 rounded-[14px]">
+          <div className="form-shadow p-4 rounded-[14px] sticky top-8">
             <div className="px-2">
-              <p className="fw-500 lg:text-xl">{currency}{price} <span className="fs-600">/night</span></p>
+              <p className="fw-500 lg:text-xl">
+                {currency}
+                {price} <span className="fs-600">/night</span>
+              </p>
             </div>
             <div>
               <SelectStayDate
@@ -68,26 +91,6 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="mt-7 lg:w-7/12">
-        <CondoDetails
-          name={name}
-          desc={description}
-          property_name={property.name}
-          amenities={amenities}
-          unique={uniqueFeature}
-          special={specialOffers}
-          address={address}
-          price={price}
-        percent={percentageOff}
-        currency={currency}
-        />
-      </div>
-      <div className="mt-7 lg:w-7/12">
-        <CondoRatings />
-      </div>
-      <div className="mt-7 lg:w-7/12">
-        <Availability from={availableFrom} to={availableTo}/>
       </div>
       <div className="mt-12 lg:mt-20 bg-[#EDEDFF] p-4 lg:px-8 lg:py-12 rounded-[11px]">
         <p className="text-[#494949] lg:w-9/12 mx-auto text-center">
