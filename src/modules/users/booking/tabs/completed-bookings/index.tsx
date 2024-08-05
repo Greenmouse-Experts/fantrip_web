@@ -1,10 +1,10 @@
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
 import { guestFetchBooking } from "@/services/api/booking-api";
-import { useQuery } from "@tanstack/react-query";
-import PendingBookingList from "./components/booking-lisiting";
-import { useState } from "react";
 import EmptyNetState from "@/components/empty-states/empty-net";
 import { FetchParam } from "@/lib/contracts/routine";
+import CompletedBookingList from "./components/booking-lisiting";
 
 const CompletedBookings = () => {
   const [params, setParams] = useState<FetchParam>({
@@ -29,7 +29,7 @@ const CompletedBookings = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <PendingBookingList refetch={refetch} data={data?.data} next={handleNext}/>
+        <CompletedBookingList refetch={refetch} data={data?.data} next={handleNext}/>
       )}
        {!isLoading && !data?.data?.length && (
         <div>

@@ -13,7 +13,7 @@ interface Props {
   refetch: () => void;
   next: () => void
 }
-const PendingBookingList: FC<Props> = ({ data }) => {
+const CompletedBookingList: FC<Props> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const closeDrawer = () => setIsOpen(false);
@@ -105,4 +105,4 @@ const PendingBookingList: FC<Props> = ({ data }) => {
   );
 };
 
-export default PendingBookingList;
+export default CompletedBookingList;
