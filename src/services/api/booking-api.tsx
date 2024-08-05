@@ -16,10 +16,9 @@ export const computePrice = async (payload: ComputePricePayload) => {
 };
 
 export const hostFetchBooking = async (params: FetchParam) => {
+  const status = params.status === "all" ? `` : `status=${params.status}&`;
   return axios
-    .get(
-      `${ENDPOINT.FETCH_CLIENT_BOOKINGS}?status=${params.status}&page=${params.page}`
-    )
+    .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?${status}page=${params.page}`)
     .then((response) => response.data);
 };
 
@@ -36,8 +35,9 @@ export const hostCancelReservation = async (id: string) => {
 };
 
 export const guestFetchReservation = async (params: FetchParam) => {
+  const status = params.status === "all" ? `` : `status=${params.status}&`;
   return axios
-    .get(`${ENDPOINT.FETCH_CLIENT_RESERVATION}?status=${params.status}`)
+    .get(`${ENDPOINT.FETCH_CLIENT_RESERVATION}?${status}page=${params.page}`)
     .then((response) => response.data);
 };
 

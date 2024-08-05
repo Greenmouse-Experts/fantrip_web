@@ -23,9 +23,20 @@ const ReservationFilter: FC<Props> = ({ setParams, param }) => {
               </div>
             </MenuButton>
             <MenuList className="">
+            <MenuItem
+                onClick={() =>
+                  setParams({
+                    ...param,
+                    status: RESERVATION_STATUS.ALL,
+                  })
+                }
+              >
+                <p className="text-black">All Reservations</p>
+              </MenuItem>
               <MenuItem
                 onClick={() =>
                   setParams({
+                    ...param,
                     status: RESERVATION_STATUS.PENDING,
                   })
                 }
@@ -35,6 +46,7 @@ const ReservationFilter: FC<Props> = ({ setParams, param }) => {
               <MenuItem
                 onClick={() =>
                   setParams({
+                    ...param,
                     status: RESERVATION_STATUS.CONFIRMED,
                   })
                 }
@@ -44,6 +56,7 @@ const ReservationFilter: FC<Props> = ({ setParams, param }) => {
               <MenuItem
                 onClick={() =>
                   setParams({
+                    ...param,
                     status: RESERVATION_STATUS.CANCELLED,
                   })
                 }

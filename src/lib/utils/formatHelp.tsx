@@ -1,10 +1,9 @@
-
 export const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
 export const formatName = (string: string, number: number) => {
-  if(!string) return '';
+  if (!string) return "";
   if (string?.length > number) {
     return string.substring(0, number).concat("...");
   } else return string;
@@ -23,7 +22,7 @@ export const formatNumber = (value: number | string) => {
 export const formatAsNgnMoney = (value: number | string, currency?: string) => {
   if (!value) return "";
   const val = Number(value);
-  return `${currency || '$'}${val
+  return `${currency || "$"}${val
     .toLocaleString("en-US")
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };
@@ -132,7 +131,19 @@ export const formatStatus = {
       <span className="syne fw-600 text-purple-600">Checked-In</span>
     </p>
   ),
+  "checked-in": (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-purple-600"></span>
+      <span className="syne fw-600 text-purple-600">Checked-In</span>
+    </p>
+  ),
   checkedout: (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-blue-600"></span>
+      <span className="syne fw-600 text-blue-600">Checked-Out</span>
+    </p>
+  ),
+  "checked-out": (
     <p className="flex gap-x-2 items-center">
       <span className="w-3 h-3 block circle bg-blue-600"></span>
       <span className="syne fw-600 text-blue-600">Checked-Out</span>
@@ -159,6 +170,18 @@ export const formatStayStatus = {
       <span className="syne fw-600 text-purple-600">Checked-In</span>
     </p>
   ),
+  "checked-in": (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-purple-600"></span>
+      <span className="syne fw-600 text-purple-600">Checked-In</span>
+    </p>
+  ),
+  "checked-out": (
+    <p className="flex gap-x-2 items-center">
+      <span className="w-3 h-3 block circle bg-blue-600"></span>
+      <span className="syne fw-600 text-blue-600">Checked-Out</span>
+    </p>
+  ),
   checkedout: (
     <p className="flex gap-x-2 items-center">
       <span className="w-3 h-3 block circle bg-blue-600"></span>
@@ -173,7 +196,7 @@ export const formatStayStatus = {
   ),
 };
 
-export const getMinimumDate = (val:number): Date => {
+export const getMinimumDate = (val: number): Date => {
   const currentDate = new Date();
   const minimumDate = new Date(
     currentDate.getFullYear() - val,

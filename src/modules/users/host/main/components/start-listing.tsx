@@ -9,7 +9,7 @@ import {
 } from "@/lib/utils/helper-function";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
 import { AfricanCountries } from "@/services/hard-data";
-import { useToast } from "@chakra-ui/react";
+import { Tooltip, useToast } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
@@ -139,9 +139,21 @@ const StartListing: FC<Props> = ({ next }) => {
             />
           </div>
           <div>
-            <p className="text-black fw-600 lg:text-lg block mb-3">
-              Stay Location
-            </p>
+            <div className="text-black flex items-center gap-x-2 fw-600 lg:text-lg mb-3">
+              Address{" "}
+              <Tooltip
+                shouldWrapChildren
+                textColor={"black"}
+                bg="gray.50"
+                fontWeight={300}
+                fontSize={13}
+                padding={4}
+                label="Begin typing your address to see autocomplete suggestions. Select the correct option from the list to ensure accurate details."
+                aria-label="A tooltip"
+              >
+                <BsInfoCircle className="text-[#FC819F] cursor-pointer" />
+              </Tooltip>
+            </div>
             <Controller
               name="address"
               control={control}
@@ -152,16 +164,16 @@ const StartListing: FC<Props> = ({ next }) => {
                 },
               }}
               render={({ field }) => (
-               <div className="relative">
-                 <input
-                  {...field}
-                  ref={autoRef as any}
-                  type="text"
-                  placeholder="Input and Select your Stay Location"
-                  className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
-                />
-                <PiCaretDownThin className="absolute right-7 top-5"/>
-               </div>
+                <div className="relative">
+                  <input
+                    {...field}
+                    ref={autoRef as any}
+                    type="text"
+                    placeholder="Input and Select your Stay Location"
+                    className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                  />
+                  <PiCaretDownThin className="absolute right-7 top-5" />
+                </div>
               )}
             />
             {locationError && (

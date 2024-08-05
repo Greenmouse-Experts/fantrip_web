@@ -51,7 +51,7 @@ export const Routes = [
     submenu: [],
   },
   {
-    name: "Matchday Area guide",
+    name: "Area guide",
     icon: <BsCompassFill className="text-xl" />,
     route: "/host/area-guide",
     submenu: [],

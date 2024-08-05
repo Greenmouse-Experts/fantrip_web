@@ -9,7 +9,7 @@ import { useToast } from "@chakra-ui/react";
 const BookingListingTable = () => {
   const toast = useToast();
   const [params, setParams] = useState({
-    status: "pending",
+    status: "all",
     page: 1,
   });
 

@@ -8,13 +8,15 @@ import ReservationFilter from "./filter";
 
 const ReservationListingTable = () => {
   const [params, setParams] = useState({
-    status: "pending",
+    status: "all",
     page: 1,
   });
+
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["host-get-reservations", params],
     queryFn: () => guestFetchReservation(params),
   });
+
   return (
     <div>
       {isLoading && (

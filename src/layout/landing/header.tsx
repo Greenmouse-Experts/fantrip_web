@@ -14,16 +14,17 @@ import { TiThMenuOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import MobileMenu from "./mobileMenu";
 import useAuth from "@/hooks/authUser";
-import { FaCircleUser, FaRegUser } from "react-icons/fa6";
-import { LuKeyRound } from "react-icons/lu";
-import { RiHotelLine } from "react-icons/ri";
-import { GiBlackBook } from "react-icons/gi";
+import { FaCircleUser } from "react-icons/fa6";
 import icon_1 from "@/assets/svg/nav_icon_1.svg";
 import icon_2 from "@/assets/svg/nav_icon_2.svg";
 import icon_3 from "@/assets/svg/nav_icon_3.svg";
+import icon_4 from "@/assets/svg/user.svg";
+import icon_5 from "@/assets/svg/building-07.svg";
+import icon_6 from "@/assets/svg/calendar-check-02.svg";
+import icon_7 from "@/assets/svg/globe-06.svg";
+import icon_8 from "@/assets/svg/ph_key.svg";
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
-import { FaRegThumbsUp } from "react-icons/fa";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
@@ -75,7 +76,7 @@ const LandingHeader = () => {
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_1} alt="icons" />
                           </div>
-                          <p className="fs-500">Matchday Area Guide</p>
+                          <p className="fs-500">Area Guide</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
@@ -128,64 +129,76 @@ const LandingHeader = () => {
                         </div>
                       </MenuButton>
                       <MenuList>
-                        <MenuItem className="border-b">
+                        <MenuItem className="border-b !p-0">
                           {isHost ? (
                             <Link
                               to={"/host"}
-                              className="w-full flex gap-x-3 !py-3 items-center text-black"
+                              className="w-full flex gap-x-3 !py-2 px-4 items-center text-black"
                             >
-                              <FaRegUser className="text-xl" />
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_4} alt="icons" />
+                              </div>
                               <p>Dashboard</p>
                             </Link>
                           ) : (
                             <Link
                               to={"/user/profile"}
-                              className="w-full flex gap-x-3 !py-3 items-center text-black"
+                              className="w-full flex gap-x-3 !py-2 px-2 items-center text-black"
                             >
-                              <FaRegUser className="text-xl" />
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_4} alt="icons" />
+                              </div>
                               <p>Profile</p>
                             </Link>
                           )}
                         </MenuItem>
                         {!isHost && (
-                          <MenuItem className="border-b">
+                          <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/reservation"}
-                              className="w-full flex gap-x-3 items-center !py-3 text-black"
+                              className="w-full flex gap-x-3 px-2 items-center !py-2 text-black"
                             >
-                              <RiHotelLine className="text-xl" />
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_5} alt="icons" />
+                              </div>
                               <p>Reservations</p>
                             </Link>
                           </MenuItem>
                         )}
                         {!isHost && (
-                          <MenuItem className="border-b">
+                          <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/booking"}
-                              className="w-full flex gap-x-3 items-center !py-3 text-black"
+                              className="w-full flex gap-x-3 items-center !py-2 px-4 text-black"
                             >
-                              <GiBlackBook className="text-lg" />
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_6} alt="icons" />
+                              </div>
                               <p>Bookings</p>
                             </Link>
                           </MenuItem>
                         )}
                         {!isHost && (
-                          <MenuItem className="border-b">
+                          <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/recommendations"}
-                              className="w-full flex gap-x-3 items-center !py-3 text-black"
+                              className="w-full flex gap-x-3 items-center !py-2 px-4 text-black"
                             >
-                              <FaRegThumbsUp className="text-xl" />
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_7} alt="icons" />
+                              </div>
                               <p>Recommendations</p>
                             </Link>
                           </MenuItem>
                         )}
-                        <MenuItem className="">
+                        <MenuItem className="!p-0">
                           <Link
                             to={isHost ? "/user/host" : "/user/host-setup"}
-                            className="w-full flex gap-x-3 items-center !py-3 text-black"
+                            className="w-full flex gap-x-3 items-center !py-2 px-4 text-black"
                           >
-                            <LuKeyRound className="text-xl" />
+                            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                              <img src={icon_8} alt="icons" />
+                            </div>
                             <p>Create New Listing</p>
                           </Link>
                         </MenuItem>

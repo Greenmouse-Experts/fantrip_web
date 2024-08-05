@@ -1,4 +1,3 @@
-
 import BtnContent from "@/components/btn-content";
 import { ComponentModal } from "@/components/modal-component";
 import { useState } from "react";
@@ -8,20 +7,21 @@ import { getSpotsCat } from "@/services/api/places-api";
 import { SpotCategoryItem } from "@/lib/contracts/place";
 import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
+import { FaLocationCrosshairs } from "react-icons/fa6";
 
 const AreaCategorySearch = () => {
-  const {isLoggedIn} = useAuth()
-  const navigate = useNavigate()
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
   const { isLoading, data } = useQuery({
     queryKey: ["get-spot-categories"],
     queryFn: getSpotsCat,
   });
   const [showSubmit, setShowSubmit] = useState(false);
   const openReccomendModal = () => {
-    if(isLoggedIn){
-      setShowSubmit(true)
-    }else navigate('/auth/login')
-  }
+    if (isLoggedIn) {
+      setShowSubmit(true);
+    } else navigate("/auth/login");
+  };
   return (
     <div className="pb-16 lg:pb-20">
       <div className="box">
@@ -44,11 +44,15 @@ const AreaCategorySearch = () => {
                   key={item.id}
                   onClick={() => navigate(`/area-guide/${item.name}`)}
                 >
-                  <img
-                    src={item.imageUrl}
-                    alt="icon-names"
-                    className="w-4 lg:w-9"
-                  />
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt="icon-names"
+                      className="w-4 lg:w-9"
+                    />
+                  ) : (
+                    <FaLocationCrosshairs className="text-xl lg:text-2xl text-prima" />
+                  )}
                   <p className="fs-200 lg:fs-600">{item.name}</p>
                 </div>
               ))}
@@ -60,11 +64,15 @@ const AreaCategorySearch = () => {
                   key={item.id}
                   onClick={() => navigate(`/area-guide/${item.name}`)}
                 >
-                  <img
-                    src={item.imageUrl}
-                    alt="icon-names"
-                    className="w-4 lg:w-9"
-                  />
+                  {item.imageUrl ? (
+                    <img
+                      src={item.imageUrl}
+                      alt="icon-names"
+                      className="w-4 lg:w-9"
+                    />
+                  ) : (
+                    <FaLocationCrosshairs className="text-xl lg:text-2xl text-prima" />
+                  )}
                   <p className="fs-200 lg:fs-600">{item.name}</p>
                 </div>
               ))}

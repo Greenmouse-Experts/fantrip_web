@@ -42,7 +42,7 @@ const MobileMenu: FC<Props> = ({ close }) => {
           </li>
           <li className="border-b">
             <Link to={"/area-guide"} className="px-3">
-              Matchday Area Guide
+              Area Guide
             </Link>
           </li>
           <li className="border-b">

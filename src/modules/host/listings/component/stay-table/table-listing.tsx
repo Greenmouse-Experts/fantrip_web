@@ -43,7 +43,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
   const handleStatus = async () => {
     setIsBusy(true);
     const payload = {
-      isDisclosed: selected.type === "Disclose" ? true : false,
+      isDisclosed: selected.type === "publish" ? true : false,
     };
     await updateStayStatus(selected.id, payload)
       .then((res) => {
@@ -112,7 +112,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                 </p>
               </div>
               <div>
-                <div>
+                <div className="flex justify-end">
                   <Menu>
                     <MenuButton>
                       <div className="flex gap-x-2 items-center">
@@ -127,17 +127,17 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                       <MenuItem>
                         {item.isDisclosed ? (
                           <p
-                            onClick={() => openStaus("Retract", item.id)}
+                            onClick={() => openStaus("unpublish", item.id)}
                             className="text-black"
                           >
-                            Retract Listing
+                            Unpublish Listing
                           </p>
                         ) : (
                           <p
-                            onClick={() => openStaus("Disclose", item.id)}
+                            onClick={() => openStaus("publish", item.id)}
                             className="text-black"
                           >
-                            Disclose Listing
+                            Publish Listing
                           </p>
                         )}
                       </MenuItem>
@@ -160,7 +160,9 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         aria-label="A tooltip"
                         fontSize="md"
                       >
-                        <BiEdit className="text-xl" />
+                        <BiEdit className="text-xl inline-block" />
+                        {" "}
+                        <span>Edit Listing</span>
                       </Tooltip>
                     </Link>
                     <Link
@@ -173,8 +175,11 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         bg="gray.800"
                         aria-label="A tooltip"
                         fontSize="md"
+                        className="flex gap-x-1"
                       >
-                        <TbViewportWide className="text-xl" />
+                        <TbViewportWide className="text-xl inline-block" />
+                        {" "}
+                        <span>View Details</span>
                       </Tooltip>
                     </Link>
                   </div>

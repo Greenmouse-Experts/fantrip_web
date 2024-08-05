@@ -36,12 +36,12 @@ const ReusableModal: FC<Props> = ({
       <div className="px-6 mt-3 text-black text-center">{title}</div>
       <div className="w-full mt-8 flex justify-between">
         <Button
-          altClassName="py-2 px-3 lg:px-6  bg-gray-600 rounded-full text-white"
+          altClassName="py-2 px-3 lg:px-6  bg-gray-600 capitalize rounded-full text-white"
           title={cancelTitle}
           onClick={closeModal}
         />
         <Button
-          altClassName="py-2 px-3 lg:px-6 rounded-full bg-primary text-white"
+          altClassName="py-2 px-3 lg:px-6 rounded-full bg-primary capitalize text-white"
           title={isBusy ? <BeatLoader size={10} color="white" /> : actionTitle}
           onClick={action}
         />

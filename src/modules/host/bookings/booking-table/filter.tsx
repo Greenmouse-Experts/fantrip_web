@@ -25,6 +25,16 @@ const BookingFilter: FC<Props> = ({ param, setParams }) => {
             </div>
           </MenuButton>
           <MenuList className="">
+          <MenuItem
+              onClick={() =>
+                setParams({
+                  ...param,
+                  status: "all",
+                })
+              }
+            >
+              <p className="text-black">All Booking</p>
+            </MenuItem>
             <MenuItem
               onClick={() =>
                 setParams({
@@ -39,7 +49,7 @@ const BookingFilter: FC<Props> = ({ param, setParams }) => {
               onClick={() =>
                 setParams({
                   ...param,
-                  status: "Checkedin",
+                  status: "checked-in",
                 })
               }
             >
@@ -49,7 +59,7 @@ const BookingFilter: FC<Props> = ({ param, setParams }) => {
               onClick={() =>
                 setParams({
                   ...param,
-                  status: "Checkedout",
+                  status: "checked-out",
                 })
               }
             >

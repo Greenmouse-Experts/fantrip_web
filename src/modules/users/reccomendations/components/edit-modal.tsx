@@ -285,7 +285,7 @@ const EditRecommendation: FC<Props> = ({ item, close, refetch }) => {
         </div>
       </div>
       <div className="mt-7 flex justify-end">
-        <div className="lg:w-6/12">
+        <div className="w-7/12 lg:w-6/12">
           <Button
             title={
               isBusy ? (

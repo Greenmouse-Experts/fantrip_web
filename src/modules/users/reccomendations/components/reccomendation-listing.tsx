@@ -1,7 +1,6 @@
 import { PlaceItem, ReccomendationItem } from "@/lib/contracts/place";
 import { formatNumber } from "@/lib/utils/formatHelp";
 import { FC, useState } from "react";
-import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { HiOutlineViewfinderCircle } from "react-icons/hi2";
 import { FaRegComments, FaRegEdit } from "react-icons/fa";
@@ -9,6 +8,7 @@ import GuideImageSlider from "@/components/GuideImageSlider";
 import { ComponentModal } from "@/components/modal-component";
 import EditRecommendation from "./edit-modal";
 import RecommendationReviews from "./reviews";
+import RatingComponent from "@/components/rating-component";
 
 interface Props {
   data: ReccomendationItem[];
@@ -17,24 +17,24 @@ interface Props {
 const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const [selected, setSelected] = useState<PlaceItem>();
-  const [openReview, setOpenReview] = useState(false)
-  
+  const [openReview, setOpenReview] = useState(false);
+
   const openToEdit = (item: PlaceItem) => {
     setSelected(item);
     setOpenEdit(true);
   };
 
-   const openToReview = (item: PlaceItem) => {
-     setSelected(item);
-     setOpenReview(true);
-   };
+  const openToReview = (item: PlaceItem) => {
+    setSelected(item);
+    setOpenReview(true);
+  };
   return (
     <>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {!!data.length &&
           data.map((item) => (
             <div className="" key={item.id}>
-              <div className="lg:h-[280px] relative">
+              <div className="h-[250px] lg:h-[280px] relative">
                 <GuideImageSlider images={item.photos} />
                 {item.isDisclosed ? (
                   <p className="absolute z-[20] top-2 right-2 text-green-600 bg-green-50 px-3 py-1 fw-500">
@@ -68,15 +68,16 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
                 </div>
                 <div className="mt-[5px] flex gap-x-2 items-center">
                   <div className="flex text-[#9847FE] fs-500 gap-x-1 items-center">
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
+                    <RatingComponent
+                      value={Number(item.avgRating)}
+                      setValue={() => false}
+                      type="review"
+                      size={17}
+                    />
                   </div>
                   <div>
                     <p className="fs-400 text-[#565656]">
-                      {formatNumber(10)} Reviews
+                      {formatNumber(`${item.totalReviews}`)} Reviews
                     </p>
                   </div>
                 </div>

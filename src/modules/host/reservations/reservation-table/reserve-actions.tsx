@@ -90,7 +90,7 @@ const ReserveActions: FC<Props> = ({ id, refetch }) => {
       <Reject title="" size="md">
         <ReusableModal
           type="warning"
-          title="Are you sure you want to reject this Reservation"
+          title="Are you sure you want to reject this reservation"
           actionTitle="Reject"
           action={rejectReserve}
           cancelTitle="Close"
@@ -101,7 +101,7 @@ const ReserveActions: FC<Props> = ({ id, refetch }) => {
       <Accept title="" size="md">
         <ReusableModal
           type="warning"
-          title="Are you sure you want to Accept this Reservation"
+          title="Are you sure you want to accept this reservation"
           actionTitle="Accept"
           action={acceptReserve}
           cancelTitle="Close"

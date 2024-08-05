@@ -1,7 +1,7 @@
+import { FC, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { FC, useEffect, useState } from "react";
 import {
   getCityFromGoogle,
   getStateFromGoogle,
@@ -10,10 +10,11 @@ import { useUtils } from "@/hooks/useUtils";
 
 interface Props {
   handleChange: (val: any, field: string) => void;
+  initVal: string;
+  setInitValue: React.Dispatch<React.SetStateAction<string>>;
 }
-const CitySearch: FC<Props> = ({}) => {
+const CitySearch: FC<Props> = ({initVal, setInitValue}) => {
   const { stayParams, saveStayParam } = useUtils();
-  const [initVal, setInitValue] = useState(stayParams.address);
 
   useEffect(() => {
     setInitValue(stayParams.address);

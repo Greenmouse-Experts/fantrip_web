@@ -30,6 +30,7 @@ interface Props {
 const BookingTab: FC<Props> = ({ home }) => {
   const navigate = useNavigate();
   const { stayParams, saveStayParam, resetParams } = useUtils();
+  const [initVal, setInitValue] = useState(stayParams.address);
   const [params, setParams] = useState<SearchParam>({
     name: stayParams.name || "",
     state: stayParams.city || stayParams.state || "",
@@ -38,7 +39,7 @@ const BookingTab: FC<Props> = ({ home }) => {
     guests: stayParams.guests || 1,
     address: stayParams.address,
     city: stayParams.city || "",
-    property: ""
+    property: "",
   });
 
   const handleChange = (val: any, field: string) => {
@@ -53,6 +54,8 @@ const BookingTab: FC<Props> = ({ home }) => {
   const handleSearch = () => {
     const payload = {
       ...stayParams,
+      ...(!stayParams.state && {state: initVal}),
+      ...(!stayParams.state && {address: initVal}),
       checkIn: params.checkIn,
       checkOut: params.checkOut,
       guests: params.guests,
@@ -69,7 +72,11 @@ const BookingTab: FC<Props> = ({ home }) => {
         <div className="lg:flex w-full ">
           <div className="grid items-center gap-9 md:p-3 md:grid-cols-2 lg:gap-0 lg:grid-cols-4 lg:divide-x divide-gray-400 w-full">
             <div className="w-full">
-              <CitySearch handleChange={handleChange}/>
+              <CitySearch
+                handleChange={handleChange}
+                initVal={initVal}
+                setInitValue={setInitValue}
+              />
             </div>
             <div className="relative lg:flex justify-center">
               <Menu>

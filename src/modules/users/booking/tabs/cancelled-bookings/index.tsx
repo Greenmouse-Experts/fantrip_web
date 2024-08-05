@@ -1,5 +1,5 @@
 import PyramidSpin from "@/components/loaders/pyramid-spin";
-import { guestFetchReservation } from "@/services/api/booking-api";
+import { guestFetchBooking } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import CancelledBookingList from "./components/booking-lisiting";
@@ -11,8 +11,8 @@ const CancelledBookings = () => {
     page: 1
   })
   const { isLoading, data, refetch } = useQuery({
-    queryFn: () => guestFetchReservation(params),
-    queryKey: ["get-guest-booking", params.status],
+    queryFn: () => guestFetchBooking(params),
+    queryKey: ["get-cancelled-booking", params.status],
   });
   const handleNext = () => {
     setParams({
