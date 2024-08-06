@@ -23,7 +23,7 @@ const PriceBooking = () => {
             What is the pricing range for accommodations on fantrip?
           </p>
           <div className="grid gap-5">
-            <PolicyList text=" Hosting prices on fantrip are intended to make accommodations affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
+            <PolicyList text=" Hosting prices on Fantrip are intended to make accommodations affordable for sports fans while also ensuring hosts are fairly compensated for their hospitality." />
           </div>
           <p className="fw-500 mb-3 lg:mb-4 mt-5">
             Are there any additional fees for guests?
