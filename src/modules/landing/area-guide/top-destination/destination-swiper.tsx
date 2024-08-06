@@ -20,7 +20,7 @@ const TopDestinationSwiper = () => {
       img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20120_2_blzltp.png",
     },
     {
-      location: "Span",
+      location: "Spain",
       img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650852/fantrip/Rectangle_20121_1_u0hqn5.png",
     },
   ];

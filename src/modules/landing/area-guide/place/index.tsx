@@ -1,12 +1,14 @@
 import GuideImageSlider from "@/components/GuideImageSlider";
 import { ReccomendationItem } from "@/lib/contracts/place";
 import dayjs from "dayjs";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BiCategoryAlt } from "react-icons/bi";
 import { FaRegUser } from "react-icons/fa6";
 import { IoLocationOutline } from "react-icons/io5";
 import PlacesReviews from "./reviews";
 import { formatName } from "@/lib/utils/formatHelp";
+import { ComponentModal } from "@/components/modal-component";
+import ViewMore from "./reviews/view-more";
 
 interface Props {
   data: ReccomendationItem;
@@ -24,10 +26,12 @@ const AreaCategoryPlaceIndex: FC<Props> = ({ data }) => {
     createdDate,
   } = data;
   const placeTags = JSON.parse(tags);
+  const [showMore, setShowMore] = useState(false);
+
   return (
     <div className="py-12">
       <div className="lg:grid items-stretch grid-cols-2 gap-10">
-        <div className="w-full min-h-[300px] h-full">
+        <div className="w-full max-h-[450px] min-h-[300px] h-full">
           <GuideImageSlider images={photos} />
         </div>
         <div>
@@ -52,7 +56,10 @@ const AreaCategoryPlaceIndex: FC<Props> = ({ data }) => {
               <BiCategoryAlt className="shrink-0 text-prima" />
               <p className="text-prima">{spot.name}</p>
             </div>
-            <p className="mt-5 whitespace-pre-wrap">{formatName(description, 430)}</p>
+            <p className="mt-5 whitespace-pre-wrap">{`${formatName(
+              description,
+              430
+            )}`} {description.length > 420? <span className="cursor-pointer text-prima fw-500" onClick={() => setShowMore(true)}>View More</span> : ''}</p>
           </div>
           <div className="mt-4 grid gap-1">
             {placeTags.map((item: string, i: number) => (
@@ -67,6 +74,18 @@ const AreaCategoryPlaceIndex: FC<Props> = ({ data }) => {
       <div className="mt-8">
         <PlacesReviews id={id} />
       </div>
+      <ComponentModal
+        title={`${name}`}
+        shouldShow={showMore}
+        onClose={() => setShowMore(false)}
+        type="recommend"
+      >
+        <ViewMore
+          desc={description}
+          tags={placeTags}
+          close={() => setShowMore(false)}
+        />
+      </ComponentModal>
     </div>
   );
 };

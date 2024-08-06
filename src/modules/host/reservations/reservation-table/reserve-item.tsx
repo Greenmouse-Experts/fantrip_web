@@ -4,7 +4,7 @@ import { FC } from "react";
 import { FaImage } from "react-icons/fa6";
 import { HiLocationMarker } from "react-icons/hi";
 import ReserveActions from "./reserve-actions";
-import { formatStatus } from "@/lib/utils/formatHelp";
+import { formatName, formatStatus } from "@/lib/utils/formatHelp";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 import { MdSportsSoccer } from "react-icons/md";
 
@@ -37,7 +37,7 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
               <p className="fw-500 text-lg lg:text-xl">
                 {guest.firstName} {guest.lastName}
               </p>
-              <p className="mt-1">{guest.bio}</p>
+              <p className="mt-1">{formatName(guest.bio, 60)}</p>
               <div className="flex gap-x-1 mt-1">
                 <HiLocationMarker className="mt-1" />
                 <p>
