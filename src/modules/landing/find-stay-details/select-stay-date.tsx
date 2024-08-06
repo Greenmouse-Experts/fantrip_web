@@ -193,6 +193,9 @@ const SelectStayDate: FC<Props> = ({
   // modal for successful booking
   const { Dialog, setShowModal } = useDialog();
 
+  // enter favourite team
+  const { Dialog:FavModal, setShowModal:ShowFavModal } = useDialog();
+
   return (
     <div className="grid gap-3 mt-4 pb-6">
       <div className="px-2 grid gap-3">
@@ -292,6 +295,9 @@ const SelectStayDate: FC<Props> = ({
       <Dialog title="" size="2xl">
         <BookingSuccess />
       </Dialog>
+      <FavModal title="" size="md">
+        <></>
+      </FavModal>
     </div>
   );
 };

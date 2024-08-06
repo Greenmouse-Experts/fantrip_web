@@ -17,26 +17,25 @@ const FaqList = () => {
         "Fantrip is an all-in-one platform tailored for sports fans, blending travel, community engagement, and exclusive sports content into a seamless fan experience. We offer a unique and affordable way to book accommodations with fellow sports enthusiasts, ensuring your stay is part of your fan journey. Our community features, including chat rooms and quizzes, create a lively space for fans to connect and share their passion. The area guide, crafted with contributions from fans, provides insider tips on local eateries, pubs, and parking, making game day navigation a breeze. Fantrip is your go-to app for an enriched, comprehensive fan experience.",
     },
     {
-      question: "What is fantrip's approach to fan accommodations",
+      question: "What is fantrip's approach to fan accommodations?",
       answer:
-        "Fantrip is about connecting fans with fellow enthusiasts for accommodations. Hosts can set fee prices for a night, encouraging affordable, fan-friendly stays. It’s about joining a fellow fan's home, sharing experiences, and the passion for the game. Fantrip holds payments and disburses them once the fan arrives, ensuring a smooth transaction. A small service fee of €5 applies if a host offers free accommodation.",
+        "Fantrip is about connecting fans with fellow enthusiasts for accommodations. Hosts set affordable fees, encouraging fan-friendly stays. It’s about joining a fellow fan's home, sharing experiences, and the passion for the game. Fantrip holds payments and disburses them once the fan arrives, ensuring a smooth transaction. A small service fee of €5 applies if a host offers free accommodation.",
     },
     {
       question: "What type of accommodation can I book?",
       answer:
-        "From couches and sofas to beds, choose what suits your fan journey. We highly recommend hosts to be present during the stay to share and enhance the fan experience. Automated communications and reminders about bookings and reviews are sent to ensure a hassle-free experience. We advise booking in advance for major games as match information becomes available.",
+        "From couches and sofas to beds, choose what suits your fan journey. We highly recommend that hosts be present during the stay to share and enhance the fan experience. Automated communications, reminders about bookings, and reviews are sent to ensure a hassle-free experience. We advise booking in advance for major games as match information becomes available.",
     },
     {
       question: "How does fantrip ensure fair pricing for accommodations?",
       answer: (
         <p>
-          At fantrip, we encourage our hosts to set competitive and fair prices
-          within a maximum limit of €70. This approach is designed to foster a
-          community-driven spirit, prioritizing the fan experience over profit.
-          Hosts have the ability to view what others are charging, enabling them
-          to set reasonable and attractive prices. To ensure guest satisfaction,
-          payment is released to hosts only after the fan's arrival. For more
-          details, please visit our{" "}
+          At fantrip, we encourage our hosts to set competitive and fair prices.
+          This approach nurtures a community-driven spirit, prioritizing the fan
+          experience over profit. Hosts can view what others are charging,
+          enabling them to set reasonable and attractive prices. To ensure guest
+          satisfaction, payment is released to hosts only after the fan's
+          arrival. For more details, please visit our{" "}
           <Link to={"/get-help"} className="text-prima underline">
             help page on pricing
           </Link>
@@ -72,7 +71,7 @@ const FaqList = () => {
     {
       question: "I’ve got an extra spare room. How do I list them?",
       answer:
-        "Yes, if you're a sports fan with a spare room, you can list them on our platform. Join the team! Just follow our easy steps to list your tickets or fan space. Help make someone’s game day unforgettable! ",
+        "Yes, if you're a sports fan with a spare room, you can list them on our platform. Join the team! Just follow our easy steps to list your tickets or fan space. Help make someone’s game day unforgettable!",
     },
     {
       question: "What if there’s a foul play during my stay?",
@@ -80,14 +79,14 @@ const FaqList = () => {
         "Flag it immediately! Our support team is here to run interference and get things back on track, so your game-day experience is nothing but net.",
     },
     {
-      question: "How does the platform help with area guide recommendations?",
+      question: "How does the platform help with area guide recommendations??",
       answer:
-        "We've got your back! Think of us as your game-day assistant. Fans are always looking for authentic recommendations on where to eat, dine, find the best sports bars, or explore sightseeing spots, especially when traveling for away games. So we thought, why not have these recommendations come directly from fans like you? Yup!. Not only do we hook you up with top fan-approved spots for eating and celebrating, but we also tackle one of the trickiest parts of game day – parking! Say goodbye to the endless circling for a spot. Our platform offers recommendations for the best parking spots close to the stadium, all suggested by local fans. Whether it's the hottest post-game hangout or the closest parking space, we've got the insider info to make your match day smooth and fun.",
+        "We've got your back! Think of us as your game-day assistant. Fans are always looking for authentic recommendations on where to eat, dine, find the best sports bars, or explore sightseeing spots, especially when traveling for away games. So we thought, why not have these recommendations come directly from fans like you? Yup! We hook you up with top fan-approved spots for eating and celebrating and also tackle one of the trickiest parts of game day – parking! Say goodbye to the endless circling for a spot. Our platform offers recommendations for the best parking spots close to the stadium, all suggested by local fans. Whether it's the hottest post-game hangout or the closest parking space, we've got the insider info to make your match day smooth and fun.",
     },
     {
       question: "Can I contribute to the Area Guide?",
       answer:
-        "Absolutely! Navigate to “Submit a Recommendation” in your dashboard, fill in the details, and submit. Your input helps fellow fans discover the best spots for their matchday experience.",
+        "Absolutely! Navigate to “Submit a Recommendation,” fill in the details, and submit. Your input helps fellow fans discover the best spots for their matchday experience.",
     },
     {
       question: "What are fantrip's Chat Room and Game Quiz features?",

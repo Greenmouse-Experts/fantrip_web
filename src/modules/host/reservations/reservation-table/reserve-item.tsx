@@ -6,6 +6,7 @@ import { HiLocationMarker } from "react-icons/hi";
 import ReserveActions from "./reserve-actions";
 import { formatStatus } from "@/lib/utils/formatHelp";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
+import { MdSportsSoccer } from "react-icons/md";
 
 interface Props {
   data: BookingItem;
@@ -41,6 +42,12 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
                 <HiLocationMarker className="mt-1" />
                 <p>
                   {guest.state} {guest.country}
+                </p>
+              </div>
+              <div className="flex gap-x-1 mt-1">
+                <MdSportsSoccer className="mt-1" />
+                <p>
+                  {guest.favTeam? `${guest.favTeam} fan` : ``}
                 </p>
               </div>
             </div>

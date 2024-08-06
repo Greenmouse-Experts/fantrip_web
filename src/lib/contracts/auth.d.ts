@@ -40,4 +40,5 @@ export interface ForgetInputTyping {
     dob: string
     roomPicture: string
     createdDate: string
+    favTeam: string
   }
