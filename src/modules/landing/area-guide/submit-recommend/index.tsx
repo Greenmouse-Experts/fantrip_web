@@ -151,6 +151,7 @@ const SubmitRecommendIndex: FC<Props> = ({ close }) => {
           setValue={setValue}
           next={handleNext}
           prev={handlePrev}
+          image={photos || []}
           setImage={setPhotos}
           prevImage={prevImgs}
           tags={tags}

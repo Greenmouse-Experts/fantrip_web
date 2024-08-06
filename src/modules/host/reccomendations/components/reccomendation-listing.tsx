@@ -1,7 +1,6 @@
 import { ReccomendationItem } from "@/lib/contracts/place";
 import { formatNumber } from "@/lib/utils/formatHelp";
 import { FC, useState } from "react";
-import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { HiOutlineViewfinderCircle } from "react-icons/hi2";
 import { FaRegComments, FaRegEdit } from "react-icons/fa";
@@ -9,6 +8,7 @@ import GuideImageSlider from "@/components/GuideImageSlider";
 import { ComponentModal } from "@/components/modal-component";
 import EditRecommendation from "./edit-modal";
 import RecommendationReviews from "./reviews";
+import RatingComponent from "@/components/rating-component";
 
 interface Props {
   data: ReccomendationItem[];
@@ -69,19 +69,20 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
                 </div>
                 <div className="mt-[5px] flex gap-x-2 items-center">
                   <div className="flex text-[#9847FE] fs-500 gap-x-1 items-center">
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
+                    <RatingComponent
+                      value={Number(item.avgRating)}
+                      setValue={() => false}
+                      type="review"
+                      size={17}
+                    />
                   </div>
                   <div>
-                    <p className="fs-400 text-[#565656]">
-                      {formatNumber(10)} Reviews
+                    <p className="fs-400 text-gray-300">
+                      {formatNumber(`${item.totalReviews}`)} Reviews
                     </p>
                   </div>
                 </div>
-                <p className="text-[#565656] fs-500 mt-[5px]">
+                <p className="text-gray-300 fs-500 mt-[5px]">
                   {item.location}
                 </p>
               </div>

@@ -4,10 +4,12 @@ import { SpotCategoryItem } from "@/lib/contracts/place";
 import { removeDulicates } from "@/lib/utils/formatHelp";
 import { getSpotsCat } from "@/services/api/places-api";
 import { GOOGLE_MAP_KEY } from "@/services/constant";
+import { useToast } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Control, Controller, FieldErrors } from "react-hook-form";
+import { FcCancel } from "react-icons/fc";
 import { IoSend } from "react-icons/io5";
 interface InputTyping {
   recommend_type: string;
@@ -23,6 +25,7 @@ interface Props {
   prev: () => void;
   setImage: React.Dispatch<React.SetStateAction<File[] | undefined>>;
   prevImage: string[] | undefined;
+  image: File[];
   isValid: boolean;
   tags: string[];
   setTags: React.Dispatch<React.SetStateAction<string[]>>;
@@ -31,8 +34,8 @@ const RecommendForm: FC<Props> = ({
   control,
   errors,
   setValue,
+  image,
   setImage,
-  prevImage,
   next,
   tags,
   setTags,
@@ -45,18 +48,47 @@ const RecommendForm: FC<Props> = ({
   ]);
   const [inputTags, setInputTags] = useState("");
   const [showAdd, setShowAdd] = useState(false);
+  const toast = useToast();
+  // const [imagesSelected, setImagesSelected] = useState<File[]>(image || []);
+  const [selectedImg, setSelectedImg] = useState<File[] | undefined>();
+
   const { data: spots } = useQuery({
     queryKey: ["get-spot-categories"],
     queryFn: getSpotsCat,
   });
+
+  useEffect(() => {
+    if (image.length >= 4) {
+      toast({
+        title: "Hello, lets's have 4 for now",
+        isClosable: true,
+        position: "top",
+        status: "info",
+      });
+      return;
+    }
+    const selected = selectedImg || [];
+    const addedImages = [...image, ...selected];
+    setImage(addedImages);
+  }, [selectedImg]);
+
+  const handleRemove = (file: File) => {
+    const filtered = image.filter((item) => item.name !== file.name);
+    setImage(filtered);
+  };
+
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
+    options: {
+      types: ["address"],
+    },
     onPlaceSelected: (place) => {
       setValue("location", place?.formatted_address);
     },
   });
+
   const handlePhoto = async (e: any) => {
-    if (e.target.files?.length) setImage(e.target.files);
+    if (e.target.files?.length) setSelectedImg(e.target.files);
   };
 
   // highlights
@@ -252,15 +284,20 @@ const RecommendForm: FC<Props> = ({
             </div>
             <p className="fw-600">(Optional)</p>
           </div>
-          <div className="flex gap-x-2 overflow-x-auto scroll-pro mt-2">
-            {!!prevImage?.length &&
-              prevImage.map((item, i) => (
-                <img
-                  src={item}
-                  alt="reccomend"
-                  className="w-[200px] h-[140px] rounded-lg"
-                  key={i}
-                />
+          <div className="flex gap-x-2 py-2 overflow-x-auto scroll-pro mt-2">
+            {!!image?.length &&
+              image.map((item, i) => (
+                <div className="relative" key={i}>
+                  <FcCancel
+                    className="absolute -top-3 -right-3 cursor-pointer text-2xl lg:text-3xl"
+                    onClick={() => handleRemove(item)}
+                  />
+                  <img
+                    src={URL.createObjectURL(item)}
+                    alt="room"
+                    className="lg:w-36 lg:h-36 object-cover"
+                  />
+                </div>
               ))}
           </div>
         </div>

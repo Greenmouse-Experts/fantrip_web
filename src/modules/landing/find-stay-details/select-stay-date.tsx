@@ -14,6 +14,7 @@ import { formatNumber } from "@/lib/utils/formatHelp";
 import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
 import { getFutureDate, returnNumberOnly } from "@/lib/utils/helper-function";
+import EnterFaveName from "./components/enter-favname";
 
 type ValuePiece = Date | null;
 interface SearchParam {
@@ -303,8 +304,8 @@ const SelectStayDate: FC<Props> = ({
       <Dialog title="" size="2xl">
         <BookingSuccess />
       </Dialog>
-      <FavModal title="" size="md">
-        <></>
+      <FavModal title="" size="xl">
+        <EnterFaveName close={() => ShowFavModal(false)} handleReserve={handleReserveAction}/>
       </FavModal>
     </div>
   );
