@@ -41,7 +41,7 @@ const SelectStayDate: FC<Props> = ({
   maxNight,
   maxGuest,
 }) => {
-  const { isLoggedIn, isHost } = useAuth();
+  const { isLoggedIn, user, isHost } = useAuth();
   const navigate = useNavigate();
   const [params, setParams] = useState<SearchParam>({
     city: "",
@@ -140,22 +140,7 @@ const SelectStayDate: FC<Props> = ({
     getTotal();
   }, [params.checkIn, params.checkOut]);
 
-  const reserveStay = async () => {
-    if (!isLoggedIn) {
-      navigate("/auth/login");
-      return;
-    }
-    if (isHost) {
-      toast({
-        render: () => (
-          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
-            Please switch to guest account to make reservations
-          </div>
-        ),
-        position: "top",
-      });
-      return;
-    }
+  const handleReserveAction = async () => {
     setIsBusy(true);
     const payload = {
       stay: id,
@@ -190,11 +175,34 @@ const SelectStayDate: FC<Props> = ({
       });
   };
 
+  const reserveStay = async () => {
+    if (!isLoggedIn) {
+      navigate("/auth/login");
+      return;
+    }
+    if (isHost) {
+      toast({
+        render: () => (
+          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
+            Please switch to guest account to make reservations
+          </div>
+        ),
+        position: "top",
+      });
+      return;
+    }
+    if (!user.favTeam) {
+      ShowFavModal(true);
+      return;
+    }
+    handleReserveAction();
+  };
+
   // modal for successful booking
   const { Dialog, setShowModal } = useDialog();
 
   // enter favourite team
-  const { Dialog:FavModal, setShowModal:ShowFavModal } = useDialog();
+  const { Dialog: FavModal, setShowModal: ShowFavModal } = useDialog();
 
   return (
     <div className="grid gap-3 mt-4 pb-6">
