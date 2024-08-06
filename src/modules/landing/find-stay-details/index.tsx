@@ -64,7 +64,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
             />
           </div>
           <div className="mt-7">
-            <CondoRatings />
+            <CondoRatings id={id}/>
           </div>
           <div className="mt-7">
             <Availability from={availableFrom} to={availableTo} />

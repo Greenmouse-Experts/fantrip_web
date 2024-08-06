@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { Drawer, DrawerOverlay, DrawerContent } from "@chakra-ui/react";
 import BookingDetails from "../../../components/booking-details";
-import ChatForStay from "@/modules/chat/stay-chat";
+import LeaveReviewIndex from "../../../components/leave-review";
 
 interface Props {
   data: PaidBookingItem[];
@@ -83,7 +83,7 @@ const CompletedBookingList: FC<Props> = ({ data }) => {
                   </Link>
                 </div>
                 <div className="flex md:justify-end">
-                  <ChatForStay id="" host={item.reservation.stay.host} />
+                  <LeaveReviewIndex id={`${item.reservation.stay.id}`}/>
                 </div>
               </div>
             </div>
