@@ -62,7 +62,8 @@ const LoginForm = () => {
           isNickname: data.data.isNickname,
           dob: data.data.dob,
           isVerified: data.data.verifiedAsHost,
-          favTeam: data.data.favTeam
+          favTeam: data.data.favTeam,
+          roomPicture: data.data.roomPicture
         });
         saveAccount(data.data.bankAccounts)
         if(data.data.role === 'host'){navigate('/host')}
