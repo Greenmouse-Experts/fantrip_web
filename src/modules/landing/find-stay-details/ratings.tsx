@@ -35,7 +35,7 @@ const CondoRatings: FC<Props> = ({ id }) => {
             <p className="fw-500 relative -top-1">/5.0 ratings</p>
           </div>
           <div className="mt-6 grid gap-5">
-            {data?.data?.results.length &&
+            {!!data?.data?.results.length &&
               data?.data?.results.map((item: ReviewResult) => (
                 <div>
                   <div className="flex gap-x-2 items-center">

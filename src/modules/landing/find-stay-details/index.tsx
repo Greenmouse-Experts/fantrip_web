@@ -29,6 +29,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     currency,
     maxNights,
     maxGuests,
+    avrRating,
   } = data;
   return (
     <div>
@@ -37,7 +38,11 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
           <StayGallery data={photos} />
           <div className="hidden lg:block absolute z-20 top-3 left-3 w-[150px]">
             <div className="bg-[#FFEDF2] rounded-t-[10px] text-center p-4 pb-7">
-              <p className="fs-300 fw-500">5 Star Rating</p>
+              <p className="fs-300 fw-500">
+                {avrRating
+                  ? `${Math.ceil(Number(avrRating))} Star Rating`
+                  : `No Rating`}
+              </p>
             </div>
             <div className="p-2 pb-4 pt-6 relative bg-white rounded-b-[10px]">
               <li className="fs-300">Recommended</li>
@@ -64,7 +69,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
             />
           </div>
           <div className="mt-7">
-            <CondoRatings id={id}/>
+            <CondoRatings id={id} />
           </div>
           <div className="mt-7">
             <Availability from={availableFrom} to={availableTo} />
