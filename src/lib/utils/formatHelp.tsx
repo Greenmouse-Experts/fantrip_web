@@ -104,7 +104,7 @@ export const formatStatus = {
   confirmed: (
     <p className="flex gap-x-2 items-center">
       <span className="w-3 h-3 block circle bg-green-500"></span>
-      <span className="syne fw-600 text-green-500">Cofirmed</span>
+      <span className="syne fw-600 text-green-500">Confirmed</span>
     </p>
   ),
   draft: (
