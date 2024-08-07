@@ -39,8 +39,8 @@ const VerifyDetails:FC<Props> = ({verifiedId, verifiedEmail, verifiedPhone}) => 
                   }`}
                 />
                 <p
-                  className={`lg:fw-600 ${
-                    verifiedEmail ? "text-green-600" : ""
+                  className={`lg:fw-500 ${
+                    verifiedPhone ? "text-green-600" : ""
                   }`}
                 >
                   Phone Number
@@ -53,7 +53,7 @@ const VerifyDetails:FC<Props> = ({verifiedId, verifiedEmail, verifiedPhone}) => 
                   }`}
                 />
                 <p
-                  className={`lg:fw-600 ${
+                  className={`lg:fw-500 ${
                     verifiedEmail ? "text-green-600" : ""
                   }`}
                 >
