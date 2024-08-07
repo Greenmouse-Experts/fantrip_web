@@ -4,6 +4,7 @@ import { useRoutine } from "@/hooks/useRoutine";
 import useStay from "@/hooks/useStay";
 import { AmenityItem } from "@/lib/contracts/routine";
 import {
+  getCityFromGoogle,
   getCountryFromGoogle,
   getStateFromGoogle,
 } from "@/lib/utils/helper-function";
@@ -37,6 +38,7 @@ const StartListing: FC<Props> = ({ next }) => {
       address: stay.address || "",
       description: stay.description || "",
       state: stay.state || "",
+      city: stay.city || "",
       highlightFeature: stay.highlightFeature || "",
     },
   });
@@ -46,6 +48,7 @@ const StartListing: FC<Props> = ({ next }) => {
       types: ["address"],
     },
     onPlaceSelected: (place) => {
+      const city = getCityFromGoogle(place.address_components)
       const state = getStateFromGoogle(place.address_components);
       const country = getCountryFromGoogle(place.address_components);
       if (AfricanCountries.includes(country)) {
@@ -54,11 +57,12 @@ const StartListing: FC<Props> = ({ next }) => {
       }
       setLocationError(false);
       setValue("state", state);
+      setValue("city", city)
       setValue("address", place?.formatted_address);
     },
   });
   const handleNext = (data: any) => {
-    if (data.state === "") {
+    if (data.state === "" || data.city === "") {
       toast({
         title: "Plase select a Stay location",
         isClosable: true,

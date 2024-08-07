@@ -1,3 +1,4 @@
+import { UserItem } from "./auth";
 import { AmenityItem, PropertyItem } from "./routine";
 
 export interface AmenityInput {
@@ -22,6 +23,7 @@ export interface StayItemInput {
   maxNights: number;
   currency: string;
   maxGuests: number;
+  city: string; 
 }
 
 export interface UpdateStayStatusInput {
@@ -66,6 +68,7 @@ export interface AvailableStayItem extends StayItem {
     state: string;
     country: string;
     bio: string;
+    roomPicture: string
   };
 }
 
