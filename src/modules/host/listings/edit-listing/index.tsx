@@ -5,6 +5,7 @@ import GeneralInformation from "./general-info";
 import AmenitiesInfo from "./amenities";
 import SpecialOfferInfo from "./special-offer";
 import AvailabilityInfo from "./availability-info";
+import IndexStayImage from "./index-image";
 
 interface Props {
   data: StayItem;
@@ -24,8 +25,11 @@ const EditListingIndex: FC<Props> = ({ data, refetch }) => {
   return (
     <div>
       <p className="text-2xl syne fw-600">{name}</p>
-      <div className="mt-6 grid gap-10">
-        <EditListingImage images={photos} id={id} refetch={refetch}/>
+      <div className="mt-6">
+        <IndexStayImage/>
+      </div>
+      <div className="mt-3 grid gap-10">
+        <EditListingImage images={photos} id={id} refetch={refetch} />
         <GeneralInformation data={data} refetch={refetch} />
         <AmenitiesInfo
           amenities={amenities}
@@ -34,7 +38,12 @@ const EditListingIndex: FC<Props> = ({ data, refetch }) => {
           refetch={refetch}
         />
         <SpecialOfferInfo special={specialOffers} id={id} refetch={refetch} />
-        <AvailabilityInfo from={availableFrom} to={availableTo} id={id} refetch={refetch}/>
+        <AvailabilityInfo
+          from={availableFrom}
+          to={availableTo}
+          id={id}
+          refetch={refetch}
+        />
       </div>
     </div>
   );

@@ -49,11 +49,11 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
               <div className="w-6/12 flex justify-center">
                 <div className="w-10/12 grid divide-y-2">
                   <div>
-                    <p className="fw-600 text-2xl">113</p>
+                    <p className="fw-600 text-2xl">{data?.totalReviews}</p>
                     <p>Reviews</p>
                   </div>
                   <div className="pt-1 mt-1">
-                    <p className="fw-600 text-2xl">4.4</p>
+                    <p className="fw-600 text-2xl">{data?.avgRating || 0}</p>
                     <p>Rating</p>
                   </div>
                   <div className="pt-1 mt-1">
@@ -76,7 +76,7 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
             </div>
             <p className="bg-gradient p-[0.4px] my-7"></p>
             <div>
-              <HostReviews />
+              <HostReviews reviews={data?.reviews || []}/>
             </div>
             <p className="bg-gradient p-[0.4px] my-7"></p>
             <div>
