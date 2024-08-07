@@ -1,6 +1,5 @@
 import logo from "@/assets/footer_logo.svg";
 import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
-import { GiWhistle } from "react-icons/gi";
 import { SlSocialInstagram } from "react-icons/sl";
 import { useNavigate } from "react-router-dom";
 
@@ -77,11 +76,6 @@ const LandingFooter = () => {
         <div className="py-12">
           <p className="text-center text-white fs-400">
             © 2024 fantrip. All rights reserved.{" "}
-            <span className="block lg:inline">
-              {" "}
-              | Whistle Blower{" "}
-              <GiWhistle className="text-white inline text-xl" />
-            </span>
           </p>
         </div>
       </div>
