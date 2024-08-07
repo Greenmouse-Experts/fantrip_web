@@ -57,6 +57,7 @@ export interface StayItem {
   state: string;
   maxGuests: number;
   approved: boolean;
+  city: string;
 }
 
 export interface AvailableStayItem extends StayItem {

@@ -61,7 +61,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
                 onClick={() => navigate(`/find-stay/${item.id}`)}
               >
                 <p className="fs-500 fw-500 capitalize">
-                  {formatName(getTempCity(item.address), 10)}
+                  {formatName(item.city || getTempCity(item.address), 10)}
                 </p>
                 <p className="fw-500">
                   {item.currency}
