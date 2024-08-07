@@ -32,7 +32,7 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
   return (
     <>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {!!data.length &&
+        {!!data?.length &&
           data.map((item) => (
             <div className="" key={item.id}>
               <div className="lg:h-[280px] relative">

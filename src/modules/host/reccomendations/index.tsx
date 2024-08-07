@@ -37,8 +37,8 @@ const ReccomendationsIndex = () => {
             <EmptyNetState text="You have not recommended any location yet." />
           </div>
         )}
-        {!isLoading && (
-          <ReccomendationListing refetch={refetch} data={data.data} />
+        {!isLoading && !!data?.data?.length && (
+          <ReccomendationListing refetch={refetch} data={data?.data} />
         )}
       </div>
       <div className="text-black">
