@@ -12,7 +12,7 @@ const EditListingImage: FC<Props> = ({ images, id, refetch }) => {
   const { Dialog, setShowModal } = useDialog();
   return (
     <div className="">
-      <p className="mb-4 fw-600 text-lg">Stay Images</p>
+      <p className="mb-4 fw-600 text-lg">Additional stay images</p>
       <div className="grid grid-cols-4 gap-4">
         {images.map((item, i) => (
           <img

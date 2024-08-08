@@ -69,7 +69,7 @@ const IndexStayImage = () => {
   };
   return (
     <div>
-      <p className="mb-4 fw-600 text-lg">Index Stay Image</p>
+      <p className="mb-4 fw-600 text-lg">Profile card stay image</p>
       <div className="mt-3 grid lg:grid-cols-4">
         <div className="relative">
           <img

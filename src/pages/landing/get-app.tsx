@@ -34,8 +34,7 @@ const GetAppPage = () => {
                 <p className="mt-8">
                   Designed by sports journalists and techy sports enthusiasts
                   for fans like you! Your front-row ticket to the most immersive
-                  fan experience. Ready to play? Get the fantrip app and stay in
-                  the game, wherever you are!
+                  fan experience.
                 </p>
                 <p className="mt-6">
                   Ready to play? Get the fantrip app and stay in the game,
