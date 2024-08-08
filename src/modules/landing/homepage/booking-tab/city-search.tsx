@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FC, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import { usePlacesWidget } from "react-google-autocomplete";
@@ -37,15 +38,15 @@ const CitySearch: FC<Props> = ({initVal, setInitValue}) => {
     },
   });
   return (
-    <div className="relative lg:overflow-hidden">
-      <div className="flex gap-x-2 items-center relative top-4 md:top-0 lg:top-0">
+    <div className="relative lg:overflow-hidden ">
+      <div className="flex gap-x-2 items-center relative top-4 md:top-0 lg:top-0 md:border-none border-b border-gray-500">
         <IoSearch className="text-xl shrink-0" />
         <input
           type="text"
           ref={ref as any}
           value={initVal}
           onChange={(e) => setInitValue(e.target.value)}
-          className="w-full lg:w-auto outline-none p-2 placeholder:text-black"
+          className="w-full lg:w-auto outline-none p-2 placeholder:text-black "
           placeholder="Enter city or region"
         />
       </div>
