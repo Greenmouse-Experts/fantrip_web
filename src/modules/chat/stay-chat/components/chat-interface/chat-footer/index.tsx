@@ -5,10 +5,12 @@ import { IoSend } from "react-icons/io5";
 
 interface Props {
   socket: any;
+  type: 'host' | 'guest'
 }
-const ChatFooter: FC<Props> = ({ socket }) => {
-  const { hostId } = useChat();
+const ChatFooter: FC<Props> = ({ socket, type }) => {
+  const { hostId, miniId } = useChat();
   const { token } = useAuth();
+  const idToRender = type === 'guest'? hostId : miniId
   const [msgInput, setMsgInput] = useState("");
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +18,7 @@ const ChatFooter: FC<Props> = ({ socket }) => {
       return;
     }
     socket.emit("sendMessage", {
-      chatBuddy: hostId,
+      chatBuddy: idToRender,
       message: msgInput,
       file: null,
       token: `${token}`,

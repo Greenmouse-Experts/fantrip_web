@@ -5,10 +5,13 @@ import { createJSONStorage, persist } from "zustand/middleware";
 interface Props {
   host: ChatUserItem;
   guest: ChatUserItem;
+  mini: ChatUserItem;
+  saveMiniChat: (data: ChatUserItem) => void;
   saveGuestChat: (data: ChatUserItem) => void;
   saveHostChat: (data: ChatUserItem) => void;
   clearHost: () => void;
   clearGuest: () => void;
+  clearMini: () => void;
 }
 const chatInitState = {
   host: {
@@ -39,12 +42,27 @@ const chatInitState = {
     },
     chats: [],
   },
+  mini: {
+    page: 1,
+    activeId: "",
+    user: {
+      firstName: "",
+      lastName: "",
+      nickname: "",
+      verifiedAsHost: false,
+      role: "",
+      picture: "",
+      id: "",
+    },
+    chats: [],
+  },
 };
 const useChatStore = create<Props>()(
   persist(
     (set) => ({
       host: chatInitState.host,
       guest: chatInitState.guest,
+      mini: chatInitState.mini,
       saveGuestChat: (data: ChatUserItem) =>
         set(() => ({
           guest: data,
@@ -53,6 +71,10 @@ const useChatStore = create<Props>()(
         set(() => ({
           host: data,
         })),
+      saveMiniChat: (data: ChatUserItem) =>
+        set(() => ({
+          mini: data,
+        })),
       clearGuest: () =>
         set(() => ({
           guest: chatInitState.guest,
@@ -60,6 +82,10 @@ const useChatStore = create<Props>()(
       clearHost: () =>
         set(() => ({
           host: chatInitState.host,
+        })),
+      clearMini: () =>
+        set(() => ({
+          mini: chatInitState.host,
         })),
     }),
     {

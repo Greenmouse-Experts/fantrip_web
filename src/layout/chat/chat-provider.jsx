@@ -18,7 +18,7 @@ const ChatProvider = () => {
       {isMobile ? (
         <Suspense fallback={<div>Loading...</div>}>
           <LargeChatWrapper open={showModal}>
-            <ChatInterface close={() => setShowModal(false)} />
+            <ChatInterface close={() => setShowModal(false)} type="guest" />
           </LargeChatWrapper>
         </Suspense>
       ) : (
@@ -32,7 +32,7 @@ const ChatProvider = () => {
           <DrawerOverlay />
           <DrawerContent>
             <div className="mobile-chat-container">
-              <ChatInterface close={() => setShowModal(false)} />
+              <ChatInterface close={() => setShowModal(false)} type="guest" />
             </div>
           </DrawerContent>
         </Drawer>
