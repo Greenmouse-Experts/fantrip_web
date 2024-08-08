@@ -32,12 +32,14 @@ const GetAppPage = () => {
                   Mobile App
                 </p>
                 <p className="mt-8">
-                  Stay connected to your favorite teams and never miss a game
-                  with the fantrip Mobile App. Get real-time updates, exclusive
-                  content, and seamless home booking all in one place.
+                  Designed by sports journalists and techy sports enthusiasts
+                  for fans like you! Your front-row ticket to the most immersive
+                  fan experience. Ready to play? Get the fantrip app and stay in
+                  the game, wherever you are!
                 </p>
                 <p className="mt-6">
-                  Download now and join the ultimate fan experience!
+                  Ready to play? Get the fantrip app and stay in the game,
+                  wherever you are!
                 </p>
               </div>
               <div className="flex items-center gap-x-4 lg:gap-x-12 mt-12">
