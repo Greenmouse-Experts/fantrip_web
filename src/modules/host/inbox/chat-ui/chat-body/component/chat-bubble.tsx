@@ -19,6 +19,12 @@ const ChatBubble: FC<Props> = ({ type, text }) => {
         </div>
       </div>
     );
+    else if (type === "admin")
+      return (
+        <div className="rounded-r-[18px] rounded-b-[18px] bg-gradient text-white p-3 max-w-[80%]">
+        <p className="fs-500">{text}</p>
+      </div>
+      );
   else return null;
 };
 
