@@ -28,7 +28,7 @@ const ListingAnalytics = () => {
     },
     {
       name: "Pending Approval",
-      number: "0",
+      number: data?.pending || 0,
       img: <img src={cancel} alt="" />,
     },
   ];
