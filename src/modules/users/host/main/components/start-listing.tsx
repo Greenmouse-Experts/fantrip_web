@@ -24,6 +24,7 @@ const StartListing: FC<Props> = ({ next }) => {
   const { stay, saveStay } = useStay();
   const { properties } = useRoutine();
   const [locationError, setLocationError] = useState(false);
+  const [addressType, setAddressType] = useState("manual");
   const toast = useToast();
   const {
     control,
@@ -42,13 +43,14 @@ const StartListing: FC<Props> = ({ next }) => {
       highlightFeature: stay.highlightFeature || "",
     },
   });
+  
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     options: {
       types: ["address"],
     },
     onPlaceSelected: (place) => {
-      const city = getCityFromGoogle(place.address_components)
+      const city = getCityFromGoogle(place.address_components);
       const state = getStateFromGoogle(place.address_components);
       const country = getCountryFromGoogle(place.address_components);
       if (AfricanCountries.includes(country)) {
@@ -57,7 +59,7 @@ const StartListing: FC<Props> = ({ next }) => {
       }
       setLocationError(false);
       setValue("state", state);
-      setValue("city", city)
+      setValue("city", city);
       setValue("address", place?.formatted_address);
     },
   });
@@ -143,7 +145,7 @@ const StartListing: FC<Props> = ({ next }) => {
             />
           </div>
           <div>
-            <div className="text-black flex items-center gap-x-2 fw-600 lg:text-lg mb-3">
+            <div className="text-black flex items-center gap-x-2 fw-600 lg:text-lg mb-1">
               Address{" "}
               <Tooltip
                 shouldWrapChildren
@@ -158,28 +160,131 @@ const StartListing: FC<Props> = ({ next }) => {
                 <BsInfoCircle className="text-[#FC819F] cursor-pointer" />
               </Tooltip>
             </div>
-            <Controller
-              name="address"
-              control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Please enter your stay name",
-                },
-              }}
-              render={({ field }) => (
-                <div className="relative">
-                  <input
-                    {...field}
-                    ref={autoRef as any}
-                    type="text"
-                    placeholder="Input and Select your Stay Location"
-                    className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+            <div className="mt-2 mb-4 flex items-center gap-x-5">
+              <div className="flex items-center gap-x-2">
+                <input
+                  type="radio"
+                  name="addresstype"
+                  checked={addressType === "manual"}
+                  onChange={() => setAddressType("manual")}
+                  className="w-4 h-4"
+                />
+                <label className="fw-500">Manual Input</label>
+              </div>
+              <div className="flex items-center gap-x-2">
+                <input
+                  type="radio"
+                  name="addresstype"
+                  checked={addressType === "autocomplete"}
+                  onChange={() => setAddressType("autocomplete")}
+                  className="w-4 h-4"
+                />
+                <label className="fw-500">Autocomplete</label>
+              </div>
+            </div>
+            <div>
+              {addressType === "autocomplete" && (
+                <div>
+                  <Controller
+                    name="address"
+                    control={control}
+                    rules={{
+                      required: {
+                        value: true,
+                        message: "Please enter your stay name",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <div className="relative">
+                        <input
+                          {...field}
+                          ref={autoRef as any}
+                          type="text"
+                          placeholder="Input and Select your Stay Location"
+                          className=" p-3 lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                        />
+                        <PiCaretDownThin className="absolute right-7 top-5" />
+                      </div>
+                    )}
                   />
-                  <PiCaretDownThin className="absolute right-7 top-5" />
                 </div>
               )}
-            />
+              {addressType === "manual" && (
+                <div>
+                  <Controller
+                    name="address"
+                    control={control}
+                    rules={{
+                      required: {
+                        value: true,
+                        message: "Please enter your stay name",
+                      },
+                    }}
+                    render={({ field }) => (
+                      <TextInput
+                        type={InputType.text}
+                        placeholder="enter stay full address"
+                        label=""
+                        labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                        borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                        altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                        error={errors.name?.message}
+                        {...field}
+                        ref={null}
+                      />
+                    )}
+                  />
+                  <div className="mt-5 grid grid-cols-2 gap-4">
+                    <Controller
+                      name="state"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "Please enter your stay state",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <TextInput
+                          type={InputType.text}
+                          placeholder="stay, province or area"
+                          label=""
+                          labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                          borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                          altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                          error={errors.state?.message}
+                          {...field}
+                          ref={null}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="city"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "Please enter your stay city",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <TextInput
+                          type={InputType.text}
+                          placeholder="city"
+                          label=""
+                          labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                          borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                          altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                          error={errors.city?.message}
+                          {...field}
+                          ref={null}
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
             {locationError && (
               <div className="flex gap-x-2 items-center">
                 <BsInfoCircle className="text-orange-500" />
