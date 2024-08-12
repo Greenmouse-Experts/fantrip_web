@@ -81,7 +81,7 @@ const Availability = () => {
           <Menu closeOnSelect={false}>
             <MenuButton
               borderRadius={"xl"}
-              className="!rounded-[10px] "
+              className="!rounded-[10px] border p-2 w-full"
               transition="all 0.2s"
             >
               <div className="flex gap-x-4 cursor-pointer items-center">
@@ -93,7 +93,7 @@ const Availability = () => {
                     )}
                   </p>
                 ) : (
-                  <p className="fw-500">PLease select a date</p>
+                  <p className="fw-500"> DD - MM - YYYY</p>
                 )}
               </div>
             </MenuButton>
@@ -107,14 +107,17 @@ const Availability = () => {
               </MenuItem>
             </MenuList>
           </Menu>
+
+          {!prevValue.from && <p className="text-red-500 pl-2 fw-500">please select a date</p>}
         </div>
         <div className="mt-3">
           <p className="mb-2 text-gray-600 fw-500">Available Till:</p>
+          {!prevValue.from && <div className="flex !rounded-[10px] border p-2 w-full"><p className="fw-500"> DD - MM - YYYY</p></div>}
           {prevValue.from && (
             <Menu closeOnSelect={false}>
               <MenuButton
                 borderRadius={"xl"}
-                className="!rounded-[10px] "
+                className="!rounded-[10px] border p-2 w-full "
                 transition="all 0.2s"
               >
                 <div className="flex gap-x-4 cursor-pointer items-center">

@@ -23,7 +23,7 @@ const stayInitState = {
   percentageOff: 0,
   availableFrom: "",
   availableTo: "",
-  maxNights: 0,
+  maxNights: 2,
   currency: "€",
   maxGuests: 5,
   city: "",
