@@ -30,6 +30,7 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     maxNights,
     maxGuests,
     avrRating,
+    discountPrice,
   } = data;
   return (
     <div>
@@ -78,10 +79,27 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
         <div className="lg:w-5/12 mt-6 lg:mt-0">
           <div className="form-shadow p-4 rounded-[14px] sticky top-8">
             <div className="px-2">
-              <p className="fw-500 lg:text-xl">
-                {currency}
-                {price} <span className="fs-600">/night</span>
-              </p>
+              {percentageOff > 0 ? (
+                <div className="flex items-center gap-x-4">
+                  <div className="flex gap-x-2 items-end">
+                    <s className="fw-500 lg:text-xl text-gray-500">
+                      {currency}
+                      {price}{" "}
+                    </s>
+                  </div>
+                  <div>
+                    <p className="fw-500 lg:text-xl">
+                      {currency}
+                      {discountPrice} <span className="fs-600">/night</span>
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <p className="fw-500 lg:text-xl">
+                  {currency}
+                  {price} <span className="fs-600">/night</span>
+                </p>
+              )}
             </div>
             <div>
               <SelectStayDate

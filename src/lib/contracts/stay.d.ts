@@ -46,6 +46,7 @@ export interface StayItem {
   photos: string[];
   specialOffers: string[];
   percentageOff: number;
+  discountPrice: number;
   createdDate: string;
   updatedDate: string;
   deletedDate: string | null;

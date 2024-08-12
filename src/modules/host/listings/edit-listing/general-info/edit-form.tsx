@@ -14,7 +14,6 @@ import { useToast } from "@chakra-ui/react";
 import { FC, useState } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
-import { BsInfoCircle } from "react-icons/bs";
 import { BeatLoader } from "react-spinners";
 
 interface Props {
@@ -25,31 +24,11 @@ interface Props {
 const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
   const [isBusy, setIsBusy] = useState(false);
   const { properties } = useRoutine();
-  const [locationError, setLocationError] = useState(false);
   const toast = useToast();
-
-  const { ref: autoRef } = usePlacesWidget({
-    apiKey: GOOGLE_MAP_KEY,
-    options: {
-      types: ["address"],
-    },
-    onPlaceSelected: (place) => {
-      const state = getStateFromGoogle(place.address_components);
-      const country = getCountryFromGoogle(place.address_components);
-      if (AfricanCountries.includes(country)) {
-        setLocationError(true);
-        return;
-      }
-      setLocationError(false);
-      setValue("state", state);
-      setValue("address", place?.formatted_address);
-    },
-  });
 
   const {
     control,
     handleSubmit,
-    setValue,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
