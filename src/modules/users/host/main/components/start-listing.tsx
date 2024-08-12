@@ -41,9 +41,13 @@ const StartListing: FC<Props> = ({ next }) => {
       state: stay.state || "",
       city: stay.city || "",
       highlightFeature: stay.highlightFeature || "",
+      street: stay.street || "",
+      country: stay.country || "",
+      postal: stay.postal || "",
+      suite: stay.suite || "",
     },
   });
-  
+
   const { ref: autoRef } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     options: {
@@ -74,10 +78,27 @@ const StartListing: FC<Props> = ({ next }) => {
       return;
     }
     if (!isValid) return;
+
+    const address = `${data.suite && `${data.suite},`} ${
+      data.street && `${data.street},`
+    } ${data.city}, ${data.state}, ${data.postal}, ${data.country}`;
+
+    const payload = {
+      name: data.name,
+      property: data.property,
+      address: address,
+      description: data.description,
+      state: data.state,
+      city: data.city,
+      highlightFeature: data.highlightFeature,
+      country: data.country,
+      street: data.street,
+      postal: data.postal,
+      suite: data.suite,
+    };
     saveStay({
       ...stay,
-      ...data,
-      // state: stateVal || stay.state
+      ...payload,
     });
     next();
   };
@@ -211,48 +232,46 @@ const StartListing: FC<Props> = ({ next }) => {
               )}
               {addressType === "manual" && (
                 <div>
-                  <Controller
-                    name="address"
-                    control={control}
-                    rules={{
-                      required: {
-                        value: true,
-                        message: "Please enter your stay name",
-                      },
-                    }}
-                    render={({ field }) => (
-                      <TextInput
-                        type={InputType.text}
-                        placeholder="enter stay full address"
-                        label=""
-                        labelClassName="text-black fw-600 lg:text-lg block mb-3"
-                        borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
-                        altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                        error={errors.name?.message}
-                        {...field}
-                        ref={null}
-                      />
-                    )}
-                  />
-                  <div className="mt-5 grid grid-cols-2 gap-4">
+                  <div className="grid gap-4 grid-cols-2 mt-3">
                     <Controller
-                      name="state"
+                      name="country"
                       control={control}
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay state",
+                          message: "Please enter your stay price",
                         },
                       }}
                       render={({ field }) => (
                         <TextInput
                           type={InputType.text}
-                          placeholder="stay, province or area"
-                          label=""
+                          label="Country"
                           labelClassName="text-black fw-600 lg:text-lg block mb-3"
                           borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                           altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                          error={errors.state?.message}
+                          error={errors.country?.message}
+                          {...field}
+                          ref={null}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="street"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "Please enter your stay price",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <TextInput
+                          type={InputType.text}
+                          label="Street"
+                          labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                          borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                          altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                          error={errors.street?.message}
                           {...field}
                           ref={null}
                         />
@@ -264,18 +283,77 @@ const StartListing: FC<Props> = ({ next }) => {
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay city",
+                          message: "Please enter your stay price",
                         },
                       }}
                       render={({ field }) => (
                         <TextInput
                           type={InputType.text}
-                          placeholder="city"
-                          label=""
+                          label="City"
                           labelClassName="text-black fw-600 lg:text-lg block mb-3"
                           borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                           altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
                           error={errors.city?.message}
+                          {...field}
+                          ref={null}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="state"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "Please enter your stay price",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <TextInput
+                          type={InputType.text}
+                          label="Region"
+                          labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                          borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                          altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                          error={errors.state?.message}
+                          {...field}
+                          ref={null}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="postal"
+                      control={control}
+                      rules={{
+                        required: {
+                          value: true,
+                          message: "Please enter your stay price",
+                        },
+                      }}
+                      render={({ field }) => (
+                        <TextInput
+                          type={InputType.text}
+                          label="Postal Code"
+                          labelClassName="text-black fw-600 lg:text-lg block lg:mt-[26px] mb-3"
+                          borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                          altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                          error={errors.postal?.message}
+                          {...field}
+                          ref={null}
+                        />
+                      )}
+                    />
+                    <Controller
+                      name="suite"
+                      control={control}
+                      render={({ field }) => (
+                        <TextInput
+                          type={InputType.text}
+                          label="Apartment/Suite number, PO Box (optional)"
+                          labelClassName="text-black fw-600 lg:text-lg block mb-3"
+                          borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
+                          altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
+                          error={errors.suite?.message}
                           {...field}
                           ref={null}
                         />

@@ -187,12 +187,24 @@ const UserAccount = () => {
               <p className="fw-500 mt-1">{user.country}</p>
             </div>
             <div>
-              <p className="fs-500 text-[#5F5F5F]">State</p>
-              <p className="fw-500 mt-1">{user.state}</p>
+              <p className="fs-500 text-[#5F5F5F]">Street</p>
+              <p className="fw-500 mt-1">{user.street}</p>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">City</p>
               <p className="fw-500 mt-1">{user.city}</p>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Region</p>
+              <p className="fw-500 mt-1">{user.state}</p>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Postal Code</p>
+              <p className="fw-500 mt-1">{user.postalCode}</p>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Apartment/Suite number</p>
+              <p className="fw-500 mt-1">{user.aptSuitUnit}</p>
             </div>
           </div>
         </div>

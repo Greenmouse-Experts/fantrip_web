@@ -26,7 +26,11 @@ const stayInitState = {
   maxNights: 0,
   currency: "€",
   maxGuests: 5,
-  city: ""
+  city: "",
+  street: "",
+  country: "",
+  postal: "",
+  suite: "",
 };
 const useStayStore = create<Props>()(
   persist(

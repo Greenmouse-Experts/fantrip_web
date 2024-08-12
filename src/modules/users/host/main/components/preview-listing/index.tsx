@@ -54,8 +54,16 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
       });
   };
   const checkStay = () => {
+    if(!stay.country || !stay.city || !stay.state){
+      toast({
+        title: 'Please add more information on your address',
+        isClosable: true,
+        position: "top",
+        status: "info",
+      });
+      return false;
+    }
     if (
-      !stay.photos.length ||
       !stay.availableFrom ||
       !stay.availableTo ||
       !stay.maxNights ||

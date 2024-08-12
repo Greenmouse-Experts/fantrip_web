@@ -52,7 +52,10 @@ const GoogleButton: FC<Props> = ({}) => {
           dob: res.data.dob,
           isVerified: res.data.verifiedAsHost,
           favTeam: res.data.favTeam,
-          roomPicture: res.data.roomPicture
+          roomPicture: res.data.roomPicture,
+          street: res.data.street,
+          postalCode: res.data.postalCode,
+          aptSuitUnit: res.data.apiSuitUnit,
         });
         saveAccount(res.data.bankAccounts);
         if (res.data.role === "host") {

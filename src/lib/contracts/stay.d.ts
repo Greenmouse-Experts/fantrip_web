@@ -23,7 +23,11 @@ export interface StayItemInput {
   maxNights: number;
   currency: string;
   maxGuests: number;
-  city: string; 
+  city: string;
+  street: string;
+  country: string;
+  postal: string;
+  suite: string;
 }
 
 export interface UpdateStayStatusInput {
@@ -58,7 +62,7 @@ export interface StayItem {
   maxGuests: number;
   approved: boolean;
   city: string;
-  avrRating: string
+  avrRating: string;
 }
 
 export interface AvailableStayItem extends StayItem {
@@ -70,7 +74,7 @@ export interface AvailableStayItem extends StayItem {
     state: string;
     country: string;
     bio: string;
-    roomPicture: string
+    roomPicture: string;
   };
 }
 

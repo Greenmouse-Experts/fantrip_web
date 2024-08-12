@@ -15,7 +15,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
-  const {saveUser, saveAccount} = useAuth()
+  const { saveUser, saveAccount } = useAuth();
   const {
     control,
     handleSubmit,
@@ -43,7 +43,7 @@ const LoginForm = () => {
           ),
           position: "top",
         });
-        sessionStorage.setItem('fantrip_token', data.accessToken)
+        sessionStorage.setItem("fantrip_token", data.accessToken);
         saveUser({
           name: `${data.data.firstName} ${data.data.lastName}`,
           email: data.data.email,
@@ -63,11 +63,18 @@ const LoginForm = () => {
           dob: data.data.dob,
           isVerified: data.data.verifiedAsHost,
           favTeam: data.data.favTeam,
-          roomPicture: data.data.roomPicture
+          roomPicture: data.data.roomPicture,
+          street: data.data.street,
+          postalCode: data.data.postalCode,
+          aptSuitUnit: data.data.aptSuitUnit,
         });
-        saveAccount(data.data.bankAccounts)
-        if(data.data.role === 'host'){navigate('/host')}
-        if(data.data.role === 'guest'){navigate('/user/profile')}
+        saveAccount(data.data.bankAccounts);
+        if (data.data.role === "host") {
+          navigate("/host");
+        }
+        if (data.data.role === "guest") {
+          navigate("/user/profile");
+        }
       },
       onError: (error: any) => {
         toast({

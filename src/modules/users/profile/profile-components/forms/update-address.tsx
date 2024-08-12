@@ -32,17 +32,17 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
     onPlaceSelected: (place) => {
       const state = getStateFromGoogle(place.address_components);
       const country = getCountryFromGoogle(place.address_components);
-      const postal = getPostalFromGoogle(place.address_components)
-      const city = getCityFromGoogle(place.address_components)
-      const street = getStreetFromGoogle(place.address_components)
+      const postal = getPostalFromGoogle(place.address_components);
+      const city = getCityFromGoogle(place.address_components);
+      const street = getStreetFromGoogle(place.address_components);
 
       setValue("state", state);
       setValue("country", country);
       setValue("state", state);
       setValue("address", place?.formatted_address);
-      setValue("postal", postal)
-      setValue("city", city)
-      setValue("street", street)
+      setValue("postal", postal);
+      setValue("city", city);
+      setValue("street", street);
     },
   });
 
@@ -61,7 +61,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
       postal: "",
       state: "",
       city: "",
-      suite: ""
+      suite: "",
     },
   });
 
@@ -76,6 +76,9 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
       country: datas.country,
       state: datas.state,
       city: datas.city,
+      postalCode: datas.postal,
+      street: datas.street,
+      aptSuitUnit: datas.suite,
     };
     mutation.mutate(payload, {
       onSuccess: (data) => {
@@ -163,7 +166,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
               />
             )}
           />
-           <Controller
+          <Controller
             name="city"
             control={control}
             rules={{
@@ -185,7 +188,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
               />
             )}
           />
-           <Controller
+          <Controller
             name="region"
             control={control}
             rules={{
@@ -207,7 +210,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
               />
             )}
           />
-           <Controller
+          <Controller
             name="postal"
             control={control}
             rules={{
@@ -229,7 +232,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
               />
             )}
           />
-           <Controller
+          <Controller
             name="suite"
             control={control}
             render={({ field }) => (
