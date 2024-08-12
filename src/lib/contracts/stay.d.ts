@@ -63,6 +63,10 @@ export interface StayItem {
   approved: boolean;
   city: string;
   avrRating: string;
+  street: string;
+  postalCode: string;
+  aptSuitUnit: string;
+  country: string;
 }
 
 export interface AvailableStayItem extends StayItem {

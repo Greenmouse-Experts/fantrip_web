@@ -6,6 +6,7 @@ import AmenitiesInfo from "./amenities";
 import SpecialOfferInfo from "./special-offer";
 import AvailabilityInfo from "./availability-info";
 import IndexStayImage from "./index-image";
+import EditAddress from "./address";
 
 interface Props {
   data: StayItem;
@@ -30,6 +31,7 @@ const EditListingIndex: FC<Props> = ({ data, refetch }) => {
       </div>
       <div className="mt-3 grid gap-10">
         <EditListingImage images={photos} id={id} refetch={refetch} />
+        <EditAddress data={data} refetch={refetch} />
         <GeneralInformation data={data} refetch={refetch} />
         <AmenitiesInfo
           amenities={amenities}

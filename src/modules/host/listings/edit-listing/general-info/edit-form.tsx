@@ -72,8 +72,6 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
     const payload = {
       name: datas.name || "",
       description: datas.description || "",
-      // property: data.property.id || "",
-      address: datas.address || "",
       highlightFeature: datas.highlightFeature,
       price: Number(datas.price),
       maxNights: Number(datas.maxNights),
@@ -168,38 +166,6 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
               </div>
             )}
           />
-        </div>
-        <div className="relative">
-          <p className="text-black fw-600 lg:text-lg block mb-3">
-            Location Details
-          </p>
-          <Controller
-            name="address"
-            control={control}
-            rules={{
-              required: {
-                value: true,
-                message: "Please enter your stay name",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                ref={autoRef as any}
-                type="text"
-                className=" p-3 relative z-[4000] lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
-              />
-            )}
-          />
-          {locationError && (
-            <div className="flex gap-x-2 items-center">
-              <BsInfoCircle className="text-orange-500" />
-              <p className="fs-500 text-orange-600">
-                We currently do not offer stay services in your choiced
-                location.
-              </p>
-            </div>
-          )}
         </div>
         <Controller
           name="description"

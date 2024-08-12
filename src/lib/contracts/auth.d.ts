@@ -41,4 +41,7 @@ export interface UserItem {
   roomPicture: string;
   createdDate: string;
   favTeam: string;
+  street: string;
+  postalCode: string;
+  aptSuitUnit: string;
 }

@@ -24,6 +24,15 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
     if (!checkStay()) {
       return;
     }
+    if(!stay.country || !stay.city || !stay.state){
+      toast({
+        title: 'Please add more information on your address',
+        isClosable: true,
+        position: "top",
+        status: "info",
+      });
+      return ;
+    }
     setIsBusy(true);
     const payload = {
       ...stay,
@@ -41,7 +50,7 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
           position: "top",
         });
         setShowModal(true);
-        clearStay()
+        clearStay();
       })
       .catch((error: any) => {
         toast({
@@ -54,15 +63,6 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
       });
   };
   const checkStay = () => {
-    if(!stay.country || !stay.city || !stay.state){
-      toast({
-        title: 'Please add more information on your address',
-        isClosable: true,
-        position: "top",
-        status: "info",
-      });
-      return false;
-    }
     if (
       !stay.availableFrom ||
       !stay.availableTo ||
@@ -104,7 +104,11 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
           <BtnContent reverse name="Prev" />
         </div>
         <div
-          className={checkStay()? "btn-primary cursor-pointer px-6 py-2 lg:py-3" : "text-gray-100 rounded-full cursor-not-allowed fw-500 bg-gray-400 px-6 py-2 lg:py-3"}
+          className={
+            checkStay()
+              ? "btn-primary cursor-pointer px-6 py-2 lg:py-3"
+              : "text-gray-100 rounded-full cursor-not-allowed fw-500 bg-gray-400 px-6 py-2 lg:py-3"
+          }
           onClick={() => handleCreate()}
         >
           {checkStay() && isBusy ? (

@@ -14,7 +14,6 @@ const GeneralInformation: FC<Props> = ({ data, refetch }) => {
   const {
     name,
     description,
-    address,
     price,
     percentageOff,
     currency,
@@ -35,7 +34,6 @@ const GeneralInformation: FC<Props> = ({ data, refetch }) => {
           <StayDetailList name="Name" value={name} />
           <StayDetailList name="Property Type" value={property.name} />
           <StayDetailList name="Number and Type of Beds" value={description} />
-          <StayDetailList name="Location" value={address} />
           <StayDetailList
             name="Price"
             value={`${currency}${formatNumber(price)}`}
