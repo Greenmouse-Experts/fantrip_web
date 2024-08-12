@@ -92,7 +92,7 @@ const SetupPhotos: FC<Props> = ({ next, prev }) => {
           <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
             <input
               type="file"
-              accept="image/*"
+              accept="image/*, .heic"
               onChange={(e) => handleUploadProfile(e)}
               className="opacity-0 absolute w-full h-full"
             />

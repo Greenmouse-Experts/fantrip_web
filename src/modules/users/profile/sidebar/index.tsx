@@ -90,7 +90,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             {!isUpdate && <GoPencil className="text-xl" />}
             <input
               type="file"
-              accept="image/*"
+              accept="image/*, .heic"
               onChange={handleChange}
               className="opacity-0 absolute object-cover"
             />

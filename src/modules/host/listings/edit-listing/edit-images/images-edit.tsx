@@ -102,6 +102,7 @@ const EditImages: FC<Props> = ({ images, id, refetch, close }) => {
         <div className="relative place-center w-full bg-gray-800 h-[150px] rounded-lg">
           <input
             type="file"
+            accept="image/*, .heic"
             onChange={handleChange}
             className="w-full h-full absolute top-0 left-0 z-10 opacity-0"
           />

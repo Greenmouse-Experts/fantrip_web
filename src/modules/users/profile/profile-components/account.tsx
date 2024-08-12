@@ -99,7 +99,7 @@ const UserAccount = () => {
                   {!isUpdate && <GoPencil className="text-sm text-black" />}
                   <input
                     type="file"
-                    accept="image/*"
+                    accept="image/*, .heic"
                     onChange={handleChange}
                     className="opacity-0 absolute object-cover"
                   />

@@ -34,7 +34,7 @@ const ImageInput: FC<Props> = ({
           {...getRootProps()}
           className="w-full border bg-white border-gray-400 border-dashed rounded-lg min-h-[120px] p-4 flex justify-between items-center"
         >
-          <input {...getInputProps()} />
+          <input {...getInputProps()} accept="image/*, .heic"/>
           {isDragActive ? (
             <p>Drop the files here ...</p>
           ) : (

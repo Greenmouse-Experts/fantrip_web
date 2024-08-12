@@ -273,7 +273,7 @@ const RecommendForm: FC<Props> = ({
             <div className="w-44 flex justify-center relative cursor-pointer py-2 border border-[#9847FE] rounded-[14px]">
               <input
                 type="file"
-                accept="image/*"
+                accept="image/*, .heic"
                 multiple
                 onChange={(e) => handlePhoto(e)}
                 className="opacity-0 absolute w-full h-full"

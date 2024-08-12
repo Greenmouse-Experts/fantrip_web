@@ -18,6 +18,8 @@ const EmptyStay = () => {
             </Suspense> */}
             <video
               src="https://res.cloudinary.com/greenmouse-tech/video/upload/v1718117435/fantrip/WhatsApp_Video_2024-06-11_at_14.55.10_nzchab.mp4"
+              width={"100%"}
+              height={"100%"}
               autoPlay
               controls
             />
