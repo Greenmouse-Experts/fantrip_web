@@ -3,16 +3,9 @@ import TextInput, { InputType } from "@/components/TextInput";
 import { useRoutine } from "@/hooks/useRoutine";
 import { AmenityItem } from "@/lib/contracts/routine";
 import { StayItem, StayItemUpdate } from "@/lib/contracts/stay";
-import {
-  getCountryFromGoogle,
-  getStateFromGoogle,
-} from "@/lib/utils/helper-function";
-import { updateStay } from "@/services/api/stay-api";
-import { GOOGLE_MAP_KEY } from "@/services/constant";
-import { AfricanCountries } from "@/services/hard-data";
+import { updateStay } from "@/services/api/stay-api"
 import { useToast } from "@chakra-ui/react";
 import { FC, useState } from "react";
-import { usePlacesWidget } from "react-google-autocomplete";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
 
