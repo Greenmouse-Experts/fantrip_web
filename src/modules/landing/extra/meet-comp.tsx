@@ -16,7 +16,9 @@ const MeetComponent: FC<Props> = ({ item }) => {
   const navigate = useNavigate();
   const [isBigSize] = useMediaQuery("(min-width: 520px)");
 
-  const firstName = item.name.split(" ")[0];
+  const firstName = item.host.firstName;
+
+  
   return (
     <div>
       <div className="stay-item-wrapper grid h-full">
@@ -31,7 +33,7 @@ const MeetComponent: FC<Props> = ({ item }) => {
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="text-xl fw-600 syne">Meet {formatName(firstName, 5)}</p>
+                <p className="text-xl fw-600 syne">Meet {formatName(firstName, 6)}</p>
                 <p className="h-[2px] bg-gradient w-full mt-2"></p>
               </div>
               <div className="mt-2">
