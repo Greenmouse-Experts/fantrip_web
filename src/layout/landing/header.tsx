@@ -23,12 +23,16 @@ import icon_5 from "@/assets/svg/building-07.svg";
 import icon_6 from "@/assets/svg/calendar-check-02.svg";
 import icon_7 from "@/assets/svg/globe-06.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
+import icon_9 from "@/assets/svg/logout.svg";
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
+import useDialog from "@/hooks/useDialog";
+import LogoutModal from "@/modules/auth/modals/logout-modal";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+  const { Dialog, setShowModal } = useDialog();
   const { isLoggedIn, isHost, isVerified } = useAuth();
   return (
     <div>
@@ -202,6 +206,18 @@ const LandingHeader = () => {
                             <p>Create New Listing</p>
                           </Link>
                         </MenuItem>
+                        <MenuItem className="!p-0">
+                          <div
+                            
+                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black"
+                            onClick={() => setShowModal(true)}
+                          >
+                            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                            <img src={icon_9} alt="icons" className="w-5 h-5" />
+                            </div>
+                            <p>Logout</p>
+                          </div>
+                        </MenuItem>
                       </MenuList>
                     </Menu>
                   </li>
@@ -210,6 +226,9 @@ const LandingHeader = () => {
             </div>
           </div>
         </div>
+        <Dialog title="" size="xs">
+        <LogoutModal CloseModal={() => setShowModal(false)} />
+      </Dialog>
       </div>
       <Drawer
         isOpen={show}
