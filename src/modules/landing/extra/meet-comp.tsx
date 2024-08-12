@@ -11,10 +11,12 @@ import { getTempCity } from "@/lib/utils/helper-function";
 interface Props {
   item: AvailableStayItem;
 }
-const MeetComponent: FC<Props> = ({ item}) => {
-  const [showMore, setShowMore] = useState(false)
+const MeetComponent: FC<Props> = ({ item }) => {
+  const [showMore, setShowMore] = useState(false);
   const navigate = useNavigate();
-  const [isBigSize] = useMediaQuery('(min-width: 520px)')
+  const [isBigSize] = useMediaQuery("(min-width: 520px)");
+
+  const firstName = item.name.split(" ")[0];
   return (
     <div>
       <div className="stay-item-wrapper grid h-full">
@@ -29,7 +31,7 @@ const MeetComponent: FC<Props> = ({ item}) => {
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="text-xl fw-600 syne">Meet</p>
+                <p className="text-xl fw-600 syne">Meet {firstName}</p>
                 <p className="h-[2px] bg-gradient w-full mt-2"></p>
               </div>
               <div className="mt-2">
