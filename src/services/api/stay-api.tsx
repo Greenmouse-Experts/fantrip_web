@@ -44,10 +44,10 @@ export const getHostStayStat = async () => {
     .then((response) => response.data);
 };
 
-export const getAllStay = async (params?: FilterStayParam) => {
+export const getAllStay = async (page:number, params?: FilterStayParam) => {
   const payload = params ? objectToQueryString(params) : null;
   return axios
-    .get(`${ENDPOINT.GET_AVAILABLE_STAY}?${payload}`)
+    .get(`${ENDPOINT.GET_AVAILABLE_STAY}?page=${page}&${payload}`)
     .then((response) => response.data);
 };
 

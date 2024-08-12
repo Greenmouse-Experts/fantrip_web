@@ -6,13 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllStay } from "@/services/api/stay-api";
 import { useUtils } from "@/hooks/useUtils";
 import { useLocation } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import EmptyStay from "@/components/empty-states/empty-stay";
+import PaginationIndex from "./pagination";
 
 const FetchStayComponent = () => {
   const { state } = useLocation();
   const { targetId } = state || {};
   const resultRef = useRef<any>();
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     const el = resultRef.current;
@@ -34,9 +36,11 @@ const FetchStayComponent = () => {
   };
   // const paramsToFetch = {}
   const { isLoading, data } = useQuery({
-    queryKey: ["get-all-stay", stayParams],
-    queryFn: () => getAllStay(payload),
+    queryKey: ["get-all-stay", stayParams, page],
+    queryFn: () => getAllStay(page, payload),
   });
+
+  const total = data?.count
 
   return (
     <div>
@@ -55,6 +59,9 @@ const FetchStayComponent = () => {
           </div>
           {!isLoading && !data?.data.length && <EmptyStay />}
         </div>
+      </div>
+      <div className="flex justify-center mt-12 lg:mt-24">
+        <PaginationIndex total={total} page={page} setPage={setPage}/>
       </div>
     </div>
   );
