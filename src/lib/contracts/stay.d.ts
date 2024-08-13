@@ -114,3 +114,11 @@ export interface FilterStayParam {
   checkOut: string;
   // address?: string;
 }
+
+export interface SpecialStayItem {
+    createdDate: string;
+    id: string;
+    published: boolean;
+    stay: AvailableStayItem;
+    stayId: string;
+}

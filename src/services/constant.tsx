@@ -16,6 +16,7 @@ export const SOCIAL_SIGNUP = `/auth/sso`
 // Stay endpoints
 export const CREATE_STAY = `/stays/create`
 export const GET_AVAILABLE_STAY = `/stays/available-stays`
+export const GET_SPECIAL_STAY = `/special-stays/published`
 export const GET_ALL_STAY = `/stays`
 export const GET_STAY_STATS = `/stays/count`;
 export const GET_SINGLE_STAY = `/stays/view`

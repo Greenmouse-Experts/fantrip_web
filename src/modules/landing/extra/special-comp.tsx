@@ -1,6 +1,6 @@
 import { ComponentModal } from "@/components/modal-component";
 import { AmenityItem } from "@/lib/contracts/routine";
-import { AvailableStayItem } from "@/lib/contracts/stay";
+import { SpecialStayItem } from "@/lib/contracts/stay";
 import { formatName } from "@/lib/utils/formatHelp";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,14 +9,14 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { getTempCity } from "@/lib/utils/helper-function";
 
 interface Props {
-  item: AvailableStayItem;
+  item: SpecialStayItem;
 }
-const MeetComponent: FC<Props> = ({ item }) => {
+const SpecialMeetComponent: FC<Props> = ({ item }) => {
   const [showMore, setShowMore] = useState(false);
   const navigate = useNavigate();
   const [isBigSize] = useMediaQuery("(min-width: 520px)");
 
-  const firstName = item.host.firstName;
+  const firstName = item.stay.host.firstName;
 
   
   return (
@@ -25,7 +25,7 @@ const MeetComponent: FC<Props> = ({ item }) => {
         <div className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3">
           <div className="min-h-[170px] max-h-[180px]">
             <img
-              src={item.host.picture}
+              src={item.stay.host.picture}
               alt="fan_image"
               className="h-full w-full rounded-lg object-cover"
             />
@@ -38,7 +38,7 @@ const MeetComponent: FC<Props> = ({ item }) => {
               </div>
               <div className="mt-2">
                 <p className="fs-400">
-                  {formatName(item.host.bio, isBigSize ? 66 : 40)}{" "}
+                  {formatName(item.stay.host.bio, isBigSize ? 66 : 40)}{" "}
                   <button
                     className="fw-500 fs-400 text-[#9847FE]"
                     onClick={() => setShowMore(true)}
@@ -49,7 +49,7 @@ const MeetComponent: FC<Props> = ({ item }) => {
                 <p className="h-[2px] bg-gradient w-full mt-2"></p>
               </div>
               <div className="grid gap-1 mt-2">
-                {item.amenities
+                {item.stay.amenities && item.stay.amenities
                   .slice(0, isBigSize ? 3 : 2)
                   .map((item: AmenityItem, i: number) => (
                     <div className="flex gap-x-2" key={i}>
@@ -65,18 +65,18 @@ const MeetComponent: FC<Props> = ({ item }) => {
                 onClick={() => navigate(`/find-stay/${item.id}`)}
               >
                 <p className="fs-500 fw-500 capitalize">
-                  {formatName(item.city || getTempCity(item.address), 11)}
+                  {formatName(item.stay.city || getTempCity(item.stay.address), 11)}
                 </p>
                 <p className="fw-500">
-                  {item.currency}
-                  {item.price}/ night
+                  {item.stay.currency}
+                  {item.stay.price}/ night
                 </p>
               </div>
             </div>
           </div>
           <div className="min-h-[170px] max-h-[180px]">
             <img
-              src={item.host.roomPicture || item.photos[0]}
+              src={item.stay.host.roomPicture || item.stay.photos[0]}
               alt="room_img"
               className="h-full w-full rounded-lg object-cover"
             />
@@ -96,4 +96,4 @@ const MeetComponent: FC<Props> = ({ item }) => {
   );
 };
 
-export default MeetComponent;
+export default SpecialMeetComponent;

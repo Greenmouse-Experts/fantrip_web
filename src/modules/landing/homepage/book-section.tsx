@@ -1,15 +1,15 @@
 import BtnContent from "@/components/btn-content";
 import { Link } from "react-router-dom";
-import MeetComponent from "../extra/meet-comp";
 import { useQuery } from "@tanstack/react-query";
-import { getAllStay } from "@/services/api/stay-api";
-import { AvailableStayItem } from "@/lib/contracts/stay";
+import { getSpecialStay } from "@/services/api/stay-api";
+import { SpecialStayItem } from "@/lib/contracts/stay";
 import MeetDataSkeleton from "@/components/shimmers/meet-data";
+import SpecialMeetComponent from "../extra/special-comp";
 
 const BookSection = () => {
   const { isLoading, data } = useQuery({
-    queryKey: ["get-all-stay"],
-    queryFn: () => getAllStay(),
+    queryKey: ["get-special-stay"],
+    queryFn: () => getSpecialStay(),
   });
 
   return (
@@ -28,8 +28,8 @@ const BookSection = () => {
             !!data?.data?.length &&
             data?.data
               .slice(0, 3)
-              .map((item: AvailableStayItem, i: number) => (
-                <MeetComponent item={item} key={i} />
+              .map((item: SpecialStayItem, i: number) => (
+                <SpecialMeetComponent item={item} key={i} />
               ))}
         </div>
         <div className="mt-12 lg:mt-24 flex justify-center">

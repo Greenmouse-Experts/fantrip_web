@@ -51,6 +51,12 @@ export const getAllStay = async (page:number, params?: FilterStayParam) => {
     .then((response) => response.data);
 };
 
+export const getSpecialStay = async () => {
+  return axios
+    .get(`${ENDPOINT.GET_SPECIAL_STAY}`)
+    .then((response) => response.data);
+};
+
 export const getSingleStay = async (id: string) => {
   return axios
     .get(`${ENDPOINT.GET_SINGLE_STAY}/${id}`)
