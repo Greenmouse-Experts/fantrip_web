@@ -4,8 +4,8 @@
 
 const EmptyStay = () => {
   return (
-    <div className="flex justify-center">
-      <div className="w-9/12 bg-layout-gradient p-1 pb-3 rounded">
+    <div className="flex justify-center my-4">
+      <div className=" w-full md:w-9/12 bg-layout-gradient p-1 pb-3 rounded">
         <div className="w-full rounded bg-gradient flex justify-center">
           <div className="w-11/12 lg:w-[300px] mx-auto ">
             {/* <Suspense fallback={<PyramidSpin size={30} />}>

@@ -90,7 +90,7 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
         onClose={() => setShowMore(false)}
         type={"more"}
       >
-        <MeetProfileIndex id={item.id} close={() => setShowMore(false)} />
+        <MeetProfileIndex id={item.stayId} close={() => setShowMore(false)} />
       </ComponentModal>
     </div>
   );
