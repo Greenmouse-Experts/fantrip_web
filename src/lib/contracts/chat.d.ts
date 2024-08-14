@@ -1,3 +1,5 @@
+import { CommunityItemTyping } from "@/modules/chat/chat-room/room-sidebar/sport-community/community-list";
+
 export interface UserChatItem {
   id: string;
   firstName: string;
@@ -88,4 +90,32 @@ export interface ChatUserItem {
 export interface ChatStoreItem {
   host: ChatUserItem;
   guest: ChatUserItem;
+}
+
+export interface CommunityItem {
+  communities: CommunityItemTyping[];
+  activeId: string;
+  name: string;
+}
+
+export interface PostTyping {
+  id: string;
+  message: string;
+  file: string;
+  isMuted: boolean;
+  communityId: string;
+  createdDate: string;
+  updatedDate: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    nickname: string;
+    verifiedAsHost: boolean;
+    role: string;
+    picture: string;
+    isNickname: boolean;
+  };
+  downvotes: number;
+  upvotes: number;
+  threads: number;
 }

@@ -5,12 +5,14 @@ export function useChat() {
   const guest = useChatStore((state) => state.guest);
   const host = useChatStore((state) => state.host);
   const mini = useChatStore((state) => state.mini);
+  const community = useChatStore((state) => state.community);
   const saveGuest = useChatStore((state) => state.saveGuestChat);
   const saveHost = useChatStore((state) => state.saveHostChat);
   const saveMini = useChatStore((state) => state.saveMiniChat);
   const clearHost = useChatStore((state) => state.clearHost);
   const clearGuest = useChatStore((state) => state.clearGuest);
   const clearMini = useChatStore((state) => state.clearMini);
+  const saveCommunity = useChatStore((state) => state.saveCommunity);
 
   const guestInfo = guest.user;
   const guestId = guest.activeId;
@@ -120,6 +122,8 @@ export function useChat() {
     saveMiniInfo,
     saveChatWithMini,
     clearChatWithMini,
-    clearMini
+    clearMini,
+    community,
+    saveCommunity
   };
 }
