@@ -26,9 +26,9 @@ const FanChoiceSwiper: FC<Props> = ({ data }) => {
         spaceBetween={18}
         className="w-full pb-6 mt-10"
       >
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <SwiperSlide key={index} className="w-[300px] pb-3">
-            <div onClick={() => navigate(`/area-guide/Restuarant/${item.id}`)}>
+            <div onClick={() => navigate(`/area-guide/Restuarant/${item.id}`)} className=" cursor-pointer">
               <img
                 src={getFirstPhoto(item.photos)}
                 alt="location-img"
