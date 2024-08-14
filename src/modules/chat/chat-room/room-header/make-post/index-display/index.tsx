@@ -48,7 +48,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
   // input for post
   const [isBusy, setIsBusy] = useState(false);
   const [textInput, setTextInput] = useState("");
-  const [photo, setPhoto] = useState<File[] | undefined>([]);
+  const [photo, setPhoto] = useState<File[] | undefined>();
 
   const handlePost = () => {
     if (!isLoggedIn) {
@@ -69,6 +69,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       uploadImage(fd)
         .then((res) => {
           payload.file = res.image;
+          console.log(payload);
           socket.emit("createPost", payload);
           setIsBusy(false);
           setShowInput(false);
@@ -160,7 +161,17 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
             <div>
               <div className="flex gap-x-3">
                 <BsEmojiSmile className="text-[#8C8C8C] cursor-pointer text-[22px] relative top-[1px]" />
-                <IoImageOutline className="text-[#8C8C8C] cursor-pointer text-2xl" />
+                <div className="relative overflow-hidden">
+                  <IoImageOutline className="text-[#8C8C8C] cursor-pointer text-2xl" />
+                  <input
+                    type="file"
+                    accept="image/*, .heic"
+                    className="absolute top-0 left-0 opacity-0"
+                    onChange={(e: any) => {
+                      if (e.target.files) setPhoto(e.target.files);
+                    }}
+                  />
+                </div>
                 <IoVideocamOutline className="text-[#8C8C8C] cursor-pointer text-2xl" />
               </div>
             </div>
