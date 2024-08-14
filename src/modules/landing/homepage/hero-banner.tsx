@@ -1,8 +1,10 @@
 import BtnContent from "@/components/btn-content";
 import { Link } from "react-router-dom";
 import BookingTab from "./booking-tab";
+import useAuth from "@/hooks/authUser";
 
 const HeroBanner = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <div className="">
       <div className="hero-bg w-full lg:h-[680px] bg-fit overflow-hidden">
@@ -40,43 +42,45 @@ const HeroBanner = () => {
             </div>
             <div className="lg:w-7/12 mt-12 lg:mt-0 pb-24 lg:pb-0">
               <div className="text-white ">
-                <p className="text-3xl lg:text-4xl xl:text-[44px] xl:leading-[55px] fw-600 2xl:text-5xl syne ">
-                Screw Cleaning Fees & Generic Travel Guides. 
+                <p className="text-3xl lg:text-4xl xl:text-[44px] xl:leading-[60px] 2xl:leading-[70px] fw-600 2xl:text-5xl syne ">
+                  Screw Cleaning Fees & Generic Travel Guides.
                   <span className="text-gradient syne"> Fan-to-Fan Stays</span>,
-                  <span className="syne mt-3 2xl:mt-6">
-                  {" "}Done Right.
-                  </span>
+                  <span className="syne mt-3 2xl:mt-6"> Done Right.</span>
                 </p>
                 <div className="monts mt-8 lg:text-lg lg:w-10/12">
                   <div>
-                  Why settle for the usual? Book accommodations with fellow fans, explore fan-recommended spots, and say goodbye to hidden costs. Welcome to the future of fan travel!
+                    Why settle for the usual? Book accommodations with fellow
+                    fans, explore fan-recommended spots, and say goodbye to
+                    hidden costs. Welcome to the future of fan travel!
                   </div>
                 </div>
-                <div className="flex ites-center gap-x-2 md:gap-x-8 mt-8">
-                  <div className="mb-1 sm:mb-0">
-                    <Link
-                      to={"/auth/register"}
-                      className="inline-block btn-primary py-2 px-6 md:px-10"
-                    >
-                      <BtnContent name="Join" />
-                    </Link>
+                {!isLoggedIn && (
+                  <div className="flex ites-center gap-x-2 md:gap-x-8 mt-8">
+                    <div className="mb-1 sm:mb-0">
+                      <Link
+                        to={"/auth/register"}
+                        className="inline-block btn-primary py-2 px-6 md:px-10"
+                      >
+                        <BtnContent name="Join" />
+                      </Link>
+                    </div>
+                    <div>
+                      <Link
+                        to={"/auth/login"}
+                        className="inline-block sm:mt-0 btn-feel px-6 md:px-10 py-2"
+                      >
+                        Sign In
+                      </Link>
+                    </div>
                   </div>
-                  <div>
-                  <Link
-                    to={"/auth/login"}
-                    className="inline-block sm:mt-0 btn-feel px-6 md:px-10 py-2"
-                  >
-                    Sign In
-                  </Link>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="py-12 lg:pt-0 lg:relative -top-10">
-        <BookingTab home/>
+        <BookingTab home />
       </div>
     </div>
   );

@@ -4,12 +4,25 @@ import { useState } from "react";
 import SubmitRecommendIndex from "../submit-recommend";
 import { useQuery } from "@tanstack/react-query";
 import { getSpotsCat } from "@/services/api/places-api";
-import { SpotCategoryItem } from "@/lib/contracts/place";
+import { ReccomendationItem, SpotCategoryItem } from "@/lib/contracts/place";
 import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
 import { FaLocationCrosshairs } from "react-icons/fa6";
+import BouncingBall from "@/components/loaders/bouncing-ball";
+import EmptyStay from "@/components/empty-states/empty-stay";
+import FanChoiceSwiper from "../fan-choice/fan-choice-swiper";
 
-const AreaCategorySearch = () => {
+interface IAreaCat {
+  searchedResult: { data: ReccomendationItem[] };
+  isGettingResult: boolean;
+  searchInput: string;
+}
+
+const AreaCategorySearch = ({
+  searchedResult,
+  isGettingResult,
+  searchInput,
+}: IAreaCat) => {
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const { isLoading, data } = useQuery({
@@ -24,6 +37,20 @@ const AreaCategorySearch = () => {
   };
   return (
     <div className="pb-16 lg:pb-20">
+      <div className=" place-content-center place-items-center">
+      
+        {searchInput !== "" && (
+          <div className="box">
+            {isGettingResult ? (
+              <BouncingBall />
+            ) : searchedResult?.data?.length === 0 ? (
+              <EmptyStay />
+            ) : (
+              <FanChoiceSwiper data={searchedResult?.data} />
+            )}
+          </div>
+        )}
+      </div>
       <div className="box">
         <div className="text-center">
           <p className="syne text-[19px] lg:text-xl fw-600">
