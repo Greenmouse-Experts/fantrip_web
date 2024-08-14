@@ -4,14 +4,21 @@ import LocationSearchBox from "@/modules/landing/area-guide/location-search";
 import TopDestination from "@/modules/landing/area-guide/top-destination";
 import { getSearchPlaces } from "@/services/api/places-api";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import {  useState } from "react";
+import debounce from "lodash.debounce";
 
 export const AreaGuide = () => {
   const [searchInput, setSearchInput] = useState("");
+
   
+  const debouncedHandleInputChange = debounce((value: string) => {
+    setSearchInput(value);
+  }, 500); 
+
   const { isLoading: isGettingResult, data: searchResult } = useQuery({
     queryKey: ["find-category-places", searchInput],
-    queryFn: () => getSearchPlaces(`${searchInput}`),
+    queryFn: () => getSearchPlaces(searchInput),
+    enabled: !!searchInput, 
   });
 
   return (
@@ -26,7 +33,7 @@ export const AreaGuide = () => {
         </div>
       </div>
       <div className="py-12 lg:pt-0 lg:relative -top-10">
-        <LocationSearchBox setSearchInput={setSearchInput} />
+        <LocationSearchBox setSearchInput={debouncedHandleInputChange} />
       </div>
       <div>
         <AreaCategorySearch
