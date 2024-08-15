@@ -62,7 +62,7 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
             <div>
               <div
                 className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3"
-                onClick={() => navigate(`/find-stay/${item.id}`)}
+                onClick={() => navigate(`/find-stay/${item.stay.id}`)}
               >
                 <p className="fs-500 fw-500 capitalize">
                   {formatName(item.stay.city || getTempCity(item.stay.address), 11)}
