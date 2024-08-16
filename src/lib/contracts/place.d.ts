@@ -55,6 +55,18 @@ export interface ReccomendationItem {
   avgRating: string | number
 }
 
+interface PlaceItemLocation {
+  id: string;
+  spotId: string;
+  location: string;
+  searchKey: string;
+  picture: string;
+  published: boolean;
+  createdDate: string; 
+  spot: SpotCategoryItem; 
+}
+
+
 export interface CreateReviewItem {
   rating: number;
   comment: string;
