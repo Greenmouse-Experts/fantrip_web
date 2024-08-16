@@ -32,6 +32,12 @@ export const getPlaces = async (name:string) => {
     .then((response) => response.data);
 };
 
+export const getTopPlaces = async () => {
+  return axios
+    .get(`${ENDPOINT.FETCH_TOP_PLACES}`)
+    .then((response) => response.data);
+};
+
 export const getSearchPlaces = async (value:string) => {
   return axios
     .get(`${ENDPOINT.FETCH_PLACES}?searchKey=${value}`)

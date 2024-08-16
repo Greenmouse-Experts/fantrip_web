@@ -65,3 +65,5 @@ export const CREATE_NEW_REVIEW = `/reviews/create-review`;
 export const FETCH_PUBLIC_REVIEW = `/reviews/view-reviews`;
 export const MUTE_REVIEW = `/mute-review`;
 export const UNMUTE_REVIEW = `/reviews/unmute-review`;
+
+export const FETCH_TOP_PLACES = `/top-places/published`
