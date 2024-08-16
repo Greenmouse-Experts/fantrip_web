@@ -15,7 +15,7 @@ const TopDestination = () => {
         <div className="section pt-6">
             <div className="box">
                 <div className="lg:flex justify-between">
-                    <p className="text-2xl lg:text-4xl fw-600 syne">Restaurants in top destinations</p>
+                    <p className="text-2xl lg:text-4xl fw-600 syne">Top destinations</p>
                    
                 </div>
                 <div>
