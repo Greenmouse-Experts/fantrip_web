@@ -14,7 +14,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
   const { community } = useChat();
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
 
-  const getCommunities = () => {
+  const getPosts = () => {
     const onListenEvent = (value: any) => {
       setPrevPosts(value.data.result);
     };
@@ -30,10 +30,10 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
       ...community.name !== 'all' && {slug: community.name}
     };
     socket.emit("retrieveUnmutedPosts", payload);
-  }, []);
+  }, [community]);
 
   useEffect(() => {
-    getCommunities();
+    getPosts();
   }, [socket, reload]);
 
   

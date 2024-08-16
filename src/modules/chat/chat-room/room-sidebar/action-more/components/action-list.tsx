@@ -5,8 +5,8 @@ import { MdQuiz } from "react-icons/md";
 
 const ActionLists = () => {
   return (
-    <div>
-      <ul className="grid gap-6">
+    <div className="h-[200px]">
+      <ul className="hidden gap-6">
         <li className="flex cursor-pointer lg:pr-2 justify-between items-center">
           <p className="flex items-center  gap-x-4">
             <BsFillBarChartLineFill className="text-lg lg:text-xl"/>

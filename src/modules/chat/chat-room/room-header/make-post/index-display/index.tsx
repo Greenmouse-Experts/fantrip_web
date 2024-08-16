@@ -1,7 +1,5 @@
-import Button from "@/components/Button";
-import useAuth from "@/hooks/authUser";
 import { FC, useEffect, useRef, useState } from "react";
-import { BsEmojiSmile } from "react-icons/bs";
+import useAuth from "@/hooks/authUser";
 import { IoImageOutline, IoVideocamOutline } from "react-icons/io5";
 import {
   Menu,
@@ -14,7 +12,8 @@ import { ChevronDownIcon } from "lucide-react";
 import { useChat } from "@/hooks/useChat";
 import { useNavigate } from "react-router-dom";
 import { uploadImage } from "@/services/api/routine";
-import { BeatLoader } from "react-spinners";
+import DisplayInput from "./display-input";
+import { FcCancel } from "react-icons/fc";
 
 interface Props {
   socket: any;
@@ -48,13 +47,19 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
   // input for post
   const [isBusy, setIsBusy] = useState(false);
   const [textInput, setTextInput] = useState("");
-  const [photo, setPhoto] = useState<File[] | undefined>();
+  const [photo, setPhoto] = useState<File[] | undefined>([]);
 
-  const handlePost = () => {
+  // handle show input
+  const handleShowInput = () => {
     if (!isLoggedIn) {
       navigate("/auth/login");
       return;
+    } else {
+      setShowInput(!showInput);
     }
+  };
+
+  const handlePost = () => {
     setIsBusy(true);
     const payload = {
       token: token,
@@ -92,10 +97,13 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
     }
   };
 
+  console.log(photo);
+  
+
   return (
     <div className="relative" ref={postRef}>
       <div
-        onClick={() => setShowInput(!showInput)}
+        onClick={() => handleShowInput()}
         className={`border border-[#D2D2D2] flex items-center justify-between cursor-pointer p-[2px] pl-1 pr-5 ${
           showInput
             ? "rounded-t-[18px] pt-[3px] border-b-white"
@@ -147,42 +155,16 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       </div>
       {showInput && (
         <div
-          className={`border-b border-x border-[#D2D2D2] absolute w-full p-2 bg-white rounded-b-xl`}
+          className={`border-b border-x border-[#D2D2D2] z-10 absolute w-full p-2 bg-white rounded-b-xl`}
         >
-          <div>
-            <textarea
-              placeholder="write here..."
-              value={textInput}
-              onChange={(e) => setTextInput(e.target.value)}
-              className="w-full p-2 h-24 shadow-sm border-none outline-none"
-            />
-          </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="flex gap-x-3">
-                <BsEmojiSmile className="text-[#8C8C8C] cursor-pointer text-[22px] relative top-[1px]" />
-                <div className="relative overflow-hidden">
-                  <IoImageOutline className="text-[#8C8C8C] cursor-pointer text-2xl" />
-                  <input
-                    type="file"
-                    accept="image/*, .heic"
-                    className="absolute top-0 left-0 opacity-0"
-                    onChange={(e: any) => {
-                      if (e.target.files) setPhoto(e.target.files);
-                    }}
-                  />
-                </div>
-                <IoVideocamOutline className="text-[#8C8C8C] cursor-pointer text-2xl" />
-              </div>
-            </div>
-            <div>
-              <Button
-                title={isBusy ? <BeatLoader /> : "Add Post"}
-                onClick={handlePost}
-                altClassName="btn-int px-4 py-[8px]"
-              />
-            </div>
-          </div>
+          <DisplayInput
+            isBusy={isBusy}
+            text={textInput}
+            setText={setTextInput}
+            photos={photo || []}
+            setImage={setPhoto}
+            handlePost={handlePost}
+          />
         </div>
       )}
     </div>

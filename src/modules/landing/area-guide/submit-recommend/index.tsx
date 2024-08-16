@@ -37,9 +37,6 @@ const SubmitRecommendIndex: FC<Props> = ({ close }) => {
   const [photos, setPhotos] = useState<File[] | undefined>();
   const [prevImgs, setPreviewImgs] = useState<string[]>([]);
 
-  console.log(photos);
-  
-
   useEffect(() => {
     if (!!photos?.length) {
       const urls = Array.from(photos).map((file) => URL.createObjectURL(file));
