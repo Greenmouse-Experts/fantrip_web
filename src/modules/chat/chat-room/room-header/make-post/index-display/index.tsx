@@ -13,7 +13,6 @@ import { useChat } from "@/hooks/useChat";
 import { useNavigate } from "react-router-dom";
 import { uploadImage } from "@/services/api/routine";
 import DisplayInput from "./display-input";
-import { FcCancel } from "react-icons/fc";
 
 interface Props {
   socket: any;
