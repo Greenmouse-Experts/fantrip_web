@@ -11,6 +11,9 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { AuthInputTyping } from "@/lib/contracts/auth";
 import "react-phone-number-input/style.css";
 import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
+import ReCAPTCHA from "react-google-recaptcha";
+import { RECAPTCHA_KEY } from "@/services/constant";
+import { isPossiblePhoneNumber } from "react-phone-number-input";
 
 const RegisterForm = () => {
   const [isBusy, setIsBusy] = useState(false);
@@ -19,6 +22,7 @@ const RegisterForm = () => {
   const {
     control,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors, isValid },
   } = useForm<AuthInputTyping>({
@@ -30,11 +34,19 @@ const RegisterForm = () => {
       password: "",
       phone: "",
       confirm_password: "",
+      captchaKey: "",
+      platform: "web"
     },
   });
+
+  const handleRecaptcha = (value:string | null) => {
+    if(value)setValue("captchaKey", value)
+  }
+
   const mutation = useMutation({
     mutationFn: registerUser,
   });
+
   const onSubmit = (data: AuthInputTyping) => {
     setIsBusy(true);
     const payload = {
@@ -43,6 +55,8 @@ const RegisterForm = () => {
       email: data.email,
       password: data.password,
       phone: data.phone,
+      platform: data.platform,
+      captchaKey: data.captchaKey
     }
     mutation.mutate(payload, {
       onSuccess: () => {
@@ -64,7 +78,7 @@ const RegisterForm = () => {
     <div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid lg:grid-cols-2 gap-4"
+        className="grid lg:grid-cols-2 gap-4 items-center"
       >
         <Controller
           name="firstName"
@@ -126,8 +140,8 @@ const RegisterForm = () => {
             />
           )}
         />
-        <div className="mt-[4px]">
-          <label className="mb-1 block mt-3 fw-500 text-[#000000B2]">
+        <div className="mt-[1px]">
+          <label className="mb-1 block fw-500 text-[#000000B2]">
             Phone Number
           </label>
           <PhoneInputWithCountry
@@ -137,13 +151,14 @@ const RegisterForm = () => {
             control={control}
             rules={{
               required: true,
+              validate: isPossiblePhoneNumber,
               pattern: {
                 value:
                   /\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$/,
                 message: "Please Enter A Valid Number",
               },
             }}
-            className="border p-2 border-gray-400 rounded outline-none"
+            className="border p-[11px] border-gray-400 rounded outline-none"
           />
           {errors.phone && (
             <p className="error text-red-400 text-sm">Invalid Phone Number</p>
@@ -199,7 +214,13 @@ const RegisterForm = () => {
             />
           )}
         />
-        <div className="mt-9 lg:col-span-2">
+        <div className="lg:mt-2">
+        <ReCAPTCHA
+        sitekey={`${RECAPTCHA_KEY}`}
+        onChange={handleRecaptcha}
+      />
+        </div>
+        <div className="mt-8 lg:col-span-2">
           <Button
             title={isBusy ? <BeatLoader size={12} color="white" /> : "Register"}
             type="int"

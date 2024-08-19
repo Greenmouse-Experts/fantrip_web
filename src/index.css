@@ -20,6 +20,10 @@ input[type="radio"]:checked {
   accent-color: #9847fe !important;
 }
 
+.PhoneInputInput{
+  outline: none;
+}
+
 .syne {
   font-family: "Syne", sans-serif;
 }

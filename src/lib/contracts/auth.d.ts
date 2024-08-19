@@ -5,6 +5,8 @@ export interface AuthInputTyping {
   email: string;
   password: string;
   confirm_password: string;
+  captchaKey: string;
+  platform: string;
 }
 
 export interface ForgetInputTyping {

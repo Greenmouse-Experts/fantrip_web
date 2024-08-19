@@ -2,6 +2,7 @@ export const BASE_URL = import.meta.env.VITE_BASE_URL
 export const SOCKET_URL = import.meta.env.VITE_SOCKET_URL
 export const GOOGLE_MAP_KEY = import.meta.env.VITE_GOOGLE_KEY
 export const GOOGLE_AUTH_KEY = import.meta.env.VITE_GOOGLE_AUTH_KEY
+export const RECAPTCHA_KEY = import.meta.env.VITE_RECAPTCHA_KEY
 
 
 // Auth endpoints
