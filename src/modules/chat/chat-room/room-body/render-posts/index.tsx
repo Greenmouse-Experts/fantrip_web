@@ -30,7 +30,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
       ...community.name !== 'all' && {slug: community.name}
     };
     socket.emit("retrieveUnmutedPosts", payload);
-  }, [community]);
+  }, [community, reload]);
 
   useEffect(() => {
     getPosts();

@@ -11,7 +11,7 @@ import {
 import { ChevronDownIcon } from "lucide-react";
 import { useChat } from "@/hooks/useChat";
 import { useNavigate } from "react-router-dom";
-import { uploadImage } from "@/services/api/routine";
+import { uploadImage, uploadVideo } from "@/services/api/routine";
 import DisplayInput from "./display-input";
 
 interface Props {
@@ -47,6 +47,8 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
   const [isBusy, setIsBusy] = useState(false);
   const [textInput, setTextInput] = useState("");
   const [photo, setPhoto] = useState<File[] | undefined>([]);
+  const [video, setVideo] = useState<File[] | undefined>([]);
+
 
   // handle show input
   const handleShowInput = () => {
@@ -73,9 +75,33 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       uploadImage(fd)
         .then((res) => {
           payload.file = res.image;
-          console.log(payload);
           socket.emit("createPost", payload);
           setIsBusy(false);
+          setTextInput("");
+          setPhoto([]);
+          setShowInput(false);
+          setReload();
+        })
+        .catch((error: any) => {
+          toast({
+            title: error.response.data.message,
+            isClosable: true,
+            position: "top",
+            status: "error",
+          });
+          setIsBusy(false);
+        });
+    }else if(video?.length){
+      const files = video[0];
+      const fd = new FormData();
+      fd.append("video", files);
+      uploadVideo(fd)
+        .then((res) => {
+          payload.file = res.video;
+          socket.emit("createPost", payload);
+          setIsBusy(false);
+          setTextInput("");
+          setVideo([]);
           setShowInput(false);
           setReload();
         })
@@ -91,13 +117,12 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
     } else {
       socket.emit("createPost", payload);
       setIsBusy(false);
+      setTextInput("");
+      setPhoto([]);
       setShowInput(false);
       setReload();
     }
   };
-
-  console.log(photo);
-  
 
   return (
     <div className="relative" ref={postRef}>
@@ -124,26 +149,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
         </div>
         <div className="" onClick={(e) => e.stopPropagation()}>
           {showInput ? (
-            <Menu>
-              <MenuButton>
-                <div className="flex fs-400 gap-x-2 items-center">
-                  {selectedChannel.name}{" "}
-                  <ChevronDownIcon size={14} className="text-xs" />
-                </div>
-              </MenuButton>
-              <MenuList className="!w-[150px]">
-                {community.communities.map((item) => (
-                  <MenuItem
-                    key={item.id}
-                    onClick={() =>
-                      setSelectedChannel({ id: item.id, name: item.name })
-                    }
-                  >
-                    <p>{item.name}</p>
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
+            ""
           ) : (
             <div className="flex gap-x-3">
               <IoImageOutline className="text-[#8C8C8C] text-lg" />
@@ -154,14 +160,39 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       </div>
       {showInput && (
         <div
-          className={`border-b border-x border-[#D2D2D2] z-10 absolute w-full p-2 bg-white rounded-b-xl`}
+          className={`border-b border-x border-[#D2D2D2] z-[1] absolute w-full p-2 bg-white rounded-b-xl`}
         >
+          <div className="absolute -top-7 right-5">
+            <Menu>
+              <MenuButton>
+                <div className="flex fs-400 gap-x-2 items-center">
+                  {selectedChannel.name}{" "}
+                  <ChevronDownIcon size={14} className="text-xs" />
+                </div>
+              </MenuButton>
+              <MenuList className="!w-[150px] !z-20">
+                {community.communities.map((item) => (
+                  <MenuItem
+                    key={item.id}
+                    className="!z-20"
+                    onClick={() =>
+                      setSelectedChannel({ id: item.id, name: item.name })
+                    }
+                  >
+                    <p className="!text-black z-20">{item.name}</p>
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </div>
           <DisplayInput
             isBusy={isBusy}
             text={textInput}
             setText={setTextInput}
             photos={photo || []}
             setImage={setPhoto}
+            video={video || []}
+            setVideo={setVideo}
             handlePost={handlePost}
           />
         </div>

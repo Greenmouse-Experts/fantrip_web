@@ -10,7 +10,7 @@ const ItemRender: FC<Props> = ({ item }) => {
   const { community, saveCommunity } = useChat();
   return (
     <div
-      className={`flex justify-between items-center py-2 ${community.activeId === item.id? `bg-[#EDEDFF] dark:bg-[#131313] px-2 rounded-lg` : ''}`}
+      className={`flex justify-between cursor-pointer items-center py-2 ${community.activeId === item.id? `bg-[#EDEDFF] dark:bg-[#131313] px-2 rounded-lg` : ''}`}
       onClick={() =>
         saveCommunity({
           ...community,

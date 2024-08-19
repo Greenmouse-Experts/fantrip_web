@@ -28,7 +28,7 @@ const ImagePostRender: FC<Props> = ({ item }) => {
                 </div>
                 <div>
                   <p className="fw-500 fs-500">{`${item.user.firstName} ${item.user.lastName}`}</p>
-                  <p className="opacity-80 fs-300">
+                  <p className="opacity-80  fs-300">
                     <span className="capitalize fw-500">{item.user.role}</span>
                     {" - "}
                     <span>{dayjs(item.createdDate).fromNow()}</span>
