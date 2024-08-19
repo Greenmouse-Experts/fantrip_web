@@ -42,10 +42,10 @@ const VideoPostRender: FC<Props> = ({ item, socket }) => {
               <p>{item.message}</p>
             </div>
           </div>
-          <div className="bg-gradient-to-r from-gray-400 to-gray-500 h-[300px]">
+          <div className="bg-gradient-to-r from-gray-400 to-gray-500 h-[300px] flex justify-center">
             <video
               src={item.file}
-              width={"100%"}
+              width={"35%"}
               height={"100%"}
               controls
             />
