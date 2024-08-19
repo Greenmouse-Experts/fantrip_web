@@ -119,3 +119,29 @@ export interface PostTyping {
   upvotes: number;
   threads: number;
 }
+
+export interface CommentItem {
+  createdDate: string;
+  downvotes: number;
+  id: string;
+  message: string;
+  postId: string;
+  published: boolean;
+  totalReplies: number;
+  updatedDate: string;
+  upvotes: number;
+  user: {
+    avgRating: null;
+    firstName: string;
+    id: string;
+    isNickname: boolean;
+    lastName: string;
+    nickname: string;
+    picture: string;
+    reviews: string[];
+    role: string;
+    totalReviews: number;
+    verifiedAsHost: boolean;
+  };
+  userId: string;
+}

@@ -40,11 +40,11 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
   return (
     <div className="grid mt-4 gap-4">
       {prevPosts.map((item, i) => {
-        if (item.file === null) return <TextPostRender item={item} key={i} />;
+        if (item.file === null) return <TextPostRender item={item} key={i} socket={socket}/>;
         if (isImageUrl(item.file))
-          return <ImagePostRender item={item} key={i} />;
+          return <ImagePostRender item={item} key={i} socket={socket} />;
         if (isVideoUrl(item.file))
-          return <VideoPostRender item={item} key={i} />;
+          return <VideoPostRender item={item} key={i} socket={socket} />;
       })}
     </div>
   );

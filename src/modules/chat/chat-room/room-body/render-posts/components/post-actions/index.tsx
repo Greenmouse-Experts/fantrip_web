@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { GoComment } from "react-icons/go";
 import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
 import ViewComments from "./comments";
+import useAuth from "@/hooks/authUser";
 
 interface Props {
   type: string;
@@ -9,8 +10,17 @@ interface Props {
   dislike: number;
   comment: number;
   id: string;
+  socket: any;
 }
-const PostActions: FC<Props> = ({ type, like, dislike, comment }) => {
+const PostActions: FC<Props> = ({
+  type,
+  like,
+  dislike,
+  comment,
+  id,
+  socket,
+}) => {
+  const { token } = useAuth();
   const [statCount, setStatCount] = useState({
     initLike: like,
     initDislike: dislike,
@@ -18,7 +28,7 @@ const PostActions: FC<Props> = ({ type, like, dislike, comment }) => {
   });
   const [showComment, setShowComment] = useState(false);
   const [likeAction, setLikeAction] = useState("");
-  
+
   const handleLike = () => {
     if (likeAction === "dislike") {
       setStatCount({ ...statCount, initDislike: statCount.initLike - 1 });
@@ -44,6 +54,23 @@ const PostActions: FC<Props> = ({ type, like, dislike, comment }) => {
     setLikeAction("dislike");
     setStatCount({ ...statCount, initDislike: statCount.initDislike + 1 });
   };
+
+  const handleAction = (type: string) => {
+    const payload = {
+      token: token,
+      reaction: type, // options: upvote, downvote
+      reactionFor: "post", // options: post, comment, reply, poll, quiz
+      concernId: id,
+    };
+    socket.emit("react", payload);
+    if (type === "upvote") {
+      handleLike();
+    } else if (type === "downvote") {
+      handleDisike();
+    } else {
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -63,7 +90,7 @@ const PostActions: FC<Props> = ({ type, like, dislike, comment }) => {
                       : "bg-[#EDEDFF]"
                   }`
             } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
-            onClick={() => handleLike()}
+            onClick={() => handleAction("upvote")}
           >
             <TbArrowBigUp />
             <p>{statCount.initLike}</p>
@@ -83,7 +110,7 @@ const PostActions: FC<Props> = ({ type, like, dislike, comment }) => {
                       : "bg-[#EDEDFF]"
                   }`
             } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
-            onClick={() => handleDisike()}
+            onClick={() => handleAction("downvote")}
           >
             <TbArrowBigDown />
             <p>{statCount.initDislike}</p>
@@ -102,7 +129,7 @@ const PostActions: FC<Props> = ({ type, like, dislike, comment }) => {
           <p>{statCount.initComment}</p>
         </button>
       </div>
-      {showComment && <ViewComments />}
+      {showComment && <ViewComments socket={socket} id={id} count={statCount.initComment} token={token || ''}/>}
     </div>
   );
 };
