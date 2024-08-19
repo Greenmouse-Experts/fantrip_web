@@ -5,16 +5,19 @@ import UpdateProfileForm from "./forms/update-profile-form";
 import UpdateAddressForm from "./forms/update-address";
 import { useToast } from "@chakra-ui/react";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { updateProfile } from "@/services/api/authApi";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { updateProfile, viewProfile } from "@/services/api/authApi";
 import { uploadImage } from "@/services/api/routine";
 import { GoPencil } from "react-icons/go";
 import dayjs from "dayjs";
 import { formatPhoneNumber } from "react-phone-number-input";
+import PyramidSpin from "@/components/loaders/pyramid-spin";
+import UpdateSocialForm from "./forms/update-socials";
 
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
   const { Dialog: LocationInfo, setShowModal: ShowLocation } = useDialog();
+  const { Dialog: Social, setShowModal: ShowSocial } = useDialog();
   const { firstName, lastName, user, isHost, saveUser } = useAuth();
   const toast = useToast();
   const [isUpdate, setIsUpdate] = useState(false);
@@ -22,6 +25,13 @@ const UserAccount = () => {
     mutationFn: updateProfile,
     mutationKey: ["update"],
   });
+  const { isLoading: isGettingProfile, data: profile } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () => viewProfile(),
+  });
+
+  console.log(profile);
+
   const mutation = useMutation({
     mutationFn: uploadImage,
     onSuccess: (data) => {
@@ -74,6 +84,7 @@ const UserAccount = () => {
     fd.append("image", files);
     mutation.mutate(fd);
   };
+  if(isGettingProfile) return <PyramidSpin size={1.8}/>
   return (
     <div>
       <div>
@@ -156,9 +167,7 @@ const UserAccount = () => {
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Favourite Team</p>
-              <p className="fw-500 mt-1">
-                {user.favTeam}
-              </p>
+              <p className="fw-500 mt-1">{user.favTeam}</p>
             </div>
             <div className="lg:col-span-2">
               <p className="fs-500 text-[#5F5F5F]">Bio</p>
@@ -208,6 +217,40 @@ const UserAccount = () => {
             </div>
           </div>
         </div>
+        <div
+          className={`border ${
+            isHost ? "border-gray-600" : "border-[#E8EAED]"
+          } rounded-[16px] mt-6 p-4`}
+        >
+          <div className="flex justify-between items-center">
+            <p className="fw-600 lg:text-lg">Socials</p>
+            <div
+              className="flex gap-x-2 items-center border border-gray-400 px-2 text-gray-400 cursor-pointer rounded-[14px]"
+              onClick={() => ShowSocial(true)}
+            >
+              <p>Edit</p>
+              <AiOutlineEdit />
+            </div>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">FaceBook</p>
+              <a className="fw-500 mt-1" href={`${profile.facebookUrl}`}>{profile.facebookUrl}</a>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Twitter</p>
+              <a className="fw-500 mt-1" href={`${profile.twitterUrl}`}>{profile.twitterUrl}</a>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">LinkedIn</p>
+              <a className="fw-500 mt-1" href={`${profile.linkedinUrl}`}>{profile.linkedinUrl}</a>
+            </div>
+            <div>
+              <p className="fs-500 text-[#5F5F5F]">Instagram</p>
+              <a className="fw-500 mt-1" href={`${profile.instagramUrl}`}>{profile.instagramUrl}</a>
+            </div>
+          </div>
+        </div>
       </div>
       <ProfileInfo title="Update Profile Information" size="xl">
         <UpdateProfileForm close={() => ShowProfile(false)} />
@@ -215,6 +258,9 @@ const UserAccount = () => {
       <LocationInfo title="Update Location Information" size="xl">
         <UpdateAddressForm close={() => ShowLocation(false)} />
       </LocationInfo>
+      <Social title="Update Social Information" size="xl">
+        <UpdateSocialForm close={() => ShowSocial(false)} item={profile} />
+      </Social>
     </div>
   );
 };

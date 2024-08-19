@@ -70,6 +70,12 @@ export const resetPassword = async (payload: any, token: any) => {
     .then((response) => response.data);
 };
 
+export const viewProfile = async() =>{
+  return axios
+  .get(`${ENDPOINT.VIEW_PROFILE}`)
+  .then((response) => response.data);
+}
+
 export const updateProfile = async (payload: any) => {
   return axios
     .post(`${ENDPOINT.UPDATE_PROFILE}`, payload)

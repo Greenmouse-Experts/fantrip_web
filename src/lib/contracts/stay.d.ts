@@ -68,6 +68,8 @@ export interface StayItem {
   postalCode: string;
   aptSuitUnit: string;
   country: string;
+  postal: string;
+  suite: string;
 }
 
 export interface AvailableStayItem extends StayItem {

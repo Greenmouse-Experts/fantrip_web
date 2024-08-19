@@ -61,8 +61,8 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
       city: data.city || "",
       street: data.street || "",
       country: data.country || "",
-      postal: data.postalCode || "",
-      suite: data.aptSuitUnit || "",
+      postal: data.postal || "",
+      suite: data.suite || "",
     },
   });
 

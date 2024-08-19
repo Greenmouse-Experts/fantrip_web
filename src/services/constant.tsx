@@ -11,6 +11,7 @@ export const USERS_LOGIN = `/auth/signin`
 export const FORGET_PASSWORD = `/auth/reset-password-request`
 export const RESET_PASSWORD = `/auth/reset-password`
 export const UPDATE_PROFILE = `/auth/update-profile`
+export const VIEW_PROFILE = `/auth/profile`
 export const UPDATE_PASSWORD = `/auth/update-password`
 export const SOCIAL_SIGNUP = `/auth/sso`
 
