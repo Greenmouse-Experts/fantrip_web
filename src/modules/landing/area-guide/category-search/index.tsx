@@ -53,10 +53,10 @@ const AreaCategorySearch = ({
       </div>
       <div className="box">
         <div className="text-center">
-          <p className="syne text-[19px] lg:text-xl fw-600">
+          <p className="syne text-[19px] lg:text-xl fw-600 dark:!text-black">
             Search through recommended spots for your next fan trip 😉
           </p>
-          <p className="lg:w-9/12 mb-6 lg:mb-0 text-center mx-auto mt-6 text-[#494949]">
+          <p className="lg:w-9/12 mb-6 lg:mb-0 text-center mx-auto mt-6 text-[#494949] dark:!text-black">
             Get the best of your stay in any location through the special Area
             Guide feature, choose through recommended spots by satisfied
             enthusiasts like you!{" "}
@@ -80,7 +80,7 @@ const AreaCategorySearch = ({
                   ) : (
                     <FaLocationCrosshairs className="text-xl lg:text-2xl text-prima" />
                   )}
-                  <p className="fs-200 lg:fs-600">{item.name}</p>
+                  <p className="fs-200 lg:fs-600 dark:!text-black">{item.name}</p>
                 </div>
               ))}
             </div>
@@ -100,7 +100,7 @@ const AreaCategorySearch = ({
                   ) : (
                     <FaLocationCrosshairs className="text-xl lg:text-2xl text-prima" />
                   )}
-                  <p className="fs-200 lg:fs-600">{item.name}</p>
+                  <p className="fs-200 lg:fs-600 dark:!text-black">{item.name}</p>
                 </div>
               ))}
               <div className="col-span-2">
