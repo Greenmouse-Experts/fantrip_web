@@ -1,6 +1,7 @@
 import useAuth from "@/hooks/authUser";
 import { FC, useState } from "react";
 import { IoSend } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   socket: any;
@@ -8,9 +9,14 @@ interface Props {
   addComment: () => void;
 }
 const CommentInput: FC<Props> = ({ socket, id, addComment }) => {
-  const {token} = useAuth()
+  const navigate = useNavigate()
+  const {token, isLoggedIn} = useAuth()
   const [msgInput, setMsgInput] = useState('')
   const handleAddComment = () => {
+    if(!isLoggedIn){
+      navigate('/auth/login')
+      return;
+    }
     const payload = {
       token: token,
       message: msgInput,

@@ -3,6 +3,7 @@ import { GoComment } from "react-icons/go";
 import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
 import ViewComments from "./comments";
 import useAuth from "@/hooks/authUser";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   type: string;
@@ -22,7 +23,8 @@ const PostActions: FC<Props> = ({
   socket,
   reaction
 }) => {
-  const { token } = useAuth();
+  const navigate = useNavigate()
+  const { token, isLoggedIn } = useAuth();
 
   const formatReaction = {
     upvote: "like",
@@ -65,6 +67,10 @@ const PostActions: FC<Props> = ({
   };
 
   const handleAction = (type: string) => {
+    if(!isLoggedIn){
+      navigate('/auth/login')
+      return;
+    }
     const payload = {
       token: token,
       reaction: type, // options: upvote, downvote

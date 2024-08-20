@@ -96,7 +96,7 @@ const LandingHeader = () => {
                       </MenuItem>
                       <MenuItem>
                         <Link
-                          to={"/auth/login"}
+                          to={"/chat-room"}
                           className="flex gap-x-2 !py-[2px] items-center text-black"
                         >
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
