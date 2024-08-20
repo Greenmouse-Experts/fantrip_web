@@ -24,6 +24,7 @@ const CommentInput: FC<Props> = ({ socket, id }) => {
     <div className="bg-[#EFEFEF] flex items-center w-full rounded-full overflow-hidden">
       <input
         type="textarea"
+        value={msgInput}
         className={`w-full border-none outline-none bg-transparent p-2 pl-4`}
         placeholder="Leave a comment..."
         onChange={(e) => setMsgInput(e.target.value)}
