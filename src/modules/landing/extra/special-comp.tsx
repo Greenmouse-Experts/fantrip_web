@@ -21,7 +21,7 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
   
   return (
     <div>
-      <div className="stay-item-wrapper grid h-full">
+      <div className="stay-item-wrapper grid h-full ">
         <div className="rounded-[13px] stay-item p-5 bg-black grid items-stretch grid-cols-2 gap-3">
           <div className="min-h-[170px] max-h-[180px]">
             <img
@@ -33,11 +33,11 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="text-lg fw-600 syne">Meet {formatName(firstName, 9)}</p>
-                <p className="h-[2px] bg-gradient w-full mt-2"></p>
+                <p className="text-lg fw-600 syne dark:!text-black">Meet {formatName(firstName, 9)}</p>
+                <p className="h-[2px] bg-gradient w-full mt-2 dark:!text-black"></p>
               </div>
               <div className="mt-2">
-                <p className="fs-400">
+                <p className="fs-400 dark:!text-black">
                   {formatName(item.stay.host.bio, isBigSize ? 66 : 40)}{" "}
                   <button
                     className="fw-500 fs-400 text-[#9847FE]"
@@ -53,8 +53,8 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
                   .slice(0, isBigSize ? 3 : 2)
                   .map((item: AmenityItem, i: number) => (
                     <div className="flex gap-x-2" key={i}>
-                      <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
-                      <p className="fs-400">{item.name}</p>
+                      <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black dark:!text-black"></p>
+                      <p className="fs-400 dark:!text-black">{item.name}</p>
                     </div>
                   ))}
               </div>

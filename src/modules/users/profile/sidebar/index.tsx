@@ -114,6 +114,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             <p>Account</p>
             <FaUserCircle className="text-xl" />
           </div>
+          
           <div
             className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 2 && "border border-[#9847FE]"
@@ -130,6 +131,15 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             onClick={() => setActive(3)}
           >
             <p>Referral</p>
+            <RxLink2 className="text-xl" />
+          </div>
+          <div
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+              active === 4 && "border border-[#9847FE]"
+            }`}
+            onClick={() => setActive(4)}
+          >
+            <p>Socials</p>
             <RxLink2 className="text-xl" />
           </div>
           <div className="px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600" onClick={() => setShowModal(true)}>

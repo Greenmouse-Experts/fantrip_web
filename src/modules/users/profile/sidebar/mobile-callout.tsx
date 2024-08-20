@@ -18,7 +18,8 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
   const formatActive = {
     1: "My Profile",
     2: "Change Password",
-    3: "Referrals"
+    3: "Referrals",
+    4:"Socials"
   }
   return (
     <div>
@@ -61,6 +62,17 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
                 onClick={() => setActive(3)}
               >
                 <p>Referral</p>
+                <RxLink2 className="text-xl" />
+              </div>
+            </MenuItem>
+            <MenuItem className="border-b">
+              <div
+                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+                  active === 4 && "border border-[#9847FE]"
+                }`}
+                onClick={() => setActive(3)}
+              >
+                <p>Socials</p>
                 <RxLink2 className="text-xl" />
               </div>
             </MenuItem>

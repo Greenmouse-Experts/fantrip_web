@@ -12,6 +12,7 @@ import icon_5 from "@/assets/svg/building-07.svg";
 // import icon_6 from "@/assets/svg/calendar-check-02.svg";
 import icon_7 from "@/assets/svg/globe-06.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
+import ThemeSwitch from "@/components/theme-switch";
 
 interface Props {
   close: () => void;
@@ -85,6 +86,10 @@ const MobileMenu: FC<Props> = ({ close }) => {
               />
             </li>
           )}
+           <li className="px-3">
+
+          <ThemeSwitch/>
+           </li>
         </ul>
       </div>
     </div>

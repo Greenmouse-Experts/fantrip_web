@@ -28,6 +28,7 @@ import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
 import useDialog from "@/hooks/useDialog";
 import LogoutModal from "@/modules/auth/modals/logout-modal";
+import ThemeSwitch from "@/components/theme-switch";
 
 const LandingHeader = () => {
   const [open, setOpen] = useState(false);
@@ -80,7 +81,7 @@ const LandingHeader = () => {
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_1} alt="icons" />
                           </div>
-                          <p className="fs-500">Area Guide</p>
+                          <p className="fs-500 dark:!text-black">Area Guide</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
@@ -91,7 +92,7 @@ const LandingHeader = () => {
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_2} alt="icons" />
                           </div>
-                          <p className="fs-500">Chat Room</p>
+                          <p className="fs-500 dark:!text-black">Chat Room</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
@@ -102,7 +103,7 @@ const LandingHeader = () => {
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_3} alt="icons" />
                           </div>
-                          <p className="fs-500">Live quiz and predictions</p>
+                          <p className="fs-500 dark:!text-black">Live quiz and predictions</p>
                         </Link>
                       </MenuItem>
                     </MenuList>
@@ -137,12 +138,12 @@ const LandingHeader = () => {
                           {isHost ? (
                             <Link
                               to={"/host"}
-                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black"
+                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black dark:!text-black "
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
                               </div>
-                              <p>Dashboard</p>
+                              <p className="dark:!text-black" >Dashboard</p>
                             </Link>
                           ) : (
                             <Link
@@ -152,7 +153,7 @@ const LandingHeader = () => {
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
                               </div>
-                              <p>Profile</p>
+                              <p className="dark:!text-black">Profile</p>
                             </Link>
                           )}
                         </MenuItem>
@@ -165,7 +166,7 @@ const LandingHeader = () => {
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_5} alt="icons" />
                               </div>
-                              <p>Reservations</p>
+                              <p className="dark:!text-black">Reservations</p>
                             </Link>
                           </MenuItem>
                         )}
@@ -191,7 +192,7 @@ const LandingHeader = () => {
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_7} alt="icons" />
                               </div>
-                              <p>Recommendations</p>
+                              <p className="dark:!text-black">Recommendations</p>
                             </Link>
                           </MenuItem>
                         )}
@@ -203,7 +204,7 @@ const LandingHeader = () => {
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                               <img src={icon_8} alt="icons" />
                             </div>
-                            <p>Create New Listing</p>
+                            <p className="dark:!text-black">Create New Listing</p>
                           </Link>
                         </MenuItem>
                         <MenuItem className="!p-0">
@@ -215,13 +216,14 @@ const LandingHeader = () => {
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_9} alt="icons" className="w-5 h-5" />
                             </div>
-                            <p>Logout</p>
+                            <p className="dark:!text-black">Logout</p>
                           </div>
                         </MenuItem>
                       </MenuList>
                     </Menu>
                   </li>
                 )}
+                <ThemeSwitch/>
               </ul>
             </div>
           </div>

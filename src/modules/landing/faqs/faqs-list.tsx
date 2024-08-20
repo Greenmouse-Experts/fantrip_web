@@ -116,7 +116,7 @@ const FaqList = () => {
                     }`}
                   >
                     <AccordionButton className="flex !px-0 justify-between hover:!bg-white">
-                      <p className="fw-500 syne text-left lg:text-xl">
+                      <p className="fw-500 syne text-left lg:text-xl dark:!text-black">
                         {item.question}
                       </p>
                       {isExpanded ? (
@@ -131,7 +131,7 @@ const FaqList = () => {
                       <div className="w-[12px] shrink-0 relative top-[5px]">
                         <GradientListBox />
                       </div>
-                      <p>{item.answer}</p>
+                      <p className="dark:!text-black">{item.answer}</p>
                     </div>
                   </AccordionPanel>
                 </>

@@ -13,24 +13,7 @@ interface Props {
 }
 const TopDestinationSwiper: FC<Props> = ({ data }) => {
   const navigate = useNavigate();
-  // const data = [
-  //   {
-  //     location: "London",
-  //     img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650848/fantrip/Rectangle_20118_1_dsdkzr.png",
-  //   },
-  //   {
-  //     location: "Paris",
-  //     img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20119_2_hr7uky.png",
-  //   },
-  //   {
-  //     location: "Germany",
-  //     img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650849/fantrip/Rectangle_20120_2_blzltp.png",
-  //   },
-  //   {
-  //     location: "Spain",
-  //     img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1714650852/fantrip/Rectangle_20121_1_u0hqn5.png",
-  //   },
-  // ];
+
   return (
     <div>
       <Swiper
@@ -42,7 +25,7 @@ const TopDestinationSwiper: FC<Props> = ({ data }) => {
           <SwiperSlide key={index} className="w-[300px] pb-3">
             <div
               className="w-full h-full relative flex items-end cursor-pointer"
-              onClick={() => navigate(`/area-guide/${item.location}`)}
+              onClick={() => navigate(`/area-guide/location/${item.location}`)}
             >
               <img
                 src={item.picture}

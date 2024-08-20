@@ -36,9 +36,9 @@ const SmallFaqList = () => {
           <AccordionItem key={i} className="!border-none rounded-md overflow-hidden mb-3">
             {({ isExpanded }) => (
               <>
-                <h2 className={`bg-white px-5 py-4 ${isExpanded? "" : "rounded-xl"}`}>
+                <h2 className={`bg-white px-5 py-4 dark:!text-black ${isExpanded? "" : "rounded-xl"}`}>
                   <AccordionButton className="flex justify-between hover:!bg-white">
-                    <p className="fw-500">{item.question}</p>
+                    <p className="fw-500 dark:!text-black">{item.question}</p>
                     {isExpanded ? (
                       <FaMinus fontSize="12px" />
                     ) : (

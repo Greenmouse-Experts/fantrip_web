@@ -16,7 +16,7 @@ const LoginPage = () => {
             <GoogleButton text='Login with Google'/>
           </div>
           <div className='relative flex justify-center'>
-            <p className='bg-white inter px-6 text-lg lg:px-10 py-2 relative z-10'>Or</p>
+            <p className='bg-white dark:!bg-black inter px-6 text-lg lg:px-10 py-2 relative z-10'>Or</p>
             <p className='h-[1px] w-full bg-[#E0E0E0] absolute top-6 left-0'></p>
           </div>
           <div className='mt-6'>

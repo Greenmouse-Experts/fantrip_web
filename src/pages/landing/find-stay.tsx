@@ -32,14 +32,14 @@ const FindStay = () => {
             />
           </div>
           <div className="lg:w-7/12 lg:pl-3 mt-6 lg:mt-0">
-            <p className="syne text-2xl lg:text-4xl fw-600 mb-5">Experience game day with a superfan host!</p>
-            <p className="lg:text-lg">
+            <p className="syne text-2xl lg:text-4xl fw-600 mb-5 dark:!text-black">Experience game day with a superfan host!</p>
+            <p className="lg:text-lg dark:!text-black">
               Your host isn't just anyone – they're your pre-match pundit,
               post-game analyst, and fellow cheerleader. Check out their fan
               cave, get the lowdown on their favorite team, and score a stay
               that's all about the love of the game.
             </p>
-            <p className="mt-4 lg:mt-8 lg:text-lg">
+            <p className="mt-4 lg:mt-8 lg:text-lg dark:!text-black">
               Who needs standard hotel rooms or unavailable hosts when you can
               have a fan's den?
             </p>

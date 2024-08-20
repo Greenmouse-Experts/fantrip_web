@@ -15,6 +15,7 @@ import { formatPhoneNumber } from "react-phone-number-input";
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
   const { Dialog: LocationInfo, setShowModal: ShowLocation } = useDialog();
+
   const { firstName, lastName, user, isHost, saveUser } = useAuth();
   const toast = useToast();
   const [isUpdate, setIsUpdate] = useState(false);
@@ -22,6 +23,10 @@ const UserAccount = () => {
     mutationFn: updateProfile,
     mutationKey: ["update"],
   });
+  
+
+ 
+
   const mutation = useMutation({
     mutationFn: uploadImage,
     onSuccess: (data) => {
@@ -74,6 +79,7 @@ const UserAccount = () => {
     fd.append("image", files);
     mutation.mutate(fd);
   };
+ 
   return (
     <div>
       <div>
@@ -156,9 +162,7 @@ const UserAccount = () => {
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Favourite Team</p>
-              <p className="fw-500 mt-1">
-                {user.favTeam}
-              </p>
+              <p className="fw-500 mt-1">{user.favTeam}</p>
             </div>
             <div className="lg:col-span-2">
               <p className="fs-500 text-[#5F5F5F]">Bio</p>
@@ -208,6 +212,7 @@ const UserAccount = () => {
             </div>
           </div>
         </div>
+       
       </div>
       <ProfileInfo title="Update Profile Information" size="xl">
         <UpdateProfileForm close={() => ShowProfile(false)} />
@@ -215,6 +220,7 @@ const UserAccount = () => {
       <LocationInfo title="Update Location Information" size="xl">
         <UpdateAddressForm close={() => ShowLocation(false)} />
       </LocationInfo>
+      
     </div>
   );
 };

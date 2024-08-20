@@ -1,18 +1,18 @@
 import EmptyStay from "@/components/empty-states/empty-stay";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
 import ViewCategoryRecommendations from "@/modules/landing/area-guide/category";
-import { getPlaces } from "@/services/api/places-api";
+import {  getPlacesByLocation } from "@/services/api/places-api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
-const AreaGuideCategory = () => {
+const AreaGuideLocation = () => {
   const { name } = useParams();
   const param = name?.toLowerCase();
   const { isLoading, data } = useQuery({
-    queryKey: ["get-category-places", param],
-    queryFn: () => getPlaces(`${param}`),
+    queryKey: ["get-location-places", param],
+    queryFn: () => getPlacesByLocation(`${param}`),
   });
-  
+
   return (
     <div>
       <div className="pt-16 lg:pt-28 bg-layout-gradient">
@@ -34,7 +34,7 @@ const AreaGuideCategory = () => {
         {!isLoading && !!data?.data.length && (
           <ViewCategoryRecommendations data={data?.data} />
         )}
-          {!isLoading && !data.data.length &&(
+            {!isLoading && !data.data.length &&(
           <EmptyStay/>
         )}
       </div>
@@ -42,4 +42,4 @@ const AreaGuideCategory = () => {
   );
 };
 
-export default AreaGuideCategory;
+export default AreaGuideLocation;

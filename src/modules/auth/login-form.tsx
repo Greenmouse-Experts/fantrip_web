@@ -146,6 +146,7 @@ const LoginForm = () => {
             title={isBusy ? <BeatLoader size={12} color="white" /> : "Login"}
             type="int"
             disabled={!isValid || isBusy}
+           
           />
         </div>
       </form>

@@ -4,6 +4,7 @@ import UserAccount from "./profile-components/account"
 import UserSecurity from "./profile-components/security"
 import UserReferrals from "./profile-components/referrals"
 import MobileSidebar from "./sidebar/mobile-callout"
+import UserSocials from "./profile-components/socials"
 
 const ProfileComponent = () => {
     const [active, setActive] = useState(1)
@@ -19,6 +20,7 @@ const ProfileComponent = () => {
             {active === 1 && <UserAccount/>}
             {active === 2 && <UserSecurity/>}
             {active === 3 && <UserReferrals/>}
+            {active === 4 && <UserSocials/>}
         </div>
     </div>
   )

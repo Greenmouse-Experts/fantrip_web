@@ -89,9 +89,9 @@ const BookingTab: FC<Props> = ({ home }) => {
                   <div className="flex gap-x-4 cursor-pointer items-center">
                     <FiCalendar className="text-xl" />
                     {params.checkIn ? (
-                      <p className="fw-500">{params?.checkIn}</p>
+                      <p className="fw-500 dark:!text-black ">{params?.checkIn}</p>
                     ) : (
-                      <p className="fw-500">Check In</p>
+                      <p className="fw-500 dark:!text-black">Check In</p>
                     )}
                   </div>
                 </MenuButton>
@@ -126,9 +126,9 @@ const BookingTab: FC<Props> = ({ home }) => {
                   <div className="flex gap-x-4 cursor-pointer items-center">
                     <FiCalendar className="text-xl" />
                     {params.checkOut ? (
-                      <p className="fw-500">{params?.checkOut}</p>
+                      <p className="fw-500 dark:!text-black">{params?.checkOut}</p>
                     ) : (
-                      <p className="fw-500">Check Out</p>
+                      <p className="fw-500 dark:!text-black">Check Out</p>
                     )}
                   </div>
                 </MenuButton>
@@ -162,7 +162,7 @@ const BookingTab: FC<Props> = ({ home }) => {
                   onChange={(value) => handleChange(value, "no_of_guests")}
                   variant="unstyled"
                   placeholder="Guests"
-                  className="fw-500"
+                  className="fw-500 dark:!text-black"
                 >
                   <option value="1">1 (one)</option>
                   <option value="2">2 (two)</option>

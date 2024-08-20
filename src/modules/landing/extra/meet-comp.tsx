@@ -33,11 +33,11 @@ const MeetComponent: FC<Props> = ({ item }) => {
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="text-lg fw-600 syne">Meet {formatName(firstName, 9)}</p>
-                <p className="h-[2px] bg-gradient w-full mt-2"></p>
+                <p className="text-lg fw-600 dark:!text-black syne">Meet {formatName(firstName, 9)}</p>
+                <p className="h-[2px] bg-gradient w-full mt-2 dark:!text-black"></p>
               </div>
               <div className="mt-2">
-                <p className="fs-400">
+                <p className="fs-400 dark:!text-black">
                   {formatName(item.host.bio, isBigSize ? 66 : 40)}{" "}
                   <button
                     className="fw-500 fs-400 text-[#9847FE]"
@@ -54,7 +54,7 @@ const MeetComponent: FC<Props> = ({ item }) => {
                   .map((item: AmenityItem, i: number) => (
                     <div className="flex gap-x-2" key={i}>
                       <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
-                      <p className="fs-400">{item.name}</p>
+                      <p className="fs-400 dark:!text-black">{item.name}</p>
                     </div>
                   ))}
               </div>
@@ -64,10 +64,10 @@ const MeetComponent: FC<Props> = ({ item }) => {
                 className="text-white bg-gradient cursor-pointer text-center rounded-[13px] w-full py-3"
                 onClick={() => navigate(`/find-stay/${item.id}`)}
               >
-                <p className="fs-500 fw-500 capitalize">
+                <p className="fs-500 fw-500  capitalize">
                   {formatName(item.city || getTempCity(item.address), 11)}
                 </p>
-                <p className="fw-500">
+                <p className="fw-500 ">
                   {item.currency}
                   {item.price}/ night
                 </p>
