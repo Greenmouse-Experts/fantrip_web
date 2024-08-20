@@ -1,6 +1,7 @@
 import { CommentItem } from "@/lib/contracts/chat";
 import { FC, useEffect, useState } from "react";
 import RenderComment from "./render-comments";
+import CommentsLoading from "@/components/shimmers/comments";
 
 interface Props {
   socket: any;
@@ -9,11 +10,13 @@ interface Props {
   token: string;
 }
 const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const [prevComments, setPrevComments] = useState<CommentItem[]>([]);
 
   const getComments = () => {
     const onListenEvent = (value: any) => {
       setPrevComments(value.data.result);
+      setIsLoading(false)
     };
     socket.on(`publishedCommentsRetrieved`, onListenEvent);
 
@@ -28,6 +31,7 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
       page: 1,
     };
     socket.emit("retrievePublishedComments", payload);
+    setIsLoading(true)
   }, []);
 
   useEffect(() => {
@@ -40,6 +44,7 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
         <p className="fs-500 fw-500">{count} Comments</p>
       </div>
       <div className="mt-4 grid gap-2">
+        {isLoading && <CommentsLoading/>}
         {!!prevComments.length &&
           prevComments.map((item) => (
             <RenderComment socket={socket} comment={item} key={item.id} />

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import LeaveComment from "../leave-a-comment";
 import PostActions from "../post-actions";
 import ProfileMore from "../profile-more";
@@ -12,6 +12,11 @@ interface Props {
   socket: any;
 }
 const TextPostRender: FC<Props> = ({ item, socket }) => {
+  const [commentCount, setCommentCount] = useState<number>(item.threads)
+  const addComment = () => {
+    const currentComment = item.threads
+    setCommentCount(Number(currentComment) + 1)
+  }
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="bg-[#EDEDFF] rounded-[12px] p-4">
@@ -45,13 +50,13 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
           id={item.id}
           like={item.upvotes}
           dislike={item.downvotes}
-          comment={item.threads}
+          comment={commentCount}
           type="text"
           socket={socket}
         />
       </div>
       <div className="mt-3">
-        <LeaveComment id={item.id} socket={socket} />
+        <LeaveComment id={item.id} socket={socket} addComment={addComment} />
       </div>
     </div>
   );

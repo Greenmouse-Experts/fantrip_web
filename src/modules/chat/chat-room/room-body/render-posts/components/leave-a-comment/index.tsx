@@ -5,8 +5,9 @@ import { FC } from "react";
 interface Props{
   socket: any;
   id: string;
+  addComment: () => void;
 }
-const LeaveComment:FC<Props> = ({socket, id}) => {
+const LeaveComment:FC<Props> = ({socket, id, addComment}) => {
   const { user } = useAuth();
   return (
     <div className="flex gap-x-3 items-center">
@@ -20,7 +21,7 @@ const LeaveComment:FC<Props> = ({socket, id}) => {
           className="w-full h-full circle object-cover"
         />
       </div>
-      <CommentInput socket={socket} id={id}/>
+      <CommentInput socket={socket} id={id} addComment={addComment}/>
     </div>
   );
 };
