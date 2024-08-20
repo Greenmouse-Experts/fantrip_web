@@ -106,6 +106,7 @@ export interface PostTyping {
   communityId: string;
   createdDate: string;
   updatedDate: string;
+  myReaction?: string;
   user: {
     firstName: string;
     lastName: string;
@@ -114,6 +115,8 @@ export interface PostTyping {
     role: string;
     picture: string;
     isNickname: boolean;
+    id: string;
+    reviews: [];
   };
   downvotes: number;
   upvotes: number;

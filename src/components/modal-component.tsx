@@ -7,6 +7,7 @@ interface Props {
   onClose: () => void;
   children: JSX.Element;
   type?: "recommend" | "more";
+  noClose?: boolean
 }
 export const ComponentModal: FC<Props> = ({
   shouldShow,
@@ -14,11 +15,12 @@ export const ComponentModal: FC<Props> = ({
   children,
   title,
   type,
+  noClose
 }) => {
   return shouldShow ? (
     <div
       className="fixed top-0 left-0 flex items-center justify-center z-[3000] h-full w-full bg-black/40 overflow-auto"
-      onClick={onClose}
+      onClick={noClose? () => false : onClose}
     >
       <div
         className={` ${

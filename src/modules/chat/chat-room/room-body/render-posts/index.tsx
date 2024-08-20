@@ -5,12 +5,14 @@ import VideoPostRender from "./components/video-post-render";
 import { useChat } from "@/hooks/useChat";
 import { PostTyping } from "@/lib/contracts/chat";
 import { isImageUrl, isVideoUrl } from "@/lib/utils/helper-function";
+import useAuth from "@/hooks/authUser";
 
 interface Props {
   reload: string;
   socket: any;
 }
 const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
+  const {isLoggedIn, token} = useAuth()
   const { community } = useChat();
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
 
@@ -27,6 +29,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
   useEffect(() => {
     const payload = {
       page: 1,
+      ...isLoggedIn && {token: token},
       ...community.name !== 'all' && {slug: community.name}
     };
     socket.emit("retrieveUnmutedPosts", payload);
@@ -35,7 +38,6 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
   useEffect(() => {
     getPosts();
   }, [socket, reload]);
-
   
   return (
     <div className="grid mt-4 gap-4">

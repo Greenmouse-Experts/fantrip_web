@@ -1,16 +1,19 @@
 import ProfileAvatar from "@/components/ProfileAvatar";
 import { CommentItem } from "@/lib/contracts/chat";
-import { FC } from "react";
+import { FC, useState } from "react";
 import CommentAction from "../comment-action";
+import { ComponentModal } from "@/components/modal-component";
+import ProfileModal from "../../../profile-more/profile-modal";
 
 interface Props {
   comment: CommentItem;
   socket: any;
 }
 const RenderComment: FC<Props> = ({ comment, socket }) => {
+    const [profileShow, setProfileShow] = useState(false);
   return (
     <div className="flex gap-x-1">
-      <div className="w-[40px] mt-[2px] shrink-0">
+      <div className="w-[40px] cursor-pointer mt-[2px] shrink-0" onClick={() => setProfileShow(true)}>
         <ProfileAvatar
           url={comment.user.picture}
           name={`${comment.user.firstName} ${comment.user.lastName}`}
@@ -32,6 +35,14 @@ const RenderComment: FC<Props> = ({ comment, socket }) => {
           />
         </div>
       </div>
+      <ComponentModal
+        title={`User Profile`}
+        shouldShow={profileShow}
+        onClose={() => setProfileShow(false)}
+        type="more"
+      >
+        <ProfileModal user={comment.user} close={() => setProfileShow(false)}/>
+      </ComponentModal>
     </div>
   );
 };

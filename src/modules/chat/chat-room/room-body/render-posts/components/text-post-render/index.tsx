@@ -5,6 +5,9 @@ import ProfileMore from "../profile-more";
 import { PostTyping } from "@/lib/contracts/chat";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import AltName from "@/components/alt-name";
+import { ComponentModal } from "@/components/modal-component";
+import ProfileModal from "../profile-more/profile-modal";
 dayjs.extend(relativeTime);
 
 interface Props {
@@ -12,11 +15,13 @@ interface Props {
   socket: any;
 }
 const TextPostRender: FC<Props> = ({ item, socket }) => {
-  const [commentCount, setCommentCount] = useState<number>(item.threads)
+  const [profileShow, setProfileShow] = useState(false);
+  const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = () => {
-    const currentComment = item.threads
-    setCommentCount(Number(currentComment) + 1)
-  }
+    const currentComment = item.threads;
+    setCommentCount(Number(currentComment) + 1);
+  };
+
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="bg-[#EDEDFF] rounded-[12px] p-4">
@@ -30,10 +35,17 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
                 }
                 alt="profile"
                 className="w-full h-full circle object-cover"
+                onClick={() => setProfileShow(true)}
               />
             </div>
             <div>
-              <p className="fw-500 fs-500">{`${item.user.firstName} ${item.user.lastName}`}</p>
+              <p className="fw-500 fs-500">
+                <AltName
+                  name={`${item.user.firstName} ${item.user.lastName}`}
+                  useNick={item.user.isNickname}
+                  nick={item.user.nickname}
+                />
+              </p>
               <p className="opacity-80  fs-300">
                 <span className="capitalize fw-500">{item.user.role}</span>
                 {" - "}
@@ -41,7 +53,7 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
               </p>
             </div>
           </div>
-          <ProfileMore />
+          <ProfileMore user={item.user} openUser={() => setProfileShow(true)}/>
         </div>
         <div className="my-3">
           <p>{item.message}</p>
@@ -53,11 +65,20 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
           comment={commentCount}
           type="text"
           socket={socket}
+          reaction={item.myReaction}
         />
       </div>
       <div className="mt-3">
         <LeaveComment id={item.id} socket={socket} addComment={addComment} />
       </div>
+      <ComponentModal
+        title={`User Profile`}
+        shouldShow={profileShow}
+        onClose={() => setProfileShow(false)}
+        type="more"
+      >
+        <ProfileModal user={item.user} close={() => setProfileShow(false)}/>
+      </ComponentModal>
     </div>
   );
 };

@@ -120,6 +120,7 @@ const AreaCategorySearch = ({
         shouldShow={showSubmit}
         onClose={() => setShowSubmit(false)}
         type="recommend"
+        noClose
       >
         <SubmitRecommendIndex close={() => setShowSubmit(false)} />
       </ComponentModal>

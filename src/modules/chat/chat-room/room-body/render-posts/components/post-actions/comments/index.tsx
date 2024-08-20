@@ -32,11 +32,11 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
     };
     socket.emit("retrievePublishedComments", payload);
     setIsLoading(true)
-  }, []);
+  }, [count]);
 
   useEffect(() => {
     getComments();
-  }, [socket]);
+  }, [socket, count]);
 
   return (
     <div className="mt-2 bg-[#EDEDFF] p-3 rounded-lg">

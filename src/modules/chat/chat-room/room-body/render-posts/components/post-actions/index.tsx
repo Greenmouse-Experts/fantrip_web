@@ -11,6 +11,7 @@ interface Props {
   comment: number;
   id: string;
   socket: any;
+  reaction: string | undefined;
 }
 const PostActions: FC<Props> = ({
   type,
@@ -19,16 +20,23 @@ const PostActions: FC<Props> = ({
   comment,
   id,
   socket,
+  reaction
 }) => {
   const { token } = useAuth();
+
+  const formatReaction = {
+    upvote: "like",
+    downvote: "dislike",
+  }
 
   const [statCount, setStatCount] = useState({
     initLike: like,
     initDislike: dislike,
     initComment: comment,
   });
+
   const [showComment, setShowComment] = useState("");
-  const [likeAction, setLikeAction] = useState("");
+  const [likeAction, setLikeAction] = useState(reaction? formatReaction[reaction as keyof typeof formatReaction] : "");
 
   const handleLike = () => {
     if (likeAction === "dislike") {
@@ -138,14 +146,14 @@ const PostActions: FC<Props> = ({
           onClick={() => handleShowComment(id)}
         >
           <GoComment />
-          <p>{statCount.initComment}</p>
+          <p>{comment || 0}</p>
         </button>
       </div>
       {showComment === id && (
         <ViewComments
           socket={socket}
           id={id}
-          count={statCount.initComment}
+          count={comment || 0}
           token={token || ""}
         />
       )}

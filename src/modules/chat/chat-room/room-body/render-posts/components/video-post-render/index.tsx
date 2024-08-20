@@ -4,12 +4,16 @@ import LeaveComment from "../leave-a-comment";
 import ProfileMore from "../profile-more";
 import { PostTyping } from "@/lib/contracts/chat";
 import dayjs from "dayjs";
+import AltName from "@/components/alt-name";
+import { ComponentModal } from "@/components/modal-component";
+import ProfileModal from "../profile-more/profile-modal";
 
 interface Props {
   item: PostTyping;
   socket: any;
 }
 const VideoPostRender: FC<Props> = ({ item, socket }) => {
+  const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = () => {
     const currentComment = item.threads;
@@ -30,10 +34,17 @@ const VideoPostRender: FC<Props> = ({ item, socket }) => {
                     }
                     alt="profile"
                     className="w-full h-full circle object-cover"
+                    onClick={() => setProfileShow(true)}
                   />
                 </div>
                 <div>
-                  <p className="fw-500 fs-500">{`${item.user.firstName} ${item.user.lastName}`}</p>
+                  <p className="fw-500 fs-500">
+                    <AltName
+                      name={`${item.user.firstName} ${item.user.lastName}`}
+                      useNick={item.user.isNickname}
+                      nick={item.user.nickname}
+                    />
+                  </p>
                   <p className="opacity-80 fs-300">
                     <span className="capitalize fw-500">{item.user.role}</span>
                     {" - "}
@@ -41,7 +52,7 @@ const VideoPostRender: FC<Props> = ({ item, socket }) => {
                   </p>
                 </div>
               </div>
-              <ProfileMore />
+              <ProfileMore user={item.user} openUser={() => setProfileShow(true)}/>
             </div>
             <div className="mt-3">
               <p>{item.message}</p>
@@ -59,12 +70,21 @@ const VideoPostRender: FC<Props> = ({ item, socket }) => {
             comment={commentCount}
             type="image"
             socket={socket}
+            reaction={item.myReaction}
           />
         </div>
       </div>
       <div className="mt-3">
         <LeaveComment id={item.id} socket={socket} addComment={addComment} />
       </div>
+      <ComponentModal
+        title={`User Profile`}
+        shouldShow={profileShow}
+        onClose={() => setProfileShow(false)}
+        type="more"
+      >
+        <ProfileModal user={item.user} close={() => setProfileShow(false)}/>
+      </ComponentModal>
     </div>
   );
 };
