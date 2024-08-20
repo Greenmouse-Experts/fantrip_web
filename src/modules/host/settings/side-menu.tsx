@@ -38,6 +38,15 @@ const SettingSideMenu: FC<Props> = ({ setActive, active }) => {
           <p>Referral</p>
           <RxLink2 className="text-xl" />
         </div>
+        <div
+          className={`px-4 cursor-pointer rounded-[10px] py-3 flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            active === 4 && "border border-[#9847FE] text-[#9847FE]"
+          }`}
+          onClick={() => setActive(4)}
+        >
+          <p>Socials</p>
+          <RxLink2 className="text-xl" />
+        </div>
       </div>
     </div>
   );

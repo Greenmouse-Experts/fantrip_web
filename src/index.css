@@ -6,6 +6,23 @@
   font-family: "Poppins", sans-serif;
 }
 
+
+.dark body{
+    background: #0e1624 !important;
+  }
+.dark p{
+  color: white;
+}
+.css-1o3pyl4{
+  background: #0e1624  !important;
+  color: white !important;
+}
+
+.dark label{
+  color: white;
+}
+
+
 input:checked {
   background: #9847fe !important;
 }

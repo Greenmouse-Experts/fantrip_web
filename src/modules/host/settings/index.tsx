@@ -4,6 +4,7 @@ import UserReferrals from '@/modules/users/profile/profile-components/referrals'
 import UserSecurity from '@/modules/users/profile/profile-components/security'
 import SettingSideMenu from './side-menu'
 import MobileSidebar from './mobile-callout'
+import UserSocials from '@/modules/users/profile/profile-components/socials'
 
 const HostSettingsIndex = () => {
     const [active, setActive] = useState(1)
@@ -19,6 +20,7 @@ const HostSettingsIndex = () => {
               {active === 1 && <UserAccount/>}
               {active === 2 && <UserSecurity/>}
               {active === 3 && <UserReferrals/>}
+              {active === 4 && <UserSocials/>}
           </div>
       </div>
     )

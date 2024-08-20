@@ -22,10 +22,10 @@ const PaginationIndex: FC<Props> = ({ page, setPage, total }) => {
         {generatePaginationNumbers(page, pageCount).map((item, i) =>
           isNumber(item) ? (
             <li
-              className={`w-12 h-12 fw-600 circle place-center cursor-pointer ${
+              className={`w-12 h-12 fw-600 circle place-center cursor-pointer dark:!text-white ${
                 page === Number(item)
                   ? "bg-[#9847FE] text-white"
-                  : "hover:text-prima"
+                  : "hover:text-prima "
               }`}
               onClick={() => handlePaginate(Number(item))}
               key={i}
