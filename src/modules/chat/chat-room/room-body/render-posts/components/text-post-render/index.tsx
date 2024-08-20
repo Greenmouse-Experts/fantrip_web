@@ -9,8 +9,9 @@ dayjs.extend(relativeTime);
 
 interface Props {
   item: PostTyping;
+  socket: any;
 }
-const TextPostRender: FC<Props> = ({ item }) => {
+const TextPostRender: FC<Props> = ({ item, socket }) => {
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="bg-[#EDEDFF] rounded-[12px] p-4">
@@ -46,10 +47,11 @@ const TextPostRender: FC<Props> = ({ item }) => {
           dislike={item.downvotes}
           comment={item.threads}
           type="text"
+          socket={socket}
         />
       </div>
       <div className="mt-3">
-        <LeaveComment />
+        <LeaveComment id={item.id} socket={socket} />
       </div>
     </div>
   );

@@ -7,8 +7,9 @@ import dayjs from "dayjs";
 
 interface Props {
   item: PostTyping;
+  socket: any;
 }
-const ImagePostRender: FC<Props> = ({ item }) => {
+const ImagePostRender: FC<Props> = ({ item, socket }) => {
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="">
@@ -47,16 +48,17 @@ const ImagePostRender: FC<Props> = ({ item }) => {
         </div>
         <div className="mt-3">
           <PostActions
-            id=""
+            id={item.id}
             like={item.upvotes}
             dislike={item.downvotes}
             comment={item.threads}
             type="image"
+            socket={socket}
           />
         </div>
       </div>
       <div className="mt-3">
-        <LeaveComment />
+        <LeaveComment id={item.id} socket={socket}/>
       </div>
     </div>
   );

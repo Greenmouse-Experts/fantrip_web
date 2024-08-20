@@ -2,14 +2,14 @@ import { FC } from "react";
 import PostActions from "../post-actions";
 import LeaveComment from "../leave-a-comment";
 import ProfileMore from "../profile-more";
-import ReactPlayer from "react-player";
 import { PostTyping } from "@/lib/contracts/chat";
 import dayjs from "dayjs"
 
 interface Props {
   item: PostTyping;
+  socket: any;
 }
-const VideoPostRender: FC<Props> = ({ item }) => {
+const VideoPostRender: FC<Props> = ({ item, socket }) => {
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="">
@@ -42,27 +42,28 @@ const VideoPostRender: FC<Props> = ({ item }) => {
               <p>{item.message}</p>
             </div>
           </div>
-          <div className="bg-gradient-to-r from-gray-400 to-gray-500 h-[300px]">
-            <ReactPlayer
-              url={item.file}
-              width={"100%"}
-              height={"300px"}
+          <div className="bg-gradient-to-r from-gray-400 to-gray-500 h-[300px] flex justify-center">
+            <video
+              src={item.file}
+              width={"35%"}
+              height={"100%"}
               controls
             />
           </div>
         </div>
         <div className="mt-3">
           <PostActions
-            id=""
+            id={item.id}
             like={item.upvotes}
             dislike={item.downvotes}
             comment={item.threads}
             type="image"
+            socket={socket}
           />
         </div>
       </div>
       <div className="mt-3">
-        <LeaveComment />
+        <LeaveComment id={item.id} socket={socket}/>
       </div>
     </div>
   );

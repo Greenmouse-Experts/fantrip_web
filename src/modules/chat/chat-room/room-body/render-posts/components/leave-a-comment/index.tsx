@@ -1,7 +1,12 @@
 import useAuth from "@/hooks/authUser";
 import CommentInput from "./components/comment-input";
+import { FC } from "react";
 
-const LeaveComment = () => {
+interface Props{
+  socket: any;
+  id: string;
+}
+const LeaveComment:FC<Props> = ({socket, id}) => {
   const { user } = useAuth();
   return (
     <div className="flex gap-x-3 items-center">
@@ -15,7 +20,7 @@ const LeaveComment = () => {
           className="w-full h-full circle object-cover"
         />
       </div>
-      <CommentInput />
+      <CommentInput socket={socket} id={id}/>
     </div>
   );
 };
