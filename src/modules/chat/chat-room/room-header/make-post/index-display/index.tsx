@@ -160,7 +160,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       </div>
       {showInput && (
         <div
-          className={`border-b border-x border-[#D2D2D2] z-[1] absolute w-full p-2 bg-white rounded-b-xl`}
+          className={`border-b border-x border-[#D2D2D2] z-[1] absolute w-full p-2 bg-white dark:bg-darkColor rounded-b-xl`}
         >
           <div className="absolute -top-7 right-5">
             <Menu>
