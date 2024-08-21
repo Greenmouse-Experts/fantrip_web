@@ -39,7 +39,7 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
   }, [socket, count]);
 
   return (
-    <div className="mt-2 bg-[#EDEDFF] p-3 rounded-lg">
+    <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
       <div>
         <p className="fs-500 fw-500">{count} Comments</p>
       </div>

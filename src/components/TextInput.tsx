@@ -199,7 +199,7 @@ const TextInput: React.FC<Props> = ({
             : error
             ? 'border-red-400 border'
             : 'border border-gray-400',
-          'flex items-center bg-white  mt-1 rounded-[4px]'
+          'flex items-center bg-white dark:bg-darkColorLight  mt-1 rounded-[4px]'
         )}
       >
         {icon && icon}
@@ -208,9 +208,9 @@ const TextInput: React.FC<Props> = ({
         {type === InputType.password && (
           <div onClick={() => togglePassword(!isPasswordType)} className="px-3">
             {!isPasswordType ? (
-              <FaRegEyeSlash className="text-xl text-black" />
+              <FaRegEyeSlash className="text-xl text-black dark:invert" />
             ) : (
-              <FaRegEye className="text-xl text-black" />
+              <FaRegEye className="text-xl text-black dark:invert" />
             )}
           </div>
         )}

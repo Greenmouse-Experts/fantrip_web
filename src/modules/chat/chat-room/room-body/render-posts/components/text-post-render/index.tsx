@@ -24,7 +24,7 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
 
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
-      <div className="bg-[#EDEDFF] rounded-[12px] p-4">
+      <div className="bg-[#EDEDFF] dark:bg-darkColorLight rounded-[12px] p-4">
         <div className="flex justify-between">
           <div className="flex gap-x-2 items-center">
             <div className="w-[35px] lg:w-[40px] h-[35px] lg:h-[40px] bg-gradient p-[1px] circle">
@@ -53,7 +53,7 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
               </p>
             </div>
           </div>
-          <ProfileMore user={item.user} openUser={() => setProfileShow(true)}/>
+          <ProfileMore user={item.user} openUser={() => setProfileShow(true)} />
         </div>
         <div className="my-3">
           <p>{item.message}</p>
@@ -77,7 +77,7 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
         onClose={() => setProfileShow(false)}
         type="more"
       >
-        <ProfileModal user={item.user} close={() => setProfileShow(false)}/>
+        <ProfileModal user={item.user} close={() => setProfileShow(false)} />
       </ComponentModal>
     </div>
   );

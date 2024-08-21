@@ -144,11 +144,11 @@ const StartListing: FC<Props> = ({ next }) => {
                 },
               }}
               render={({ field }) => (
-                <div className="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none">
+                <div className="border border-[#D2D2D2] bg-[#F9FAFC] dark:bg-darkColorLight rounded-[10px] outline-none">
                   <select
                     {...field}
                     ref={null}
-                    className="w-[95%] p-3 bg-[#F9FAFC] lg:p-[15px] outline-none rounded-[10px]"
+                    className="w-[95%] p-3 bg-[#F9FAFC] lg:p-[15px] outline-none rounded-[10px] dark:bg-darkColorLight dark:text-white "
                   >
                     <option value="" disabled>
                       Select type of property
@@ -166,7 +166,7 @@ const StartListing: FC<Props> = ({ next }) => {
             />
           </div>
           <div>
-            <div className="text-black flex items-center gap-x-2 fw-600 lg:text-lg mb-1">
+            <div className="text-black dark:text-white flex items-center gap-x-2 fw-600 lg:text-lg mb-1">
               Address{" "}
               <Tooltip
                 shouldWrapChildren

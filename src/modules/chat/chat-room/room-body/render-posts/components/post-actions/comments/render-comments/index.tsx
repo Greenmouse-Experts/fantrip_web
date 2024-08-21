@@ -21,7 +21,7 @@ const RenderComment: FC<Props> = ({ comment, socket }) => {
           font={18}
         />
       </div>
-      <div className="w-full bg-white bg-opacity-30 px-2 py-1 shadow-sm">
+      <div className="w-full bg-white dark:bg-darkColorLight bg-opacity-30 px-2 py-1 shadow-sm">
         <p className="fw-500 fs-500">{`${comment.user.firstName} ${comment.user.lastName}`}</p>
         <p className="fs-500">{comment.message}</p>
         <div className="mt-2">

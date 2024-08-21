@@ -24,9 +24,9 @@ const useDialog = () => {
         <>
           <Modal size={size} blockScrollOnMount={false} isCentered motionPreset='slideInBottom' isOpen={showModal} onClose={closeModal}>
             <ModalOverlay />
-            <ModalContent className="pb-4">
+            <ModalContent className="pb-4 dark:!bg-darkColorLight">
               <ModalHeader>{title}</ModalHeader>
-              <ModalCloseButton />
+              <ModalCloseButton className="dark:invert" />
               <ModalBody>
                 <div>
                     {children}

@@ -27,7 +27,7 @@ const Button: React.FC<Props> = ({
       <button
         className={
           altClassName ||
-          `py-3 lg:text-lg w-full dark:!bg-black ${
+          `py-3 lg:text-lg w-full dark:!bg-darkColorLight ${
             type === "int" ? "btn-int" : "btn-primary"
           } uppercase fw-500 ${
             disabled ? "cursor-not-allowed btn-disabled" : ""
