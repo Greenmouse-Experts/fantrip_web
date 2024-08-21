@@ -76,23 +76,23 @@ const LandingHeader = () => {
                       <MenuItem>
                         <Link
                           to={"/area-guide"}
-                          className="flex gap-x-2 !py-[2px] items-center text-black"
+                          className="w-full flex gap-x-2 !py-[2px] items-center text-black dark:bg-black"
                         >
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_1} alt="icons" />
                           </div>
-                          <p className="fs-500 dark:!text-black">Area Guide</p>
+                          <p className="fs-500 ">Area Guide</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
                         <Link
                           to={"/chat-room"}
-                          className="flex gap-x-2 !py-[2px] items-center text-black"
+                          className="w-full flex gap-x-2 !py-[2px] items-center text-black dark:bg-black"
                         >
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_2} alt="icons" />
                           </div>
-                          <p className="fs-500 dark:!text-black">Chat Room</p>
+                          <p className="fs-500 ">Chat Room</p>
                         </Link>
                       </MenuItem>
                       <MenuItem>
@@ -103,7 +103,7 @@ const LandingHeader = () => {
                           <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_3} alt="icons" />
                           </div>
-                          <p className="fs-500 dark:!text-black">Live quiz and predictions</p>
+                          <p className="fs-500 ">Live quiz and predictions</p>
                         </Link>
                       </MenuItem>
                     </MenuList>
@@ -138,22 +138,22 @@ const LandingHeader = () => {
                           {isHost ? (
                             <Link
                               to={"/host"}
-                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black dark:!text-black "
+                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black dark:bg-black  "
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
                               </div>
-                              <p className="dark:!text-black" >Dashboard</p>
+                              <p className="" >Dashboard</p>
                             </Link>
                           ) : (
                             <Link
                               to={"/user/profile"}
-                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black"
+                              className="w-full flex gap-x-3 !py-2 pl-2 pr-4 items-center text-black dark:bg-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
                               </div>
-                              <p className="dark:!text-black">Profile</p>
+                              <p className="">Profile</p>
                             </Link>
                           )}
                         </MenuItem>
@@ -161,12 +161,12 @@ const LandingHeader = () => {
                           <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/reservation"}
-                              className="w-full flex gap-x-3 pl-2 items-center !py-2 text-black"
+                              className="w-full flex gap-x-3 pl-2 items-center !py-2 text-black dark:bg-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_5} alt="icons" />
                               </div>
-                              <p className="dark:!text-black">Reservations</p>
+                              <p className="">Reservations</p>
                             </Link>
                           </MenuItem>
                         )}
@@ -174,7 +174,7 @@ const LandingHeader = () => {
                           <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/booking"}
-                              className="w-full flex gap-x-3 items-center !py-2 pl-2 text-black"
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 text-black dark:bg-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_6} alt="icons" />
@@ -187,36 +187,36 @@ const LandingHeader = () => {
                           <MenuItem className="border-b !p-0">
                             <Link
                               to={"/user/recommendations"}
-                              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black"
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black dark:bg-black"
                             >
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_7} alt="icons" />
                               </div>
-                              <p className="dark:!text-black">Recommendations</p>
+                              <p className="">Recommendations</p>
                             </Link>
                           </MenuItem>
                         )}
                         <MenuItem className="!p-0">
                           <Link
                             to={isHost ? "/user/host" : "/user/host-setup"}
-                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black"
+                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black dark:bg-black"
                           >
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                               <img src={icon_8} alt="icons" />
                             </div>
-                            <p className="dark:!text-black">Create New Listing</p>
+                            <p className="">Create New Listing</p>
                           </Link>
                         </MenuItem>
                         <MenuItem className="!p-0">
                           <div
                             
-                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black"
+                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black dark:bg-black"
                             onClick={() => setShowModal(true)}
                           >
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                             <img src={icon_9} alt="icons" className="w-5 h-5" />
                             </div>
-                            <p className="dark:!text-black">Logout</p>
+                            <p className="">Logout</p>
                           </div>
                         </MenuItem>
                       </MenuList>

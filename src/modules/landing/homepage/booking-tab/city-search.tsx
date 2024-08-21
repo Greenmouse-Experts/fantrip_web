@@ -46,7 +46,7 @@ const CitySearch: FC<Props> = ({initVal, setInitValue}) => {
           ref={ref as any}
           value={initVal}
           onChange={(e) => setInitValue(e.target.value)}
-          className="w-full lg:w-auto outline-none p-2 placeholder:text-black "
+          className="w-full lg:w-auto outline-none p-2 placeholder:text-black dark:!bg-white"
           placeholder="Enter city or region"
         />
       </div>

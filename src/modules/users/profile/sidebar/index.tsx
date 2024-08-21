@@ -87,7 +87,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             className="w-36 circle h-36 object-cover"
           />
           <div className="absolute overflow-hidden bg-white top-0 right-2 cursor-pointer w-8 h-8 circle place-center circle-shadow p-1">
-            {!isUpdate && <GoPencil className="text-xl" />}
+            {!isUpdate && <GoPencil className="text-xl dark:text-white" />}
             <input
               type="file"
               accept="image/*, .heic"
@@ -99,52 +99,52 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
         <div className="mt-4">
           <p className="text-xl fw-600 text-center">{user.name}</p>
           <div className="flex justify-center">
-            <p className="mt-2 bg-green-100 text-green-700 fw-500 px-4 py-1">
+            <p className="mt-2 bg-green-100 dark:bg-green-700 text-green-700 fw-500 px-4 py-1">
               Active
             </p>
           </div>
         </div>
         <div className="mt-6 grid gap-4">
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 1 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(1)}
           >
             <p>Account</p>
-            <FaUserCircle className="text-xl" />
+            <FaUserCircle className="text-xl dark:text-white" />
           </div>
           
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 2 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(2)}
           >
             <p>Security</p>
-            <BsGear className="text-xl" />
+            <BsGear className="text-xl dark:text-white" />
           </div>
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 3 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(3)}
           >
             <p>Referral</p>
-            <RxLink2 className="text-xl" />
+            <RxLink2 className="text-xl dark:text-white" />
           </div>
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 4 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(4)}
           >
             <p>Socials</p>
-            <RxLink2 className="text-xl" />
+            <RxLink2 className="text-xl dark:text-white" />
           </div>
-          <div className="px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600" onClick={() => setShowModal(true)}>
+          <div className="px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600" onClick={() => setShowModal(true)}>
             <p>Logout</p>
-            <BiLogOut className="text-xl" />
+            <BiLogOut className="text-xl dark:text-white" />
           </div>
         </div>
       </div>

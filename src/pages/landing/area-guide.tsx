@@ -41,10 +41,10 @@ export const AreaGuide = () => {
           searchInput={searchInput}
         />
       </div>
-      <div className="bg-white dark:!bg-darkColor">
+      <div className="bg-white dark:bg-darkColorLight">
         <FanChoice />
       </div>
-      <div className="bg-white dark:!bg-darkColor">
+      <div className="bg-white dark:bg-darkColorLight">
         <TopDestination />
       </div>
     </div>

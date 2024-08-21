@@ -18,10 +18,33 @@
   color: white !important;
 }
 
+.dark .css-1kfu8nn {
+  background: #0e1624  !important;
+}
+.dark .css-18esm8n {
+  background: #0e1624  !important;
+}
 .dark label{
   color: white;
 }
-
+.dark input {
+  
+  background-color: #19253a;
+  color: white;
+  transition: color 0.3s;
+}
+/* .dark select {
+  
+  background-color: #19253a;
+  color: white;
+  transition: color 0.3s;
+} */
+.dark textarea {
+  
+  background-color: #19253a;
+  color: white;
+  transition: color 0.3s;
+}
 
 input:checked {
   background: #9847fe !important;

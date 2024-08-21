@@ -71,18 +71,18 @@ const CommentAction:FC<Props> = ({type, like, dislike, comment, id, socket}) => 
                 ? `${
                     likeAction === "like"
                       ? "bg-green-600 text-white"
-                      : "bg-white"
+                      : "bg-white "
                   }`
                 : `${
                     likeAction === "like"
                       ? "bg-green-600 text-white"
-                      : "bg-[#EDEDFF]"
+                      : "bg-[#EDEDFF] dark:bg-darkColor"
                   }`
             } flex items-center gap-x-1 rounded-full px-2 py-[2px]`}
             onClick={() => handleAction("upvote")}
           >
-            <TbArrowBigUp size={13}/>
-            <p className='fs-400'>{statCount.initLike}</p>
+            <TbArrowBigUp size={13} className='dark:text-white'/>
+            <p className='fs-400 '>{statCount.initLike}</p>
           </button>
           <button
             type="button"
@@ -91,18 +91,18 @@ const CommentAction:FC<Props> = ({type, like, dislike, comment, id, socket}) => 
                 ? `${
                     likeAction === "dislike"
                       ? "bg-red-600 text-white"
-                      : "bg-white"
+                      : "bg-white "
                   }`
                 : `${
                     likeAction === "dislike"
                       ? "bg-red-600 text-white"
-                      : "bg-[#EDEDFF]"
+                      : "bg-[#EDEDFF] dark:bg-darkColor"
                   }`
             } flex items-center gap-x-1 rounded-full px-2 py-[2px]`}
             onClick={() => handleAction("downvote")}
           >
-            <TbArrowBigDown size={14}/>
-            <p className='fs-400'>{statCount.initDislike}</p>
+            <TbArrowBigDown size={14} className='dark:text-white'/>
+            <p className='fs-400 '>{statCount.initDislike}</p>
           </button>
         </div>
     </div>

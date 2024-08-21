@@ -10,22 +10,22 @@ const ExternalLinks = () => {
       <button
         type="button"
         onClick={() => navigate('/get-help')}
-        className="w-[42px] h-[42px] place-center bg-[#EDEDFF] circle"
+        className="w-[42px] h-[42px] place-center bg-[#EDEDFF] dark:bg-darkColorLight circle"
       >
         <BiHelpCircle className="text-xl text-[#9847FE]" />
       </button>
       <button
         type="button"
-        className="w-[42px] h-[42px] place-center bg-[#EDEDFF] circle"
+        className="w-[42px] h-[42px] place-center bg-[#EDEDFF] dark:bg-darkColorLight circle"
       >
         <HiBell className="text-xl text-[#9847FE]" />
       </button>
       <button
         type="button"
         onClick={() => navigate("/get-app")}
-        className="px-5 py-[9px] flex gap-x-3 items-center rounded-full bg-[#EDEDFF]"
+        className="px-5 py-[9px] flex gap-x-3 items-center rounded-full bg-[#EDEDFF] dark:bg-darkColorLight"
       >
-        <img src={qr} alt="qr-code" className="w-5 h-5" />
+        <img src={qr} alt="qr-code" className="w-5 h-5 dark:invert" />
         <p className="fw-500 whitespace-nowrap">Get app</p>
       </button>
     </div>

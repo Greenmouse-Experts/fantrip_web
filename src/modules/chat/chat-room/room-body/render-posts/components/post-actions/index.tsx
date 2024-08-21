@@ -108,17 +108,17 @@ const PostActions: FC<Props> = ({
                 ? `${
                     likeAction === "like"
                       ? "bg-green-600 text-white"
-                      : "bg-white"
+                      : "bg-white dark:bg-darkColor"
                   }`
                 : `${
                     likeAction === "like"
                       ? "bg-green-600 text-white"
-                      : "bg-[#EDEDFF]"
+                      : "bg-[#EDEDFF] dark:bg-darkColorLight"
                   }`
             } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
             onClick={() => handleAction("upvote")}
           >
-            <TbArrowBigUp />
+            <TbArrowBigUp  className='dark:text-white'/>
             <p>{statCount.initLike}</p>
           </button>
           <button
@@ -128,17 +128,17 @@ const PostActions: FC<Props> = ({
                 ? `${
                     likeAction === "dislike"
                       ? "bg-red-600 text-white"
-                      : "bg-white"
+                      : "bg-white dark:bg-darkColor"
                   }`
                 : `${
                     likeAction === "dislike"
                       ? "bg-red-600 text-white"
-                      : "bg-[#EDEDFF]"
+                      : "bg-[#EDEDFF] dark:bg-darkColorLight"
                   }`
             } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
             onClick={() => handleAction("downvote")}
           >
-            <TbArrowBigDown />
+            <TbArrowBigDown  className='dark:text-white' />
             <p>{statCount.initDislike}</p>
           </button>
         </div>
@@ -146,12 +146,12 @@ const PostActions: FC<Props> = ({
           type="button"
           className={`${
             type === "text"
-              ? `${showComment ? "bg-blue-600 text-white" : "bg-white"}`
-              : `${showComment ? "bg-blue-600 text-white" : "bg-[#EDEDFF]"}`
+              ? `${showComment ? "bg-blue-600 text-white" : "bg-white dark:bg-darkColor"}`
+              : `${showComment ? "bg-blue-600 text-white" : "bg-[#EDEDFF] dark:bg-darkColorLight"}`
           } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
           onClick={() => handleShowComment(id)}
         >
-          <GoComment />
+          <GoComment  className='dark:text-white'/>
           <p>{comment || 0}</p>
         </button>
       </div>

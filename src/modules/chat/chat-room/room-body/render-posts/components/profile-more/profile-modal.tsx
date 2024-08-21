@@ -38,7 +38,7 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
 
   return (
     <div>
-      <div className="lg:m-2 p-4 meet-drop rounded-[23px] bg-white">
+      <div className="lg:m-2 p-4 meet-drop rounded-[23px] bg-white dark:bg-darkColor">
         <div className="flex">
           <div className="w-5/12 text-center">
             <div className="w-7/12 mx-auto aspect-square rounded-full bg-gray-400">
@@ -74,9 +74,9 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
         <div className="mt-3">
           <button
             onClick={() => openChatWithUser()}
-            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500"
+            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 dark:text-white"
           >
-            <BsChatDots />
+            <BsChatDots className="dark:text-white" />
             Chat with{" "}
             <AltName
               name={`${user?.firstName} ${user?.lastName}`}
