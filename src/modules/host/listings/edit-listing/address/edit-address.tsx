@@ -135,14 +135,15 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
             <label className="fw-500">Manual Input</label>
           </div>
           <div className="flex items-center gap-x-2">
-            <input
+            {/* <input
               type="radio"
               name="addresstype"
+              disabled
               checked={addressType === "autocomplete"}
               onChange={() => setAddressType("autocomplete")}
               className="w-4 h-4"
             />
-            <label className="fw-500">Autocomplete</label>
+            <label className="fw-500">Autocomplete</label> */}
           </div>
         </div>
         <div>
