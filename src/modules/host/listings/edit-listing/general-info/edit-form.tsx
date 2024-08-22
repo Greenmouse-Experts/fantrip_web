@@ -113,7 +113,7 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay name",
+                message: "Please select a stay property type",
               },
             }}
             disabled
@@ -145,7 +145,7 @@ const EditGeneralForm: FC<Props> = ({ data, close, refetch }) => {
           rules={{
             required: {
               value: true,
-              message: "Please enter your stay address",
+              message: "Please enter your stay description",
             },
           }}
           render={({ field }) => (

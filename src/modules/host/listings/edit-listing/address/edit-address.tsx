@@ -154,7 +154,7 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
                 rules={{
                   required: {
                     value: true,
-                    message: "Please enter your stay name",
+                    message: "Please enter your stay address",
                   },
                 }}
                 render={({ field }) => (
@@ -181,7 +181,7 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
                   rules={{
                     required: {
                       value: true,
-                      message: "Please enter your stay price",
+                      message: "Please enter your stay country",
                     },
                   }}
                   render={({ field }) => (
@@ -203,7 +203,7 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
                   rules={{
                     required: {
                       value: true,
-                      message: "Please enter your stay price",
+                      message: "Please enter your stay street",
                     },
                   }}
                   render={({ field }) => (
@@ -225,7 +225,7 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
                   rules={{
                     required: {
                       value: true,
-                      message: "Please enter your stay price",
+                      message: "Please enter your stay city",
                     },
                   }}
                   render={({ field }) => (
@@ -247,7 +247,7 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
                   rules={{
                     required: {
                       value: true,
-                      message: "Please enter your stay price",
+                      message: "Please enter your stay region",
                     },
                   }}
                   render={({ field }) => (
@@ -269,7 +269,7 @@ const EditAddressModal: FC<Props> = ({ data, refetch, close }) => {
                   rules={{
                     required: {
                       value: true,
-                      message: "Please enter your stay price",
+                      message: "Please enter your stay postal code",
                     },
                   }}
                   render={({ field }) => (

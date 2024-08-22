@@ -140,7 +140,7 @@ const StartListing: FC<Props> = ({ next }) => {
               rules={{
                 required: {
                   value: true,
-                  message: "Please enter your stay name",
+                  message: "Please select stay property type",
                 },
               }}
               render={({ field }) => (
@@ -212,7 +212,7 @@ const StartListing: FC<Props> = ({ next }) => {
                     rules={{
                       required: {
                         value: true,
-                        message: "Please enter your stay name",
+                        message: "Please enter your stay address",
                       },
                     }}
                     render={({ field }) => (
@@ -239,7 +239,7 @@ const StartListing: FC<Props> = ({ next }) => {
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay price",
+                          message: "Please enter your stay country",
                         },
                       }}
                       render={({ field }) => (
@@ -261,7 +261,7 @@ const StartListing: FC<Props> = ({ next }) => {
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay price",
+                          message: "Please enter your stay street",
                         },
                       }}
                       render={({ field }) => (
@@ -283,7 +283,7 @@ const StartListing: FC<Props> = ({ next }) => {
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay price",
+                          message: "Please enter your stay city",
                         },
                       }}
                       render={({ field }) => (
@@ -305,7 +305,7 @@ const StartListing: FC<Props> = ({ next }) => {
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay price",
+                          message: "Please enter your stay state",
                         },
                       }}
                       render={({ field }) => (
@@ -327,7 +327,7 @@ const StartListing: FC<Props> = ({ next }) => {
                       rules={{
                         required: {
                           value: true,
-                          message: "Please enter your stay price",
+                          message: "Please enter your stay postal code",
                         },
                       }}
                       render={({ field }) => (
@@ -379,7 +379,7 @@ const StartListing: FC<Props> = ({ next }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay address",
+                message: "Please enter a stay description",
               },
             }}
             render={({ field }) => (

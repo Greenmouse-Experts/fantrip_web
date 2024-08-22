@@ -187,7 +187,7 @@ const RecommendForm: FC<Props> = ({
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay name",
+                message: "Please enter your stay address",
               },
             }}
             render={({ field }) => (

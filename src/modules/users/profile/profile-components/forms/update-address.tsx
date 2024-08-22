@@ -127,7 +127,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay price",
+                message: "Please enter your stay country",
               },
             }}
             render={({ field }) => (
@@ -149,7 +149,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay price",
+                message: "Please enter your stay street",
               },
             }}
             render={({ field }) => (
@@ -171,7 +171,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay price",
+                message: "Please enter your stay city",
               },
             }}
             render={({ field }) => (
@@ -193,7 +193,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay price",
+                message: "Please enter your stay state",
               },
             }}
             render={({ field }) => (
@@ -215,7 +215,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
             rules={{
               required: {
                 value: true,
-                message: "Please enter your stay price",
+                message: "Please enter your stay postal",
               },
             }}
             render={({ field }) => (
