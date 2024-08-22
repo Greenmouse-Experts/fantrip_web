@@ -52,7 +52,12 @@ const ImagePostRender: FC<Props> = ({ item, socket }) => {
                   </p>
                 </div>
               </div>
-              <ProfileMore user={item.user} openUser={() => setProfileShow(false)} />
+              <ProfileMore
+                socket={socket}
+                id={item.id}
+                user={item.user}
+                openUser={() => setProfileShow(false)}
+              />
             </div>
             <div className="mt-3">
               <p>{item.message}</p>
@@ -83,7 +88,7 @@ const ImagePostRender: FC<Props> = ({ item, socket }) => {
         onClose={() => setProfileShow(false)}
         type="more"
       >
-        <ProfileModal user={item.user} close={() => setProfileShow(false)}/>
+        <ProfileModal user={item.user} close={() => setProfileShow(false)} />
       </ComponentModal>
     </div>
   );

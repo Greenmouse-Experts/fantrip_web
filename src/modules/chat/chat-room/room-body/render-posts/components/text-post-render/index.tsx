@@ -53,7 +53,12 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
               </p>
             </div>
           </div>
-          <ProfileMore user={item.user} openUser={() => setProfileShow(true)} />
+          <ProfileMore
+            socket={socket}
+            id={item.id}
+            user={item.user}
+            openUser={() => setProfileShow(true)}
+          />
         </div>
         <div className="my-3">
           <p>{item.message}</p>

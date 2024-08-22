@@ -52,14 +52,19 @@ const VideoPostRender: FC<Props> = ({ item, socket }) => {
                   </p>
                 </div>
               </div>
-              <ProfileMore user={item.user} openUser={() => setProfileShow(true)}/>
+              <ProfileMore
+                socket={socket}
+                id={item.id}
+                user={item.user}
+                openUser={() => setProfileShow(true)}
+              />
             </div>
             <div className="mt-3">
               <p>{item.message}</p>
             </div>
           </div>
           <div className="bg-gradient-to-r from-gray-400 to-gray-500 h-[300px] flex justify-center">
-            <video src={item.file} width={"35%"} height={"100%"} controls />
+            <video src={item.file} height={"100%"} controls />
           </div>
         </div>
         <div className="mt-3">
@@ -83,7 +88,7 @@ const VideoPostRender: FC<Props> = ({ item, socket }) => {
         onClose={() => setProfileShow(false)}
         type="more"
       >
-        <ProfileModal user={item.user} close={() => setProfileShow(false)}/>
+        <ProfileModal user={item.user} close={() => setProfileShow(false)} />
       </ComponentModal>
     </div>
   );

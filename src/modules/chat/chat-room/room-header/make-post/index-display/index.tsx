@@ -147,7 +147,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
           </div>
           <p className="fw-500">Make a Post!!</p>
         </div>
-        <div className="" onClick={(e) => e.stopPropagation()}>
+        <div className="">
           {showInput ? (
             ""
           ) : (
