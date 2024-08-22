@@ -54,14 +54,13 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      address: "",
-      street: "",
+      address: user.address || "",
+      street: user.street || "",
       country: user.country || "",
-      region: "",
-      postal: "",
-      state: "",
-      city: "",
-      suite: "",
+      postal: user.postalCode || "",
+      state: user.state || "",
+      city: user.city || "",
+      suite: user.aptSuitUnit || "",
     },
   });
 
@@ -110,7 +109,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
   };
   return (
     <div className="lg:px-2">
-      <div>
+      {/* <div>
         <p className="text-[#000000B2] fw-500">
           Please enter your address (Google Autocomplete)
         </p>
@@ -119,9 +118,9 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
           type="text"
           className="mt-1 p-3 relative z-[4000] lg:p-4 w-full border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
         />
-      </div>
+      </div> */}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-4 grid-cols-2 mt-3">
+        <div className="grid gap-4 grid-cols-2 items-end mt-3">
           <Controller
             name="country"
             control={control}
@@ -160,7 +159,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
                 labelClassName="text-black fw-600 lg:text-lg block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.region?.message}
+                error={errors.state?.message}
                 {...field}
                 ref={null}
               />
@@ -189,7 +188,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
             )}
           />
           <Controller
-            name="region"
+            name="state"
             control={control}
             rules={{
               required: {
@@ -204,7 +203,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
                 labelClassName="text-black fw-600 lg:text-lg block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.region?.message}
+                error={errors.state?.message}
                 {...field}
                 ref={null}
               />
