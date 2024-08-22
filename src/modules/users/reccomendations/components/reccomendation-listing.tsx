@@ -9,6 +9,11 @@ import { ComponentModal } from "@/components/modal-component";
 import EditRecommendation from "./edit-modal";
 import RecommendationReviews from "./reviews";
 import RatingComponent from "@/components/rating-component";
+import useDialog from "@/hooks/useDialog";
+import ReusableModal from "@/components/ReusableModal";
+import { deletePlace } from "@/services/api/places-api";
+import { useToast } from "@chakra-ui/react";
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 interface Props {
   data: ReccomendationItem[];
@@ -18,6 +23,9 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const [selected, setSelected] = useState<PlaceItem>();
   const [openReview, setOpenReview] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
+  const { Dialog, setShowModal } = useDialog();
+  const toast = useToast();
 
   const openToEdit = (item: PlaceItem) => {
     setSelected(item);
@@ -28,6 +36,38 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
     setSelected(item);
     setOpenReview(true);
   };
+
+  const openDelete = (item: PlaceItem) => {
+    setSelected(item);
+    setShowModal(true);
+  };
+
+  const handleDelete = async () => {
+    setIsBusy(true);
+    await deletePlace(selected?.id || "")
+      .then(() => {
+        toast({
+          render: () => (
+            <div className="text-white w-[240px] text-center fw-600 syne bg-gradient rounded p-3">
+              Deleted Successfully
+            </div>
+          ),
+          position: "top",
+        });
+        refetch();
+        setShowModal(false);
+      })
+      .catch((error) => {
+        toast({
+          title: error.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+        setIsBusy(false);
+      });
+  };
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
@@ -63,6 +103,9 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
                     </button>
                     <button onClick={() => openToReview(item)}>
                       <FaRegComments className="text-lg relative -top-[2px]" />
+                    </button>
+                    <button onClick={() => openDelete(item)}>
+                      <RiDeleteBin5Line className="text-lg text-red-500 relative -top-[2px]" />
                     </button>
                   </div>
                 </div>
@@ -111,6 +154,17 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
           refetch={refetch}
         />
       </ComponentModal>
+      <Dialog title="" size="sm">
+        <ReusableModal
+          type=""
+          title="Are you sure you want to delete this area guide reccomendation?"
+          action={handleDelete}
+          actionTitle="Yes, Delete"
+          cancelTitle="No, Close"
+          closeModal={() => setShowModal(false)}
+          isBusy={isBusy}
+        />
+      </Dialog>
     </>
   );
 };
