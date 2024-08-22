@@ -26,7 +26,7 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id }) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
-  const {Dialog, setShowModal:ShowDialog} = useDialog()
+  const { Dialog, setShowModal: ShowDialog } = useDialog();
 
   const openChatWithUser = () => {
     const payload = {
@@ -49,38 +49,46 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id }) => {
       id: id,
     };
     socket.emit("deletePost", payload);
-  }
+  };
 
   return (
     <div>
       <div>
-      <Menu>
-        <MenuButton>
-          <div className="flex gap-x-2 items-center">
-            <BsThreeDotsVertical size={19} className="text-2xl" />
-          </div>
-        </MenuButton>
-        <MenuList className="text-black !w-[200px]">
-          <MenuItem onClick={() => openChatWithUser()}>
-            <p className="text-black fs-400">Start Chat</p>
-          </MenuItem>
-          <MenuItem onClick={openUser}>
-            <p className="text-black fs-400">View User Profile</p>
-          </MenuItem>
-          <MenuItem>
-            <p className="text-black fs-400">Report this user</p>
-          </MenuItem>
-          {user.id === userId && (
-            <MenuItem onClick={() => ShowDialog(true)}>
-              <p className="text-red-500 fs-400">Delete Post</p>
+        <Menu>
+          <MenuButton>
+            <div className="flex gap-x-2 items-center">
+              <BsThreeDotsVertical size={19} className="text-2xl" />
+            </div>
+          </MenuButton>
+          <MenuList className="text-black !w-[200px]">
+            <MenuItem onClick={() => openChatWithUser()}>
+              <p className="text-black fs-400">Start Chat</p>
             </MenuItem>
-          )}
-        </MenuList>
-      </Menu>
-    </div>
-          <Dialog title="" size="sm">
-            <ReusableModal title="Are you sure you want to delete this post" action={deleteUserPost} actionTitle="Yes, Delete" cancelTitle="No, Close" closeModal={() => ShowModal(false)} isBusy={false}/>
-          </Dialog>
+            <MenuItem onClick={openUser}>
+              <p className="text-black fs-400">View User Profile</p>
+            </MenuItem>
+            <MenuItem>
+              <p className="text-black fs-400">Report this user</p>
+            </MenuItem>
+            {user.id === userId && (
+              <MenuItem onClick={() => ShowDialog(true)}>
+                <p className="text-red-500 fs-400">Delete Post</p>
+              </MenuItem>
+            )}
+          </MenuList>
+        </Menu>
+      </div>
+      <Dialog title="" size="sm">
+        <ReusableModal
+          type=""
+          title="Are you sure you want to delete this post"
+          action={deleteUserPost}
+          actionTitle="Yes, Delete"
+          cancelTitle="No, Close"
+          closeModal={() => ShowDialog(false)}
+          isBusy={false}
+        />
+      </Dialog>
     </div>
   );
 };
