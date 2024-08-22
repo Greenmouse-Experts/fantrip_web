@@ -24,7 +24,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
   const { user, saveUser } = useAuth();
-  const { ref: autoRef } = usePlacesWidget({
+  const { } = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     options: {
       types: ["address"],
