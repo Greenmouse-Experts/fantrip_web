@@ -45,7 +45,7 @@ const HeroBanner = () => {
                 <p className="text-3xl lg:text-4xl xl:text-[44px] xl:leading-[60px] 2xl:leading-[60px] fw-600 2xl:text-5xl syne ">
                   Screw Cleaning Fees & Generic Travel Guides.
                   <span className="text-gradient syne"> Fan-to-Fan Stays</span>,
-                  <span className="syne mt-3 2xl:mt-6"> Done Right.</span>
+                  <span className="syne mt-3 2xl:mt-6"> Done Right</span>
                 </p>
                 <div className="monts mt-8 lg:text-lg lg:w-10/12">
                   <div>
