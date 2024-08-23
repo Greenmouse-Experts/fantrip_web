@@ -40,7 +40,7 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
                   )}
                 </div>
                 <p className="fw-600 text-xl lg:text-3xl my-1">{`${data?.host?.firstName} ${data?.host?.lastName}`}</p>
-                {data?.host?.VerifiedAsHost ? (
+                {data?.host?.verifiedAsHost ? (
                   <p className="fw-600 text-green-600 fs-500">Verified Host</p>
                 ) : (
                   <p className="fw-600 text-orange-600 fs-500">Not Verified</p>
