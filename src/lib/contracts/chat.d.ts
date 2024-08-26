@@ -98,6 +98,24 @@ export interface CommunityItem {
   name: string;
 }
 
+export interface PollQuestion {
+  createdDate: string;
+  deletedDate: string | null;
+  expiryDate: string;
+  id: string;
+  multipleVote: boolean;
+  options: string[];
+  postId: string;
+  question: string;
+  updatedDate: string;
+  voteResults: {
+    myVote: boolean;
+    option: string;
+    percentage: number;
+    total: number;
+  }[];
+}
+
 export interface PostTyping {
   id: string;
   message: string;
@@ -107,6 +125,7 @@ export interface PostTyping {
   createdDate: string;
   updatedDate: string;
   myReaction?: string;
+  pollQuestion?: PollQuestion;
   user: {
     firstName: string;
     lastName: string;
@@ -117,6 +136,8 @@ export interface PostTyping {
     isNickname: boolean;
     id: string;
     reviews: [];
+    favTeam: string;
+    bio: string;
   };
   downvotes: number;
   upvotes: number;

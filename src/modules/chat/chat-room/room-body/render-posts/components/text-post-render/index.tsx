@@ -8,13 +8,15 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import AltName from "@/components/alt-name";
 import { ComponentModal } from "@/components/modal-component";
 import ProfileModal from "../profile-more/profile-modal";
+import PollQuestionIndex from "../poll-question";
 dayjs.extend(relativeTime);
 
 interface Props {
   item: PostTyping;
   socket: any;
+  handleReload: () => void;
 }
-const TextPostRender: FC<Props> = ({ item, socket }) => {
+const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = () => {
@@ -58,11 +60,13 @@ const TextPostRender: FC<Props> = ({ item, socket }) => {
             id={item.id}
             user={item.user}
             openUser={() => setProfileShow(true)}
+            reload={handleReload}
           />
         </div>
         <div className="my-3">
           <p>{item.message}</p>
         </div>
+        {item.pollQuestion && <PollQuestionIndex data={item.pollQuestion} />}
         <PostActions
           id={item.id}
           like={item.upvotes}

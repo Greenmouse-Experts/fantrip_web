@@ -1,8 +1,10 @@
 import AltName from "@/components/alt-name";
 import { useChat } from "@/hooks/useChat";
 import { useUtils } from "@/hooks/useUtils";
-import { FC } from "react";
-import { BsChatDots } from "react-icons/bs";
+import { formatName } from "@/lib/utils/formatHelp";
+import { FC, useState } from "react";
+import { BsChatDots, BsFillHouseCheckFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   user: {
@@ -14,12 +16,21 @@ interface Props {
     picture: string;
     isNickname: boolean;
     id: string;
+    favTeam: string;
+    bio: string;
   };
   close: () => void;
 }
 const ProfileModal: FC<Props> = ({ user, close }) => {
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
+  const [initLength, setInitLength] = useState<number>(150);
+  const navigate = useNavigate()
+
+  const handleViewAll = () => {
+    const num = initLength === 400 ? 150 : 400;
+    setInitLength(num);
+  };
 
   const openChatWithUser = () => {
     const payload = {
@@ -57,15 +68,18 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
                 useNick={user.isNickname}
               />
             </p>
-            <p className="fw-600 text-orange-600 fs-500">Manchester United</p>
+            <p className="fw-600 text-orange-600 fs-500">{user?.favTeam}</p>
           </div>
           <div className="w-7/12 flex justify-center">
             <div className="w-10/12 grid divide-y-2">
               <div>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Possimus saepe consectetur odio voluptatum. Eaque neque nihil
-                  reprehenderit, quis.
+                  {formatName(user?.bio, initLength)}
+                  {user?.bio?.length > 150 && (
+                    <span className="fw-500 text-prima" onClick={handleViewAll}>
+                      view {initLength === 150?'more' : 'less'}
+                    </span>
+                  )}
                 </p>
               </div>
             </div>
@@ -84,6 +98,21 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
               useNick={user.isNickname}
             />
           </button>
+          {user.role === "host" && <button
+            onClick={() => navigate(`/host-stay/${user.id}`)}
+            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 dark:text-white"
+          >
+            <BsFillHouseCheckFill className="dark:text-white" />{" "}
+            <div className="flex gap-x-1">
+              <p>View</p>
+              <AltName
+                name={`${user?.firstName} ${user?.lastName}`}
+                nick={user.nickname}
+                useNick={user.isNickname}
+              />
+              <p>fan stay listing</p>
+            </div>
+          </button>}
         </div>
       </div>
     </div>

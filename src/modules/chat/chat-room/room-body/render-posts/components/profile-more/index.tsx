@@ -17,12 +17,15 @@ interface Props {
     picture: string;
     isNickname: boolean;
     id: string;
+    favTeam: string;
+    bio: string;
   };
   openUser: () => void;
   id: string;
   socket: any;
+  reload: () => void
 }
-const ProfileMore: FC<Props> = ({ user, openUser, socket, id }) => {
+const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload }) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
@@ -48,7 +51,11 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id }) => {
       token: token,
       id: id,
     };
+    console.log(payload);
+    
     socket.emit("deletePost", payload);
+    ShowDialog(false)
+    reload()
   };
 
   return (

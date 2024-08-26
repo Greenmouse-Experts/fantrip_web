@@ -69,6 +69,12 @@ export const getHostSingleStay = async (id: string) => {
     .then((response) => response.data);
 };
 
+export const getAllHostStays = async (id: string) => {
+  return axios
+    .get(`${ENDPOINT.GET_ALL_HOST_STAYS}/${id}`)
+    .then((response) => response.data);
+};
+
 export const getStayReviews = async (id: string) => {
   return axios
     .get(`${ENDPOINT.FETCH_PUBLIC_REVIEW}/${id}?reviewFor=stay`)

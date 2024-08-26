@@ -11,17 +11,18 @@ import PostLoader from "@/components/shimmers/chat-load";
 interface Props {
   reload: string;
   socket: any;
+  handleReload: () => void
 }
-const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
-  const {isLoggedIn, token} = useAuth()
+const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
+  const { isLoggedIn, token } = useAuth();
   const { community } = useChat();
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getPosts = () => {
     const onListenEvent = (value: any) => {
       setPrevPosts(value.data.result);
-      setIsLoading(false)
+      setIsLoading(false);
     };
     socket.on(`unmutedPostsRetrieved`, onListenEvent);
 
@@ -32,26 +33,29 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket }) => {
   useEffect(() => {
     const payload = {
       page: 1,
-      ...isLoggedIn && {token: token},
-      ...community.name !== 'all' && {slug: community.name}
+      ...(isLoggedIn && { token: token }),
+      ...(community.name !== "all" && { slug: community.name }),
     };
     socket.emit("retrieveUnmutedPosts", payload);
-    setIsLoading(true)
+    setIsLoading(true);
   }, [community, reload]);
 
   useEffect(() => {
     getPosts();
   }, [socket, reload]);
+
+  console.log(prevPosts);
   
   return (
     <div className="grid mt-4 gap-4">
-      {isLoading && <PostLoader count={3}/>}
+      {isLoading && <PostLoader count={3} />}
       {prevPosts.map((item, i) => {
-        if (item.file === null) return <TextPostRender item={item} key={i} socket={socket}/>;
+        if (item.file === null)
+          return <TextPostRender item={item} key={i} socket={socket} handleReload={handleReload} />;
         if (isImageUrl(item.file))
-          return <ImagePostRender item={item} key={i} socket={socket} />;
+          return <ImagePostRender item={item} key={i} socket={socket} handleReload={handleReload} />;
         if (isVideoUrl(item.file))
-          return <VideoPostRender item={item} key={i} socket={socket} />;
+          return <VideoPostRender item={item} key={i} socket={socket} handleReload={handleReload} />;
       })}
     </div>
   );

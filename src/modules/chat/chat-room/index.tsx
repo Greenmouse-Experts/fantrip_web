@@ -14,6 +14,7 @@ const ChatRoomIndex = () => {
   const handleReload = () => {
     setReloadSocket(`${new Date()}`);
   };
+  
   return (
     <div>
       <div className="pt-24 lg:pt-28 bg-layout-gradient"></div>
@@ -25,10 +26,10 @@ const ChatRoomIndex = () => {
         <div className="box">
           <div className="lg:flex gap-x-4 h-[80vh]">
             <div className="lg:w-[28%] border-r-2 border-[#D2D2D2]">
-              <RoomSidebarIndex socket={socket} />
+              <RoomSidebarIndex socket={socket} reload={handleReload}/>
             </div>
             <div className="lg:w-[48%]">
-              <RoomBodyIndex reloadSocket={reloadSocket} socket={socket} />
+              <RoomBodyIndex reloadSocket={reloadSocket} reload={handleReload} socket={socket} />
             </div>
             {isLoggedIn && (
               <div className="lg:w-[25%] h-full">

@@ -5,8 +5,9 @@ import SportCommunityIndex from "./sport-community"
 
 interface Props{
   socket: any
+  reload: () => void
 }
-const RoomSidebarIndex:FC<Props> = ({socket}) => {
+const RoomSidebarIndex:FC<Props> = ({socket, reload}) => {
   return (
     <div className="p-4">
         <div className="border-b border-[#D2D2D2] pb-5">
@@ -16,7 +17,7 @@ const RoomSidebarIndex:FC<Props> = ({socket}) => {
             <SportCommunityIndex socket={socket}/>
         </div>
         <div className="border-b border-[#D2D2D2] pb-5 pt-3">
-            <ActionMoreIndex/>
+            <ActionMoreIndex socket={socket} reload={reload}/>
         </div>
     </div>
   )

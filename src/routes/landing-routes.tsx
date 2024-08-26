@@ -13,6 +13,7 @@ import FindStayDetails from "@/pages/landing/find-stay-details";
 import GetAppPage from "@/pages/landing/get-app";
 import HelpPage from "@/pages/landing/help-page";
 import LandingHomepage from "@/pages/landing/homepage";
+import HostStays from "@/pages/landing/host-stays";
 import PriceBooking from "@/pages/landing/price-booking";
 import PrivacyPage from "@/pages/landing/privacy";
 import RefundPolicy from "@/pages/landing/refund-policy";
@@ -46,6 +47,10 @@ export const landingRooutes = [
           {
             path: 'find-stay/:id',
             element: <FindStayDetails />,
+          },
+          {
+            path: 'host-stay/:id',
+            element: <HostStays />,
           },
           {
             path: 'area-guide',

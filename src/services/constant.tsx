@@ -26,6 +26,7 @@ export const DISCLOSE_STAY = `/stays/change-status`
 export const UPDATE_STAY = `/stays/update-stay`
 export const REMOVE_STAY_AMENITY = `/stays/remove-amenity`
 export const GET_HOST_STAY = `/stays/fetch-host-stays`
+export const GET_ALL_HOST_STAYS = `/stays/view-host-stays`
 
 // booking endpoints
 export const COMPUTE_PRICE = `/reservations/compute-price`

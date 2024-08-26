@@ -11,8 +11,9 @@ import ProfileModal from "../profile-more/profile-modal";
 interface Props {
   item: PostTyping;
   socket: any;
+  handleReload: () => void;
 }
-const ImagePostRender: FC<Props> = ({ item, socket }) => {
+const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = () => {
@@ -57,6 +58,7 @@ const ImagePostRender: FC<Props> = ({ item, socket }) => {
                 id={item.id}
                 user={item.user}
                 openUser={() => setProfileShow(false)}
+                reload={handleReload}
               />
             </div>
             <div className="mt-3">
