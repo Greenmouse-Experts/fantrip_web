@@ -185,6 +185,8 @@ export interface CommentItem {
     role: string;
     totalReviews: number;
     verifiedAsHost: boolean;
+    favTeam: string;
+    bio: string;
   };
   userId: string;
 }
