@@ -9,6 +9,7 @@ import AltName from "@/components/alt-name";
 import { ComponentModal } from "@/components/modal-component";
 import ProfileModal from "../profile-more/profile-modal";
 import PollQuestionIndex from "../poll-question";
+import QuizQuestionIndex from "../quiz-question";
 dayjs.extend(relativeTime);
 
 interface Props {
@@ -66,7 +67,8 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
         <div className="my-3">
           <p>{item.message}</p>
         </div>
-        {item.pollQuestion && <PollQuestionIndex data={item.pollQuestion} />}
+        {item.pollQuestion && <PollQuestionIndex data={item.pollQuestion} socket={socket} reload={handleReload} />}
+        {item.quizQuestion && <QuizQuestionIndex data={item.quizQuestion} socket={socket} reload={handleReload} />}
         <PostActions
           id={item.id}
           like={item.upvotes}

@@ -10,6 +10,7 @@ import {
 import { ChevronDownIcon } from "lucide-react";
 import PollInput from "./poll-input";
 import Button from "@/components/Button";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   socket: any;
@@ -17,7 +18,8 @@ interface Props {
   close: () => void;
 }
 const CreatePoll: FC<Props> = ({ socket, reload, close }) => {
-  const { token } = useAuth();
+  const navigate = useNavigate()
+  const { token, isLoggedIn } = useAuth();
   const { community } = useChat();
   const [selectedChannel, setSelectedChannel] = useState({
     name: community.communities.length ? community.communities[0].name : "",
@@ -31,6 +33,10 @@ const CreatePoll: FC<Props> = ({ socket, reload, close }) => {
   const [multiVote, setMultivote] = useState<boolean>(false);
 
   const onSubmit = () => {
+    if(!isLoggedIn){
+      navigate('/auth/login')
+      return;
+    }
     const payload = {
       token: token,
       message: question,

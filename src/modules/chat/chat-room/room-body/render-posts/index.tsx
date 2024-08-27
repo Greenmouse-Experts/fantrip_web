@@ -19,6 +19,10 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  useEffect(() => {
+    setIsLoading(true)
+  }, [])
+
   const getPosts = () => {
     const onListenEvent = (value: any) => {
       setPrevPosts(value.data.result);
@@ -37,7 +41,6 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
       ...(community.name !== "all" && { slug: community.name }),
     };
     socket.emit("retrieveUnmutedPosts", payload);
-    setIsLoading(true);
   }, [community, reload]);
 
   useEffect(() => {
@@ -45,6 +48,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
   }, [socket, reload]);
 
   console.log(prevPosts);
+  
   
   return (
     <div className="grid mt-4 gap-4">

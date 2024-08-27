@@ -116,6 +116,24 @@ export interface PollQuestion {
   }[];
 }
 
+export interface QuizQuestion {
+  createdDate: string;
+  deletedDate: string | null;
+  expiryDate: string;
+  id: string;
+  multipleVote: boolean;
+  options: string[];
+  postId: string;
+  question: string;
+  updatedDate: string;
+  attemptResults: {
+    myAttempt: boolean;
+    option: string;
+    percentage: number;
+    total: number;
+  }[];
+}
+
 export interface PostTyping {
   id: string;
   message: string;
@@ -126,6 +144,7 @@ export interface PostTyping {
   updatedDate: string;
   myReaction?: string;
   pollQuestion?: PollQuestion;
+  quizQuestion?: QuizQuestion;
   user: {
     firstName: string;
     lastName: string;
