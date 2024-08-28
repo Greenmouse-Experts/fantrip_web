@@ -1,6 +1,6 @@
 import qr from "@/assets/svg/qr.svg";
 import { BiHelpCircle } from "react-icons/bi";
-import { HiBell } from "react-icons/hi";
+// import { HiBell } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 
 const ExternalLinks = () => {
