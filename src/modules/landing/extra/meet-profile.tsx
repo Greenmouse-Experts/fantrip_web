@@ -72,6 +72,7 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
                   data?.host?.country || ""
                 }`}
                 bio={data?.host?.bio}
+                id={id}
               />
             </div>
             <p className="bg-gradient p-[0.4px] my-7"></p>

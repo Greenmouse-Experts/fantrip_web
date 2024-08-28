@@ -48,10 +48,12 @@ const CommunityList: FC<Props> = ({ socket }) => {
     : [];
 
   useEffect(() => {
-    saveCommunity({
-      ...community,
-      communities: sortedList,
-    });
+    if(!community.communities){
+      saveCommunity({
+        ...community,
+        communities: sortedList,
+      });
+    }
   }, [prevCommunities]);
 
   return (

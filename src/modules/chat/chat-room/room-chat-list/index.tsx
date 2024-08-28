@@ -33,7 +33,7 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
 
   return (
     <div className="h-full">
-      <div className="bg-[#EDEDFF] dark:bg-darkColorLight rounded-[12px] p-4 mt-4 h-full">
+      <div className="bg-[#EDEDFF] dark:bg-darkColorLight rounded-[12px] p-4 mt-4 h-[400px] lg:h-full">
         <div>
           <p className="lg:text-xl fw-500">Messages</p>
         </div>

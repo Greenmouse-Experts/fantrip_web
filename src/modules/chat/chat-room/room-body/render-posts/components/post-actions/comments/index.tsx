@@ -11,6 +11,7 @@ interface Props {
 }
 const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
   const [isLoading, setIsLoading] = useState(false)
+  const [reload, setReload] = useState('')
   const [prevComments, setPrevComments] = useState<CommentItem[]>([]);
 
   const getComments = () => {
@@ -36,7 +37,11 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
 
   useEffect(() => {
     getComments();
-  }, [socket, count]);
+  }, [socket, count, reload]);
+
+  const handleReload = () => {
+    setReload(`${new Date()}`)
+  }
 
   return (
     <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
@@ -44,10 +49,15 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
         <p className="fs-500 fw-500">{count} Comments</p>
       </div>
       <div className="mt-4 grid gap-2">
-        {isLoading && <CommentsLoading/>}
+        {isLoading && <CommentsLoading />}
         {!!prevComments.length &&
           prevComments.map((item) => (
-            <RenderComment socket={socket} comment={item} key={item.id} />
+            <RenderComment
+              socket={socket}
+              comment={item}
+              key={item.id}
+              reload={handleReload}
+            />
           ))}
       </div>
     </div>

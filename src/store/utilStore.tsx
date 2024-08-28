@@ -21,7 +21,8 @@ const utilsInitState = {
   },
   guestReserveTab: 0,
   guestBookTab: 0,
-  stayModal: false
+  stayModal: false,
+  chatActiveModal: null
 };
 const useUtilsStore = create<Props>()(
   persist(

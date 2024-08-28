@@ -23,9 +23,10 @@ interface Props {
   openUser: () => void;
   id: string;
   socket: any;
-  reload: () => void
+  reload: () => void;
+  type?: string;
 }
-const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload }) => {
+const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
@@ -51,8 +52,6 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload }) => {
       token: token,
       id: id,
     };
-    console.log(payload);
-    
     socket.emit("deletePost", payload);
     ShowDialog(false)
     reload()
@@ -64,7 +63,10 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload }) => {
         <Menu>
           <MenuButton>
             <div className="flex gap-x-2 items-center">
-              <BsThreeDotsVertical size={19} className="text-2xl" />
+              <BsThreeDotsVertical
+                size={19}
+                className={`${type ? "text-[14px]" : "text-2xl"}`}
+              />
             </div>
           </MenuButton>
           <MenuList className="text-black !w-[200px]">

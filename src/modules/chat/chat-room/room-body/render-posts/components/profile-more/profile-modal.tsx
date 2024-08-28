@@ -100,17 +100,18 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
           </button>
           {user.role === "host" && <button
             onClick={() => navigate(`/host-stay/${user.id}`)}
-            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 dark:text-white"
+            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 text-left dark:text-white"
           >
-            <BsFillHouseCheckFill className="dark:text-white" />{" "}
-            <div className="flex gap-x-1">
-              <p>View</p>
+            <BsFillHouseCheckFill className="dark:text-white text-lg shink-0" />{" "}
+            <div className="inline-block gap-x-1">
+              <p className="inline">View</p>
+              {" "}
               <AltName
                 name={`${user?.firstName} ${user?.lastName}`}
                 nick={user.nickname}
                 useNick={user.isNickname}
-              />
-              <p>fan stay listing</p>
+              />{" "}
+              <p className="inline">fan stay listing</p>
             </div>
           </button>}
         </div>

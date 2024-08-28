@@ -49,14 +49,14 @@ const PollQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
                 </div>
               </div>
               <div className="mt-2">
-                <div className="relative bg-gray-200 h-3 rounded-full overflow-hidden">
+                <div className="relative bg-gray-200 h-[15px] rounded-full overflow-hidden">
                   <div
-                    style={{ width: `${item.percentage}` }}
+                    style={{ width: `${item.percentage}%` }}
                     className="bg-[#9847FE] h-full"
                   ></div>
                   <p
-                    className={`text-[9px] absolute -top-[2px] fw-500  w-full text-center ${
-                      item.percentage > 50 ? "text-white" : "text-black"
+                    className={`text-[9px] absolute top-[1px] fw-500  w-full text-center ${
+                      item.percentage > 45 ? "text-white" : "text-black"
                     }`}
                   >
                     {item.percentage}%

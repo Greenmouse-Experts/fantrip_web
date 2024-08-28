@@ -14,12 +14,12 @@ const ExternalLinks = () => {
       >
         <BiHelpCircle className="text-xl text-[#9847FE]" />
       </button>
-      <button
+      {/* <button
         type="button"
         className="w-[42px] h-[42px] place-center bg-[#EDEDFF] dark:bg-darkColorLight circle"
       >
         <HiBell className="text-xl text-[#9847FE]" />
-      </button>
+      </button> */}
       <button
         type="button"
         onClick={() => navigate("/get-app")}

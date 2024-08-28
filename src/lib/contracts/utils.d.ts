@@ -13,4 +13,5 @@ export interface UtilsStoreItem {
   guestReserveTab: number;
   guestBookTab: number;
   stayModal: boolean;
+  chatActiveModal: "sidebar" | "chatlist" | null;
 }

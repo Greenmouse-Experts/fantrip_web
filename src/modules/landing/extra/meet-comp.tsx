@@ -27,13 +27,16 @@ const MeetComponent: FC<Props> = ({ item }) => {
             <img
               src={item.host.picture}
               alt="fan_image"
-              className="h-full w-full rounded-lg object-cover"
+              className="h-full w-full rounded-lg object-cover cursor-pointer"
+              onClick={() => navigate(`/find-stay/${item.id}`)}
             />
           </div>
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="lg:text-lg fw-600 dark:!text-black syne">Meet {formatName(firstName, 9)}</p>
+                <p className="lg:text-lg fw-600 dark:!text-black syne">
+                  Meet {formatName(firstName, 9)}
+                </p>
                 <p className="h-[2px] bg-gradient w-full mt-2 dark:!text-black"></p>
               </div>
               <div className="mt-2">

@@ -27,13 +27,16 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
             <img
               src={item.stay.host.picture}
               alt="fan_image"
-              className="h-full w-full rounded-lg object-cover"
+              className="h-full w-full rounded-lg object-cover cursor-pointer"
+              onClick={() => navigate(`/find-stay/${item.stay.id}`)}
             />
           </div>
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="lg:text-lg fw-600 syne dark:!text-black">Meet {formatName(firstName, 9)}</p>
+                <p className="lg:text-lg fw-600 syne dark:!text-black">
+                  Meet {formatName(firstName, 9)}
+                </p>
                 <p className="h-[2px] bg-gradient w-full mt-2 dark:!text-black"></p>
               </div>
               <div className="mt-2">
@@ -49,14 +52,15 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
                 <p className="h-[2px] bg-gradient w-full mt-2"></p>
               </div>
               <div className="grid gap-1 mt-2">
-                {item.stay.amenities && item.stay.amenities
-                  .slice(0, isBigSize ? 3 : 2)
-                  .map((item: AmenityItem, i: number) => (
-                    <div className="flex gap-x-2" key={i}>
-                      <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black dark:!text-black"></p>
-                      <p className="fs-400 dark:!text-black">{item.name}</p>
-                    </div>
-                  ))}
+                {item.stay.amenities &&
+                  item.stay.amenities
+                    .slice(0, isBigSize ? 3 : 2)
+                    .map((item: AmenityItem, i: number) => (
+                      <div className="flex gap-x-2" key={i}>
+                        <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black dark:!text-black"></p>
+                        <p className="fs-400 dark:!text-black">{item.name}</p>
+                      </div>
+                    ))}
               </div>
             </div>
             <div>
@@ -65,7 +69,10 @@ const SpecialMeetComponent: FC<Props> = ({ item }) => {
                 onClick={() => navigate(`/find-stay/${item.stay.id}`)}
               >
                 <p className="fs-500 fw-500 capitalize">
-                  {formatName(item.stay.city || getTempCity(item.stay.address), 11)}
+                  {formatName(
+                    item.stay.city || getTempCity(item.stay.address),
+                    11
+                  )}
                 </p>
                 <p className="fw-500">
                   {item.stay.currency}
