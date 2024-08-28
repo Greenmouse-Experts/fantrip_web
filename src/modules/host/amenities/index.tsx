@@ -15,7 +15,7 @@ const HostAmenityIndex = () => {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <p className="text-xl syne fw-600 text-white">Host Amenities</p>
+        <p className="text-xl syne fw-600 dark:text-white">Host Amenities</p>
         <button
           className="flex gap-x-2 items-center border rounded-lg px-4 py-2"
           onClick={() => setShowModal(true)}

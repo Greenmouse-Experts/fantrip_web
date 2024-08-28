@@ -32,7 +32,7 @@ interface Props {
           <div className="overflow-x-auto">
             <div className="align-middle inline-block min-w-full ">
               <table className="items-center w-full bg-transparent border-collapse">
-                <thead className="thead-light bg-[#131313]">
+                <thead className="thead-light bg:bg-darkColor">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
@@ -91,14 +91,14 @@ interface Props {
                   onClick={prev}
                 //   disabled={!table.getCanPreviousPage()}
                 >
-                  <span className="w-7 h-7 circle bg-primary text-white flex place-center hover:scale-105 duration-100"><TbArrowBackUp className='text-2xl' /></span>
+                  <span className="w-7 h-7 circle bg-primary dark:bg-darkColorLight text-white flex place-center hover:scale-105 duration-100"><TbArrowBackUp className='text-2xl' /></span>
                 </button>
                 <button
                   className="border-none rounded p-1"
                   onClick={next}
                 //   disabled={!table.getCanNextPage()}
                 >
-                  <span className="w-7 h-7 circle bg-primary text-white flex place-center hover:scale-105 duration-100"><TbArrowForwardUp className='text-2xl' /></span>
+                  <span className="w-7 h-7 circle bg-primary dark:bg-darkColorLight text-white flex place-center hover:scale-105 duration-100"><TbArrowForwardUp className='text-2xl' /></span>
                 </button>
               </div>
             </div>

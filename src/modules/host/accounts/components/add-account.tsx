@@ -139,7 +139,7 @@ const AddHostAccount: FC<Props> = ({close}) => {
               )}
             />
             <div>
-              <p className="text-black fw-600 lg:text-lg block mb-3">
+              <p className=" fw-600 lg:text-lg block mb-3">
                 Account Holder Type
               </p>
               <Controller
@@ -152,11 +152,11 @@ const AddHostAccount: FC<Props> = ({close}) => {
                   },
                 }}
                 render={({ field }) => (
-                  <div className="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none">
+                  <div className="border border-[#D2D2D2] dark:bg-darkColorLight dark:text-white rounded-[10px] outline-none">
                     <select
                       {...field}
                       ref={null}
-                      className="w-[95%] p-3 bg-[#F9FAFC] lg:p-[15px] outline-none rounded-[10px]"
+                      className="w-[95%] p-3 dark:bg-darkColorLight dark:text-white lg:p-[15px] outline-none rounded-[10px]"
                     >
                       <option value="" disabled>
                         Select account holder type
@@ -223,7 +223,7 @@ const AddHostAccount: FC<Props> = ({close}) => {
                   <p className="text-[#000000B2] fw-500 mb-1">Country</p>
                   <select
                     {...field}
-                    className="p-3 w-full border border-gray-400 rounded-lg outline-none"
+                    className="p-3 w-full border border-gray-400 rounded-lg outline-none dark:bg-darkColorLight dark:text-white"
                   >
                     {Country.getAllCountries().map((item) => (
                       <option value={item.isoCode} key={item.isoCode}>

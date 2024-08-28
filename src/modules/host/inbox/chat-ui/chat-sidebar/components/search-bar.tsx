@@ -3,7 +3,7 @@ import { CiSearch } from "react-icons/ci";
 const SearchBar = () => {
   return (
     <div>
-      <div className="bg-[#1A1A1A] w-full rounded-full items-center px-2 flex">
+      <div className=" dark:bg-darkColorLight border bg-white w-full rounded-full items-center px-2 flex">
         <CiSearch className="text-2xl shrink-0 text-gray-500" />
         <input
           type="search"

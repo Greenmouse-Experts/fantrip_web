@@ -107,3 +107,9 @@ export const isVideoUrl = (url: string): boolean => {
   const extension = url.split(".").pop()?.toLowerCase();
   return extension ? videoExtensions.includes(extension) : false;
 }
+
+
+export const getMode = () =>{
+  const mode = window.localStorage.getItem("isDaskMode");
+  return mode 
+}

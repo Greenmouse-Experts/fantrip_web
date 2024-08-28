@@ -6,8 +6,8 @@ const TotalProfit = () => {
     <div className="p-5">
       <div>
         <div className="flex items-center gap-x-1">
-          <PiChartLineUp className="text-[#AEB9E1]" />
-          <p className="text-[#AEB9E1] fw-500 fs-400">Total listing</p>
+          <PiChartLineUp className="" />
+          <p className=" fw-500 fs-400">Total listing</p>
         </div>
         <div className="flex items-center gap-x-2">
           <p className="text-2xl lg:text-3xl fw-600">$1,110.6K</p>
@@ -19,7 +19,7 @@ const TotalProfit = () => {
       </div>
       <div className="h-24"></div>
       <div className="flex justify-between items-center">
-        <p className="text-[#AEB9E1] fs-500">Last 6 months</p>
+        <p className=" fs-500">Last 6 months</p>
         <p className="text-[#9847FE] fs-500">View report</p>
       </div>
     </div>

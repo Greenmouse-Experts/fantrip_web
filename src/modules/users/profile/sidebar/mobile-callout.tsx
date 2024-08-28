@@ -34,7 +34,7 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
           <MenuList>
             <MenuItem className="border-b">
               <div
-                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
                   active === 1 && "border border-[#9847FE]"
                 }`}
                 onClick={() => setActive(1)}
@@ -45,7 +45,7 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
             </MenuItem>
             <MenuItem className="border-b">
               <div
-                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
                   active === 2 && "border border-[#9847FE]"
                 }`}
                 onClick={() => setActive(2)}
@@ -56,7 +56,7 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
             </MenuItem>
             <MenuItem className="border-b">
               <div
-                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
                   active === 3 && "border border-[#9847FE]"
                 }`}
                 onClick={() => setActive(3)}
@@ -67,7 +67,7 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
             </MenuItem>
             <MenuItem className="border-b">
               <div
-                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] ${
+                className={`w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
                   active === 4 && "border border-[#9847FE]"
                 }`}
                 onClick={() => setActive(3)}
@@ -78,7 +78,7 @@ const MobileSidebar: FC<Props> = ({ active, setActive }) => {
             </MenuItem>
             <MenuItem className="">
               <div
-                className="w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600"
+                className="w-full px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600"
                 onClick={() => setShowModal(true)}
               >
                 <p>Logout</p>

@@ -6,10 +6,10 @@ import { useQuery } from "@tanstack/react-query";
 import { getHostStayStat } from "@/services/api/stay-api";
 
 const ListingAnalytics = () => {
-  const {data} = useQuery({
-    queryKey: ['get-listing-stat'],
-    queryFn: getHostStayStat
-  })
+  const { data } = useQuery({
+    queryKey: ["get-listing-stat"],
+    queryFn: getHostStayStat,
+  });
   const listing = [
     {
       name: "Total listing",
@@ -35,13 +35,14 @@ const ListingAnalytics = () => {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
       {listing.map((item) => (
-        <div key={item.name} className="border border-[#343B4F] flex gap-x-2 p-4 rounded-[8px]">
+        <div
+          key={item.name}
+          className="border border-[#343B4F] flex gap-x-2 p-4 rounded-[8px]"
+        >
           <div>{item.img}</div>
           <div>
             <p className="fs-500 fw-500">{item.name}</p>
-            <p className="fs-500 text-[#AEB9E1] mt-[1px]">
-              {item.number}
-            </p>
+            <p className="fs-500  mt-[1px]">{item.number}</p>
           </div>
         </div>
       ))}

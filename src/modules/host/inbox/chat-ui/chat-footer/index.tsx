@@ -32,7 +32,7 @@ const ChatFooterIndex: FC<Props> = ({ socket }) => {
         <input
           type="text"
            placeholder="Type a message..."
-          className="p-3 bg-[#1A1A1A] pl-4 w-full rounded-l-full outline-none"
+          className="p-3 dark:bg-darkColorLight pl-4 w-full rounded-l-full outline-none"
           value={msgInput}
           onChange={(e) => setMsgInput(e.target.value)}
         />
