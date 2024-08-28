@@ -55,7 +55,7 @@ const ChatList: FC<Props> = ({ prevChats }) => {
         prevChats.map((item) => (
           <div
             className={`cursor-pointer p-2 rounded-lg ${
-              item.id === guestId && "bg-[#1A1A1A]"
+              item.id === guestId && "dark:bg-darkColorLight bg-gray-100"
             }`}
             key={item.id}
             onClick={() => selectThisGuest(item)}

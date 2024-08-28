@@ -7,7 +7,7 @@ const TotalRevenue = () => {
     <div>
       <div className="lg:flex items-center justify-between">
         <div>
-          <p className="text-[#AEB9E1] fw-500 fs-400">Total revenue</p>
+          <p className=" fw-500 fs-400">Total revenue</p>
           <div className="flex items-center gap-x-2">
             <p className="text-2xl lg:text-3xl fw-600">$1,330.8K</p>
             <div className="flex items-center gap-x-[1px] px-2 py-1 bg-[#05C16833] text-[#14CA74]">
@@ -30,15 +30,15 @@ const TotalRevenue = () => {
             </ul>
           </div>
           <div className="flex lg:block mt-2 lg:mt-0">
-            <div className="flex items-center gap-x-2 cursor-pointer bg-[#0A1330] text-[#AEB9E1] px-2 py-1 rounded">
-                <FaCalendar className="text-sm"/>
-                <p>Jan 2024 - Jun 2024</p>
+            <div className="flex items-center gap-x-2 cursor-pointer dark:bg-darkColorLight bg-white  px-2 py-1 rounded">
+              <FaCalendar className="text-sm" />
+              <p>Jan 2024 - Jun 2024</p>
             </div>
           </div>
         </div>
       </div>
       <div>
-        <TotalRevenueChart/>
+        <TotalRevenueChart />
       </div>
     </div>
   );

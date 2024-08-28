@@ -49,7 +49,7 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
   return (
     <div>
       <div className="bg-gradient p-[1px] rounded-lg">
-        <div className="bg-[#0D0D0D] h-full rounded-lg p-3">
+        <div className="dark:bg-darkColor h-full rounded-lg p-3">
           <div>
             <div className="flex items-center">
               <div className="w-5/12 pr-3">

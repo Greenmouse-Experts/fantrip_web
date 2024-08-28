@@ -41,7 +41,7 @@ const ReusableModal: FC<Props> = ({
           onClick={closeModal}
         />
         <Button
-          altClassName="py-2 px-3 lg:px-6 rounded-full bg-primary capitalize text-white"
+          altClassName="py-2 px-3 lg:px-6 rounded-full bg-primary capitalize text-white dark:bg-darkColor"
           title={isBusy ? <BeatLoader size={10} color="white" /> : actionTitle}
           onClick={action}
         />

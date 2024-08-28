@@ -39,7 +39,7 @@ const BoxAnalyysis = () => {
             className="border border-[#343B4F] rounded-[11px] p-5"
           >
             <div className="flex items-ceter justify-between">
-              <div className="flex items-center gap-x-1 text-[#AEB9E1]">
+              <div className="flex items-center gap-x-1 ">
                 {item.icon}
                 <p>{item.name}</p>
               </div>

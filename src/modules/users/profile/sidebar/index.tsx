@@ -87,7 +87,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             className="w-36 circle h-36 object-cover"
           />
           <div className="absolute overflow-hidden bg-white top-0 right-2 cursor-pointer w-8 h-8 circle place-center circle-shadow p-1">
-            {!isUpdate && <GoPencil className="text-xl dark:text-white" />}
+            {!isUpdate && <GoPencil className="text-xl dark:text-black" />}
             <input
               type="file"
               accept="image/*, .heic"
@@ -106,7 +106,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
         </div>
         <div className="mt-6 grid gap-4">
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 1 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(1)}
@@ -116,7 +116,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
           </div>
           
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 2 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(2)}
@@ -125,7 +125,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             <BsGear className="text-xl dark:text-white" />
           </div>
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 3 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(3)}
@@ -134,7 +134,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             <RxLink2 className="text-xl dark:text-white" />
           </div>
           <div
-            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] ${
+            className={`px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] ${
               active === 4 && "border border-[#9847FE]"
             }`}
             onClick={() => setActive(4)}
@@ -142,7 +142,7 @@ const SidebarLayout: FC<Props> = ({ setActive, active }) => {
             <p>Socials</p>
             <RxLink2 className="text-xl dark:text-white" />
           </div>
-          <div className="px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-black flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600" onClick={() => setShowModal(true)}>
+          <div className="px-4 cursor-pointer rounded-[10px] py-3 bg-[#F9FAFC] dark:bg-darkColorLight flex justify-between items-center hover:border hover:border-[#9847FE] text-red-600" onClick={() => setShowModal(true)}>
             <p>Logout</p>
             <BiLogOut className="text-xl dark:text-white" />
           </div>

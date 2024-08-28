@@ -5,27 +5,32 @@ import { BsGear } from "react-icons/bs";
 import useDialog from "@/hooks/useDialog";
 import LogoutModal from "@/modules/auth/modals/logout-modal";
 import logo from "@/assets/images/logo_2.png";
+import logo_dark from "@/assets/images/auth-logo.png";
 import BtnContent from "@/components/btn-content";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import useAuth from "@/hooks/authUser";
 import { FaChevronDown } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { FC } from "react";
+import { getMode } from "@/lib/utils/helper-function";
 
 interface Props {
   toggled: boolean;
   setToggled: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const SidebarLayout:FC<Props> = ({toggled, setToggled}) => {
+const SidebarLayout: FC<Props> = ({ toggled, setToggled }) => {
   const path = useLocation();
   const { Dialog, setShowModal } = useDialog();
   const { user } = useAuth();
 
+  const mode = getMode();
+  // console.log(mode);
+
   return (
-    <div className="left-0 top-0 z-[3000] fixed overflow-y-hidden  bg-[#0D0D0D] text-white">
+    <div className="left-0 top-0 z-[3000] fixed overflow-y-hidden  dark:bg-darkColor dark:text-white">
       <Sidebar
         customBreakPoint="1024px"
-        className="h-screen bg-[#0D0D0D] overflow-y-hidden !border-none scroll-pro fs-700 fw-500 px-4"
+        className="h-screen dark:bg-darkColor overflow-y-hidden !border-none scroll-pro fs-700 fw-500 px-4"
         backgroundColor=""
         width="275px"
         toggled={toggled}
@@ -33,7 +38,11 @@ const SidebarLayout:FC<Props> = ({toggled, setToggled}) => {
       >
         <div className="py-2 pt-4 lg:py-6 lg:pb-8 items-center">
           <Link to="/" className="gap-x-1">
-            <img src={logo} alt="logo" className="w-7/12 2xl:w-8/12" />
+            <img
+              src={mode ? logo : logo_dark}
+              alt="logo"
+              className="w-7/12 2xl:w-8/12"
+            />
           </Link>
         </div>
         <Menu
@@ -43,7 +52,7 @@ const SidebarLayout:FC<Props> = ({toggled, setToggled}) => {
             button: ({ level, active }) => {
               if (level === 0)
                 return {
-                  color: active ? "#9847FE" : "#AEB9E1",
+                  color: active ? "#9847FE" : "#000",
                   marginTop: "4px",
                   padding: "3px 1px 3px 0px !important ",
                   background: active ? "#E3E3E30D" : "",
@@ -93,16 +102,16 @@ const SidebarLayout:FC<Props> = ({toggled, setToggled}) => {
           })}
           <MenuItem
             component={<Link to={"/host/settings"} />}
-            icon={<BsGear className="text-xl" />}
+            icon={<BsGear className="text-xl dark:text-white" />}
             className="mt-12 border-t border-[#ffffff3a] pt-6"
             active={path.pathname === "/host/settings" && true}
           >
             <div className="flex pr-4 justify-between items-center">
               <p className="fs-400">Settings</p>
               {path.pathname === "/host/settings" ? (
-                <FaChevronRight className="text-[10px]" />
+                <FaChevronRight className="text-[10px] dark:text-white" />
               ) : (
-                <FaChevronDown className="text-[10px]" />
+                <FaChevronDown className="text-[10px] dark:text-white" />
               )}
             </div>
           </MenuItem>
@@ -119,7 +128,7 @@ const SidebarLayout:FC<Props> = ({toggled, setToggled}) => {
               </div>
               <div>
                 <p className="fs-500">{user.name}</p>
-                <p className="text-[#AEB9E1] fs-300">Account settings</p>
+                <p className=" fs-300">Account settings</p>
               </div>
             </div>
           </div>

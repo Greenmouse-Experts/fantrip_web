@@ -7,8 +7,8 @@ const TotalListing = () => {
     <div className="p-5">
       <div>
         <div className="flex gap-x-1 items-center">
-          <RiAlarmLine className="text-[#AEB9E1]" />
-          <p className="text-[#AEB9E1] fw-500 fs-400">Total listing</p>
+          <RiAlarmLine className="" />
+          <p className=" fw-500 fs-400">Total listing</p>
         </div>
         <div className="flex mt-1 items-center gap-x-2">
           <p className="text-2xl lg:text-3xl fw-600">20</p>
@@ -19,10 +19,10 @@ const TotalListing = () => {
         </div>
       </div>
       <div className="py-3">
-        <TotalListingChart/>
+        <TotalListingChart />
       </div>
       <div className="flex justify-between items-center">
-        <p className="text-[#AEB9E1] fs-500">Last 5 months</p>
+        <p className=" fs-500">Last 5 months</p>
         <p className="text-[#9847FE] fs-500">View report</p>
       </div>
     </div>
