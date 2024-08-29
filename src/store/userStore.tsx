@@ -122,7 +122,7 @@ const useAuthStore = create<Props>()(
     }),
     {
       name: "fantrip_user",
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

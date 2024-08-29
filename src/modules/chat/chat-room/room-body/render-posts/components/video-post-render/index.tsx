@@ -30,7 +30,7 @@ const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
                 <div className="w-[35px] lg:w-[40px] h-[35px] lg:h-[40px] bg-gradient p-[1px] circle">
                   <img
                     src={
-                      item.user.picture ||
+                      item?.user?.picture ||
                       "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
                     }
                     alt="profile"
