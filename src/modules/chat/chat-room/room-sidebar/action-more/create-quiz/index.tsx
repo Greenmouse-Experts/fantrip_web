@@ -6,6 +6,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  useToast,
 } from "@chakra-ui/react";
 import Button from "@/components/Button";
 import { ChevronDownIcon } from "lucide-react";
@@ -13,12 +14,13 @@ import QuizInput from "./quiz-input";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
-    socket: any;
-    reload: () => void;
-    close: () => void;
-  }
-const CreateQuiz:FC<Props> = ({socket, reload, close}) => {
-  const navigate = useNavigate()
+  socket: any;
+  reload: () => void;
+  close: () => void;
+}
+const CreateQuiz: FC<Props> = ({ socket, reload, close }) => {
+  const navigate = useNavigate();
+  const toast = useToast();
   const { token, isLoggedIn } = useAuth();
   const { community } = useChat();
   const [selectedChannel, setSelectedChannel] = useState({
@@ -26,15 +28,24 @@ const CreateQuiz:FC<Props> = ({socket, reload, close}) => {
     id: community.communities.length ? community.communities[0].id : "",
   });
 
-  //   poll input
+  //   quiz input
   const [question, setQuestion] = useState<string>("");
   const [options, setOptions] = useState<string[]>(["", ""]);
   const [multiVote, setMultivote] = useState<boolean>(false);
+  const [answer, setAnswer] = useState<number[]>([]);
 
   const onSubmit = () => {
-    if(!isLoggedIn){
-      navigate('/auth/login')
+    if (!isLoggedIn) {
+      navigate("/auth/login");
       return;
+    }
+    if (!answer.length) {
+      toast({
+        title: "Please select an answer",
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
     }
     const payload = {
       token: token,
@@ -46,6 +57,7 @@ const CreateQuiz:FC<Props> = ({socket, reload, close}) => {
         question: question,
         options: options,
         multipleVote: multiVote,
+        rightAnswer: answer,
       },
     };
     socket.emit("createPost", payload);
@@ -88,12 +100,14 @@ const CreateQuiz:FC<Props> = ({socket, reload, close}) => {
         setOption={setOptions}
         multiVote={multiVote}
         setMultiVote={setMultivote}
+        answer={answer}
+        setAnswer={setAnswer}
       />
       <div className="mt-6">
         <Button title="Post" type="int" onClick={onSubmit} />
       </div>
     </div>
   );
-}
+};
 
-export default CreateQuiz
+export default CreateQuiz;

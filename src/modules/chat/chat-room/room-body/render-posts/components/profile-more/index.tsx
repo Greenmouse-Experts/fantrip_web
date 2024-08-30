@@ -47,15 +47,29 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
     close();
   };
 
-  const deleteUserPost = () => {
-    const payload = {
-      token: token,
-      id: id,
-    };
+  const deleteUserPost = (payload:{id:string, token:string}) => {
     socket.emit("deletePost", payload);
     ShowDialog(false)
     reload()
   };
+
+  const deleteUserCooment = (payload:{id:string, token:string}) => {
+    socket.emit("deleteComment", payload)
+    ShowDialog(false)
+    reload()
+  }
+
+  const handleDelete = () => {
+    const payload = {
+      token: token || "",
+      id: id,
+    };
+    if(type === "comment"){
+      deleteUserCooment(payload)
+    }else{
+      deleteUserPost(payload)
+    }
+  }
 
   return (
     <div>
@@ -91,7 +105,7 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
         <ReusableModal
           type=""
           title="Are you sure you want to delete this post"
-          action={deleteUserPost}
+          action={handleDelete}
           actionTitle="Yes, Delete"
           cancelTitle="No, Close"
           closeModal={() => ShowDialog(false)}

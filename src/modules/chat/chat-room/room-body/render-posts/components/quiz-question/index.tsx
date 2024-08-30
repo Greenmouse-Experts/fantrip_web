@@ -1,6 +1,7 @@
 import { FC, useState } from "react";
 import { QuizQuestion } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
+import { extractNumbers } from "@/lib/utils/formatHelp";
 
 interface Props {
   data: QuizQuestion;
@@ -10,6 +11,7 @@ interface Props {
 const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
   const { token } = useAuth();
   const [showResult, setShowResult] = useState<number>();
+  const [answer, setAnswer] = useState<number>(Number(extractNumbers(data.rightAnswer)[0]))
   const hasAttempt = data.attemptResults.find((where) => where.myAttempt);
   const markQuestion = (index: number) => {
     if (hasAttempt) {
@@ -22,6 +24,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
     };
     socket.emit("attempt", payload);
     setShowResult(index);
+    setAnswer(Number(extractNumbers(data.rightAnswer)[0]))
     reload();
   };
 
@@ -44,7 +47,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
                 }`}
               >
                 {/* <input type="radio" /> */}
-                <div className="absolute bg-white text-black fw-500 shadow-xl w-12 h-12 circle place-center">
+                <div className={`absolute fw-500 shadow-xl w-12 h-12 circle place-center ${answer === i && hasAttempt? 'bg-green-500 text-white' : 'bg-white text-black'}`}>
                   <p>{optionLabel[i]}</p>
                 </div>
                 <p className="fs-500 pl-16 p-2">{item.option}</p>

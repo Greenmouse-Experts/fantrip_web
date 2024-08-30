@@ -65,7 +65,7 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
           />
         </div>
         <div className="my-3">
-          <p>{item.message}</p>
+          <p className="whitespace-pre-line">{item.message}</p>
         </div>
         {item.pollQuestion && <PollQuestionIndex data={item.pollQuestion} socket={socket} reload={handleReload} />}
         {item.quizQuestion && <QuizQuestionIndex data={item.quizQuestion} socket={socket} reload={handleReload} />}

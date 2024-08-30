@@ -205,3 +205,10 @@ export const getMinimumDate = (val: number): Date => {
   );
   return minimumDate;
 };
+
+export const extractNumbers = (text: string): string[] => {
+  // Use a regular expression to match one or more digits
+  const matches = text.match(/\d+/g);
+  // Return the matches, or an empty array if no matches found
+  return matches ? matches : [];
+}

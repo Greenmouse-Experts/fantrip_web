@@ -7,7 +7,7 @@ import { MdQuiz } from "react-icons/md";
 import CreatePoll from "../creat-poll";
 import CreateQuiz from "../create-quiz";
 import UseNickname from "@/components/use-nick";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface Props {
   socket: any;
@@ -15,6 +15,7 @@ interface Props {
 }
 const ActionLists: FC<Props> = ({ socket, reload }) => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate()
   const quiz = searchParams.get("quiz");
 
   const { Dialog, setShowModal } = useDialog();
@@ -50,7 +51,7 @@ const ActionLists: FC<Props> = ({ socket, reload }) => {
             </p>
             <GoChevronRight className="text-[#8C8C8C]" />
           </li>
-          <li className="flex cursor-pointer lg:pr-2 justify-between items-center">
+          <li onClick={() => navigate('/community-guidelines')} className="flex cursor-pointer lg:pr-2 justify-between items-center">
             <p className="flex items-center  gap-x-4">
               <FaFile className="text-lg lg:text-xl" />
               <span>Guidelines</span>

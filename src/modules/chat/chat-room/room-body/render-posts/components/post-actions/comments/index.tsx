@@ -33,7 +33,7 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
     };
     socket.emit("retrievePublishedComments", payload);
     setIsLoading(true)
-  }, [count]);
+  }, [count, reload]);
 
   useEffect(() => {
     getComments();

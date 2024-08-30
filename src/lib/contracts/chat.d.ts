@@ -126,6 +126,7 @@ export interface QuizQuestion {
   postId: string;
   question: string;
   updatedDate: string;
+  rightAnswer: string;
   attemptResults: {
     myAttempt: boolean;
     option: string;

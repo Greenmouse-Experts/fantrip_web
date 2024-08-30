@@ -78,6 +78,16 @@ const StartListing: FC<Props> = ({ next }) => {
       return;
     }
     if (!isValid) return;
+    if(AfricanCountries.includes(data.country)){
+      toast({
+        title: "We currently do not offer stay services in your choiced location.",
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
+      setLocationError(true);
+      return;
+    }
 
     const address = `${data.suite && `${data.suite},`} ${
       data.street && `${data.street},`

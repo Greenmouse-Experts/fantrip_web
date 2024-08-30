@@ -7,21 +7,24 @@ import { PostTyping } from "@/lib/contracts/chat";
 import { isImageUrl, isVideoUrl } from "@/lib/utils/helper-function";
 import useAuth from "@/hooks/authUser";
 import PostLoader from "@/components/shimmers/chat-load";
+import { FaAnglesDown } from "react-icons/fa6";
 
 interface Props {
   reload: string;
   socket: any;
-  handleReload: () => void
+  handleReload: () => void;
 }
 const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
   const { isLoggedIn, token } = useAuth();
+  const [page, setPage] = useState<number>(1);
   const { community } = useChat();
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
+  const [postsToRender, setPostsToRender] = useState<PostTyping[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoading(true)
-  }, [])
+    setIsLoading(true);
+  }, []);
 
   const getPosts = () => {
     const onListenEvent = (value: any) => {
@@ -36,31 +39,68 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
 
   useEffect(() => {
     const payload = {
-      page: 1,
+      page: page,
       ...(isLoggedIn && { token: token }),
       ...(community.name !== "all" && { slug: community.name }),
     };
     socket.emit("retrieveUnmutedPosts", payload);
-  }, [community, reload]);
+  }, [community, reload, page]);
 
   useEffect(() => {
     getPosts();
   }, [socket, reload]);
 
-  console.log(prevPosts);
-  
-  
+  useEffect(() => {
+    if (page === 1) {
+      setPostsToRender(prevPosts);
+    } else {
+      const posts = [...postsToRender, ...prevPosts];
+      setPostsToRender(posts);
+    }
+  }, [prevPosts]);
+
+  // console.log(prevPosts);
+
   return (
     <div className="grid mt-4 gap-4">
       {isLoading && <PostLoader count={3} />}
-      {prevPosts.map((item, i) => {
+      {postsToRender.map((item, i) => {
         if (item.file === null)
-          return <TextPostRender item={item} key={i} socket={socket} handleReload={handleReload} />;
+          return (
+            <TextPostRender
+              item={item}
+              key={i}
+              socket={socket}
+              handleReload={handleReload}
+            />
+          );
         if (isImageUrl(item.file))
-          return <ImagePostRender item={item} key={i} socket={socket} handleReload={handleReload} />;
+          return (
+            <ImagePostRender
+              item={item}
+              key={i}
+              socket={socket}
+              handleReload={handleReload}
+            />
+          );
         if (isVideoUrl(item.file))
-          return <VideoPostRender item={item} key={i} socket={socket} handleReload={handleReload} />;
+          return (
+            <VideoPostRender
+              item={item}
+              key={i}
+              socket={socket}
+              handleReload={handleReload}
+            />
+          );
       })}
+      <div className="flex justify-center">
+        <button
+          className="flex items-center gap-x-2"
+          onClick={() => setPage(page + 1)}
+        >
+          View More <FaAnglesDown />
+        </button>
+      </div>
     </div>
   );
 };

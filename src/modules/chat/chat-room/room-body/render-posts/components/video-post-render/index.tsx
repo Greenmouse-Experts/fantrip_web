@@ -62,7 +62,7 @@ const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
               />
             </div>
             <div className="mt-3">
-              <p>{item.message}</p>
+              <p className="whitespace-pre-line">{item.message}</p>
             </div>
           </div>
           <div className="bg-gradient-to-r from-gray-400 to-gray-500 h-[300px] flex justify-center">
