@@ -24,7 +24,7 @@ const PendingReservationList: FC<Props> = ({ data }) => {
   return (
     <div className="grid gap-4 mt-4">
       {data.map((item: BookingItem) => (
-        <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
+        <div className="bg-gradient rounded-lg p-[2px]" key={item?.id}>
         <div className="bg-white rounded-lg md:flex  gap-x-2 md:gap-x-4 p-1 h-full">
           <div className="w-full h-[130px] md:w-[160px] md:h-[100%] shrink-0 overflow-hidden rounded-[8px]">
             <img
@@ -40,9 +40,9 @@ const PendingReservationList: FC<Props> = ({ data }) => {
           <div className="w-full md:flex items-center justify-between lg:pr-4">
             <div>
               <p className="lg:text-2xl fw-500">
-                {item.stay.name}{" "}
+                {item.stay?.name}{" "}
                 <span className="text-green-600 relative bottom-[2px] rounded-full px-3 py-[1px] fs-400 bg-green-50">
-                  {item.status}
+                  {item?.status}
                 </span>
               </p>
               <div className="flex gap-2 my-1 md:my-2">
@@ -59,7 +59,7 @@ const PendingReservationList: FC<Props> = ({ data }) => {
               </div>
               <div className="text-sec gap-x-1 flex items-center">
                 <FaLocationPin className="text-md" />
-                <p className="fs-500">{item.stay.address}</p>
+                <p className="fs-500">{item?.stay?.address}</p>
               </div>
             </div>
             <div className="grid gap-1 md:gap-3 md:justify-end pb-2 md:p-2">
@@ -71,19 +71,19 @@ const PendingReservationList: FC<Props> = ({ data }) => {
               <div className="flex gap-x-3 md:justify-end relative">
                 <p
                   className="underline text-[#9847fe] relative block cursor-pointer"
-                  onClick={() => openDetail(item.id)}
+                  onClick={() => openDetail(item?.id)}
                 >
                   View Details
                 </p>
                 <Link
                   className="underline text-[#9847fe] relative block"
-                  to={`/find-stay/${item.stay.id}`}
+                  to={`/find-stay/${item.stay?.id}`}
                 >
                   View Listing
                 </Link>
               </div>
               <div className="flex md:justify-end">
-              <ChatForStay id="" host={item.stay.host}/>
+              <ChatForStay id="" host={item?.stay?.host}/>
               </div>
             </div>
           </div>
