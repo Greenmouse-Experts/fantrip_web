@@ -15,7 +15,7 @@ const HostAccountsIndex = () => {
           onClick={() => setShowModal(true)}
         >
           <IoAddCircle />
-          Add <span className="hidden lg:block">A New Account</span>
+          Add <span className="hidden lg:block"> Account</span>
         </button>
       </div>
       <div className="mt-6">
@@ -25,7 +25,8 @@ const HostAccountsIndex = () => {
         <AccountList/>
       </div>
       <Dialog title="Add A New Account" size="lg">
-        <AddHostAccount close={() => setShowModal(false)} />
+        {/* <AddHostAccount close={() => setShowModal(false)} /> */}
+        <></>
       </Dialog>
     </div>
   );

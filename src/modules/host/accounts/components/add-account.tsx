@@ -23,6 +23,27 @@ const currencyOptions = [
     name: "currencyType",
   },
 ];
+export interface KycInputForm {
+  identityFront: {
+    id: string;
+    link: string;
+  };
+  identityBack: {
+    id: string;
+    link: string;
+  };
+  ssnLastFour: string;
+  deviceIp: string;
+  bankAccount: {
+    accountNumber: string;
+    accountName: string;
+    country: string;
+    currency: string;
+    accountHolderType: "individual" | "company"; //individual, company
+    bankName: string;
+    routingNumber: string; // optional
+  };
+}
 interface Props {
   close: () => void;
 }

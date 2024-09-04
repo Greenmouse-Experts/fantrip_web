@@ -9,14 +9,12 @@ import useAuth from "@/hooks/authUser";
 
 const UserSocials = () => {
   const { Dialog: Social, setShowModal: ShowSocial } = useDialog();
-  const { isLoading: isGettingProfile, data: profile } = useQuery({
+  const { isLoading, data: profile } = useQuery({
     queryKey: ["profile"],
     queryFn: () => viewProfile(),
   });
   const { isHost } = useAuth();
-  console.log(profile);
-
-  if (isGettingProfile) return <PyramidSpin size={1.8} />;
+  
   return (
     <div>
       <div>
@@ -37,6 +35,11 @@ const UserSocials = () => {
               <AiOutlineEdit />
             </div>
           </div>
+          {isLoading && (
+            <div className="py-12 lg:py-24 place-center">
+              <PyramidSpin size={1.8} />
+            </div>
+          )}
           <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
             <div>
               <p className="fs-500 text-[#5F5F5F]">FaceBook</p>
