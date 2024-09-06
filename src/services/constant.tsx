@@ -55,6 +55,7 @@ export const GET_ACCOUNTS = `/bank-accounts`
 export const CREATE_ACCOUNT = `/bank-accounts/create`
 export const SELECT_ACCOUNT = `/bank-accounts/select`
 export const ADD_FCM_TOKEN = `/notification-tokens/add`
+export const SAVE_BANK_KYC = `/kyc/save`
 
 // area guide endpoints
 export const GET_SPOT_CATEGORY = `/spots/disclosed`

@@ -16,6 +16,12 @@ export const uploadImages = async (payload: FormData) => {
     .then((response) => response.data);
 };
 
+export const uploadIds = async (payload: FormData) => {
+  return axios
+    .post(`/upload/id-doc`, payload)
+    .then((response) => response.data);
+};
+
 export const getProperties = async () => {
   return axios
     .get(ENDPOINT.GET_PROPERTY_TYPES)
@@ -53,7 +59,7 @@ export const getAccounts = async () => {
 
 export const addAccount = async (payload: BankAccountItem) => {
   return axios
-    .post(`${ENDPOINT.CREATE_ACCOUNT}`, payload)
+    .post(`${ENDPOINT.SAVE_BANK_KYC}`, payload)
     .then((response) => response.data);
 };
 
@@ -76,4 +82,17 @@ export const addFcmToken = async (payload: {
   return axios
     .post(`${ENDPOINT.ADD_FCM_TOKEN}`, payload)
     .then((response) => response.data);
+};
+
+export const getDeviceIp = async () => {
+  try {
+    const response = await fetch('https://api.ipify.org?format=json');
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data: any = await response.json();
+    return data.ip
+  } catch (err) {
+    console.error('Problem fetching IP', err);
+  }
 };

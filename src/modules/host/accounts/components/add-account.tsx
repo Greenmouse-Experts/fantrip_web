@@ -1,15 +1,14 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
 import Button from "@/components/Button";
 import TextInput, { InputType } from "@/components/TextInput";
-import { BankAccountItem } from "@/lib/contracts/routine";
-import { addAccount } from "@/services/api/routine";
+import { addAccount, getDeviceIp, uploadIds } from "@/services/api/routine";
 import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import RadioButtonGroup from "@/components/radio-group-input";
 import { Country } from "country-state-city";
-import useAuth from "@/hooks/authUser";
+import ImageInput from "@/components/ImageInput";
 
 const currencyOptions = [
   {
@@ -20,6 +19,16 @@ const currencyOptions = [
   {
     label: "EURO",
     value: "EUR",
+    name: "currencyType",
+  },
+  {
+    label: "CAD",
+    value: "CAD",
+    name: "currencyType",
+  },
+  {
+    label: "GBP",
+    value: "GBP",
     name: "currencyType",
   },
 ];
@@ -47,19 +56,37 @@ export interface KycInputForm {
 interface Props {
   close: () => void;
 }
-const AddHostAccount: FC<Props> = ({close}) => {
+const AddHostAccount: FC<Props> = ({ close }) => {
   const [isBusy, setIsBusy] = useState(false);
-  const {account, saveAccount} = useAuth()
   const toast = useToast();
+  const [frontImg, setFrontImg] = useState<File[] | undefined>();
+  const [backImg, setBackImg] = useState<File[] | undefined>();
+  const [deviceIp, setDeviceIp] = useState("");
+
+  useEffect(() => {
+    const fetchDeviceIp = async () => {
+      try {
+        const ip = await getDeviceIp();
+        setDeviceIp(ip);
+      } catch (err: any) {
+        console.log(err.message);
+      }
+    };
+
+    fetchDeviceIp();
+  }, []);
+  
+
   const {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm<BankAccountItem>({
+  } = useForm({
     mode: "onChange",
     defaultValues: {
       accountNumber: "",
       accountName: "",
+      ssnLastFour: "",
       currency: "",
       accountHolderType: "individual",
       bankName: "",
@@ -71,8 +98,11 @@ const AddHostAccount: FC<Props> = ({close}) => {
     mutationFn: addAccount,
     mutationKey: ["add-host-account"],
   });
-  const onSubmit = (data: BankAccountItem) => {
-    setIsBusy(true);
+  const mutation = useMutation({
+    mutationFn: uploadIds,
+  });
+
+  const handleCreateKyc = (data: any) => {
     addAction.mutate(data, {
       onSuccess: (data) => {
         toast({
@@ -84,7 +114,6 @@ const AddHostAccount: FC<Props> = ({close}) => {
           position: "top",
         });
         setIsBusy(false);
-        saveAccount([...account, data.data])
         close();
       },
       onError: (error: any) => {
@@ -97,6 +126,69 @@ const AddHostAccount: FC<Props> = ({close}) => {
         setIsBusy(false);
       },
     });
+  };
+  const onSubmit = (data: any) => {
+    setIsBusy(true);
+    const payload = {
+      identityFront: {
+        id: "",
+        link: "",
+      },
+      identityBack: {
+        id: "",
+        link: "",
+      },
+      ssnLastFour: data?.ssnLastFour || "",
+      deviceIp: deviceIp,
+      bankAccount: {
+        accountNumber: data.accountNumber,
+        accountName: data.accountName,
+        country: data.country,
+        currency: data.currency,
+        accountHolderType: data.accountHolderType,
+        bankName: data.bankName,
+        routingNumber: data.routingNumber,
+      },
+    };
+    if (frontImg?.length && backImg?.length) {
+      const fd = new FormData();
+      fd.append("idDoc", frontImg[0]);
+      fd.append("idDoc", backImg[0]);
+
+      mutation.mutate(fd, {
+        onSuccess: (data) => {
+          const newData = {
+            ...payload,
+            identityFront: {
+              id: data[0]?.id,
+              link: data[0]?.link,
+            },
+            identityBack: {
+              id: data[1]?.id,
+              link: data[1]?.link,
+            },
+          };
+          handleCreateKyc(newData);
+        },
+        onError: (err: any) => {
+          setIsBusy(false);
+          toast({
+            title: err.response.data.message,
+            isClosable: true,
+            position: "top",
+            status: "error",
+          });
+        },
+      });
+    } else {
+      toast({
+        title: "Form submission incomplete",
+        isClosable: true,
+        position: "top",
+        status: "error",
+      });
+      setIsBusy(false);
+    }
   };
   return (
     <div>
@@ -138,6 +230,38 @@ const AddHostAccount: FC<Props> = ({close}) => {
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.text}
                   error={errors.accountName?.message}
+                  {...field}
+                  ref={null}
+                />
+              )}
+            />
+            <Controller
+              name="ssnLastFour"
+              control={control}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Please enter the correct digit",
+                },
+                minLength: {
+                  value: 4,
+                  message: "Invalid input",
+                },
+                maxLength: {
+                  value: 4,
+                  message: "Invalid input",
+                },
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: "Please enter a number",
+                },
+              }}
+              render={({ field }) => (
+                <TextInput
+                  label="Last Four SSN Number"
+                  labelClassName="text-[#767676] fw-500 "
+                  type={InputType.tel}
+                  error={errors.ssnLastFour?.message}
                   {...field}
                   ref={null}
                 />
@@ -215,13 +339,13 @@ const AddHostAccount: FC<Props> = ({close}) => {
               control={control}
               rules={{
                 required: {
-                  value: true,
+                  value: false,
                   message: "Please enter routing number",
                 },
               }}
               render={({ field }) => (
                 <TextInput
-                  label="Routing Number"
+                  label="Routing Number (optional)"
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.number}
                   error={errors.routingNumber?.message}
@@ -255,6 +379,8 @@ const AddHostAccount: FC<Props> = ({close}) => {
                 </div>
               )}
             />
+            <ImageInput label="ID Card (front)" setImage={setFrontImg} />
+            <ImageInput label="ID Card (back)" setImage={setBackImg} />
           </div>
           <div className="mt-7">
             <Button

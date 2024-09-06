@@ -21,7 +21,7 @@ export const Routes = [
     submenu: [],
   },
   {
-    name: "Bank Accounts",
+    name: "Bank Account",
     icon: <BsBank className="text-xl dark:text-white" />,
     route: "/host/accounts",
     submenu: [],

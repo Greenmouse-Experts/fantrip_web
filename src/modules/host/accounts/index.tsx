@@ -1,6 +1,6 @@
 import useDialog from "@/hooks/useDialog";
 import { IoAddCircle } from "react-icons/io5";
-// import AddHostAccount from "./components/add-account";
+import AddHostAccount from "./components/add-account";
 import AccountList from "./components/account-list";
 import SecureText from "./components/secure-text";
 
@@ -25,8 +25,7 @@ const HostAccountsIndex = () => {
         <AccountList/>
       </div>
       <Dialog title="Add A New Account" size="lg">
-        {/* <AddHostAccount close={() => setShowModal(false)} /> */}
-        <></>
+        <AddHostAccount close={() => setShowModal(false)} />
       </Dialog>
     </div>
   );
