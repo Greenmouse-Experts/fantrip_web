@@ -16,7 +16,6 @@ const DetailsList: FC<Props> = ({ data }) => {
     price,
     pricePerNight,
     serviceFee,
-    tax,
     total,
     trx
   } = data;
@@ -133,13 +132,13 @@ const DetailsList: FC<Props> = ({ data }) => {
                 {formatNumber(serviceFee)}
               </p>
             </div>
-            <div className="flex gap-x-2">
+            {/* <div className="flex gap-x-2">
               <p className="text-gray-600">Tax Fee:</p>
               <p className="fw-500">
                 {currency}
                 {formatNumber(tax)}
               </p>
-            </div>
+            </div> */}
             <div className="flex items-center gap-x-2">
               <p className="text-gray-600">Total:</p>
               <p className="fw-500 text-lg">
