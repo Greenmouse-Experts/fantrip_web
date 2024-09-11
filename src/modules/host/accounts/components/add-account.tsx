@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import RadioButtonGroup from "@/components/radio-group-input";
 import { Country } from "country-state-city";
 import ImageInput from "@/components/ImageInput";
+import SingleImageInput from "@/components/single-image-input";
 
 const currencyOptions = [
   {
@@ -41,7 +42,7 @@ export interface KycInputForm {
     id: string;
     link: string;
   };
-  ssnLastFour: string;
+  idNumber: string;
   deviceIp: string;
   bankAccount: {
     accountNumber: string;
@@ -61,6 +62,8 @@ const AddHostAccount: FC<Props> = ({ close }) => {
   const toast = useToast();
   const [frontImg, setFrontImg] = useState<File[] | undefined>();
   const [backImg, setBackImg] = useState<File[] | undefined>();
+  const [addressFrontImg, setAddressFrontImg] = useState<File[] | undefined>();
+  const [addressBackImg, setAddressBackImg] = useState<File[] | undefined>();
   const [deviceIp, setDeviceIp] = useState("");
 
   useEffect(() => {
@@ -75,7 +78,6 @@ const AddHostAccount: FC<Props> = ({ close }) => {
 
     fetchDeviceIp();
   }, []);
-  
 
   const {
     control,
@@ -86,7 +88,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
     defaultValues: {
       accountNumber: "",
       accountName: "",
-      ssnLastFour: "",
+      idNumber: "",
       currency: "",
       accountHolderType: "individual",
       bankName: "",
@@ -138,7 +140,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
         id: "",
         link: "",
       },
-      ssnLastFour: data?.ssnLastFour || "",
+      idNumber: data?.idNumber || "",
       deviceIp: deviceIp,
       bankAccount: {
         accountNumber: data.accountNumber,
@@ -150,10 +152,18 @@ const AddHostAccount: FC<Props> = ({ close }) => {
         routingNumber: data.routingNumber,
       },
     };
-    if (frontImg?.length && backImg?.length) {
+    if (
+      frontImg?.length &&
+      backImg?.length &&
+      addressFrontImg?.length &&
+      addressBackImg?.length
+    ) {
       const fd = new FormData();
       fd.append("idDoc", frontImg[0]);
       fd.append("idDoc", backImg[0]);
+      fd.append("idDoc", addressFrontImg[0]);
+      fd.append("idDoc", addressBackImg[0]);
+      fd.append("purpose", "account_requirement");
 
       mutation.mutate(fd, {
         onSuccess: (data) => {
@@ -166,6 +176,14 @@ const AddHostAccount: FC<Props> = ({ close }) => {
             identityBack: {
               id: data[1]?.id,
               link: data[1]?.link,
+            },
+            addressDocFront: {
+              id: data[2]?.id,
+              link: data[2]?.link,
+            },
+            addressDocBack: {
+              id: data[3]?.id,
+              link: data[3]?.link,
             },
           };
           handleCreateKyc(newData);
@@ -236,7 +254,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               )}
             />
             <Controller
-              name="ssnLastFour"
+              name="idNumber"
               control={control}
               rules={{
                 required: {
@@ -244,12 +262,12 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   message: "Please enter the correct digit",
                 },
                 minLength: {
-                  value: 4,
-                  message: "Invalid input",
+                  value: 9,
+                  message: "Mininimum length of 9",
                 },
                 maxLength: {
-                  value: 4,
-                  message: "Invalid input",
+                  value: 9,
+                  message: "Maximum length of 9",
                 },
                 pattern: {
                   value: /^[0-9]+$/,
@@ -258,10 +276,10 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               }}
               render={({ field }) => (
                 <TextInput
-                  label="Last Four SSN Number"
+                  label="ID Number"
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.tel}
-                  error={errors.ssnLastFour?.message}
+                  error={errors.idNumber?.message}
                   {...field}
                   ref={null}
                 />
@@ -307,7 +325,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                         Select account holder type
                       </option>
                       <option value="individual">Individual Account</option>
-                      <option value="company">Company Accoun</option>
+                      <option value="company">Company Account</option>
                     </select>
                     <p>{errors && errors.accountHolderType?.message}</p>
                   </div>
@@ -379,8 +397,16 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                 </div>
               )}
             />
-            <ImageInput label="ID Card (front)" setImage={setFrontImg} />
-            <ImageInput label="ID Card (back)" setImage={setBackImg} />
+            <SingleImageInput label="ID Card (front)" setImage={setFrontImg} />
+            <SingleImageInput label="ID Card (back)" setImage={setBackImg} />
+            <SingleImageInput
+              label="Address Document (front)"
+              setImage={setAddressFrontImg}
+            />
+            <SingleImageInput
+              label="Address Document (back)"
+              setImage={setAddressBackImg}
+            />
           </div>
           <div className="mt-7">
             <Button

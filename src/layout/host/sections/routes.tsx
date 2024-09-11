@@ -1,4 +1,4 @@
-import { MdAutoMode, MdOutlineDashboard } from "react-icons/md";
+import { MdOutlineDashboard } from "react-icons/md";
 import { FaDollarSign, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { BsBank, BsChatFill, BsCompassFill } from "react-icons/bs";
@@ -74,12 +74,12 @@ export const Routes = [
   //   route: "/host/locations",
   //   submenu: [],
   // },
-  {
-    name: "Host Amenities",
-    icon: <MdAutoMode className="text-xl dark:text-white" />,
-    route: "/host/amenities",
-    submenu: [],
-  },
+  // {
+  //   name: "Host Amenities",
+  //   icon: <MdAutoMode className="text-xl dark:text-white" />,
+  //   route: "/host/amenities",
+  //   submenu: [],
+  // },
   {
     name: "Payments",
     icon: <FaDollarSign className="text-xl dark:text-white" />,

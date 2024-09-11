@@ -12,9 +12,14 @@ const AccountList = () => {
     queryFn: () => viewProfile(),
   });
 
-  const [{ frontView, backView, bankInfo, ssn, ip }, setView] = useState({
+  const [
+    { frontView, backView, adBackView, adFrontView, bankInfo, ssn, ip },
+    setView,
+  ] = useState({
     frontView: false,
     backView: false,
+    adFrontView: false,
+    adBackView: false,
     bankInfo: false,
     ssn: false,
     ip: false,
@@ -73,6 +78,57 @@ const AccountList = () => {
                 <PolicyList text="Back View" />
                 <div className="flex gap-x-3 items-center">
                   {backView ? (
+                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                      https://front-view.png
+                    </a>
+                  ) : (
+                    hideHash
+                  )}
+                  {backView ? (
+                    <IoEyeOffOutline
+                      className="cursor-pointer"
+                      onClick={() => handleToggle("backView", false)}
+                    />
+                  ) : (
+                    <IoEyeOutline
+                      className="cursor-pointer"
+                      onClick={() => handleToggle("backView", true)}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="border rounded-lg border-gray-500 p-4 mt-4">
+            <div>
+              <PolicyHeader text="Address Document" />
+              <div className="flex gap-x-3 items-center">
+                <PolicyList text="Front View" />
+                <div className="flex gap-x-3 items-center">
+                  {adFrontView ? (
+                    <a href="http://" target="_blank" rel="noopener noreferrer">
+                      https://front-view.png
+                    </a>
+                  ) : (
+                    hideHash
+                  )}
+                  {frontView ? (
+                    <IoEyeOffOutline
+                      className="cursor-pointer"
+                      onClick={() => handleToggle("frontView", false)}
+                    />
+                  ) : (
+                    <IoEyeOutline
+                      className="cursor-pointer"
+                      onClick={() => handleToggle("frontView", true)}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex gap-x-3 items-center">
+                <PolicyList text="Back View" />
+                <div className="flex gap-x-3 items-center">
+                  {adBackView ? (
                     <a href="http://" target="_blank" rel="noopener noreferrer">
                       https://front-view.png
                     </a>
@@ -156,19 +212,13 @@ const AccountList = () => {
               </div>
             </div>
           </div>
-          <div className="border rounded-lg border-gray-500 p-4">
+          <div className="border rounded-lg border-gray-500 p-4 mt-4">
             <div>
               <PolicyHeader text="Other Informations" />
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Required Digits:" />
                 <div className="flex gap-x-3 items-center">
-                  {ssn ? (
-                    <p>
-                      4567
-                    </p>
-                  ) : (
-                    hideHash
-                  )}
+                  {ssn ? <p>4567</p> : hideHash}
                   {ssn ? (
                     <IoEyeOffOutline
                       className="cursor-pointer"
@@ -185,13 +235,7 @@ const AccountList = () => {
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Device IP:" />
                 <div className="flex gap-x-3 items-center">
-                  {ip ? (
-                    <p>
-                      43:127:56:45
-                    </p>
-                  ) : (
-                    hideHash
-                  )}
+                  {ip ? <p>43:127:56:45</p> : hideHash}
                   {ip ? (
                     <IoEyeOffOutline
                       className="cursor-pointer"

@@ -6,10 +6,9 @@ import { useMutation } from '@tanstack/react-query';
 import { guestInitatePayment } from '@/services/api/booking-api';
 import { useToast } from '@chakra-ui/react';
 import PaymentFieldShimmer from '@/components/shimmers/payment-fields';
+import { STRIPE_KEY } from '@/services/constant';
 
-const stripePromise = loadStripe(
-    "pk_test_51HoQfvKiOZXcwcTbQS0xwfzkxRYCPWQ7VT4Xl6sObmhguPXhX5agZY88UrCsPcAQLKa071M8lQh3kA6DMe42L7IB00ibW8gtHu"
-  );
+const stripePromise = loadStripe(`${STRIPE_KEY}`);
 interface Props{
     id: string
 }
