@@ -8,7 +8,6 @@ import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import RadioButtonGroup from "@/components/radio-group-input";
 import { Country } from "country-state-city";
-import ImageInput from "@/components/ImageInput";
 import SingleImageInput from "@/components/single-image-input";
 
 const currencyOptions = [
