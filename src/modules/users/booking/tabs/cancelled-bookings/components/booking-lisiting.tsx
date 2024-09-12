@@ -24,7 +24,7 @@ const CancelledBookingList: FC<Props> = ({ data }) => {
     <div className="grid gap-4 mt-4">
       {data.map((item: BookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
-          <div className="bg-white rounded-lg flex gap-x-4 p-1 h-full">
+          <div className="bg-white dark:bg-darkColor rounded-lg flex gap-x-4 p-1 h-full">
             <div className="w-[160px] h-[100%] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={

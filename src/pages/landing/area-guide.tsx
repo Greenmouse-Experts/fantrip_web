@@ -21,7 +21,7 @@ export const AreaGuide = () => {
   });
 
   return (
-    <div className="bg-[#EDEDFF]">
+    <div className="bg-[#EDEDFF] dark:bg-darkColor">
       <div className="pt-16 lg:pt-28 bg-layout-gradient">
         <div className="lg:pb-12">
           <div className="py-16 text-white text-center">
@@ -31,10 +31,10 @@ export const AreaGuide = () => {
           </div>
         </div>
       </div>
-      <div className="py-12 lg:pt-0 lg:relative -top-10">
+      <div className="py-12 lg:pt-0  lg:relative -top-10">
         <LocationSearchBox setSearchInput={debouncedHandleInputChange} />
       </div>
-      <div>
+      <div className="dark:bg-darkColor">
         <AreaCategorySearch
           searchedResult={searchResult}
           isGettingResult={isGettingResult}

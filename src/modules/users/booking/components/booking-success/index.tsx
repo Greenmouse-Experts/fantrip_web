@@ -55,7 +55,7 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
               </div>
             </div>
             <div className="gap-6">
-              <div className="bg-light rounded-lg p-5 flex items-center justify-between">
+              <div className="bg-light dark:bg-darkColor rounded-lg p-5 flex items-center justify-between">
                 <div>
                   <p className="fw-600 text-3xl">
                     {data.currency}
@@ -71,7 +71,7 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
                   </div>
                 </div>
               </div>
-              <div className="rounded-t-xl bg-light mt-6 p-6 min-h-[350px]">
+              <div className="rounded-t-xl bg-light dark:bg-darkColor mt-6 p-6 min-h-[350px]">
                 <p className="text-lg syne fw-600">Payment Details</p>
                 <div className="grid gap-6 mt-7">
                   <div className="flex gap-x-2">

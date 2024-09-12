@@ -14,10 +14,10 @@ const UserReferrals = () => {
               <MdOutlineMarkUnreadChatAlt className="text-2xl text-[#9847fe]" />
             </div>
             <div className="mt-2">
-              <p className="fw-500">Send an invite</p>
+              <p className="fw-500">Spread the Word!</p>
               <p className="fs-300 text-gray-600 px-4">
-                Spread the word and let your friends know how awesome fantrip
-                is!
+                Let your friends know how awesome fantrip is, and join the fan
+                movement!
               </p>
             </div>
           </div>
@@ -37,9 +37,11 @@ const UserReferrals = () => {
               <IoGiftOutline className="text-2xl text-[#9847fe]" />
             </div>
             <div>
-              <p className="fw-500">Earn rewards</p>
+              <p className="fw-500">Earn points</p>
               <p className="fs-300 text-gray-600 px-4">
-                Receive cool gifts from fantrip when your friends join!
+                For every three friends who sign up, you earn 5 points! Once you
+                hit 50 points, you can redeem them for a €5 discount at checkout
+                on your next Fanstay booking.
               </p>
             </div>
           </div>
@@ -47,8 +49,9 @@ const UserReferrals = () => {
         <div className="mt-8 lg:mt-12 lg:px-3">
           <p className="fw-600">Invite your friends</p>
           <p className="text-sm text-gray-500">
-            Enter your friend&apos;s email address and send them an invitation
-            to join fantrip!
+            Enter your friend&apos;s email to send them an invitation, or copy
+            your referral link to share directly via text, WhatsApp, or any
+            platform you choose! The more you share, the more points you earn!
           </p>
           <div className="mt-3">
             <div className="border border-gray-400 rounded-[50px] flex gap-x-2 py-2 pr-2 pl-5 w-full">
@@ -80,6 +83,15 @@ const UserReferrals = () => {
               </p>
             </div>
           </div>
+        </div>
+        <div className="mt-5 lg:mt-8 lg:px-3 pb-5">
+          <p className="fw-600">How Referral Works</p>
+          <p className="text-sm text-gray-500">
+            Earn points for every three friends who sign up using your referral
+            link. Accumulate 50 points and redeem the for a €5 discount at
+            checkout on your next Fanstay booking. The more you share, the more
+            you earn!
+          </p>
         </div>
       </div>
     </div>

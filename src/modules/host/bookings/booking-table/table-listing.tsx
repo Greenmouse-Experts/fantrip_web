@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
@@ -12,8 +12,11 @@ import {
   formatStatus,
   formatStayStatus,
 } from "@/lib/utils/formatHelp";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsChatDots, BsThreeDotsVertical } from "react-icons/bs";
 import CancelBooking from "../booking-actions/cancel-booking";
+import LargeChatWrapper from "@/components/large-chat-wrapper";
+import ChatInterface from "@/modules/chat/stay-chat/components/chat-interface";
+import { useChat } from "@/hooks/useChat";
 dayjs.extend(relativeTime);
 
 interface Props {
@@ -32,6 +35,23 @@ const BookingTableListing: FC<Props> = ({
   count,
   refetch,
 }) => {
+  const [showChat, setShowChat] = useState(false);
+  const { saveMiniInfo } = useChat();
+
+  const handleChatWithGuest = (guest: any) => {
+    const payload = {
+      id: guest.id,
+      firstName: guest.firstName,
+      lastName: guest.lastName,
+      nickname: guest.nickname,
+      verifiedAsHost: guest.verifiedAsHost,
+      role: guest.role,
+      picture: guest.picture,
+    };
+    saveMiniInfo(payload);
+    setShowChat(true);
+  };
+
   const columnHelper = createColumnHelper<PaidBookingItem>();
   const columns = [
     columnHelper.accessor((row) => row.reservation.guest.picture, {
@@ -122,6 +142,17 @@ const BookingTableListing: FC<Props> = ({
             <MenuItem>
               <CancelBooking id={info.getValue()} refetch={refetch} />
             </MenuItem>
+            <MenuItem>
+              <button
+                onClick={() =>
+                  handleChatWithGuest(info.row.original.reservation.guest)
+                }
+                className="flex gap-x-2 fs-400 md:fs-500 mt-1 items-center fw-500"
+              >
+                <BsChatDots />
+                Chat with Guest
+              </button>
+            </MenuItem>
           </MenuList>
         </Menu>
       ),
@@ -138,6 +169,11 @@ const BookingTableListing: FC<Props> = ({
           page={page}
           count={count}
         />
+      </div>
+      <div className="text-black">
+        <LargeChatWrapper open={showChat}>
+          <ChatInterface close={() => setShowChat(false)} type="host" />
+        </LargeChatWrapper>
       </div>
     </div>
   );

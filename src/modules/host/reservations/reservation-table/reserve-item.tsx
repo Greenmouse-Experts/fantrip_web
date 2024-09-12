@@ -49,7 +49,7 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
   return (
     <div>
       <div className="bg-gradient p-[1px] rounded-lg">
-        <div className="dark:bg-darkColor h-full rounded-lg p-3">
+        <div className="bg-white dark:bg-darkColor h-full rounded-lg p-3">
           <div>
             <div className="flex items-center">
               <div className="w-5/12 pr-3">
@@ -91,29 +91,29 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
             </div>
             <div className="border border-gray-600 p-3 mt-3 rounded-lg">
               <div className="flex gap-x-2">
-                <p className="text-gray-300">Booking Time:</p>
+                <p className="text-gray-500 dark:text-gray-300">Booking Time:</p>
                 <p className="fw-500">
                   {dayjs(createdDate).format("HH:MM - YYYY-MM-DD")}
                 </p>
               </div>
               <div className="flex gap-x-2">
-                <p className="text-gray-300">Check In:</p>
+                <p className="text-gray-500 dark:text-gray-300">Check In:</p>
                 <p className="fw-500">{checkIn}</p>
               </div>
               <div className="flex gap-x-2">
-                <p className="text-gray-300">Check Out:</p>
+                <p className="text-gray-500 dark:text-gray-300">Check Out:</p>
                 <p className="fw-500">{checkOut}</p>
               </div>
               <div className="flex gap-x-2">
-                <p className="text-gray-300">Adults:</p>
+                <p className="text-gray-500 dark:text-gray-300">Adults:</p>
                 <p className="fw-500">{adults}</p>
               </div>
               <div className="flex gap-x-2">
-                <p className="text-gray-300">Children:</p>
+                <p className="text-gray-500 dark:text-gray-300">Children:</p>
                 <p className="fw-500">{children}</p>
               </div>
               <div className="flex gap-x-2">
-                <p className="text-gray-300">Status:</p>
+                <p className="text-gray-500 dark:text-gray-300">Status:</p>
                 <div className="fw-500">
                   {formatStatus[status as keyof typeof formatStatus]}
                 </div>

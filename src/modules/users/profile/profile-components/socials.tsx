@@ -9,7 +9,7 @@ import useAuth from "@/hooks/authUser";
 
 const UserSocials = () => {
   const { Dialog: Social, setShowModal: ShowSocial } = useDialog();
-  const { isLoading, data: profile } = useQuery({
+  const { isLoading, data: profile, refetch } = useQuery({
     queryKey: ["profile"],
     queryFn: () => viewProfile(),
   });
@@ -40,37 +40,37 @@ const UserSocials = () => {
               <PyramidSpin size={1.8} />
             </div>
           )}
-          <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
+          {profile && <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
             <div>
               <p className="fs-500 text-[#5F5F5F]">FaceBook</p>
-              <a className="fw-500 mt-1" href={`${profile.facebookUrl}`}>
-                {profile.facebookUrl}
+              <a className="fw-500 mt-1" href={`${profile?.facebookUrl}`}>
+                {profile?.facebookUrl}
               </a>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Twitter</p>
-              <a className="fw-500 mt-1" href={`${profile.twitterUrl}`}>
-                {profile.twitterUrl}
+              <a className="fw-500 mt-1" href={`${profile?.twitterUrl}`}>
+                {profile?.twitterUrl}
               </a>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">LinkedIn</p>
-              <a className="fw-500 mt-1" href={`${profile.linkedinUrl}`}>
-                {profile.linkedinUrl}
+              <a className="fw-500 mt-1" href={`${profile?.linkedinUrl}`}>
+                {profile?.linkedinUrl}
               </a>
             </div>
             <div>
               <p className="fs-500 text-[#5F5F5F]">Instagram</p>
-              <a className="fw-500 mt-1" href={`${profile.instagramUrl}`}>
-                {profile.instagramUrl}
+              <a className="fw-500 mt-1" href={`${profile?.instagramUrl}`}>
+                {profile?.instagramUrl}
               </a>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
 
       <Social title="Update Social Information" size="xl">
-        <UpdateSocialForm close={() => ShowSocial(false)} item={profile} />
+        <UpdateSocialForm close={() => ShowSocial(false)} item={profile} refetch={refetch} />
       </Social>
     </div>
   );
