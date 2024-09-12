@@ -24,7 +24,7 @@ import icon_6 from "@/assets/svg/calendar-check-02.svg";
 import icon_7 from "@/assets/svg/globe-06.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
 import icon_9 from "@/assets/svg/logout.svg";
-import icon_10 from "@/assets/images/RF.png";
+import icon_10 from "@/assets/images/ref.png";
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
 import useDialog from "@/hooks/useDialog";

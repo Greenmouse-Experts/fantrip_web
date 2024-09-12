@@ -7,7 +7,7 @@ import icon_5 from "@/assets/svg/building-07.svg";
 import icon_6 from "@/assets/svg/calendar-check-02.svg";
 import icon_7 from "@/assets/svg/globe-06.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
-import icon_9 from "@/assets/images/RF.png";
+import icon_9 from "@/assets/images/ref.png";
 
 interface Props {
   close: () => void;
