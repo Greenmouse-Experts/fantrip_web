@@ -119,7 +119,7 @@ const MobileMenu: FC<Props> = ({ close }) => {
               <Button
                 title={"Login"}
                 onClick={() => router("/auth/login")}
-                altClassName="bg-primary px-4 text-white lg:px-8 py-2 rounded-lg"
+                altClassName="bg-primary dark:!bg-[#9847FE] px-4 text-white lg:px-8 py-2 rounded-lg"
               />
             </li>
           )}
