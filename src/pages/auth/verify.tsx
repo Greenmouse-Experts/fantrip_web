@@ -40,13 +40,13 @@ const VerifyUser = () => {
         setTimeout(() => {
           navigate("/auth/login");
         }, 2000);
-      }else{
+      } else {
         setIsLoading(false);
-      setIsError(true);
+        setIsError(true);
       }
     } catch (error: any) {
-        console.log(error);
-        
+      console.log(error);
+
       setIsLoading(false);
       setIsError(true);
       toast({
@@ -77,7 +77,7 @@ const VerifyUser = () => {
                 <div className="my-8 lg:mt-16 mb-5 mx-auto">
                   {isLoading && (
                     <div className="w-full h-36 place-center">
-                      <BeatLoader size={34} color="black"/>
+                      <BeatLoader size={34} color="black" />
                     </div>
                   )}
                   {isSuccess && (

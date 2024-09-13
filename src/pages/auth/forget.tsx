@@ -1,21 +1,31 @@
-import logo from '@/assets/images/auth-logo.png'
-import ForgetForm from '@/modules/auth/forget-form';
-import { Link } from 'react-router-dom';
+import logo from "@/assets/images/auth-logo.png";
+import ForgetForm from "@/modules/auth/forget-form";
+import { Link } from "react-router-dom";
 const ForgetPasswordPage = () => {
   return (
     <div className="flex h-screen">
       <div className="w-full lg:w-[60%] px-4 lg:px-0">
         <div className="lg:w-7/12 2xl:w-6/12 mx-auto py-12 lg:py-16">
-          <Link to={'/'}><img src={logo} alt="logo" className='w-44 mx-auto' /></Link>
-          <div className='text-center mt-8 lg:mt-16'>
-            <p className='text-3xl fw-600'>Forgot Password?</p>
-            <p className='mt-5 text-[#828282]'>Enter your email assosiated with your fantrip account.</p>
+          <Link to={"/"}>
+            <img src={logo} alt="logo" className="w-44 mx-auto" />
+          </Link>
+          <div className="text-center mt-8 lg:mt-16">
+            <p className="text-3xl fw-600">Forgot Password?</p>
+            <p className="mt-5 text-[#828282]">
+              Enter your email assosiated with your fantrip account.
+            </p>
           </div>
-          <div className='mt-6'>
-            <ForgetForm/>
+          <div className="mt-6">
+            <ForgetForm />
           </div>
-          <div className='mt-6 text-center'>
-            <p>Remembered your password? <Link to={'/auth/login'} className='fw-500'>Login here</Link>.</p>
+          <div className="mt-6 text-center">
+            <p>
+              Remembered your password?{" "}
+              <Link to={"/auth/login"} className="fw-500">
+                Login here
+              </Link>
+              .
+            </p>
           </div>
         </div>
       </div>
