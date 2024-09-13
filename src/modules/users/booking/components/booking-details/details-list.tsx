@@ -32,7 +32,7 @@ const DetailsList: FC<Props> = ({ data }) => {
           <p className="fw-600 text-lg syne border-b text-prima">
             Stay Informations
           </p>
-          <div className="bg-gray-100 p-4 rounded grid gap-3">
+          <div className="bg-gray-100 dark:bg-darkColor p-4 rounded grid gap-3">
             <div className="flex gap-x-2">
               <p className="text-gray-600">Host:</p>
               <p className="fw-500">
@@ -63,7 +63,7 @@ const DetailsList: FC<Props> = ({ data }) => {
           <p className="fw-600 text-lg syne border-b text-prima">
             Booking Informations
           </p>
-          <div className="bg-gray-100 p-4 rounded grid gap-3">
+          <div className="bg-gray-100 dark:bg-darkColor p-4 rounded grid gap-3">
             <div className="flex gap-x-2">
               <p className="text-gray-600">Date Booked:</p>
               <p className="fw-500">
@@ -92,7 +92,7 @@ const DetailsList: FC<Props> = ({ data }) => {
           <p className="fw-600 text-lg syne border-b text-prima">
             Payment Information
           </p>
-          <div className="grid gap-3 bg-gray-100 p-4 rounded">
+          <div className="grid gap-3 bg-gray-100 dark:bg-darkColor p-4 rounded">
           <div className="flex gap-x-2">
               <p className="text-gray-600">Payment Status:</p>
               <div className="fw-500">

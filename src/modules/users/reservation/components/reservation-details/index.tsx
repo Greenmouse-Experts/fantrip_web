@@ -17,7 +17,7 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
     queryFn: () => fetchReservationDetails(id),
   });
   return (
-    <div className="h-full">
+    <div className="h-full dark:bg-darkColor">
       {isLoading && (
         <div className="py-12 lg:py-24 place-center">
           <PyramidSpin size={1.8} />
@@ -36,7 +36,12 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
           {/* pay button */}
           <div>
             {data.status === RESERVATION_STATUS.CONFIRMED && (
-              <PaymentButton id={id} currency={data.stay.currency} price={data.total} />
+              <PaymentButton
+                id={id}
+                currency={data.stay.currency}
+                price={data.total}
+                checkin={data.checkIn}
+              />
             )}
           </div>
         </div>

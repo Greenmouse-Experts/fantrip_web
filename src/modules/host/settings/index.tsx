@@ -1,13 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import UserAccount from '@/modules/users/profile/profile-components/account'
 import UserReferrals from '@/modules/users/profile/profile-components/referrals'
 import UserSecurity from '@/modules/users/profile/profile-components/security'
 import SettingSideMenu from './side-menu'
 import MobileSidebar from './mobile-callout'
 import UserSocials from '@/modules/users/profile/profile-components/socials'
+import { useSearchParams } from 'react-router-dom'
 
 const HostSettingsIndex = () => {
-    const [active, setActive] = useState(1)
+  const [searchParams] = useSearchParams();
+  const refer = searchParams.get("referral");
+
+  const [active, setActive] = useState(1);
+  useEffect(() => {
+    if (refer) {
+      setActive(3);
+    }
+  }, [refer]);
     return (
       <div className="lg:flex justify-between">
          <div className="lg:hidden">

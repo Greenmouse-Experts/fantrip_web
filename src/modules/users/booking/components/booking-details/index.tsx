@@ -15,7 +15,7 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
     queryFn: () => fetchBookingDetails(id),
   });
   return (
-    <div className="h-full">
+    <div className="h-full dark:bg-darkColor">
          {isLoading && (
         <div className="py-12 lg:py-24 place-center">
           <PyramidSpin size={1.8} />

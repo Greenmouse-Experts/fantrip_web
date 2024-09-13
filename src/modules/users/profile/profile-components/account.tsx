@@ -23,9 +23,6 @@ const UserAccount = () => {
     mutationFn: updateProfile,
     mutationKey: ["update"],
   });
-  
-
- 
 
   const mutation = useMutation({
     mutationFn: uploadImage,
@@ -79,7 +76,7 @@ const UserAccount = () => {
     fd.append("image", files);
     mutation.mutate(fd);
   };
- 
+
   return (
     <div>
       <div>
@@ -170,49 +167,50 @@ const UserAccount = () => {
             </div>
           </div>
         </div>
-        <div
-          className={`border ${
-            isHost ? "border-gray-600" : "border-[#E8EAED]"
-          } rounded-[16px] mt-6 p-4`}
-        >
-          <div className="flex justify-between items-center">
-            <p className="fw-600 lg:text-lg">Address</p>
-            <div
-              className="flex gap-x-2 items-center border border-gray-400 px-2 text-gray-400 cursor-pointer rounded-[14px]"
-              onClick={() => ShowLocation(true)}
-            >
-              <p>Edit</p>
-              <AiOutlineEdit />
+        {isHost && (
+          <div
+            className={`border ${
+              isHost ? "border-gray-600" : "border-[#E8EAED]"
+            } rounded-[16px] mt-6 p-4`}
+          >
+            <div className="flex justify-between items-center">
+              <p className="fw-600 lg:text-lg">Address</p>
+              <div
+                className="flex gap-x-2 items-center border border-gray-400 px-2 text-gray-400 cursor-pointer rounded-[14px]"
+                onClick={() => ShowLocation(true)}
+              >
+                <p>Edit</p>
+                <AiOutlineEdit />
+              </div>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
+              <div>
+                <p className="fs-500 text-[#5F5F5F]">Country</p>
+                <p className="fw-500 mt-1">{user.country}</p>
+              </div>
+              <div>
+                <p className="fs-500 text-[#5F5F5F]">Street</p>
+                <p className="fw-500 mt-1">{user.street}</p>
+              </div>
+              <div>
+                <p className="fs-500 text-[#5F5F5F]">City</p>
+                <p className="fw-500 mt-1">{user.city}</p>
+              </div>
+              <div>
+                <p className="fs-500 text-[#5F5F5F]">Region</p>
+                <p className="fw-500 mt-1">{user.state}</p>
+              </div>
+              <div>
+                <p className="fs-500 text-[#5F5F5F]">Postal Code</p>
+                <p className="fw-500 mt-1">{user.postalCode}</p>
+              </div>
+              <div>
+                <p className="fs-500 text-[#5F5F5F]">Apartment/Suite number</p>
+                <p className="fw-500 mt-1">{user.aptSuitUnit}</p>
+              </div>
             </div>
           </div>
-          <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
-            <div>
-              <p className="fs-500 text-[#5F5F5F]">Country</p>
-              <p className="fw-500 mt-1">{user.country}</p>
-            </div>
-            <div>
-              <p className="fs-500 text-[#5F5F5F]">Street</p>
-              <p className="fw-500 mt-1">{user.street}</p>
-            </div>
-            <div>
-              <p className="fs-500 text-[#5F5F5F]">City</p>
-              <p className="fw-500 mt-1">{user.city}</p>
-            </div>
-            <div>
-              <p className="fs-500 text-[#5F5F5F]">Region</p>
-              <p className="fw-500 mt-1">{user.state}</p>
-            </div>
-            <div>
-              <p className="fs-500 text-[#5F5F5F]">Postal Code</p>
-              <p className="fw-500 mt-1">{user.postalCode}</p>
-            </div>
-            <div>
-              <p className="fs-500 text-[#5F5F5F]">Apartment/Suite number</p>
-              <p className="fw-500 mt-1">{user.aptSuitUnit}</p>
-            </div>
-          </div>
-        </div>
-       
+        )}
       </div>
       <ProfileInfo title="Update Profile Information" size="xl">
         <UpdateProfileForm close={() => ShowProfile(false)} />
@@ -220,7 +218,6 @@ const UserAccount = () => {
       <LocationInfo title="Update Location Information" size="xl">
         <UpdateAddressForm close={() => ShowLocation(false)} />
       </LocationInfo>
-      
     </div>
   );
 };

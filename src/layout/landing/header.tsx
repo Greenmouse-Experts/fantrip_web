@@ -24,6 +24,7 @@ import icon_6 from "@/assets/svg/calendar-check-02.svg";
 import icon_7 from "@/assets/svg/globe-06.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
 import icon_9 from "@/assets/svg/logout.svg";
+import icon_10 from "@/assets/images/ref.png";
 import { MdAttractions } from "react-icons/md";
 import MobileSheet from "./mobileSheet";
 import useDialog from "@/hooks/useDialog";
@@ -208,8 +209,22 @@ const LandingHeader = () => {
                           </Link>
                         </MenuItem>
                         <MenuItem className="!p-0">
+                          <Link
+                            className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
+                            to={
+                              isHost
+                                ? "/host/settings?referral=true"
+                                : "/user/profile?referral=true"
+                            }
+                          >
+                            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                            <img src={icon_10} alt="icons" className="w-full h-full" />
+                            </div>
+                            <p className="">Referrals</p>
+                          </Link>
+                        </MenuItem>
+                        <MenuItem className="!p-0">
                           <div
-                            
                             className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
                             onClick={() => setShowModal(true)}
                           >

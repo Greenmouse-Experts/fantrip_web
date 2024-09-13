@@ -12,7 +12,6 @@ import useAuth from "@/hooks/authUser";
 import { FaChevronDown } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { FC } from "react";
-import { getMode } from "@/lib/utils/helper-function";
 
 interface Props {
   toggled: boolean;
@@ -22,9 +21,6 @@ const SidebarLayout: FC<Props> = ({ toggled, setToggled }) => {
   const path = useLocation();
   const { Dialog, setShowModal } = useDialog();
   const { user } = useAuth();
-
-  const mode = getMode();
-  // console.log(mode);
 
   return (
     <div className="left-0 top-0 z-[3000] fixed overflow-y-hidden  dark:bg-darkColor dark:text-white">
@@ -39,9 +35,14 @@ const SidebarLayout: FC<Props> = ({ toggled, setToggled }) => {
         <div className="py-2 pt-4 lg:py-6 lg:pb-8 items-center">
           <Link to="/" className="gap-x-1">
             <img
-              src={mode ? logo : logo_dark}
+              src={logo}
               alt="logo"
-              className="w-7/12 2xl:w-8/12"
+              className="w-7/12 2xl:w-8/12 hidden dark:block"
+            />
+            <img
+              src={logo_dark}
+              alt="logo"
+              className="w-7/12 2xl:w-8/12 dark:hidden"
             />
           </Link>
         </div>

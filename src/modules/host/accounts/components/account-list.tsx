@@ -5,6 +5,7 @@ import { viewProfile } from "@/services/api/authApi";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { Country } from "country-state-city";
 
 const AccountList = () => {
   const { isLoading, data: profile } = useQuery({
@@ -13,7 +14,7 @@ const AccountList = () => {
   });
 
   const [
-    { frontView, backView, adBackView, adFrontView, bankInfo, ssn, ip },
+    { frontView, backView, adBackView, adFrontView, bankInfo, ssn, ip, accId },
     setView,
   ] = useState({
     frontView: false,
@@ -23,6 +24,7 @@ const AccountList = () => {
     bankInfo: false,
     ssn: false,
     ip: false,
+    accId: false
   });
 
   const handleToggle = (name: string, value: boolean) => {
@@ -35,6 +37,21 @@ const AccountList = () => {
     });
   };
 
+  const bank =
+    profile && profile.bankAccounts.length ? profile.bankAccounts[0] : null;
+
+  const kyc = profile && profile.kycInfo.length ? profile.kycInfo[0] : null;
+
+  const addressBack = kyc?.addressDocBack? JSON.parse(kyc?.addressDocBack) : null
+  const addressFront = kyc?.addressDocFront? JSON.parse(kyc?.addressDocFront) : null
+  const identityBack = kyc?.identityBack? JSON.parse(kyc?.identityBack) : null
+  const identityFront = kyc?.identityFront? JSON.parse(kyc?.identityFront) : null
+
+
+  const getCountryViaIso = (val: string) => {
+    const country = Country.getCountryByCode(val);
+    return country?.name;
+  };
   const hideHash = (
     <p className="relative top-1 fw-600 text-gray-500">*********</p>
   );
@@ -46,7 +63,7 @@ const AccountList = () => {
           <PyramidSpin size={1.8} />
         </div>
       )}
-      {profile && (
+      {profile && bank && (
         <div>
           <div className="border rounded-lg border-gray-500 p-4">
             <div>
@@ -56,7 +73,7 @@ const AccountList = () => {
                 <div className="flex gap-x-3 items-center">
                   {frontView ? (
                     <a href="http://" target="_blank" rel="noopener noreferrer">
-                      https://front-view.png
+                      {identityBack?.link}
                     </a>
                   ) : (
                     hideHash
@@ -79,7 +96,7 @@ const AccountList = () => {
                 <div className="flex gap-x-3 items-center">
                   {backView ? (
                     <a href="http://" target="_blank" rel="noopener noreferrer">
-                      https://front-view.png
+                      {identityFront?.link}
                     </a>
                   ) : (
                     hideHash
@@ -107,20 +124,20 @@ const AccountList = () => {
                 <div className="flex gap-x-3 items-center">
                   {adFrontView ? (
                     <a href="http://" target="_blank" rel="noopener noreferrer">
-                      https://front-view.png
+                      {addressFront?.link}
                     </a>
                   ) : (
                     hideHash
                   )}
-                  {frontView ? (
+                  {adFrontView ? (
                     <IoEyeOffOutline
                       className="cursor-pointer"
-                      onClick={() => handleToggle("frontView", false)}
+                      onClick={() => handleToggle("adFrontView", false)}
                     />
                   ) : (
                     <IoEyeOutline
                       className="cursor-pointer"
-                      onClick={() => handleToggle("frontView", true)}
+                      onClick={() => handleToggle("adFrontView", true)}
                     />
                   )}
                 </div>
@@ -130,20 +147,20 @@ const AccountList = () => {
                 <div className="flex gap-x-3 items-center">
                   {adBackView ? (
                     <a href="http://" target="_blank" rel="noopener noreferrer">
-                      https://front-view.png
+                      {addressBack?.link}
                     </a>
                   ) : (
                     hideHash
                   )}
-                  {backView ? (
+                  {adBackView ? (
                     <IoEyeOffOutline
                       className="cursor-pointer"
-                      onClick={() => handleToggle("backView", false)}
+                      onClick={() => handleToggle("adBackView", false)}
                     />
                   ) : (
                     <IoEyeOutline
                       className="cursor-pointer"
-                      onClick={() => handleToggle("backView", true)}
+                      onClick={() => handleToggle("adBackView", true)}
                     />
                   )}
                 </div>
@@ -171,43 +188,47 @@ const AccountList = () => {
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Account Number:" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>4049493333UI</p> : hideHash}
+                  {bankInfo ? <p>{bank?.accountNumber}</p> : hideHash}
                 </div>
               </div>
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Account Name:" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>Wesley Aspir Snipes</p> : hideHash}
+                  {bankInfo ? <p>{bank?.accountName}</p> : hideHash}
                 </div>
               </div>
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Country:" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>Canada</p> : hideHash}
+                  {bankInfo ? (
+                    <p>{getCountryViaIso(bank?.country)}</p>
+                  ) : (
+                    hideHash
+                  )}
                 </div>
               </div>
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Currency:" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>USD</p> : hideHash}
+                  {bankInfo ? <p>{bank?.currency}</p> : hideHash}
                 </div>
               </div>
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Bank Name:" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>STRIPE TEST ACCOUNT</p> : hideHash}
+                  {bankInfo ? <p>{bank?.bankName}</p> : hideHash}
                 </div>
               </div>
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Account Holder Type:" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>Individual</p> : hideHash}
+                  {bankInfo ? <p>{bank?.accountHolderType}</p> : hideHash}
                 </div>
               </div>
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Routing Number" />
                 <div className="flex gap-x-3 items-center">
-                  {bankInfo ? <p>Canada</p> : hideHash}
+                  {bankInfo ? <p>{bank?.routingNumber}</p> : hideHash}
                 </div>
               </div>
             </div>
@@ -218,7 +239,7 @@ const AccountList = () => {
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Required Digits:" />
                 <div className="flex gap-x-3 items-center">
-                  {ssn ? <p>4567</p> : hideHash}
+                  {ssn ? <p>{kyc?.IdNumber}</p> : hideHash}
                   {ssn ? (
                     <IoEyeOffOutline
                       className="cursor-pointer"
@@ -235,7 +256,7 @@ const AccountList = () => {
               <div className="flex gap-x-3 items-center">
                 <PolicyList text="Device IP:" />
                 <div className="flex gap-x-3 items-center">
-                  {ip ? <p>43:127:56:45</p> : hideHash}
+                  {ip ? <p>{kyc?.deviceIp}</p> : hideHash}
                   {ip ? (
                     <IoEyeOffOutline
                       className="cursor-pointer"
@@ -245,6 +266,23 @@ const AccountList = () => {
                     <IoEyeOutline
                       className="cursor-pointer"
                       onClick={() => handleToggle("ip", true)}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className="flex gap-x-3 items-center">
+                <PolicyList text="Account ID" />
+                <div className="flex gap-x-3 items-center">
+                  {accId ? <p>{kyc?.accountId}</p> : hideHash}
+                  {accId ? (
+                    <IoEyeOffOutline
+                      className="cursor-pointer"
+                      onClick={() => handleToggle("accId", false)}
+                    />
+                  ) : (
+                    <IoEyeOutline
+                      className="cursor-pointer"
+                      onClick={() => handleToggle("accId", true)}
                     />
                   )}
                 </div>

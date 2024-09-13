@@ -4,14 +4,19 @@ import { useForm, Controller } from "react-hook-form";
 import { FC, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { UserItem } from "@/lib/contracts/auth";
+import { useMutation } from "@tanstack/react-query";
+import { updateProfile } from "@/services/api/authApi";
+import { useToast } from "@chakra-ui/react";
 
 interface Props {
   close: () => void;
   item: UserItem;
+  refetch: () => void;
 }
 
-const UpdateSocialForm: FC<Props> = ({ close, item }) => {
+const UpdateSocialForm: FC<Props> = ({ close, item, refetch }) => {
   const [isBusy, setIsBusy] = useState(false);
+  const toast = useToast();
 
   const {
     control,
@@ -27,14 +32,38 @@ const UpdateSocialForm: FC<Props> = ({ close, item }) => {
     },
   });
 
+  const mutation = useMutation({
+    mutationFn: updateProfile,
+    mutationKey: ["profileUpdate"],
+  });
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onSubmit = async (data:any) => {
+  const onSubmit = async (data: any) => {
     setIsBusy(true);
-    console.log("Form data:", data);
-    // Perform form submission logic here
-    // Example: mutation.mutate(data, { onSuccess, onError });
-    setIsBusy(false);
-    close();
+    mutation.mutate(data, {
+      onSuccess: () => {
+        toast({
+          render: () => (
+            <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+              {data.message}
+            </div>
+          ),
+          position: "top",
+        });
+        setIsBusy(false);
+        refetch();
+        close();
+      },
+      onError: (error: any) => {
+        toast({
+          title: error.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+        setIsBusy(false);
+      },
+    });
   };
 
   return (
@@ -44,7 +73,7 @@ const UpdateSocialForm: FC<Props> = ({ close, item }) => {
           <Controller
             name="facebookUrl"
             control={control}
-            rules={{ required: "Facebook URL is required" }}
+            // rules={{ required: "Facebook URL is required" }}
             render={({ field }) => (
               <TextInput
                 type={InputType.text}
@@ -62,7 +91,7 @@ const UpdateSocialForm: FC<Props> = ({ close, item }) => {
           <Controller
             name="twitterUrl"
             control={control}
-            rules={{ required: "Twitter URL is required" }}
+            // rules={{ required: "Twitter URL is required" }}
             render={({ field }) => (
               <TextInput
                 type={InputType.text}
@@ -80,7 +109,7 @@ const UpdateSocialForm: FC<Props> = ({ close, item }) => {
           <Controller
             name="linkedinUrl"
             control={control}
-            rules={{ required: "LinkedIn URL is required" }}
+            // rules={{ required: "LinkedIn URL is required" }}
             render={({ field }) => (
               <TextInput
                 type={InputType.text}
@@ -98,7 +127,7 @@ const UpdateSocialForm: FC<Props> = ({ close, item }) => {
           <Controller
             name="instagramUrl"
             control={control}
-            rules={{ required: "Instagram URL is required" }}
+            // rules={{ required: "Instagram URL is required" }}
             render={({ field }) => (
               <TextInput
                 type={InputType.text}
