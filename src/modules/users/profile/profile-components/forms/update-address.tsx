@@ -16,6 +16,7 @@ import {
   getStreetFromGoogle,
 } from "@/lib/utils/helper-function";
 import TextInput, { InputType } from "@/components/TextInput";
+import {Country} from "country-state-city";
 
 interface Props {
   close: () => void;
@@ -131,16 +132,28 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
               },
             }}
             render={({ field }) => (
-              <TextInput
-                type={InputType.text}
-                label="Country"
-                labelClassName="text-black fw-600 lg:text-lg block mb-3"
-                borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
-                altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.country?.message}
-                {...field}
-                ref={null}
-              />
+              <div>
+                <p className="text-black fw-600 lg:text-lg block mb-3">
+                  Country
+                </p>
+                <div className="border border-[#D2D2D2] bg-[#F9FAFC] dark:bg-darkColorLight rounded-[10px] outline-none">
+                  <select
+                    {...field}
+                    ref={null}
+                    className="w-[95%] p-3 bg-[#F9FAFC] lg:p-[15px] outline-none rounded-[10px] dark:bg-darkColorLight dark:text-white "
+                  >
+                    <option value="" disabled>
+                      Select country
+                    </option>
+                    {Country.getAllCountries().map((item) => (
+                      <option value={item.isoCode} key={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                  <p>{errors && errors.country?.message}</p>
+                </div>
+              </div>
             )}
           />
           <Controller

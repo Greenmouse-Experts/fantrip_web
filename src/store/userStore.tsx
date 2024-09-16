@@ -29,13 +29,14 @@ interface userProps {
   city: string;
   nickname: string;
   isNickname: boolean;
-  dob:string;
+  dob: string;
   isVerified: boolean;
   favTeam: string;
   roomPicture: string;
   street: string;
   postalCode: string;
   aptSuitUnit: string;
+  loginTimes: number;
 }
 export interface accountProps {
   accounts: BankAccountFullItem[];
@@ -86,7 +87,8 @@ const userInitState = {
   roomPicture: "",
   street: "",
   postalCode: "",
-  aptSuitUnit: ""
+  aptSuitUnit: "",
+  loginTimes: 0,
 };
 const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(

@@ -1,3 +1,4 @@
+import useAuth from "@/hooks/authUser";
 import useDialog from "@/hooks/useDialog";
 import ProfileComponent from "@/modules/users/profile";
 import FirstTimeInfo from "@/modules/users/profile/profile-components/first-time-info";
@@ -6,11 +7,14 @@ import { useEffect } from "react";
 
 const UserProfile = () => {
   const { Dialog, setShowModal } = useDialog();
-  const firstTime = Cookies.get("fantrip_user");
+  const {user} = useAuth()
+  const email = Cookies.get("fantrip_user");
   useEffect(() => {
-    Cookies.set("fantrip_user", `${1}`);
-    if (!firstTime) {
-      setShowModal(true);
+    Cookies.set("fantrip_user", `${user.email}`);
+    if (user.loginTimes <= 1) {
+      if(user.email !== email){
+        setShowModal(true);
+      }
     }
   }, []);
 

@@ -4,6 +4,7 @@ export const GOOGLE_MAP_KEY = import.meta.env.VITE_GOOGLE_KEY
 export const GOOGLE_AUTH_KEY = import.meta.env.VITE_GOOGLE_AUTH_KEY
 export const RECAPTCHA_KEY = import.meta.env.VITE_RECAPTCHA_KEY
 export const STRIPE_KEY = import.meta.env.VITE_STRIPE_PAY_KEY;
+export const IP_KEY = import.meta.env.VITE_IP_KEY;
 
 
 // Auth endpoints

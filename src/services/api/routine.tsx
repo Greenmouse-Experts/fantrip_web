@@ -91,8 +91,27 @@ export const getDeviceIp = async () => {
       throw new Error('Network response was not ok');
     }
     const data: any = await response.json();
-    return data.ip
+    return data
   } catch (err) {
     console.error('Problem fetching IP', err);
+  }
+};
+
+interface LocationData {
+  city: string;
+  region: string;
+  country: string;
+  loc: string;
+}
+
+export const getLocation = async (): Promise<LocationData | null> => {
+  try {
+    const response = await axios.get(
+      `https://ipinfo.io/json?token=${ENDPOINT.IP_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching location:", error);
+    return null;
   }
 };

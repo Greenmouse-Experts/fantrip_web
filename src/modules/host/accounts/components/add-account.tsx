@@ -69,7 +69,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
     const fetchDeviceIp = async () => {
       try {
         const ip = await getDeviceIp();
-        setDeviceIp(ip);
+        setDeviceIp(ip.ip);
       } catch (err: any) {
         console.log(err.message);
       }
@@ -243,7 +243,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                 <TextInput
                   label="Account Number"
                   labelClassName="text-[#767676] fw-500 "
-                  type={InputType.number}
+                  type={InputType.text}
                   error={errors.accountNumber?.message}
                   {...field}
                   ref={null}
@@ -382,7 +382,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                 <TextInput
                   label="Routing Number (optional)"
                   labelClassName="text-[#767676] fw-500 "
-                  type={InputType.number}
+                  type={InputType.tel}
                   error={errors.routingNumber?.message}
                   {...field}
                   ref={null}
