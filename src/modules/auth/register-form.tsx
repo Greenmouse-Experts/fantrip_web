@@ -19,6 +19,7 @@ const RegisterForm = () => {
   const [isBusy, setIsBusy] = useState(false);
   const { Dialog, setShowModal } = useDialog();
   const toast = useToast();
+
   const {
     control,
     handleSubmit,

@@ -16,6 +16,7 @@ export const UPDATE_PROFILE = `/auth/update-profile`
 export const VIEW_PROFILE = `/auth/profile`
 export const UPDATE_PASSWORD = `/auth/update-password`
 export const SOCIAL_SIGNUP = `/auth/sso`
+export const DELETE_ACCOUNT = `/auth/delete-account`;
 
 // Stay endpoints
 export const CREATE_STAY = `/stays/create`

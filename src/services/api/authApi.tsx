@@ -87,3 +87,9 @@ export const updatePassword = async (payload: any) => {
     .post(`${ENDPOINT.UPDATE_PASSWORD}`, payload)
     .then((response) => response.data);
 };
+
+export const deleteAccount = async () => {
+  return axios
+    .delete(`${ENDPOINT.DELETE_ACCOUNT}`)
+    .then((response) => response.data);
+};

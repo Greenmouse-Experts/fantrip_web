@@ -52,7 +52,9 @@ const CookiePage = () => {
         <div className="">
           <PolicyHeader text="Managing Cookies" />
           <p className="fw-500 mb-3 lg:mb-4">
-          Under GDPR, your consent is required for the use of non-strictly necessary cookies. Fantrip provides you with the ability to manage your cookie preferences.
+            Under GDPR, your consent is required for the use of non-strictly
+            necessary cookies. Fantrip provides you with the ability to manage
+            your cookie preferences.
           </p>
           <div className="grid gap-4">
             <PolicyList
@@ -78,7 +80,9 @@ const CookiePage = () => {
         <div>
           <PolicyHeader text="Sharing of Cookie Data" />
           <div>
-            <PolicyList text="Fantrip may share data collected by cookies with trusted third parties for the purposes outlined in this policy, such as analytics or advertising partners. These parties are obligated to protect your data and may only use it according to our instructions." />
+            <PolicyList
+              text="Fantrip may share data collected by cookies with trusted third parties for purposes such as analytics and improving our services. These third parties are required to protect your data and may only use it in accordance with our instructions and for the purposes outlined in this policy."
+            />
           </div>
         </div>
         <div>
