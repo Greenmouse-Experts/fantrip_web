@@ -6,6 +6,7 @@ import AreaGuideCategory from "@/pages/landing/area-guide-catergory";
 import AreaGuideLocation from "@/pages/landing/area-guide-location";
 import ChatPage from "@/pages/landing/chat-room";
 import CommunityGuidelines from "@/pages/landing/community-guideline";
+import ContactPage from "@/pages/landing/contact";
 import CookiePage from "@/pages/landing/cookie";
 import FaqsPage from "@/pages/landing/faqs";
 import FindStay from "@/pages/landing/find-stay";
@@ -99,6 +100,10 @@ export const landingRooutes = [
           {
             path: 'chat-room',
             element: <ChatPage/>,
+          },
+          {
+            path: 'contact',
+            element: <ContactPage/>,
           },
         ],
       },

@@ -1,14 +1,17 @@
 import logo from "@/assets/images/auth-logo.png";
+import logoDark from "@/assets/logo_1.svg";
 import GoogleButton from "@/components/google-btn";
 import LoginForm from "@/modules/auth/login-form";
 import { Link } from "react-router-dom";
+
 const LoginPage = () => {
   return (
     <div className="flex h-screen">
       <div className="w-full lg:w-[60%] lg:h-screen overflow-y-auto px-4 lg:px-0">
         <div className="lg:w-7/12 2xl:w-6/12 mx-auto py-12 lg:py-16">
           <Link to={"/"}>
-            <img src={logo} alt="logo" className="w-44 mx-auto" />
+            <img src={logo} alt="logo" className="w-44 mx-auto dark:hidden" />
+            <img src={logoDark} alt="logo" className="w-44 mx-auto hidden dark:block" />
           </Link>
           <div className="text-center mt-8 lg:mt-16">
             <p className="text-3xl fw-600">Login</p>

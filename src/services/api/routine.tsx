@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as ENDPOINT from "../constant";
 import { AmenityItemInput, BankAccountItem } from "@/lib/contracts/routine";
+import { ContactInput } from "@/modules/landing/contact/contact-form";
 
 export const uploadImage = async (payload: FormData) => {
   return axios.post(`/upload/image`, payload).then((response) => response.data);
@@ -43,6 +44,13 @@ export const getHostAmenities = async () => {
     .get(ENDPOINT.GET_HOST_AMENITIES)
     .then((response) => response.data);
 };
+
+export const contactUs = async (payload:ContactInput) => {
+  return axios
+    .post(ENDPOINT.CONTACT_US, payload)
+    .then((response) => response.data);
+};
+
 
 export const removeStayAmenity = async (
   id: string,
