@@ -41,7 +41,7 @@ const CookieModal = () => {
               </Link>
             </p>
             <div className="mt-3">
-              <Button title={"Accept"} />
+              <Button title={"Accept"} onClick={() => setShow(false)}/>
             </div>
           </div>
         </div>
