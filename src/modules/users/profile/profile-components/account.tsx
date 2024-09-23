@@ -129,7 +129,7 @@ const UserAccount = () => {
       <div>
         <p className="hidden lg:block fw-600 lg:text-lg">My Profile</p>
         <div
-          className={`border flex justify-between items-start ${
+          className={`border lg:flex justify-between items-start ${
             isHost ? "border-gray-600" : "border-[#E8EAED]"
           } rounded-[16px] mt-6`}
         >
@@ -162,7 +162,7 @@ const UserAccount = () => {
             </div>
           </div>
           <div
-            className="flex items-center gap-x-2 m-4 cursor-pointer text-red-600"
+            className="flex justify-end items-center gap-x-2 m-4 cursor-pointer text-red-600"
             onClick={() => ShowDelete(true)}
           >
             <RiDeleteBin5Fill className="" />

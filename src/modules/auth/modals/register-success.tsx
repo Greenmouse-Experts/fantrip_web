@@ -9,7 +9,7 @@ const RegisterSuccess = () => {
       <div>
         <FaCheckCircle className="text-[105px] text-[#9847FE] animate-bounce mx-auto" />
       </div>
-      <div className="w-9/12 mx-auto text-center mt-6">
+      <div className="w-11/12 lg:w-9/12 mx-auto text-center mt-6">
         <p className="fw-500 lg:text-xl syne mb-2 fw-500">Welcome to the Big Leagues! 🏆</p>
         <p>
           You've just signed up to level up your gameday fan experience with

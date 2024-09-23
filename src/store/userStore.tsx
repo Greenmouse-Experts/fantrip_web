@@ -37,6 +37,7 @@ interface userProps {
   postalCode: string;
   aptSuitUnit: string;
   loginTimes: number;
+  points: number;
 }
 export interface accountProps {
   accounts: BankAccountFullItem[];
@@ -89,6 +90,7 @@ const userInitState = {
   postalCode: "",
   aptSuitUnit: "",
   loginTimes: 0,
+  points: 0
 };
 const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(

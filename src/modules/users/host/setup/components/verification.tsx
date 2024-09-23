@@ -7,7 +7,6 @@ import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { ChangeEvent, FC, useState } from "react";
 import { BsInfoCircle } from "react-icons/bs";
-import { FaRegImage } from "react-icons/fa6";
 import { BeatLoader } from "react-spinners";
 import SubmissionAlert from "../modal/submission-alert";
 
@@ -133,7 +132,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
               type="file"
               accept="image/*, .heic"
               onChange={(e) => handleUpload(e)}
-              className="opacity-0 absolute w-full h-full"
+              className="opacity-0 absolute cursor-pointer right-0 top-0 w-full h-full"
             />
             {loading ? (
               <BeatLoader color="#9847FE" />
@@ -154,7 +153,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
           </div>
         </div>
       </div>
-      <div className="mt-8">
+      {/* <div className="mt-8">
         <div className="w-44 lg:w-96 h-44 place-center rounded-[14px] border border-[#D2D2D2] border-dashed">
           <div className="text-center">
             <FaRegImage className="text-[#D2D2D2] text-xl mx-auto mb-1" />
@@ -162,7 +161,7 @@ const SetupVerification: FC<Props> = ({ prev }) => {
             <p className="fs-500">or drag and drop them here</p>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="mt-8 flex gap-x-1 text-[#E50038]">
         <BsInfoCircle className="text-sm shrink-0 relative top-[4px]" />
         <p className="fs-400 ">

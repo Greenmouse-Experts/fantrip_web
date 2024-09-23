@@ -11,8 +11,8 @@ const StayCreateSuccess: FC<Props> = ({ close }) => {
       <div>
         <FaCheckCircle className="text-[105px] text-[#9847FE] animate-bounce mx-auto" />
       </div>
-      <div className="w-9/12 mx-auto text-center mt-6">
-        <p>You're In the league now!</p>
+      <div className="w-11/12 lg:w-9/12 mx-auto text-center mt-6">
+        <p>You&apos;re In the league now!</p>
         <p className="mt-2">
           Big Cheers for Joining fantrip! You&apos;ve just set your listing live and
           have officially joined the fantrip league, turning your space into a

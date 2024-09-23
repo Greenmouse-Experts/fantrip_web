@@ -35,11 +35,11 @@ const CondoDetails: FC<Props> = ({
       <div className="flex gap-x-4">
         <div className="flex px-4 py-2 shadow-lg gap-x-3 items-center">
           <FaStar className="text-[#9847FE]" />
-          <p className="fw-500">Top Rated</p>
+          <p className="fw-500 fs-300 lg:fs-600">Top Rated</p>
         </div>
         <div className="flex px-4 py-2 shadow-lg gap-x-3 items-center">
           <IoChatboxEllipsesOutline className="text-[#9847FE]" />
-          <p className="fw-500">Ask a question</p>
+          <p className="fw-500 fs-300 lg:fs-600">Ask a question</p>
         </div>
       </div>
       <div className="mt-6 lg:mt-10 border-b border-[#D2D2D2] pb-5 lg:pb-8">
