@@ -25,8 +25,8 @@ const LandingFooter = () => {
       route: "/get-help",
     },
     {
-      name: "Cookie Policy",
-      route: "/cookie",
+      name: "Contact Us",
+      route: "/contact",
     },
     {
       name: "FAQs",

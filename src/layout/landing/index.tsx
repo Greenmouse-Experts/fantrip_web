@@ -3,6 +3,7 @@ import LandingHeader from "./header"
 import LandingFooter from "./footer"
 import ScrollToTop from "@/lib/utils/scrollTop"
 import ChatProvider from "../chat/chat-provider"
+import CookieModal from "@/components/cookie-modal"
 
 
 const LandingLayout = () => {
@@ -11,6 +12,7 @@ const LandingLayout = () => {
       <ScrollToTop />
         <LandingHeader/>
         <ChatProvider/>
+        <CookieModal/>
         <Outlet/>
         <LandingFooter/>
     </div>

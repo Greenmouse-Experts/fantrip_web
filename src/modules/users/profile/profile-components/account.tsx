@@ -1,28 +1,61 @@
+import { useEffect, useState } from "react";
+import { GoPencil } from "react-icons/go";
+import dayjs from "dayjs";
+import { formatPhoneNumber } from "react-phone-number-input";
+import { Country } from "country-state-city";
+import Cookies from "js-cookie";
 import useAuth from "@/hooks/authUser";
 import useDialog from "@/hooks/useDialog";
 import { AiOutlineEdit } from "react-icons/ai";
 import UpdateProfileForm from "./forms/update-profile-form";
 import UpdateAddressForm from "./forms/update-address";
 import { useToast } from "@chakra-ui/react";
-import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "@/services/api/authApi";
 import { uploadImage } from "@/services/api/routine";
-import { GoPencil } from "react-icons/go";
-import dayjs from "dayjs";
-import { formatPhoneNumber } from "react-phone-number-input";
+import FirstTimeInfo from "./first-time-info";
+import SecondTimeInfo from "./second-time-info";
+import { RiDeleteBin5Fill } from "react-icons/ri";
+import DeleteAccount from "./modal/delete-account";
 
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
   const { Dialog: LocationInfo, setShowModal: ShowLocation } = useDialog();
+  const { Dialog: FirstDialog, setShowModal: ShowFirstDialog } = useDialog();
+  const { Dialog: SecondDialog, setShowModal: ShowSecondDialog } = useDialog();
+  const { Dialog: Delete, setShowModal: ShowDelete } = useDialog();
 
   const { firstName, lastName, user, isHost, saveUser } = useAuth();
   const toast = useToast();
   const [isUpdate, setIsUpdate] = useState(false);
+  const email = Cookies.get("fantrip_user");
+
+  useEffect(() => {
+    Cookies.set("fantrip_user", `${user.email}`);
+    if (user.loginTimes <= 1) {
+      if (user.email !== email) {
+        ShowFirstDialog(true);
+      }
+    }
+  }, []);
+
+  const handleOpenEdit = () => {
+    ShowFirstDialog(false);
+    ShowProfile(true);
+  };
+
+  const handleNextNavigate = () => {
+    ShowProfile(false);
+    if (user.loginTimes <= 1) {
+      ShowSecondDialog(true);
+    }
+  };
+
   const Update = useMutation({
     mutationFn: updateProfile,
     mutationKey: ["update"],
   });
+  const country = Country.getCountryByCode(`${user.country}`);
 
   const mutation = useMutation({
     mutationFn: uploadImage,
@@ -67,6 +100,7 @@ const UserAccount = () => {
       setIsUpdate(false);
     },
   });
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files?.length) {
       return;
@@ -77,12 +111,25 @@ const UserAccount = () => {
     mutation.mutate(fd);
   };
 
+  const closeDelete = () => {
+    ShowDelete(false);
+    toast({
+      render: () => (
+        <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+          Thanks for giving us another chance. Please contact us with any
+          feedback.
+        </div>
+      ),
+      position: "top",
+    });
+  };
+
   return (
     <div>
       <div>
         <p className="hidden lg:block fw-600 lg:text-lg">My Profile</p>
         <div
-          className={`border ${
+          className={`border lg:flex justify-between items-start ${
             isHost ? "border-gray-600" : "border-[#E8EAED]"
           } rounded-[16px] mt-6`}
         >
@@ -113,6 +160,13 @@ const UserAccount = () => {
               <p className="fw-600">{user.name}</p>
               <p className="mt-1 fs-500">{isHost ? "Host" : "Guest"}</p>
             </div>
+          </div>
+          <div
+            className="flex justify-end items-center gap-x-2 m-4 cursor-pointer text-red-600"
+            onClick={() => ShowDelete(true)}
+          >
+            <RiDeleteBin5Fill className="" />
+            <p>Delete Account</p>
           </div>
         </div>
         <div
@@ -186,7 +240,7 @@ const UserAccount = () => {
             <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
               <div>
                 <p className="fs-500 text-[#5F5F5F]">Country</p>
-                <p className="fw-500 mt-1">{user.country}</p>
+                <p className="fw-500 mt-1">{country?.name}</p>
               </div>
               <div>
                 <p className="fs-500 text-[#5F5F5F]">Street</p>
@@ -213,11 +267,20 @@ const UserAccount = () => {
         )}
       </div>
       <ProfileInfo title="Update Profile Information" size="xl">
-        <UpdateProfileForm close={() => ShowProfile(false)} />
+        <UpdateProfileForm close={() => handleNextNavigate()} />
       </ProfileInfo>
       <LocationInfo title="Update Location Information" size="xl">
         <UpdateAddressForm close={() => ShowLocation(false)} />
       </LocationInfo>
+      <FirstDialog title="" size="md" noClose>
+        <FirstTimeInfo next={handleOpenEdit} />
+      </FirstDialog>
+      <SecondDialog title="" size="md">
+        <SecondTimeInfo />
+      </SecondDialog>
+      <Delete title="Delete Account" size="md">
+        <DeleteAccount close={closeDelete} />
+      </Delete>
     </div>
   );
 };

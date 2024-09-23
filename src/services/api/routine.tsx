@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as ENDPOINT from "../constant";
 import { AmenityItemInput, BankAccountItem } from "@/lib/contracts/routine";
+import { ContactInput } from "@/modules/landing/contact/contact-form";
 
 export const uploadImage = async (payload: FormData) => {
   return axios.post(`/upload/image`, payload).then((response) => response.data);
@@ -43,6 +44,13 @@ export const getHostAmenities = async () => {
     .get(ENDPOINT.GET_HOST_AMENITIES)
     .then((response) => response.data);
 };
+
+export const contactUs = async (payload:ContactInput) => {
+  return axios
+    .post(ENDPOINT.CONTACT_US, payload)
+    .then((response) => response.data);
+};
+
 
 export const removeStayAmenity = async (
   id: string,
@@ -91,8 +99,27 @@ export const getDeviceIp = async () => {
       throw new Error('Network response was not ok');
     }
     const data: any = await response.json();
-    return data.ip
+    return data
   } catch (err) {
     console.error('Problem fetching IP', err);
+  }
+};
+
+interface LocationData {
+  city: string;
+  region: string;
+  country: string;
+  loc: string;
+}
+
+export const getLocation = async (): Promise<LocationData | null> => {
+  try {
+    const response = await axios.get(
+      `https://ipinfo.io/json?token=${ENDPOINT.IP_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching location:", error);
+    return null;
   }
 };

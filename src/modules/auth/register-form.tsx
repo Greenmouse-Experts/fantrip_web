@@ -14,11 +14,15 @@ import PhoneInputWithCountry from "react-phone-number-input/react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
 import { RECAPTCHA_KEY } from "@/services/constant";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
+import { useSearchParams } from "react-router-dom";
 
 const RegisterForm = () => {
   const [isBusy, setIsBusy] = useState(false);
   const { Dialog, setShowModal } = useDialog();
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get("referralCode");
   const toast = useToast();
+
   const {
     control,
     handleSubmit,
@@ -35,13 +39,13 @@ const RegisterForm = () => {
       phone: "",
       confirm_password: "",
       captchaKey: "",
-      platform: "web"
+      platform: "web",
     },
   });
 
-  const handleRecaptcha = (value:string | null) => {
-    if(value)setValue("captchaKey", value)
-  }
+  const handleRecaptcha = (value: string | null) => {
+    if (value) setValue("captchaKey", value);
+  };
 
   const mutation = useMutation({
     mutationFn: registerUser,
@@ -56,23 +60,26 @@ const RegisterForm = () => {
       password: data.password,
       phone: data.phone,
       platform: data.platform,
-      captchaKey: data.captchaKey
-    }
-    mutation.mutate(payload, {
-      onSuccess: () => {
-        setIsBusy(false);
-        setShowModal(true);
-      },
-      onError: (error: any) => {
-        toast({
-          title: error.response.data.message,
-          isClosable: true,
-          status: "error",
-          position: "top",
-        });
-        setIsBusy(false);
-      },
-    });
+      captchaKey: data.captchaKey,
+    };
+    mutation.mutate(
+      { payload: payload, code: code },
+      {
+        onSuccess: () => {
+          setIsBusy(false);
+          setShowModal(true);
+        },
+        onError: (error: any) => {
+          toast({
+            title: error.response.data.message,
+            isClosable: true,
+            status: "error",
+            position: "top",
+          });
+          setIsBusy(false);
+        },
+      }
+    );
   };
   return (
     <div>
@@ -215,10 +222,7 @@ const RegisterForm = () => {
           )}
         />
         <div className="lg:mt-2">
-        <ReCAPTCHA
-        sitekey={`${RECAPTCHA_KEY}`}
-        onChange={handleRecaptcha}
-      />
+          <ReCAPTCHA sitekey={`${RECAPTCHA_KEY}`} onChange={handleRecaptcha} />
         </div>
         <div className="mt-8 lg:col-span-2">
           <Button

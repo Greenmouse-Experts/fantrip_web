@@ -4,6 +4,8 @@ export const GOOGLE_MAP_KEY = import.meta.env.VITE_GOOGLE_KEY
 export const GOOGLE_AUTH_KEY = import.meta.env.VITE_GOOGLE_AUTH_KEY
 export const RECAPTCHA_KEY = import.meta.env.VITE_RECAPTCHA_KEY
 export const STRIPE_KEY = import.meta.env.VITE_STRIPE_PAY_KEY;
+export const IP_KEY = import.meta.env.VITE_IP_KEY;
+export const SITE_URL = import.meta.env.VITE_SITE_BASE;
 
 
 // Auth endpoints
@@ -15,6 +17,7 @@ export const UPDATE_PROFILE = `/auth/update-profile`
 export const VIEW_PROFILE = `/auth/profile`
 export const UPDATE_PASSWORD = `/auth/update-password`
 export const SOCIAL_SIGNUP = `/auth/sso`
+export const DELETE_ACCOUNT = `/auth/delete-account`;
 
 // Stay endpoints
 export const CREATE_STAY = `/stays/create`
@@ -57,6 +60,7 @@ export const CREATE_ACCOUNT = `/bank-accounts/create`
 export const SELECT_ACCOUNT = `/bank-accounts/select`
 export const ADD_FCM_TOKEN = `/notification-tokens/add`
 export const SAVE_BANK_KYC = `/kyc/save`
+export const CONTACT_US = `/user/send-contact-message`
 
 // area guide endpoints
 export const GET_SPOT_CATEGORY = `/spots/disclosed`

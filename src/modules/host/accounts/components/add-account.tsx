@@ -69,7 +69,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
     const fetchDeviceIp = async () => {
       try {
         const ip = await getDeviceIp();
-        setDeviceIp(ip);
+        setDeviceIp(ip.ip);
       } catch (err: any) {
         console.log(err.message);
       }
@@ -160,11 +160,13 @@ const AddHostAccount: FC<Props> = ({ close }) => {
       const fd = new FormData();
       fd.append("idDoc", frontImg[0]);
       fd.append("idDoc", backImg[0]);
-      fd.append("purpose", "identity_document");
+      fd.append("idDoc", addressFrontImg[0]);
+      fd.append("idDoc", addressBackImg[0]);
+      // fd.append("purpose", "identity_document");
 
       mutation.mutate(fd, {
         onSuccess: (data) => {
-          payload = {
+          const newData = {
             ...payload,
             identityFront: {
               id: data[0]?.id,
@@ -174,36 +176,45 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               id: data[1]?.id,
               link: data[1]?.link,
             },
-          };
-          const fd = new FormData();
-          fd.append("idDoc", addressFrontImg[0]);
-          fd.append("idDoc", addressBackImg[0]);
-          fd.append("purpose", "identity_document");
-          mutation.mutate(fd, {
-            onSuccess: (data) => {
-              const newData = {
-                ...payload,
-                addressDocFront: {
-                  id: data[0]?.id,
-                  link: data[0]?.link,
+             addressDocFront: {
+                  id: data[2]?.id,
+                  link: data[2]?.link,
                 },
                 addressDocBack: {
-                  id: data[1]?.id,
-                  link: data[1]?.link,
+                  id: data[3]?.id,
+                  link: data[3]?.link,
                 },
-              };
-              handleCreateKyc(newData);
-            },
-            onError: (err: any) => {
-              setIsBusy(false);
-              toast({
-                title: err.response.data.message,
-                isClosable: true,
-                position: "top",
-                status: "error",
-              });
-            },
-          });
+          };
+          // const fd = new FormData();
+          // fd.append("idDoc", addressFrontImg[0]);
+          // fd.append("idDoc", addressBackImg[0]);
+          // fd.append("purpose", "identity_document");
+          // mutation.mutate(fd, {
+          //   onSuccess: (data) => {
+          //     const newData = {
+          //       ...payload,
+          //       addressDocFront: {
+          //         id: data[0]?.id,
+          //         link: data[0]?.link,
+          //       },
+          //       addressDocBack: {
+          //         id: data[1]?.id,
+          //         link: data[1]?.link,
+          //       },
+          //     };
+          //     handleCreateKyc(newData);
+          //   },
+          //   onError: (err: any) => {
+          //     setIsBusy(false);
+          //     toast({
+          //       title: err.response.data.message,
+          //       isClosable: true,
+          //       position: "top",
+          //       status: "error",
+          //     });
+          //   },
+          // });
+          handleCreateKyc(newData);
         },
         onError: (err: any) => {
           setIsBusy(false);
@@ -243,7 +254,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                 <TextInput
                   label="Account Number"
                   labelClassName="text-[#767676] fw-500 "
-                  type={InputType.number}
+                  type={InputType.text}
                   error={errors.accountNumber?.message}
                   {...field}
                   ref={null}
@@ -382,7 +393,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                 <TextInput
                   label="Routing Number (optional)"
                   labelClassName="text-[#767676] fw-500 "
-                  type={InputType.number}
+                  type={InputType.tel}
                   error={errors.routingNumber?.message}
                   {...field}
                   ref={null}

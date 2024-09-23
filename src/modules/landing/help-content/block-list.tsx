@@ -43,7 +43,7 @@ const BlockList = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {list.map((item) => (
               <div
-                className="h-[146px] lg:px-4 cursor-pointer 2xl:px-10 bg-white place-center help-shade text-center"
+                className="h-[146px] lg:px-4 cursor-pointer 2xl:px-10 bg-white dark:bg-darkColorLight place-center help-shade text-center"
                 onClick={() => item.route && navigate(`${item.route}`)}
               >
                 <p className="fw-600 syne lg:text-lg">{item.name}</p>

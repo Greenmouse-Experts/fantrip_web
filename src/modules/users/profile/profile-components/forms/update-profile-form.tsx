@@ -2,19 +2,48 @@ import Button from "@/components/Button";
 import TextInput, { InputType } from "@/components/TextInput";
 import useAuth from "@/hooks/authUser";
 import { updateProfile } from "@/services/api/authApi";
+import { getLocation } from "@/services/api/routine";
 import { Switch, useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
 
-interface Props{
-  close: () => void
+interface LocationIP {
+  city: string | undefined;
+  region: string | undefined;
+  country: string | undefined;
 }
-const UpdateProfileForm:FC<Props> = ({close}) => {
+interface Props {
+  close: () => void;
+}
+const UpdateProfileForm: FC<Props> = ({ close }) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
-  const { user, firstName, lastName, saveUser } = useAuth();
+  const { user, firstName, lastName, saveUser, isHost } = useAuth();
+  const [deviceLoc, setDeviceLoc] = useState<LocationIP>({
+    city: "",
+    region: "",
+    country: "",
+  });
+
+  useEffect(() => {
+    const fetchDeviceLocation = async () => {
+      try {
+        const loc = await getLocation();
+        setDeviceLoc({
+          city: loc?.city,
+          region: loc?.region,
+          country: loc?.country,
+        });
+      } catch (err: any) {
+        console.log(err.message);
+      }
+    };
+
+    fetchDeviceLocation();
+  }, []);
+
   const {
     control,
     handleSubmit,
@@ -28,16 +57,24 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
       bio: user.bio || "",
       nickname: user.nickname || "",
       isNickname: user.isNickname,
-      favTeam: user.favTeam || ""
+      favTeam: user.favTeam || "",
     },
   });
   const mutation = useMutation({
     mutationFn: updateProfile,
     mutationKey: ["profileUpdate"],
   });
+
   const onSubmit = async (datas: any) => {
     setIsBusy(true);
-    mutation.mutate(datas, {
+    const plusLocation = {
+      ...datas,
+      city: deviceLoc.city || user.city,
+      state: deviceLoc.region || user.state,
+      country: deviceLoc.country || user.country,
+    };
+    const payload = isHost ? datas : plusLocation;
+    mutation.mutate(payload, {
       onSuccess: (data) => {
         toast({
           render: () => (
@@ -54,7 +91,7 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
           bio: datas.bio,
           nickname: datas.nickname,
           favTeam: datas.favTeam,
-          isNickname: datas.isNickname
+          isNickname: datas.isNickname,
         });
         close();
       },
@@ -127,23 +164,25 @@ const UpdateProfileForm:FC<Props> = ({close}) => {
               />
             )}
           />
-          {!!watch('nickname').length && <Controller
-            name="isNickname"
-            control={control}
-            render={({ field }) => (
-              <div className="flex gap-x-4 items-center lg:mt-4">
-                <label className="text-[#767676] fw-500 ">Use Nickname</label>
-                <div className="">
-                  <Switch
-                    isChecked={field.value}
-                    colorScheme="pink"
-                    onChange={field.onChange}
-                    size={'lg'}
-                  />
+          {!!watch("nickname").length && (
+            <Controller
+              name="isNickname"
+              control={control}
+              render={({ field }) => (
+                <div className="flex gap-x-4 items-center lg:mt-4">
+                  <label className="text-[#767676] fw-500 ">Use Nickname</label>
+                  <div className="">
+                    <Switch
+                      isChecked={field.value}
+                      colorScheme="pink"
+                      onChange={field.onChange}
+                      size={"lg"}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-          />}
+              )}
+            />
+          )}
           <Controller
             name="favTeam"
             control={control}

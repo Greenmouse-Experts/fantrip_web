@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import dayjs from "dayjs";
 import { FaCircleInfo } from "react-icons/fa6";
 import Button from "@/components/Button";
@@ -6,7 +6,7 @@ import CheckInInput from "./booking-tab-comps/check-in-input";
 import CheckOutInput from "./booking-tab-comps/check-out-input";
 import GuestNoInput from "./booking-tab-comps/guest-no-input";
 import { computePrice, createBooking } from "@/services/api/booking-api";
-import { useToast } from "@chakra-ui/react";
+import { Switch, useToast } from "@chakra-ui/react";
 import useDialog from "@/hooks/useDialog";
 import BookingSuccess from "./booking-tab-comps/booking-success";
 import { BeatLoader } from "react-spinners";
@@ -15,6 +15,7 @@ import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
 import { getFutureDate, returnNumberOnly } from "@/lib/utils/helper-function";
 import EnterFaveName from "./components/enter-favname";
+import { GiCash } from "react-icons/gi";
 
 type ValuePiece = Date | null;
 interface SearchParam {
@@ -44,6 +45,9 @@ const SelectStayDate: FC<Props> = ({
 }) => {
   const { isLoggedIn, user, isHost } = useAuth();
   const navigate = useNavigate();
+  const [usePoint, setUsePoint] = useState<boolean>(false);
+  const [showPointError, setShowPointError] = useState(false);
+
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
@@ -151,6 +155,7 @@ const SelectStayDate: FC<Props> = ({
       ),
       adults: params.no_of_guests,
       children: params.no_of_child,
+      ...(usePoint && { enableRewardForPayment: true }),
     };
     await createBooking(payload)
       .then((res) => {
@@ -197,6 +202,25 @@ const SelectStayDate: FC<Props> = ({
       return;
     }
     handleReserveAction();
+  };
+
+  // handle check for use point
+  const handleDisplayError = () => {
+    if (user.points < 50) {
+      setShowPointError(true);
+      setTimeout(() => {
+        setShowPointError(false);
+      }, 5000);
+    }
+  };
+  const handleCheckChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      if (user.points < 50) {
+        setShowPointError(true);
+      } else {
+        setUsePoint(true);
+      }
+    }
   };
 
   // modal for successful booking
@@ -255,6 +279,35 @@ const SelectStayDate: FC<Props> = ({
                   : `TBD`}
               </p>
             </div>
+            {user.points > 0 && (
+              <div className="sidebar-shadow bg-[#FFEDF2] mt-2 rounded py-3 px-2 flex items-center justify-between">
+                <div
+                  className="flex gap-x-3 items-center"
+                  onClick={handleDisplayError}
+                >
+                  <div>
+                    <Switch
+                      checked={false}
+                      disabled={user.points < 50}
+                      onChange={handleCheckChange}
+                      colorScheme="pink"
+                      size={"lg"}
+                    />
+                  </div>
+                  <p className="fs-500 fw-500">Use Points</p>
+                  <p className="flex items-center py-[2px] rounded-lg gap-x-2 bg-prima px-3 fw-500 text-white">
+                    <GiCash />
+                    <span className="monts fs-500 fw-600">{user.points}</span>
+                  </p>
+                </div>
+              </div>
+            )}
+            {showPointError && (
+              <p className="text-red-600 fs-300">
+                You need at least 50 points to redeem. Keep earning and come
+                back to claim your discount!
+              </p>
+            )}
             {/* <div className=" flex justify-between items-center">
               <p className="fw-500">Taxes</p>
               <p className="fw-500 text-lg">
@@ -305,7 +358,10 @@ const SelectStayDate: FC<Props> = ({
         <BookingSuccess />
       </Dialog>
       <FavModal title="" size="xl">
-        <EnterFaveName close={() => ShowFavModal(false)} handleReserve={handleReserveAction}/>
+        <EnterFaveName
+          close={() => ShowFavModal(false)}
+          handleReserve={handleReserveAction}
+        />
       </FavModal>
     </div>
   );

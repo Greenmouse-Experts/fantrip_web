@@ -60,7 +60,7 @@ const GuestNoInput: FC<Props> = ({
             <FaRegUser className="text-xl" />
             {no_of_guests ? (
               <div className="w-full flex justify-between items-center">
-                <p className="fw-500">
+                <p className="fs-400 lg:fs-600 fw-500">
                   Guests ({no_of_guests} Adults, {no_of_child} Children)
                 </p>
                 <PiCaretDownThin />

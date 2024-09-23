@@ -75,9 +75,9 @@ const Pricing: FC<Props> = ({ next, prev }) => {
                       <MenuItem onClick={() => setSelectedCurr("€")}>
                         Euro (€)
                       </MenuItem>
-                      <MenuItem onClick={() => setSelectedCurr("$")}>
+                      {/* <MenuItem onClick={() => setSelectedCurr("$")}>
                         Dollar ($)
-                      </MenuItem>
+                      </MenuItem> */}
                     </MenuList>
                   </Menu>
                 }

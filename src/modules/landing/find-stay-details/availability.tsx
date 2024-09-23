@@ -24,7 +24,7 @@ const Availability:FC<Props> = ({from, to}) => {
       <div className="mt-12">
         <Calendar
           // value={[params.checkIn, params.checkOut]}
-          className={"lg:w-[400px] overflow-hidden"}
+          className={"!w-[300px] lg:w-[400px] overflow-hidden"}
           minDate={date.from}
           maxDate={date.to}
         />

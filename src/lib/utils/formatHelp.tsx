@@ -212,3 +212,8 @@ export const extractNumbers = (text: string): string[] => {
   // Return the matches, or an empty array if no matches found
   return matches ? matches : [];
 }
+
+export const getCappedPercentage = (number:number, total:number) => {
+  const percentage = (number / total) * 100;
+  return Math.min(percentage, 50); // Cap at 50
+}

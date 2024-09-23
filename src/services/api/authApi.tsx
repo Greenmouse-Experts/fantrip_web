@@ -30,9 +30,10 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export const registerUser = async (payload: any) => {
+export const registerUser = async ({ payload, code }: any) => {
+  const attachedCode = code ? `?code=${code}` : "";
   return axios
-    .post(`${ENDPOINT.USERS_REGISTER}`, payload)
+    .post(`${ENDPOINT.USERS_REGISTER}${attachedCode}`, payload)
     .then((response) => response.data);
 };
 
@@ -70,11 +71,11 @@ export const resetPassword = async (payload: any, token: any) => {
     .then((response) => response.data);
 };
 
-export const viewProfile = async() =>{
+export const viewProfile = async () => {
   return axios
-  .get(`${ENDPOINT.VIEW_PROFILE}`)
-  .then((response) => response.data);
-}
+    .get(`${ENDPOINT.VIEW_PROFILE}`)
+    .then((response) => response.data);
+};
 
 export const updateProfile = async (payload: any) => {
   return axios
@@ -85,5 +86,11 @@ export const updateProfile = async (payload: any) => {
 export const updatePassword = async (payload: any) => {
   return axios
     .post(`${ENDPOINT.UPDATE_PASSWORD}`, payload)
+    .then((response) => response.data);
+};
+
+export const deleteAccount = async () => {
+  return axios
+    .delete(`${ENDPOINT.DELETE_ACCOUNT}`)
     .then((response) => response.data);
 };

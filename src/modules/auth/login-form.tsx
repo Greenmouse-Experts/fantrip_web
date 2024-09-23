@@ -67,6 +67,8 @@ const LoginForm = () => {
           street: data.data.street,
           postalCode: data.data.postalCode,
           aptSuitUnit: data.data.aptSuitUnit,
+          loginTimes: data.data.loginTimes,
+          points: data.data.reward.balance,
         });
         saveAccount(data.data.bankAccounts);
         if (data.data.role === "host") {
