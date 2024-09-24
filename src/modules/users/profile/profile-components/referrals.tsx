@@ -59,7 +59,7 @@ const UserReferrals = () => {
                 color="orange.300"
               >
                 <CircularProgressLabel color={"orange.300"} className="fw-600">
-                  {profile && getCappedPercentage(profile.reward.point, 50)}%
+                  {profile && getCappedPercentage(profile?.reward?.point, 50)}%
                 </CircularProgressLabel>
               </CircularProgress>
             </div>
