@@ -6,6 +6,7 @@ import { FC, useState } from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import success from "@/assets/images/success.gif";
 
 interface Props {
   close: () => void;
@@ -84,7 +85,7 @@ const DeleteAccount: FC<Props> = ({ close }) => {
             <Button
               title={"Keep my account"}
               altClassName="btn-int px-5 py-2"
-              onClick={close}
+              onClick={() => setPhase(3)}
             />
             <Button
               title={"Proceed"}
@@ -102,10 +103,8 @@ const DeleteAccount: FC<Props> = ({ close }) => {
               <RiDeleteBin5Fill className="text-3xl text-gray-500" />
             </div>
           </div>
-          <p className="text-center fw-600 text-red-600">
-            <span className="fw-600">WARNING!</span> deleting your account will
-            remove all of your information from our database. This cannot be
-            undone.
+          <p className="text-center fw-600 text-red-600 pb-5">
+            We&apos;re bumped to see you go. 😭😭
           </p>
           <div className="mt-7">
             <Button
@@ -118,6 +117,24 @@ const DeleteAccount: FC<Props> = ({ close }) => {
               }
               altClassName="btn-int w-full py-3 bg-red-600"
               onClick={handleDelete}
+            />
+          </div>
+        </div>
+      )}
+      {phase === 3 && (
+        <div>
+          <div className="flex justify-center  mt-4 mb-6">
+            <img src={success} alt="" className="w-[180px] mx-auto" />
+          </div>
+          <p className="text-center">
+            Thanks for giving us another chance 😀. Please contact us with any
+            feedback.
+          </p>
+          <div className="mt-7">
+            <Button
+              title={isBusy ? <BeatLoader size={12} color="white" /> : "Close"}
+              altClassName="btn-int w-full py-3"
+              onClick={close}
             />
           </div>
         </div>

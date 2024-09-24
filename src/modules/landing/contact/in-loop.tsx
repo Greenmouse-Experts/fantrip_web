@@ -1,13 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 const InLoop = () => {
+  const navigate = useNavigate()
   const socials = [
     {
       name: "insta",
-      route: "",
+      route: "https://www.instagram.com/joinfantrip/",
       img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1726752452/fantrip/image_kqeqcv.png",
     },
     {
       name: "twitter",
-      route: "",
+      route: "https://x.com/joinfantrip",
       img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1726752452/fantrip/image_1_djkemz.png",
     },
     {
@@ -17,7 +20,7 @@ const InLoop = () => {
     },
     {
       name: "tiktok",
-      route: "",
+      route: "https://www.tiktok.com/@joinfantrip",
       img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1726752451/fantrip/image_3_wneava.png",
     },
     {
@@ -44,7 +47,7 @@ const InLoop = () => {
           <div className="bg-[#F2F4FF] dark:bg-darkColorLight p-4 px-6 rounded-[20px]">
             <ul className="flex justify-between">
               {socials.map((item, i) => (
-                <li className="w-[65px] h-[65px] circle cursor-pointer hover:scale-105 duration-100" key={i}>
+                <li onClick={() => navigate(item.route)} className="w-[65px] h-[65px] circle cursor-pointer hover:scale-105 duration-100" key={i}>
                   <img src={item.img} alt={item.name} className="w-full h-full"/>
                 </li>
               ))}

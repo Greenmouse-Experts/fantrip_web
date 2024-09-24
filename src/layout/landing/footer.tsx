@@ -6,10 +6,13 @@ import { useNavigate } from "react-router-dom";
 const LandingFooter = () => {
   const navigate = useNavigate();
   const socials = [
-    <SlSocialInstagram />,
-    <FaLinkedinIn />,
-    <FaFacebookF />,
-    <FaXTwitter />,
+    {
+      route: "https://www.instagram.com/joinfantrip/",
+      icon: <SlSocialInstagram />,
+    },
+    { route: "", icon: <FaLinkedinIn /> },
+    { route: "", icon: <FaFacebookF /> },
+    { route: "https://www.tiktok.com/@joinfantrip", icon: <FaXTwitter /> },
   ];
   const routes = [
     {
@@ -52,7 +55,7 @@ const LandingFooter = () => {
                     className="w-9 h-9 text-white place-center border border-white cursor-pointer circle"
                     key={i}
                   >
-                    {item}
+                    {item.icon}
                   </div>
                 ))}
               </ul>

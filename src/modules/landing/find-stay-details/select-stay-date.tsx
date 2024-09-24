@@ -294,7 +294,7 @@ const SelectStayDate: FC<Props> = ({
                       size={"lg"}
                     />
                   </div>
-                  <p className="fs-500 fw-500">Use Points</p>
+                  <p className="fs-500 fw-500">Redeem Points</p>
                   <p className="flex items-center py-[2px] rounded-lg gap-x-2 bg-prima px-3 fw-500 text-white">
                     <GiCash />
                     <span className="monts fs-500 fw-600">{user.points}</span>

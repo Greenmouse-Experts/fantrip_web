@@ -10,11 +10,21 @@ const SpreadWord = () => {
       </div>
       <div className="lg:w-full lg:pr-8">
         <div className="text-white">
-          <p className="syne fw-600 text-3xl lg:text-4xl 2xl:text-5xl">Want to spread the word about Fantrip ?</p>
+          <p className="syne fw-600 text-3xl lg:text-4xl 2xl:text-5xl">
+            Want to spread the word about Fantrip ?
+          </p>
           <p className="mt-6 2xl:text-xl">
-            For all press and media inquiries, hit us up at {" "}
-            <span className="text-green-500">founders@fantrip.app</span>. We love seeing our story told and cant wait to
-            hear from you!
+            For all press and media inquiries, hit us up at{" "}
+            <span
+              onClick={(e) => {
+                window.location.href = "mailto:support@fantrip.app";
+                e.preventDefault();
+              }}
+              className="text-green-500 text-lg fw-500 cursor-pointer"
+            >
+              founders@fantrip.app
+            </span>
+            . We love seeing our story told and cant wait to hear from you!
           </p>
         </div>
       </div>
