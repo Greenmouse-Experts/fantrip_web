@@ -46,7 +46,7 @@ const UserReferrals = () => {
         <div className="flex justify-between items-center">
           <div className="text-white text-center">
             <p className="fw-400 text-2xl md:text-4xl">
-              {profile?.reward?.balance}
+              {profile?.reward?.point}
             </p>
             <p className="text-white font-[300] fs-300">Point balance</p>
           </div>
