@@ -69,7 +69,7 @@ const UserReferrals = () => {
         <div className="mt-4">
           <p className="fs-300 text-gray-200">
             Earn points for every three friends who sign up using your referral
-            link. Accumulate 50 points and redeem the for a €5 discount at
+            link. Accumulate 50 points and redeem them for a €5 discount at
             checkout on your next Fanstay booking. The more you share, the more
             you earn!
           </p>
