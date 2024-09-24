@@ -46,7 +46,7 @@ const UserReferrals = () => {
         <div className="flex justify-between items-center">
           <div className="text-white text-center">
             <p className="fw-400 text-2xl md:text-4xl">
-              {profile?.reward?.point}
+              {profile?.reward?.balance}
             </p>
             <p className="text-white font-[300] fs-300">Point balance</p>
           </div>
@@ -54,22 +54,22 @@ const UserReferrals = () => {
             <div className="flex justify-center">
               <CircularProgress
                 value={
-                  profile ? getCappedPercentage(profile?.reward?.point, 50) : 0
+                  profile ? getCappedPercentage(profile?.reward?.balance, 50) : 0
                 }
                 color="orange.300"
               >
                 <CircularProgressLabel color={"orange.300"} className="fw-600">
-                  {profile && getCappedPercentage(profile?.reward?.point, 50)}%
+                  {profile && getCappedPercentage(profile?.reward?.balance, 50)}%
                 </CircularProgressLabel>
               </CircularProgress>
             </div>
-            <p className="text-white font-[300] fs-300 mt-1">Reward Token</p>
+            <p className="text-white font-[300] fs-300 mt-1">{profile?.reward?.referees} invites</p>
           </div>
         </div>
         <div className="mt-4">
           <p className="fs-300 text-gray-200">
             Earn points for every three friends who sign up using your referral
-            link. Accumulate 50 points and redeem the for a €5 discount at
+            link. Accumulate 50 points and redeem them for a €5 discount at
             checkout on your next Fanstay booking. The more you share, the more
             you earn!
           </p>

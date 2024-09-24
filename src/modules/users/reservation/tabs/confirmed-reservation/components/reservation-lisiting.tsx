@@ -37,7 +37,7 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="w-full md:flex items-center justify-between lg:pr-4">
+            <div className="w-full md:flex items-center justify-between p-2 md:p-0 lg:pr-4">
               <div>
                 <p className="lg:text-2xl fw-500">
                   {item.stay.name}{" "}
@@ -57,8 +57,8 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
                     <p className="fw-500">Host</p>
                   </div>
                 </div>
-                <div className="text-sec gap-x-1 flex items-center">
-                  <FaLocationPin className="text-md" />
+                <div className="text-sec gap-x-1 mt-1 md:mt-0 flex md:items-center">
+                  <FaLocationPin className="text-md mt-1 md:mt-0" />
                   <p className="fs-500">{item.stay.address}</p>
                 </div>
               </div>

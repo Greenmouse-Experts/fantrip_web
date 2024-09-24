@@ -19,6 +19,7 @@ export interface BookingItemWithPricing extends BookingItem {
   serviceFee: number;
   taxFee: number;
   total: number;
+  enableRewardForPayment: boolean;
 }
 
 export interface ComputePricePayload {
