@@ -24,6 +24,7 @@ const DetailsList: FC<Props> = ({ data, close }) => {
     children,
     createdDate,
     status,
+    enableRewardForPayment
   } = data;
   return (
     <div className="max-h-[calc(95vh_-_100px)] overflow-y-auto">
@@ -56,9 +57,9 @@ const DetailsList: FC<Props> = ({ data, close }) => {
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Ratings:</p>
-              <p className="fw-500 flex items-center gap-x-2 text-[#fc819f]">
-                <FaStar /> <span className="">4.6</span>
-              </p>
+              {Number(stay.avrRating) > 0 && <p className="fw-500 flex items-center gap-x-2 text-[#fc819f]">
+                <FaStar /> <span className="">{stay.avrRating}</span>
+              </p>}
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Highlight:</p>
@@ -121,13 +122,12 @@ const DetailsList: FC<Props> = ({ data, close }) => {
                 {formatNumber(serviceFee)}
               </p>
             </div>
-            {/* <div className="flex gap-x-2">
-              <p className="text-gray-600">Tax Fee:</p>
+            <div className="flex gap-x-2">
+              <p className="text-gray-600">Point Reward:</p>
               <p className="fw-500">
-                {stay.currency}
-                {formatNumber(taxFee)}
+                {enableRewardForPayment? formatStatus["active"] : formatStatus["inactive"]}
               </p>
-            </div> */}
+            </div>
             <div className="flex items-center gap-x-2">
               <p className="text-gray-600">Total:</p>
               <p className="fw-500 text-lg">
