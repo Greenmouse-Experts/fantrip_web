@@ -14,7 +14,7 @@ const CookieModal = () => {
   return (
     <div>
       {!accept && show && (
-        <div className="fixed bottom-3 left-2 w-full z-[4000]">
+        <div className="fixed bottom-1 md:bottom-3 lg:left-2 p-1 md:p-0 w-full z-[4000]">
           <div className="p-2 box lg:px-3 lg:p-3 bg-white dark:bg-darkColorLight shadow-lg rounded-lg ">
             <div className="hidden absolute right-4 top-3">
               <LiaTimesSolid
@@ -29,7 +29,7 @@ const CookieModal = () => {
                 className="w-[10px]"
               />
             </div>
-            <div className="flex gap-x-3">
+            <div className="md:flex gap-x-3">
               <div className="w-full">
                 <p className="text-lg flex gap-x-4 items-center fw-600 syne">
                   Allow Cookies
@@ -44,7 +44,7 @@ const CookieModal = () => {
                   experience on our website.
                 </p>
               </div>
-              <div className="w-[200px] flex justify-end items-center gap-x-3">
+              <div className="md:w-[200px] flex justify-end items-center gap-x-3">
                 <p className="text-center">
                   <Link
                     to={"/cookie"}
