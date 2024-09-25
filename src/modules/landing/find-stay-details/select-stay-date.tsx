@@ -48,6 +48,8 @@ const SelectStayDate: FC<Props> = ({
   const [usePoint, setUsePoint] = useState<boolean>(false);
   const [showPointError, setShowPointError] = useState(false);
 
+  const point = user.points || 0
+
   const [params, setParams] = useState<SearchParam>({
     city: "",
     checkIn: null,
@@ -206,7 +208,7 @@ const SelectStayDate: FC<Props> = ({
 
   // handle check for use point
   const handleDisplayError = () => {
-    if (user.points < 50) {
+    if (point < 2) {
       setShowPointError(true);
       setTimeout(() => {
         setShowPointError(false);
@@ -215,7 +217,7 @@ const SelectStayDate: FC<Props> = ({
   };
   const handleCheckChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      if (user.points < 50) {
+      if (point < 2) {
         setShowPointError(true);
       } else {
         setUsePoint(true);
@@ -279,7 +281,7 @@ const SelectStayDate: FC<Props> = ({
                   : `TBD`}
               </p>
             </div>
-            {user.points > 0 && (
+            {
               <div className="sidebar-shadow bg-[#FFEDF2] mt-2 rounded py-3 px-2 flex items-center justify-between">
                 <div
                   className="flex gap-x-3 items-center"
@@ -288,7 +290,7 @@ const SelectStayDate: FC<Props> = ({
                   <div>
                     <Switch
                       checked={false}
-                      disabled={user.points < 50}
+                      disabled={point < 2}
                       onChange={handleCheckChange}
                       colorScheme="pink"
                       size={"lg"}
@@ -297,11 +299,11 @@ const SelectStayDate: FC<Props> = ({
                   <p className="fs-500 fw-500">Redeem Points</p>
                   <p className="flex items-center py-[2px] rounded-lg gap-x-2 bg-prima px-3 fw-500 text-white">
                     <GiCash />
-                    <span className="monts fs-500 fw-600">{user.points}</span>
+                    <span className="monts fs-500 fw-600">{point}</span>
                   </p>
                 </div>
               </div>
-            )}
+            }
             {showPointError && (
               <p className="text-red-600 fs-300">
                 You need at least 50 points to redeem. Keep earning and come

@@ -64,8 +64,8 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
   };
   const checkStay = () => {
     if (
-      !stay.availableFrom ||
-      !stay.availableTo ||
+      // !stay.availableFrom ||
+      // !stay.availableTo ||
       !stay.maxNights ||
       !stay.property ||
       !stay.price ||

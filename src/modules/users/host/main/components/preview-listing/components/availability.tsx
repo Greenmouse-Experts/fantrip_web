@@ -1,31 +1,31 @@
 import useStay from "@/hooks/useStay";
-import dayjs from "dayjs";
+// import dayjs from "dayjs";
 import { ChangeEvent, useState } from "react";
-import Calendar from "react-calendar";
+// import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { Menu, MenuButton, MenuItem, MenuList, useToast } from "@chakra-ui/react";
-import { FiCalendar } from "react-icons/fi";
+import { useToast } from "@chakra-ui/react";
+// import { FiCalendar } from "react-icons/fi";
 import Button from "@/components/Button";
 
-type ValuePiece = Date | null;
+// type ValuePiece = Date | null;
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+// type Value = ValuePiece | [ValuePiece, ValuePiece];
 const Availability = () => {
   const { stay, saveStay } = useStay();
-  const prevValue = {
-    from: stay.availableFrom ? dayjs(stay.availableFrom).toDate() : null,
-    to: stay.availableTo ? dayjs(stay.availableTo).toDate() : null,
-  };
+  // const prevValue = {
+  //   from: stay.availableFrom ? dayjs(stay.availableFrom).toDate() : null,
+  //   to: stay.availableTo ? dayjs(stay.availableTo).toDate() : null,
+  // };
   const [maxNight, setMaxNight] = useState<number | string>(stay.maxNights);
   const [maxGuests, setMaxGuests] = useState<number | string>(stay.maxGuests);
 
-  const handleChange = (val: Value, type: string) => {
-    const daet = val as any;
-    saveStay({
-      ...stay,
-      [type]: val ? dayjs(daet).format("YYYY-MM-DD") : "",
-    });
-  };
+  // const handleChange = (val: Value, type: string) => {
+  //   const daet = val as any;
+  //   saveStay({
+  //     ...stay,
+  //     [type]: val ? dayjs(daet).format("YYYY-MM-DD") : "",
+  //   });
+  // };
 
   const handleMaxNight = () => {
     saveStay({
@@ -75,7 +75,7 @@ const Availability = () => {
           Choose the dates when you can welcome a fellow fan!
         </div>
       </div>
-      <div>
+      {/* <div>
         <div className="mt-3">
           <p className="mb-2 text-gray-600 fw-500">Available From:</p>
           <Menu closeOnSelect={false}>
@@ -145,7 +145,7 @@ const Availability = () => {
             </Menu>
           )}
         </div>
-      </div>
+      </div> */}
       <div className="mt-5">
         <p className="text-lg fw-500 mb-3">Maximum Guest(s)</p>
         <input
