@@ -47,9 +47,19 @@ export interface BankAccountItem {
 }
 
 export interface BankAccountFullItem extends BankAccountItem {
-  createdDate: "2024-07-02T15:28:08.862Z";
-  gateway: "stripe";
-  id: "71128834-4406-41e9-a5b8-5aad34a39cad";
-  isSelected: true;
+  createdDate: string;
+  gateway: string;
+  id: string;
+  isSelected: boolean;
   thirdPartyAccountId: string;
+}
+
+
+export interface NotifyItem {
+  body: string;
+  createdDate: string;
+  id: string;
+  read: boolean;
+  title: string;
+  userGroup:string;
 }

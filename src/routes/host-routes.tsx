@@ -6,6 +6,7 @@ import UserDashboard from "@/pages/host/dashboard";
 import HostEditListing from "@/pages/host/edit-listing";
 import HostInbox from "@/pages/host/inbox";
 import HostListings from "@/pages/host/listings";
+import HostNotification from "@/pages/host/notification";
 import HostPayments from "@/pages/host/payments";
 import HostRecommendations from "@/pages/host/recommendations";
 import HostReservationPage from "@/pages/host/reservation";
@@ -64,6 +65,10 @@ export const hostRoutes = [
           {
             path: 'settings',
             element: <HostSettings/>,
+          },
+          {
+            path: 'notifications',
+            element: <HostNotification/>,
           },
         ],
       },
