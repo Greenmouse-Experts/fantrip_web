@@ -3,6 +3,7 @@ import BookingPage from "@/pages/users/booking";
 import BookingSuccess from "@/pages/users/booking-success";
 import HostaFan from "@/pages/users/host";
 import HostSetup from "@/pages/users/host-setup";
+import GuestNotification from "@/pages/users/notifications";
 import GuestRecommendations from "@/pages/users/recommendations";
 import GuestReservationPage from "@/pages/users/reservation";
 import UserProfile from "@/pages/users/user-profile";
@@ -43,7 +44,11 @@ export const userRoutes = [
           {
             path: 'booking-success/:id',
             element: <BookingSuccess />,
-          }
+          },
+          {
+            path: 'notifications',
+            element: <GuestNotification/>,
+          },
         ],
       },
 ]

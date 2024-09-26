@@ -1,7 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const InLoop = () => {
-  const navigate = useNavigate()
   const socials = [
     {
       name: "insta",
@@ -47,8 +46,21 @@ const InLoop = () => {
           <div className="bg-[#F2F4FF] dark:bg-darkColorLight p-4 px-6 rounded-[20px]">
             <ul className="flex justify-between">
               {socials.map((item, i) => (
-                <li onClick={() => navigate(item.route)} className="w-[65px] h-[65px] circle cursor-pointer hover:scale-105 duration-100" key={i}>
-                  <img src={item.img} alt={item.name} className="w-full h-full"/>
+                <li
+                  className="w-[65px] h-[65px] circle cursor-pointer hover:scale-105 duration-100"
+                  key={i}
+                >
+                  <Link
+                    target="_blank"
+                    to={item.route}
+                    className="w-full h-full"
+                  >
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="w-full h-full"
+                    />
+                  </Link>
                 </li>
               ))}
             </ul>

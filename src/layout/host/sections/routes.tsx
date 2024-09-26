@@ -1,4 +1,4 @@
-import { MdOutlineDashboard } from "react-icons/md";
+import { MdNotificationsActive, MdOutlineDashboard } from "react-icons/md";
 import { FaDollarSign, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { BsBank, BsChatFill, BsCompassFill } from "react-icons/bs";
@@ -56,12 +56,12 @@ export const Routes = [
     route: "/host/area-guide",
     submenu: [],
   },
-  // {
-  //   name: "Live quiz & predictions",
-  //   icon: <MdQuiz className="text-xl dark:text-white" />,
-  //   route: "/host/locations",
-  //   submenu: [],
-  // },
+  {
+    name: "Notifications",
+    icon: <MdNotificationsActive className="text-xl dark:text-white" />,
+    route: "/host/notifications",
+    submenu: [],
+  },
   // {
   //   name: "Locations",
   //   icon: <FaLocationDot className="text-xl dark:text-white" />,

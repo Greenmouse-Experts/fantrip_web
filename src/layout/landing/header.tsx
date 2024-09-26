@@ -223,6 +223,19 @@ const LandingHeader = () => {
                             <p className="">Referrals</p>
                           </Link>
                         </MenuItem>
+                        {!isHost && (
+                          <MenuItem className="border-b !p-0">
+                            <Link
+                              to={"/user/notifications"}
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
+                            >
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_7} alt="icons" />
+                              </div>
+                              <p className="">Notifications</p>
+                            </Link>
+                          </MenuItem>
+                        )}
                         <MenuItem className="!p-0">
                           <div
                             className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
