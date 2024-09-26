@@ -39,7 +39,7 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
               <PaymentButton
                 id={id}
                 currency={data.stay.currency}
-                price={data.total}
+                price={data.total - (data.enableRewardForPayment ? 5 : 0)}
                 checkin={data.checkIn}
               />
             )}
