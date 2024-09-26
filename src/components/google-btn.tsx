@@ -57,7 +57,7 @@ const GoogleButton: FC<Props> = ({}) => {
           postalCode: res.data.postalCode,
           aptSuitUnit: res.data.apiSuitUnit,
           loginTimes: res.data.loginTimes,
-          points: res?.data?.reward?.balance || 0,
+          points: res?.data?.reward?.point || 0,
         });
         saveAccount(res.data.bankAccounts);
         if (res.data.role === "host") {

@@ -10,7 +10,7 @@ import { Switch, useToast } from "@chakra-ui/react";
 import useDialog from "@/hooks/useDialog";
 import BookingSuccess from "./booking-tab-comps/booking-success";
 import { BeatLoader } from "react-spinners";
-import { formatNumber } from "@/lib/utils/formatHelp";
+import { formatAsNgnMoney, formatNumber } from "@/lib/utils/formatHelp";
 import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
 import { getFutureDate, returnNumberOnly } from "@/lib/utils/helper-function";
@@ -70,7 +70,7 @@ const SelectStayDate: FC<Props> = ({
       setParams({ ...params, checkIn: val });
       return val;
     } else {
-      const val = dayjs().toDate();
+      const val = dayjs().startOf('date').add(1, 'day').toDate();
       setParams({ ...params, checkIn: val });
       return val;
     }
@@ -279,7 +279,7 @@ const SelectStayDate: FC<Props> = ({
                   : `TBD`}
               </p>
             </div>
-            {user.points > 0 && (
+            {user?.points >= 0 && (
               <div className="sidebar-shadow bg-[#FFEDF2] mt-2 rounded py-3 px-2 flex items-center justify-between">
                 <div
                   className="flex gap-x-3 items-center"
@@ -299,6 +299,13 @@ const SelectStayDate: FC<Props> = ({
                     <GiCash />
                     <span className="monts fs-500 fw-600">{user.points}</span>
                   </p>
+                </div>
+                <div>
+                  {usePoint && (
+                    <p className="fw-600 text-lg text-green-600">
+                      -{formatAsNgnMoney(5)}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -322,7 +329,9 @@ const SelectStayDate: FC<Props> = ({
               <p className="fw-500">Total</p>
               <p className="fw-500 text-lg">
                 {pricing.total
-                  ? `${currency}${formatNumber(pricing.total)}`
+                  ? `${currency}${formatNumber(
+                      pricing.total - (usePoint ? 5 : 0)
+                    )}`
                   : `TBD`}
               </p>
             </div>
