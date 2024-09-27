@@ -19,6 +19,9 @@ const DetailsList: FC<Props> = ({ data }) => {
     total,
     trx
   } = data;
+
+  const deduction = data.reservation.enableRewardForPayment? 5 : 0
+  
   return (
     <div className="h-[93vh] overflow-y-auto">
       <div className="flex gap-x-2">
@@ -143,7 +146,7 @@ const DetailsList: FC<Props> = ({ data }) => {
               <p className="text-gray-600">Total:</p>
               <p className="fw-500 text-lg">
                 {currency}
-                {formatNumber(total)}
+                {formatNumber(total - deduction)}
               </p>
             </div>
           </div>
