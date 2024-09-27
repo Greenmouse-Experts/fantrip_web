@@ -280,7 +280,7 @@ const SelectStayDate: FC<Props> = ({
               </p>
             </div>
             {user?.points >= 0 && (
-              <div className="sidebar-shadow bg-[#FFEDF2] mt-2 rounded py-3 px-2 flex items-center justify-between">
+              <div className="sidebar-shadow bg-[#FFEDF2] dark:bg-[#292526] mt-2 rounded py-3 px-2 flex items-center justify-between">
                 <div
                   className="flex gap-x-3 items-center"
                   onClick={handleDisplayError}
@@ -310,7 +310,7 @@ const SelectStayDate: FC<Props> = ({
               </div>
             )}
             {showPointError && (
-              <p className="text-red-600 fs-300">
+              <p className="!text-red-600 fs-300">
                 You need at least 50 points to redeem. Keep earning and come
                 back to claim your discount!
               </p>

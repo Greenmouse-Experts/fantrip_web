@@ -251,7 +251,7 @@ const LandingHeader = () => {
                     </Menu>
                   </li>
                 )}
-                <ThemeSwitch/>
+                <ThemeSwitch header/>
               </ul>
             </div>
           </div>
