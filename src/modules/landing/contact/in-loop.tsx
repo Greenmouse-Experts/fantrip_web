@@ -43,11 +43,11 @@ const InLoop = () => {
       </div>
       <div>
         <div className="bg-gradient p-[1px] rounded-[20px]">
-          <div className="bg-[#F2F4FF] dark:bg-darkColorLight p-4 px-6 rounded-[20px]">
+          <div className="bg-[#F2F4FF] dark:bg-darkColorLight p-4 px-2 lg:px-6 rounded-[20px]">
             <ul className="flex justify-between">
               {socials.map((item, i) => (
                 <li
-                  className="w-[65px] h-[65px] circle cursor-pointer hover:scale-105 duration-100"
+                  className="lg:w-[65px] lg:h-[65px] circle cursor-pointer hover:scale-105 duration-100"
                   key={i}
                 >
                   <Link
