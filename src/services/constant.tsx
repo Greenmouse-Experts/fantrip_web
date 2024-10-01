@@ -76,3 +76,9 @@ export const MUTE_REVIEW = `/mute-review`;
 export const UNMUTE_REVIEW = `/reviews/unmute-review`;
 
 export const FETCH_TOP_PLACES = `/top-places/published`
+
+
+// notification endpoints
+export const GET_GUEST_NOTIFY = `/notifications/guest`
+export const GET_NOTIFY = `/notifications/host`
+export const MARK_AS_READ = `/notifications/mark-as-read`

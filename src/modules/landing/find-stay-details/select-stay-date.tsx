@@ -10,7 +10,7 @@ import { Switch, useToast } from "@chakra-ui/react";
 import useDialog from "@/hooks/useDialog";
 import BookingSuccess from "./booking-tab-comps/booking-success";
 import { BeatLoader } from "react-spinners";
-import { formatNumber } from "@/lib/utils/formatHelp";
+import { formatAsNgnMoney, formatNumber } from "@/lib/utils/formatHelp";
 import useAuth from "@/hooks/authUser";
 import { useNavigate } from "react-router-dom";
 import { getFutureDate, returnNumberOnly } from "@/lib/utils/helper-function";
@@ -43,7 +43,7 @@ const SelectStayDate: FC<Props> = ({
   maxNight,
   maxGuest,
 }) => {
-  const { isLoggedIn, user, isHost } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const navigate = useNavigate();
   const [usePoint, setUsePoint] = useState<boolean>(false);
   const [showPointError, setShowPointError] = useState(false);
@@ -72,7 +72,7 @@ const SelectStayDate: FC<Props> = ({
       setParams({ ...params, checkIn: val });
       return val;
     } else {
-      const val = dayjs().toDate();
+      const val = dayjs().startOf('date').add(1, 'day').toDate();
       setParams({ ...params, checkIn: val });
       return val;
     }
@@ -188,17 +188,18 @@ const SelectStayDate: FC<Props> = ({
       navigate("/auth/login");
       return;
     }
-    if (isHost) {
-      toast({
-        render: () => (
-          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
-            Please switch to guest account to make reservations
-          </div>
-        ),
-        position: "top",
-      });
-      return;
-    }
+    // HOST CAN MAKE RESERVATIONS FOR NOW
+    // if (isHost) {
+    //   toast({
+    //     render: () => (
+    //       <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
+    //         Please switch to guest account to make reservations
+    //       </div>
+    //     ),
+    //     position: "top",
+    //   });
+    //   return;
+    // }
     if (!user.favTeam) {
       ShowFavModal(true);
       return;
@@ -208,7 +209,7 @@ const SelectStayDate: FC<Props> = ({
 
   // handle check for use point
   const handleDisplayError = () => {
-    if (point < 2) {
+    if (point < 50) {
       setShowPointError(true);
       setTimeout(() => {
         setShowPointError(false);
@@ -217,7 +218,7 @@ const SelectStayDate: FC<Props> = ({
   };
   const handleCheckChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      if (point < 2) {
+      if (point < 50) {
         setShowPointError(true);
       } else {
         setUsePoint(true);
@@ -281,8 +282,8 @@ const SelectStayDate: FC<Props> = ({
                   : `TBD`}
               </p>
             </div>
-            {
-              <div className="sidebar-shadow bg-[#FFEDF2] mt-2 rounded py-3 px-2 flex items-center justify-between">
+            {user?.points >= 0 && (
+              <div className="sidebar-shadow bg-[#FFEDF2] dark:bg-[#292526] mt-2 rounded py-3 px-2 flex items-center justify-between">
                 <div
                   className="flex gap-x-3 items-center"
                   onClick={handleDisplayError}
@@ -290,7 +291,7 @@ const SelectStayDate: FC<Props> = ({
                   <div>
                     <Switch
                       checked={false}
-                      disabled={point < 2}
+                      disabled={point < 50}
                       onChange={handleCheckChange}
                       colorScheme="pink"
                       size={"lg"}
@@ -302,10 +303,17 @@ const SelectStayDate: FC<Props> = ({
                     <span className="monts fs-500 fw-600">{point}</span>
                   </p>
                 </div>
+                <div>
+                  {usePoint && (
+                    <p className="fw-600 text-lg text-green-600">
+                      -{formatAsNgnMoney(5)}
+                    </p>
+                  )}
+                </div>
               </div>
-            }
+            )}
             {showPointError && (
-              <p className="text-red-600 fs-300">
+              <p className="!text-red-600 fs-300">
                 You need at least 50 points to redeem. Keep earning and come
                 back to claim your discount!
               </p>
@@ -324,7 +332,9 @@ const SelectStayDate: FC<Props> = ({
               <p className="fw-500">Total</p>
               <p className="fw-500 text-lg">
                 {pricing.total
-                  ? `${currency}${formatNumber(pricing.total)}`
+                  ? `${currency}${formatNumber(
+                      pricing.total - (usePoint ? 5 : 0)
+                    )}`
                   : `TBD`}
               </p>
             </div>

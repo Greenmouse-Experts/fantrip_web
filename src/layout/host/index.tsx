@@ -33,24 +33,24 @@ const UserDashboardLayout = () => {
         </div>
         <div className="w-full dark:bg-darkColor dark:text-white text-black lg:w-[calc(100%_-_280px)] min-h-screen pb-6 lg:py-9">
           <div className="">
-            <div className="lg:h-[60px] flex items-center px-2 lg:px-0 lg:block dark:bg-darkColor relative index-30">
+            <div className="lg:h-[60px] flex items-center px-2 lg:px-0 lg:block bg-white dark:bg-darkColor relative index-30">
               <CgMenuHotdog
                 onClick={() => setToggled(!toggled)}
                 className="text-2xl lg:hidden"
               />
-              <div className="lg:fixed top-0 w-full lg:w-[calc(100%_-_280px)] pl-4 lg:pl-9 pr-5 py-4 lg:py-[23px] flex items-center justify-between">
-              <div className="flex items-center justify-between w-full">
-                <div>
-                  <p className="fw-600 lg:text-xl">Welcome back, {firstName}</p>
-                  <p className="fs-400 hidden lg:block">
-                    Manage and control all your activities on fantrip
-                  </p>
+              <div className="lg:fixed bg-white z-10 top-0 w-full lg:w-[calc(100%_-_280px)] pl-4 lg:pl-9 pr-5 py-4 lg:py-[23px] flex items-center justify-between">
+                <div className="flex items-center justify-between w-full">
+                  <div>
+                    <p className="fw-600 lg:text-xl">
+                      Welcome back, {firstName}
+                    </p>
+                    <p className="fs-400 hidden lg:block">
+                      Manage and control all your activities on fantrip
+                    </p>
+                  </div>
+                  <ThemeSwitch header/>
                 </div>
-              <ThemeSwitch/>
               </div>
-
-              </div>
-
             </div>
             <div className="px-2 lg:px-9">
               <Outlet />

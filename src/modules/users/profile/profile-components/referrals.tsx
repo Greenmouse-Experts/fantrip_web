@@ -54,16 +54,16 @@ const UserReferrals = () => {
             <div className="flex justify-center">
               <CircularProgress
                 value={
-                  profile ? getCappedPercentage(profile?.reward?.balance, 50) : 0
+                  profile ? getCappedPercentage(profile?.reward?.point, 50) : 0
                 }
                 color="orange.300"
               >
                 <CircularProgressLabel color={"orange.300"} className="fw-600">
-                  {profile && getCappedPercentage(profile?.reward?.balance, 50)}%
+                  {profile && getCappedPercentage(profile?.reward?.point, 50)}%
                 </CircularProgressLabel>
               </CircularProgress>
             </div>
-            <p className="text-white font-[300] fs-300 mt-1">{profile?.reward?.referees} invites</p>
+            <p className="text-white font-[300] fs-300 mt-1">{profile?.reward?.referees} invite(s)</p>
           </div>
         </div>
         <div className="mt-4">

@@ -113,3 +113,24 @@ export const getMode = () =>{
   const mode = window.localStorage.getItem("isDaskMode");
   return mode 
 }
+
+export const formatText = (text: string) => {
+  // Split the text by brackets
+  const parts = text.split(/(\[.*?\])/);
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (part.startsWith("[") && part.endsWith("]")) {
+          const content = part.slice(1, -1);
+          return (
+            <span key={index} style={{ fontWeight: "bold", color: "#9847fe" }}>
+              {content}
+            </span>
+          );
+        }
+        return <span key={index}>{part}</span>;
+      })}
+    </>
+  );
+};

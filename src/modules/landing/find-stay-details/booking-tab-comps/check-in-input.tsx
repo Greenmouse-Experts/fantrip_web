@@ -23,7 +23,7 @@ const CheckInInput: FC<Props> = ({ value, handleChange, from, to }) => {
     const diff = dayjs(from).diff(now, "hour");
     if (diff > 1) {
       return dayjs(from).toDate();
-    } else return new Date();
+    } else return dayjs().startOf('date').add(1, 'day').toDate();;
   };
   
   return (

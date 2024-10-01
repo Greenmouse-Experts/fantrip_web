@@ -19,7 +19,7 @@ export interface StayItemInput {
   specialOffers: string[];
   percentageOff: number;
   availableFrom: string;
-  availableTo: string;
+  availableTo: string | null;
   maxNights: number;
   currency: string;
   maxGuests: number;

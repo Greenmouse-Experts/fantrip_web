@@ -1,7 +1,7 @@
 import logo from "@/assets/footer_logo.svg";
 import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 import { SlSocialInstagram } from "react-icons/sl";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LandingFooter = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const LandingFooter = () => {
     },
     { route: "", icon: <FaLinkedinIn /> },
     { route: "", icon: <FaFacebookF /> },
-    { route: "https://www.tiktok.com/@joinfantrip", icon: <FaXTwitter /> },
+    { route: "https://x.com/joinfantrip", icon: <FaXTwitter /> },
   ];
   const routes = [
     {
@@ -51,12 +51,14 @@ const LandingFooter = () => {
             <div className="mt-6 lg:mt-9">
               <ul className="flex justify-center gap-x-6">
                 {socials.map((item, i) => (
-                  <div
+                  <Link
+                    target="_blank"
                     className="w-9 h-9 text-white place-center border border-white cursor-pointer circle"
                     key={i}
+                    to={`${item.route}`}
                   >
                     {item.icon}
-                  </div>
+                  </Link>
                 ))}
               </ul>
             </div>

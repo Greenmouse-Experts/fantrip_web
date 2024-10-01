@@ -18,6 +18,7 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
     queryKey: ["get-booking-details"],
     queryFn: () => fetchBookingDetails(id),
   });
+  const deduction = data?.reservation?.enableRewardForPayment? 5 : 0
   return (
     <div>
       <div className="py-12 lg:px-12">
@@ -86,7 +87,7 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
                     <p>Amount:</p>
                     <p className="fw-600">
                       {data.currency}
-                      {formatNumber(data.total)}
+                      {formatNumber(data.total - deduction)}
                     </p>
                   </div>
                   <div className="flex gap-x-2">

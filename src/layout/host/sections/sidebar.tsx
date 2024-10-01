@@ -1,3 +1,6 @@
+import { FC } from "react";
+import { FaChevronDown } from "react-icons/fa6";
+import { FaChevronRight } from "react-icons/fa";
 import { Menu, MenuItem, Sidebar, SubMenu } from "react-pro-sidebar";
 import { RouteType, Routes } from "./routes";
 import { Link, useLocation } from "react-router-dom";
@@ -9,9 +12,6 @@ import logo_dark from "@/assets/images/auth-logo.png";
 import BtnContent from "@/components/btn-content";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import useAuth from "@/hooks/authUser";
-import { FaChevronDown } from "react-icons/fa6";
-import { FaChevronRight } from "react-icons/fa";
-import { FC } from "react";
 
 interface Props {
   toggled: boolean;

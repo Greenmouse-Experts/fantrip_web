@@ -22,7 +22,7 @@ export const formatNumber = (value: number | string) => {
 export const formatAsNgnMoney = (value: number | string, currency?: string) => {
   if (!value) return "";
   const val = Number(value);
-  return `${currency || "$"}${val
+  return `${currency || "€"}${val
     .toLocaleString("en-US")
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
 };

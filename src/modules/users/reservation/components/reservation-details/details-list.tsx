@@ -1,5 +1,5 @@
 import { BookingItemWithPricing } from "@/lib/contracts/booking";
-import { formatNumber, formatStatus } from "@/lib/utils/formatHelp";
+import { formatAsNgnMoney, formatNumber, formatStatus } from "@/lib/utils/formatHelp";
 import dayjs from "dayjs";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa6";
@@ -125,14 +125,14 @@ const DetailsList: FC<Props> = ({ data, close }) => {
             <div className="flex gap-x-2">
               <p className="text-gray-600">Point Reward:</p>
               <p className="fw-500">
-                {enableRewardForPayment? formatStatus["active"] : formatStatus["inactive"]}
+                {enableRewardForPayment? <div className="flex gap-x-2 items-center">{formatStatus["active"]} <span className="text-green-500">-{formatAsNgnMoney(5)}</span></div> : formatStatus["inactive"]}
               </p>
             </div>
             <div className="flex items-center gap-x-2">
               <p className="text-gray-600">Total:</p>
               <p className="fw-500 text-lg">
                 {stay.currency}
-                {formatNumber(total)}
+                {formatNumber(total - (enableRewardForPayment? 5 : 0))}
               </p>
             </div>
           </div>

@@ -10,6 +10,7 @@ import { BeatLoader } from "react-spinners";
 import Availability from "./components/availability";
 import useDialog from "@/hooks/useDialog";
 import StayCreateSuccess from "../modal/stay-create-success";
+import dayjs from "dayjs";
 
 interface Props {
   setActive: React.Dispatch<React.SetStateAction<number>>;
@@ -37,6 +38,8 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
     const payload = {
       ...stay,
       subHead: stay.description,
+      availableFrom: dayjs().add(1, "day").format("YYYY-MM-DD"),
+      availableTo: dayjs().add(6, "year").format("YYYY-MM-DD"),
     };
     await createStay(payload)
       .then(() => {
@@ -88,7 +91,6 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
         </div>
         <div className="mt-4 lg:mt-0">
           <div>
-            <p className="text-lg fw-500 mb-4">Select Available Dates</p>
             <Availability />
           </div>
         </div>
