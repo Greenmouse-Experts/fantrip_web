@@ -2,11 +2,12 @@ import Button from "@/components/Button";
 import useAuth from "@/hooks/authUser";
 import { deleteAccount } from "@/services/api/authApi";
 import { useToast } from "@chakra-ui/react";
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import success from "@/assets/images/success.gif";
+import TextInput, { InputType } from "@/components/TextInput";
 
 interface Props {
   close: () => void;
@@ -14,6 +15,7 @@ interface Props {
 const DeleteAccount: FC<Props> = ({ close }) => {
   const [phase, setPhase] = useState<number>(1);
   const [isBusy, setIsBusy] = useState<boolean>(false);
+  const [showTextInput, setShowTextInput] = useState<boolean>(false);
   const navigate = useNavigate();
   const { signOut } = useAuth();
   const toast = useToast();
@@ -70,7 +72,9 @@ const DeleteAccount: FC<Props> = ({ close }) => {
                   item === reason ? "bg-prima text-white" : ""
                 }`}
                 key={i}
-                onClick={() => setReason(item)}
+                onClick={() => {setReason(item); item === "others"
+                  ? setShowTextInput(true)
+                  : setShowTextInput(false);}}
               >
                 <input
                   type="radio"
@@ -80,6 +84,16 @@ const DeleteAccount: FC<Props> = ({ close }) => {
                 <p>{item}</p>
               </div>
             ))}
+            {showTextInput && (
+              <TextInput
+                type={InputType.text}
+                label=""
+                placeholder="Type here"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setReason(e.target.value)
+                }
+              />
+            )}
           </div>
           <div className="mt-6 flex justify-between items-center">
             <Button

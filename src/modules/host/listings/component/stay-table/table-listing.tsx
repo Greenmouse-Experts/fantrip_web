@@ -90,24 +90,26 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
             </div>
             <div className="w-full md:flex items-center justify-between lg:pr-4">
               <div>
-                <div className="flex items-center gap-x-2">
+                <div className="md:flex items-center gap-x-2">
                   <p className="lg:text-xl fw-500">{item.name}</p>
                   {item.approved ? (
-                    <p className="bg-green-50 text-green-500 px-3 fs-500 fw-500 leading-none py-[3px]">
+                    <p className="bg-green-50 inline !text-green-500 px-3 fs-500 fw-500 leading-none py-[3px]">
                       Active
                     </p>
                   ) : (
-                    <p className="bg-orange-50 text-orange-500 px-3 fs-500 fw-500 leading-none py-[3px]">
+                    <p className="bg-orange-50 inline !text-orange-500 px-3 fs-500 fw-500 leading-none py-[3px]">
                       Awaiting
                     </p>
                   )}
                 </div>
-                <p className="syne text-gray-300">{item.description}</p>
-                <div className="text-sec gap-x-1 flex items-center">
-                  <FaLocationPin className="text-sm" />
+                <p className="syne text-gray-500 dark:text-gray-300">
+                  {item.description}
+                </p>
+                <div className="text-sec gap-x-1 flex md:items-center mt-2 lg:mt-0">
+                  <FaLocationPin className="text-sm shrink-0 mt-[7px] md:mt-0" />
                   <p className="fs-400">{item.address}</p>
                 </div>
-                <p className="lg:mt-2 text-gray-400 fs-400">
+                <p className="lg:mt-2 text-end md:text-left text-gray-400 fs-400">
                   {dayjs(item.createdDate).fromNow()}
                 </p>
               </div>
@@ -144,11 +146,11 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                     </MenuList>
                   </Menu>
                 </div>
-                <div className="flex mt-1 md:mt-0 items-center gap-x-2 md:block">
+                <div className="mt-1 md:mt-0 items-center gap-x-2 md:block">
                   <p className="syne text-2xl lg:text-3xl text-end fw-600">
                     {formatAsDollar(item.price)}
                   </p>
-                  <div className="flex gap-x-3 justify-end relative top-[6px] md:top-0">
+                  <div className="flex gap-x-3 pb-3 lg:pb-0 justify-end relative top-[6px] md:top-0">
                     <Link
                       className="underline relative block"
                       to={`/host/listings/${item.id}`}
@@ -159,10 +161,12 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         bg="gray.800"
                         aria-label="A tooltip"
                         fontSize="md"
+                        className="flex"
                       >
-                        <BiEdit className="text-xl inline-block" />
-                        {" "}
-                        <span>Edit Listing</span>
+                        <BiEdit className="lg:text-xl inline-block" />{" "}
+                        <span className="fs-400 md:fs-600 whitespace-nowrap">
+                          Edit Listing
+                        </span>
                       </Tooltip>
                     </Link>
                     <Link
@@ -177,9 +181,8 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         fontSize="md"
                         className="flex gap-x-1"
                       >
-                        <TbViewportWide className="text-xl inline-block" />
-                        {" "}
-                        <span>View Details</span>
+                        <TbViewportWide className="lg:text-xl inline-block" />{" "}
+                        <span className="fs-400 md:fs-600">View Details</span>
                       </Tooltip>
                     </Link>
                   </div>

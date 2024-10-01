@@ -43,10 +43,12 @@ const SelectStayDate: FC<Props> = ({
   maxNight,
   maxGuest,
 }) => {
-  const { isLoggedIn, user, isHost } = useAuth();
+  const { isLoggedIn, user } = useAuth();
   const navigate = useNavigate();
   const [usePoint, setUsePoint] = useState<boolean>(false);
   const [showPointError, setShowPointError] = useState(false);
+
+  const point = user.points || 0
 
   const [params, setParams] = useState<SearchParam>({
     city: "",
@@ -186,17 +188,18 @@ const SelectStayDate: FC<Props> = ({
       navigate("/auth/login");
       return;
     }
-    if (isHost) {
-      toast({
-        render: () => (
-          <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
-            Please switch to guest account to make reservations
-          </div>
-        ),
-        position: "top",
-      });
-      return;
-    }
+    // HOST CAN MAKE RESERVATIONS FOR NOW
+    // if (isHost) {
+    //   toast({
+    //     render: () => (
+    //       <div className="text-white w-[290px] text-center fw-600 syne bg-[#9847fe] rounded p-3">
+    //         Please switch to guest account to make reservations
+    //       </div>
+    //     ),
+    //     position: "top",
+    //   });
+    //   return;
+    // }
     if (!user.favTeam) {
       ShowFavModal(true);
       return;
@@ -206,7 +209,7 @@ const SelectStayDate: FC<Props> = ({
 
   // handle check for use point
   const handleDisplayError = () => {
-    if (user.points < 50) {
+    if (point < 50) {
       setShowPointError(true);
       setTimeout(() => {
         setShowPointError(false);
@@ -215,7 +218,7 @@ const SelectStayDate: FC<Props> = ({
   };
   const handleCheckChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.checked) {
-      if (user.points < 50) {
+      if (point < 50) {
         setShowPointError(true);
       } else {
         setUsePoint(true);
@@ -288,7 +291,7 @@ const SelectStayDate: FC<Props> = ({
                   <div>
                     <Switch
                       checked={false}
-                      disabled={user.points < 50}
+                      disabled={point < 50}
                       onChange={handleCheckChange}
                       colorScheme="pink"
                       size={"lg"}
@@ -297,7 +300,7 @@ const SelectStayDate: FC<Props> = ({
                   <p className="fs-500 fw-500">Redeem Points</p>
                   <p className="flex items-center py-[2px] rounded-lg gap-x-2 bg-prima px-3 fw-500 text-white">
                     <GiCash />
-                    <span className="monts fs-500 fw-600">{user.points}</span>
+                    <span className="monts fs-500 fw-600">{point}</span>
                   </p>
                 </div>
                 <div>

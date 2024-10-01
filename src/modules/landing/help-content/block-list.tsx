@@ -20,10 +20,6 @@ const BlockList = () => {
       route: "/privacy",
     },
     {
-      name: "Data Policy",
-      route: "",
-    },
-    {
       name: "FAQs",
       route: "/faqs",
     },
@@ -40,7 +36,7 @@ const BlockList = () => {
     <div>
       <div className="section bg-[#EDEDFF]">
         <div className="box">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 justify-center lg:grid-cols-4 gap-6">
             {list.map((item) => (
               <div
                 className="h-[146px] lg:px-4 cursor-pointer 2xl:px-10 bg-white dark:bg-darkColorLight place-center help-shade text-center"

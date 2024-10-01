@@ -22,15 +22,15 @@ const PaymentModal:FC<Props> = ({id}) => {
         mutate({
             reservation: id
         }, {
-            onSuccess: (data) => {
-                toast({
-                  render: () => (
-                    <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
-                      {data.message}
-                    </div>
-                  ),
-                  position: "top",
-                });
+            onSuccess: () => {
+                // toast({
+                //   render: () => (
+                //     <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+                //       {data.message}
+                //     </div>
+                //   ),
+                //   position: "top",
+                // });
             },
             onError: (err:any) => {
                 toast({

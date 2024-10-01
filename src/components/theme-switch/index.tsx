@@ -32,29 +32,33 @@ const ThemeSwitch: FC<Props> = ({ header }) => {
     <div className="cursor-pointer">
       {/* {!isDarkMode ? <FiSun className="text-xl"/> : <FaCloudMoon className="text-xl text-white"/>} */}
       {header ? (
-        <><SwitchButton darkMode={isDarkMode} toggle={toggleDarkMode}/></>
+        <>
+          <SwitchButton darkMode={isDarkMode} toggle={toggleDarkMode} />
+        </>
       ) : (
         <>
           {" "}
           {isDarkMode ? (
-            <div className="flex justify-between">
+            <div className="flex items-center gap-x-3 justify-between">
               <div className="flex gap-x-2 items-center">
                 <FiSun className="text-2xl" /> Light theme
               </div>
               <Switch
                 checked={isDarkMode}
                 size={"lg"}
+                colorScheme="pink"
                 onChange={toggleDarkMode}
               />
             </div>
           ) : (
-            <div className="flex justify-between">
+            <div className="flex items-center gap-x-3 justify-between">
               <div className="flex gap-x-2 items-center">
                 <FaCloudMoon className="text-2xl" /> Dark theme
               </div>
               <Switch
                 checked={isDarkMode}
                 size={"lg"}
+                colorScheme="pink"
                 onChange={toggleDarkMode}
               />
             </div>

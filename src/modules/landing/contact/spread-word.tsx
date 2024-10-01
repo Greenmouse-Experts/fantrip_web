@@ -1,14 +1,14 @@
 const SpreadWord = () => {
   return (
-    <div className="mt-36 md:mt-48 lg:mt-28 lg:flex justify-between bg-layout-gradient p-4 md:px-6 py-12 lg:p-8 lg:pl-12 rounded-[30px]">
-      <div className="lg:w-[500px] shrink-0 relative h-16 md:h-28 lg:h-auto">
+    <div className="lg:mt-28 lg:flex items-center gap-x-12 justify-between bg-layout-gradient p-4 md:px-6 py-12 lg:p-8 lg:pl-12 rounded-[30px]">
+      <div className="lg:w-[500px] shrink-0 relative lg:h-auto">
         <img
-          src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1726752452/fantrip/Group_1171275094_1_ouxiej.png"
+          src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1727794871/fantrip/IMG-20241001-WA0000_mdjsm6.jpg"
           alt="slides"
-          className="absolute bottom-2 -right-3 md:right-12 lg:right-0 lg:-bottom-12 w-full md:w-[500px] lg:w-[500px]"
+          className=" rounded-[30px] w-full mx-auto md:w-[500px] lg:w-[500px]"
         />
       </div>
-      <div className="lg:w-full lg:pr-8">
+      <div className="lg:w-full lg:pr-8 mt-4 lg:mt-0">
         <div className="text-white">
           <p className="syne fw-600 text-3xl lg:text-4xl 2xl:text-5xl">
             Want to spread the word about Fantrip ?
