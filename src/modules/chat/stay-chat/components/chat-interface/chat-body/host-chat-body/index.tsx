@@ -90,6 +90,7 @@ const HostChatBody: FC<Props> = ({ socket }) => {
               <ChatBubble
                 type={item?.initiator?.id}
                 text={item.message || ""}
+                date={item.createdDate}
               />
             </div>
           ))}

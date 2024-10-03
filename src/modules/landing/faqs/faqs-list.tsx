@@ -76,7 +76,7 @@ const FaqList = () => {
     {
       question: "What if there’s a foul play during my stay?",
       answer:
-        "Flag it immediately! Our support team is here to run interference and get things back on track, so your game-day experience is nothing but net.",
+        "Flag it immediately! Our support team is here to run interference and get things back on track.",
     },
     {
       question: "How does the platform help with area guide recommendations??",

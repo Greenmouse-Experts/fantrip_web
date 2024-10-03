@@ -243,6 +243,32 @@ input[type="radio"]:checked {
   }
 }
 
+/* chat scroll bar */
+/* Custom Scrollbar Styles */
+.chat-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #9847fe 0%, #fc819f 100%); /* Thumb color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom,#fc819f  0%, #9847fe 100%); /* Thumb color on hover */
+  cursor: grab;
+}
+
+/* for firefox */
+.custom-scrollbar {
+  scrollbar-width: thin; /* Options: auto, thin, none */
+  scrollbar-color: #888 #9847fe; /* Thumb color and track color */
+}
+
 .scroll-pro::-webkit-scrollbar {
   display: none;
 }

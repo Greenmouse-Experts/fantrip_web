@@ -8,7 +8,7 @@ interface Props {
 }
 const RoomBodyIndex: FC<Props> = ({ reloadSocket, socket, reload }) => {
   return (
-    <div className="h-[90vh] lg:h-full overflow-y-auto scroll-pro">
+    <div className="h-[90vh] lg:h-full overflow-y-auto  chat-scrollbar lg:pr-2">
       <RenderPostsIndex
         socket={socket}
         reload={reloadSocket}

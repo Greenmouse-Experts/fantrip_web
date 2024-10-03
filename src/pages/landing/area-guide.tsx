@@ -6,6 +6,7 @@ import { getSearchPlaces } from "@/services/api/places-api";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import debounce from "lodash.debounce";
+import SportsBar from "@/modules/landing/area-guide/sports-bar";
 
 export const AreaGuide = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -40,6 +41,9 @@ export const AreaGuide = () => {
           isGettingResult={isGettingResult}
           searchInput={searchInput}
         />
+      </div>
+      <div className="bg-white dark:bg-darkColorLight">
+        <SportsBar />
       </div>
       <div className="bg-white dark:bg-darkColorLight">
         <FanChoice />

@@ -52,6 +52,27 @@ const TermsPage = () => {
           </div>
         </div>
         <div className="">
+          <PolicyHeader text="Confidentiality and Prohibited Use:" />
+          <div className="grid gap-4">
+            <PolicyList
+              head=""
+              text="You acknowledge that Fantrip, its licensors, and its suppliers own all rights to the Fantrip platform, the website, mobile application, and the content displayed on it. You shall not modify, reverse engineer, decompile, disassemble, or attempt to derive the source code of the Fantrip website or platform, nor assist any other person or entity in doing so."
+            />
+            <PolicyList
+              head=""
+              text="All content, including but not limited to text, software, music, sound, photographs, videos, graphics, or other materials, whether posted by Fantrip, Fantrip users, or third-party advertisers, is protected by copyrights, trademarks, service marks, patents, or other proprietary rights and laws. You may not modify, copy, reproduce, republish, upload, post, transmit, or distribute in any way content available through the platform for commercial or non-commercial purposes without the express written permission of Fantrip. This includes any access to or use of Fantrip for the purposes of designing, developing, testing, updating, operating, modifying, maintaining, supporting, marketing, or distributing a product that enables or provides access to Fantrip’s features or functionalities."
+            />
+            <PolicyList
+              head=""
+              text="Any unauthorized access, copying, distribution, or modification of Fantrip’s intellectual property or content displayed on the platform will result in immediate legal action. This includes but is not limited to financial penalties, lawsuits for damages, and enforcement of civil or criminal sanctions as permitted by law. For purposes of this paragraph, you agree that cached copies of Fantrip webpages on your computer or server constitute 'copies' under the Copyright Act."
+            />
+             <PolicyList
+              head=""
+              text="If you access Fantrip or copy, display, distribute, perform, or create derivative works from content displayed on the platform or other intellectual property in violation of these terms, your access, copying, display, distribution, performance, or derivative work is unauthorized. Circumvention of any technological restriction or security measure on Fantrip is expressly prohibited and will be prosecuted."
+            />
+          </div>
+        </div>
+        <div className="">
           <PolicyHeader text="User Conduct:" />
           <div className="grid gap-4">
             <PolicyList

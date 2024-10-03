@@ -27,7 +27,7 @@ export const Routes = [
     submenu: [],
   },
   {
-    name: "Listings",
+    name: "Fanstay Listings",
     icon: <FaStar className="text-xl dark:text-white" />,
     route: "/host/listings",
     submenu: [],
@@ -51,7 +51,7 @@ export const Routes = [
     submenu: [],
   },
   {
-    name: "Area guide",
+    name: "Area guide submission",
     icon: <BsCompassFill className="text-xl dark:text-white" />,
     route: "/host/area-guide",
     submenu: [],

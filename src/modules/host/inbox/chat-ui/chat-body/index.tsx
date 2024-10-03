@@ -92,6 +92,7 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
                     <ChatBubble
                       type={item?.initiator?.role}
                       text={item.message || ""}
+                      date={item.createdDate}
                     />
                   </div>
                 ))}
