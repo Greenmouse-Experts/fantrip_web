@@ -27,12 +27,7 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 
 export const requestForToken = async () => {
-  console.log(" i ran");
-
   const messaging = getMessaging(app);
-
-  console.log(messaging);
-
   await getToken(messaging, { vapidKey: `${VAPID_KEY}` })
     .then((currentToken: string) => {
       if (currentToken) {
