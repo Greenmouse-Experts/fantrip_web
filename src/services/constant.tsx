@@ -82,3 +82,6 @@ export const FETCH_TOP_PLACES = `/top-places/published`
 export const GET_GUEST_NOTIFY = `/notifications/guest`
 export const GET_NOTIFY = `/notifications/host`
 export const MARK_AS_READ = `/notifications/mark-as-read`
+
+// analytics
+export const GET_ANALYTICS = `/analytics/host-stat`

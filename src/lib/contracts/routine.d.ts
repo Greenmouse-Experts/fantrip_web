@@ -54,12 +54,22 @@ export interface BankAccountFullItem extends BankAccountItem {
   thirdPartyAccountId: string;
 }
 
-
 export interface NotifyItem {
   body: string;
   createdDate: string;
   id: string;
   read: boolean;
   title: string;
-  userGroup:string;
+  userGroup: string;
+}
+
+export interface AnalyticItem {
+  availableListings: number;
+  booked: number;
+  revenuesChart: {
+    months: string[];
+    revenues: number[];
+  };
+  reviews: number;
+  totalListings: number;
 }
