@@ -39,14 +39,14 @@ const ChatList: FC<Props> = ({ prevChats }) => {
 
   const getRecieverPicture = (item: ChatItem) => {
     if (item.chatBuddy.id === userId) {
-      return item.initiator.picture;
-    } else return item.chatBuddy.picture;
+      return item?.initiator?.picture;
+    } else return item?.chatBuddy?.picture;
   };
 
   const getRecieverName = (item: ChatItem) => {
     if (item.chatBuddy.id === userId) {
-      return `${item.initiator.firstName} ${item.initiator.lastName}`;
-    } else return `${item.chatBuddy.firstName} ${item.chatBuddy.lastName}`;
+      return `${item.initiator?.firstName} ${item.initiator?.lastName}`;
+    } else return `${item.chatBuddy?.firstName} ${item.chatBuddy?.lastName}`;
   };
 
   return (
