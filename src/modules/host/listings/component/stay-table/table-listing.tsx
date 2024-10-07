@@ -169,7 +169,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         </span>
                       </Tooltip>
                     </Link>
-                    <Link
+                    {item.approved && <Link
                       className="underline relative block"
                       to={`/find-stay/${item.id}`}
                     >
@@ -184,7 +184,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         <TbViewportWide className="lg:text-xl inline-block" />{" "}
                         <span className="fs-400 md:fs-600">View Details</span>
                       </Tooltip>
-                    </Link>
+                    </Link>}
                   </div>
                 </div>
               </div>
