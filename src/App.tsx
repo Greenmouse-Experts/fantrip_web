@@ -6,6 +6,7 @@ import { authRooutes } from "./routes/auth-routes";
 import { userRoutes } from "./routes/user-routes";
 import { hostRoutes } from "./routes/host-routes";
 import { GOOGLE_AUTH_KEY } from "./services/constant";
+import { register } from "./serviceWorker";
 
 const router = createBrowserRouter([
   ...landingRooutes,
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   ...userRoutes,
   ...hostRoutes,
 ]);
+
 
 function App() {
   return (
@@ -25,3 +27,5 @@ function App() {
 }
 
 export default App;
+
+register();
