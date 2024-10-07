@@ -132,7 +132,7 @@ const SubmitRecommendIndex: FC<Props> = ({ close }) => {
     });
   };
   return (
-    <div className="p-3 lg:p-6 ">
+    <div className="p-3 lg:p-6 dark:bg-darkColorLight">
       {activeTab === 1 && (
         <SelectNaming
           nameOptions={nameOptions}

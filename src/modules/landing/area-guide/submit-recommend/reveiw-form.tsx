@@ -35,8 +35,8 @@ const ReviewForm: FC<Props> = ({
           Edit
         </p>
       </div>
-      <div className="mt-4 bg-gradient p-[2px] rounded-lg">
-        <div className="p-4 bg-white rounded-lg grid gap-3 divide-y-2 max-h-[44vh] overflow-y-auto">
+      <div className="mt-4 bg-gradient  p-[2px] rounded-lg">
+        <div className="p-4 bg-white dark:bg-darkColorLight rounded-lg grid gap-3 divide-y-2 max-h-[44vh] overflow-y-auto">
           <div>
             <p className="monts text-[#5E5E5E]">Type of Recommendation</p>
             <p className="text-[#000000] syne fw-600 text-lg">

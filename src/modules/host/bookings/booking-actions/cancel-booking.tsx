@@ -48,7 +48,7 @@ const CancelBooking: FC<Props> = ({ id, refetch }) => {
         onClick={() => setShowModal(true)}
       >
         <FcCancel />
-        <span className="text-black">Cancel Guest Booking</span>
+        <span className="text-black dark:text-white">Cancel Guest Booking</span>
       </p>
       <Dialog title="" size="md">
         <ReusableModal

@@ -43,7 +43,7 @@ const SelectNaming: FC<Props> = ({
             )}
             <p
               className={`fw-500 ${
-                nameChoice === item.value ? "text-white" : ""
+                nameChoice === item.value ? "text-white" : "!text-black"
               }`}
             >
               {item.name}
