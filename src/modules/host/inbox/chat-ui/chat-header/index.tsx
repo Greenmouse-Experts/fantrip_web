@@ -10,7 +10,7 @@ const ChatHeaderIndex = () => {
           <div className="flex items-center gap-x-2">
             <img
               src={
-                guestInfo.picture ||
+                guestInfo?.picture ||
                 "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
               }
               alt="profile"
