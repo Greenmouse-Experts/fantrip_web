@@ -60,6 +60,7 @@ const NotifyList: FC<Props> = ({ data, type, refetch }) => {
             item.read && "opacity-60"
           }`}
           onClick={() => handleReadAndNavigate(item)}
+          key={item.id}
         >
           <div
             className={`w-[40px] shrink-0 h-[40px] place-center ${
