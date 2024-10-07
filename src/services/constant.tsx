@@ -8,6 +8,7 @@ export const IP_KEY = import.meta.env.VITE_IP_KEY;
 export const SITE_URL = import.meta.env.VITE_SITE_BASE;
 
 
+
 // Auth endpoints
 export const USERS_REGISTER = `/user/client/signup`
 export const USERS_LOGIN = `/auth/signin`

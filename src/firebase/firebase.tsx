@@ -31,6 +31,8 @@ export const requestForToken = async () => {
   await getToken(messaging, { vapidKey: `${VAPID_KEY}` })
     .then((currentToken: string) => {
       if (currentToken) {
+        console.log(currentToken);
+        
         sendToken(currentToken);
         // Perform any other neccessary action with the token
       } else {
@@ -53,7 +55,7 @@ export const sendToken = async (payload: string) => {
   const previousFCM = Cookies.get("fcm");
   if (previousFCM) return;
   await addFcmToken(data).then(() => {
-    Cookies.set("fcm", payload, { expires: 7 });
+    Cookies.set("fcm", payload, { expires: 1 });
   });
 };
 
