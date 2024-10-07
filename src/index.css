@@ -31,6 +31,10 @@
   color: white;
   transition: color 0.3s;
 }
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 1;
+  background-color: rgb(212, 212, 212);
+}
 /* .dark select {
   
   background-color: #19253a;

@@ -142,3 +142,9 @@ export const markNotify = async (id:string) => {
     .patch(`${ENDPOINT.MARK_AS_READ}/${id}`)
     .then((response) => response.data);
 };
+
+export const getAnalytics = async () => {
+  return axios
+    .get(`${ENDPOINT.GET_ANALYTICS}`)
+    .then((response) => response.data);
+};

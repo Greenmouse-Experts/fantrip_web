@@ -70,7 +70,7 @@ const NotifyList: FC<Props> = ({ data, type, refetch }) => {
           </div>
           <div className="w-full">
             <div className="w-full flex justify-between">
-              <div className="bg-orange-50 text-orange-600 px-2">
+              <div className="bg-orange-50 dark:bg-darkColorLight text-orange-600 px-2">
                 <p>{item.title}</p>
               </div>
               <div className="flex justify-end gap-x-2 items-center opacity-75">

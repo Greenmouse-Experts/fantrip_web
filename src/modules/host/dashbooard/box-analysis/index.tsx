@@ -1,32 +1,39 @@
+import { FC } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { FaStar, FaUser } from "react-icons/fa6";
 import { GoArrowUpRight } from "react-icons/go";
 import { IoMdAddCircle, IoMdEye } from "react-icons/io";
 
-const BoxAnalyysis = () => {
+interface Props{
+  total: number;
+  booked: number;
+  available: number;
+  reviews: number
+}
+const BoxAnalyysis:FC<Props> = ({total, booked, available, reviews}) => {
   const data = [
     {
       name: "Total listings",
       icon: <IoMdEye />,
-      number: "33",
+      number: total,
       percent: "28.4%",
     },
     {
       name: "Booked",
       icon: <FaUser />,
-      number: "33",
+      number: booked,
       percent: "28.4%",
     },
     {
       name: "Available listings",
       icon: <IoMdAddCircle />,
-      number: "19",
+      number: available,
       percent: "3.1%",
     },
     {
       name: "Reviews",
       icon: <FaStar />,
-      number: "39",
+      number: reviews,
       percent: "11.4%",
     },
   ];
@@ -47,10 +54,10 @@ const BoxAnalyysis = () => {
                 <BsThreeDots className="text-[#D9E1FA]" />
               </div>
             </div>
-            <div className="flex items-center gap-x-2 mt-5">
+            <div className="flex justify-between items-center gap-x-5 mt-5">
               <p className="text-2xl lg:text-4xl fw-600">{item.number}</p>
-              <div className="flex items-center gap-x-[1px] px-2 py-1 bg-[#05C16833] text-[#14CA74]">
-                <p className="fs-300">{item.percent}</p>
+              <div className="flex items-center gap-x-[1px] px-2 rounded-full py-1 bg-[#05C16833] text-[#14CA74]">
+                {/* <p className="fs-300">{item.percent}</p> */}
                 <GoArrowUpRight className="text-sm" />
               </div>
             </div>

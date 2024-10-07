@@ -1,9 +1,15 @@
 import { formatAsNgnMoney } from "@/lib/utils/formatHelp";
+import { FC } from "react";
 import Chart from "react-apexcharts";
 
-const TotalRevenueChart = () => {
+
+interface Props{
+  months: string[],
+  revenue: number[]
+}
+const TotalRevenueChart:FC<Props> = ({months, revenue}) => {
     const options = {
-        colors: ["#4987BD", "#318174"],
+        colors: ["#9847fe", "#318174"],
         legend: {
           show: true,
         },
@@ -50,18 +56,14 @@ const TotalRevenueChart = () => {
                     cssClass: 'apexcharts-xaxis-label',
                 },
               },
-          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          categories: months,
         },
       } as ApexCharts.ApexOptions;
       const series = [
         {
           name: "Revenue",
-          data: [5000, 2000, 15000, 11000, 5500, 3000, 12000, 11000, 8000, 7000, 15000, 10000,],
+          data: revenue,
         },
-        {
-            name: "Consultation",
-            data: [5500, 3800, 12000, 13000, 9500, 2000, 16000, 12000, 9000, 4000, 7000, 10000],
-          },
       ];
     
       return (

@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { getToken } from '../services/helpers';
 import useAuthStore from '../store/userStore'
 
@@ -21,6 +22,7 @@ const useAuth = () => {
     const signOut = () => {
       localStorage.clear();
       sessionStorage.clear();
+      Cookies.remove('fcm')
       clearUser();
     };
   return {

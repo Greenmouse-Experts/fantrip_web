@@ -14,7 +14,7 @@ const PushNotification = () => {
   const notify = () =>
     toast({
       render: () => (
-        <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+        <div className="text-white bg-primary w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
           <ToastDisplay />
         </div>
       ),

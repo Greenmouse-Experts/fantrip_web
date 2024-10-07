@@ -185,35 +185,6 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   link: data[3]?.link,
                 },
           };
-          // const fd = new FormData();
-          // fd.append("idDoc", addressFrontImg[0]);
-          // fd.append("idDoc", addressBackImg[0]);
-          // fd.append("purpose", "identity_document");
-          // mutation.mutate(fd, {
-          //   onSuccess: (data) => {
-          //     const newData = {
-          //       ...payload,
-          //       addressDocFront: {
-          //         id: data[0]?.id,
-          //         link: data[0]?.link,
-          //       },
-          //       addressDocBack: {
-          //         id: data[1]?.id,
-          //         link: data[1]?.link,
-          //       },
-          //     };
-          //     handleCreateKyc(newData);
-          //   },
-          //   onError: (err: any) => {
-          //     setIsBusy(false);
-          //     toast({
-          //       title: err.response.data.message,
-          //       isClosable: true,
-          //       position: "top",
-          //       status: "error",
-          //     });
-          //   },
-          // });
           handleCreateKyc(newData);
         },
         onError: (err: any) => {

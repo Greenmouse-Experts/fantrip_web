@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
-import { useMutation } from "@tanstack/react-query";
 import { addFcmToken } from "@/services/api/routine";
+import Cookies from "js-cookie";
 
 const VAPID_KEY = import.meta.env.VITE_VAPID_KEY;
 const API_KEY = `${import.meta.env.VITE_FIREBASE_API_KEY}`;
@@ -28,7 +28,6 @@ export const app = initializeApp(firebaseConfig);
 
 export const requestForToken = async () => {
   const messaging = getMessaging(app);
-
   await getToken(messaging, { vapidKey: `${VAPID_KEY}` })
     .then((currentToken: string) => {
       if (currentToken) {
@@ -51,9 +50,10 @@ export const sendToken = async (payload: string) => {
     deviceType: "Web",
     token: payload,
   };
-  useMutation({
-    mutationFn: () => addFcmToken(data),
-    mutationKey: ["save_fcm"],
+  const previousFCM = Cookies.get("fcm");
+  if (previousFCM) return;
+  await addFcmToken(data).then(() => {
+    Cookies.set("fcm", payload, { expires: 7 });
   });
 };
 
