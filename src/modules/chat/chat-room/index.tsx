@@ -1,9 +1,6 @@
 import { useState } from "react";
-import io from "socket.io-client";import {
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
-} from "@chakra-ui/react";
+import io from "socket.io-client";
+import { Drawer, DrawerContent, DrawerOverlay } from "@chakra-ui/react";
 import { SOCKET_URL } from "@/services/constant";
 import useAuth from "@/hooks/authUser";
 import RoomBodyIndex from "./room-body";
@@ -15,12 +12,12 @@ import { useUtils } from "@/hooks/useUtils";
 const socket = io(`${SOCKET_URL}`);
 const ChatRoomIndex = () => {
   const { isLoggedIn } = useAuth();
-  const {activeModal, setNewActiveModal} = useUtils()
+  const { activeModal, setNewActiveModal } = useUtils();
   const [reloadSocket, setReloadSocket] = useState("");
   const handleReload = () => {
     setReloadSocket(`${new Date()}`);
   };
-  
+
   return (
     <div>
       <div className="pt-24 lg:pt-28 bg-layout-gradient"></div>
@@ -30,8 +27,8 @@ const ChatRoomIndex = () => {
         </div>
         <div className="p-[.5px] bg-[#D2D2D2] dark:bg-darkColorLight"></div>
         <div className="box">
-          <div className="lg:flex gap-x-4 lg:h-[80vh]">
-            <div className="hidden lg:block lg:w-[28%] border-r-2 border-[#D2D2D2]">
+          <div className="relative lg:flex gap-x-4 ">
+            <div className="hidden lg:block lg:w-[28%] border-r-2 h-full border-[#D2D2D2] sticky top-0">
               <RoomSidebarIndex socket={socket} reload={handleReload} />
             </div>
             <div className="lg:w-[48%]">
@@ -42,7 +39,7 @@ const ChatRoomIndex = () => {
               />
             </div>
             {isLoggedIn && (
-              <div className="hidden lg:block lg:w-[25%] h-full">
+              <div className="hidden lg:block lg:w-[25%] h-full sticky top-0">
                 <RoomChatListIndex socket={socket} />
               </div>
             )}
