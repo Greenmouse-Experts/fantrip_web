@@ -153,7 +153,6 @@ const RegisterForm = () => {
           </label>
           <PhoneInputWithCountry
             international
-            defaultCountry="US"
             name="phone"
             control={control}
             rules={{
