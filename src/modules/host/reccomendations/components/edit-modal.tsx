@@ -291,7 +291,7 @@ const EditRecommendation: FC<Props> = ({ item, close, refetch }) => {
               isBusy ? (
                 <BeatLoader size={12} color="white" />
               ) : (
-                "Update Stay Info"
+                "Update Recommendation"
               )
             }
             type="int"
