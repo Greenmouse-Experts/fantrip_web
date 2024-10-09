@@ -1,21 +1,19 @@
 import Tabs from "@/components/Tabs";
-// import BookingIndex from "../booking";
-// import ReservationIndex from "../reservation";
+import BookingIndex from "../booking";
+import ReservationIndex from "../reservation";
 
 const GuestActivityIndex = () => {
   const notifyTabs = [
     {
       title: <div className="flex item-end gap-x-6 lg:text-lg">Reservations</div>,
       content: (
-        //   <ReservationIndex host/>
-        <></>
+          <ReservationIndex host/>
       ),
     },
     {
       title: <div className="flex item-end gap-x-6 lg:text-lg">Bookings</div>,
       content: (
-        //   <BookingIndex host/>
-        <></>
+          <BookingIndex host/>
       ),
     },
   ];

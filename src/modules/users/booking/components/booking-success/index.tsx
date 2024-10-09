@@ -8,12 +8,14 @@ import favicon from "@/assets/favicon.png";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
 import { formatNumber, formatStatus } from "@/lib/utils/formatHelp";
 import dayjs from "dayjs";
+import useAuth from "@/hooks/authUser";
 
 interface Props {
   id: string;
 }
 const BookingSuccessIndex: FC<Props> = ({ id }) => {
   const navigate = useNavigate();
+  const {isHost} = useAuth()
   const { data, isLoading } = useQuery({
     queryKey: ["get-booking-details"],
     queryFn: () => fetchBookingDetails(id),
@@ -46,7 +48,7 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
               </p>
               <div className="mt-10 flex gap-x-4 items-center">
                 <Button
-                  onClick={() => navigate("/user/booking")}
+                  onClick={() => navigate(isHost? "/user/guest-activity" : "/user/booking")}
                   title={"View All Bookings"}
                   altClassName="btn-primary px-5 py-3 fw-600"
                 />
