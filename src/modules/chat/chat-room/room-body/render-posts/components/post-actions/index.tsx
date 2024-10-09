@@ -13,7 +13,7 @@ interface Props {
   id: string;
   socket: any;
   reaction: string | undefined;
-  minusComment: () => void
+  minusComment: (minus?:boolean) => void
 }
 const PostActions: FC<Props> = ({
   type,

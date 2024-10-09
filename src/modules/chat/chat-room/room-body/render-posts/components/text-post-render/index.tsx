@@ -20,9 +20,9 @@ interface Props {
 const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
-  const addComment = () => {
-    const currentComment = item.threads;
-    setCommentCount(Number(currentComment) + 1);
+  const addComment = (minus?: boolean) => {
+    const count = minus ? Number(commentCount) - 1 : Number(commentCount) + 1;
+    setCommentCount(count);
   };
 
   return (
@@ -77,6 +77,7 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
           type="text"
           socket={socket}
           reaction={item.myReaction}
+          minusComment={addComment}
         />
       </div>
       <div className="mt-3">
