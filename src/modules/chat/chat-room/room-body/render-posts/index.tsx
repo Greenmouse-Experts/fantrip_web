@@ -59,8 +59,6 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
     }
   }, [prevPosts]);
 
-  // console.log(prevPosts);
-
   return (
     <div className="grid mt-4 gap-4">
       {isLoading && <PostLoader count={3} />}

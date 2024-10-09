@@ -73,8 +73,8 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
 
   return (
     <div>
-      <div>
-        <Menu>
+      <div className="relative">
+        <Menu placement="end" direction="rtl">
           <MenuButton>
             <div className="flex gap-x-2 items-center">
               <BsThreeDotsVertical
@@ -83,19 +83,25 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
               />
             </div>
           </MenuButton>
-          <MenuList className="text-black !w-[200px]">
-            <MenuItem onClick={() => openChatWithUser()}>
-              <p className="text-black fs-400">Start Chat</p>
-            </MenuItem>
-            <MenuItem onClick={openUser}>
-              <p className="text-black fs-400">View User Profile</p>
-            </MenuItem>
-            <MenuItem>
+          <MenuList className="text-black !w-[180px] relative">
+            {user.id !== userId && (
+              <>
+                <MenuItem onClick={() => openChatWithUser()}>
+                  <p className="text-black fs-400">Start Chat</p>
+                </MenuItem>
+                <MenuItem onClick={openUser}>
+                  <p className="text-black fs-400">View User Profile</p>
+                </MenuItem>
+              </>
+            )}
+            {/* <MenuItem>
               <p className="text-black fs-400">Report this user</p>
-            </MenuItem>
+            </MenuItem> */}
             {user.id === userId && (
               <MenuItem onClick={() => ShowDialog(true)}>
-                <p className="text-red-500 fs-400">Delete Post</p>
+                <p className="text-red-500 fs-400">
+                  {type === "comment" ? "Delete Comment" : "Delete Post"}
+                </p>
               </MenuItem>
             )}
           </MenuList>
