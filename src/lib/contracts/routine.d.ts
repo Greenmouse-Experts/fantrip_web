@@ -29,6 +29,7 @@ export interface FetchParam {
   page?: number;
   isPublished?: boolean;
   status?: string;
+  isGuest?: boolean
 }
 
 export enum REUSABLE_MODAL_TYPES {

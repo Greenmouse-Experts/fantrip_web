@@ -6,11 +6,14 @@ import EmptyNetState from "@/components/empty-states/empty-net";
 import { FetchParam } from "@/lib/contracts/routine";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 import PendingReservationList from "./components/reservation-lisiting";
+import useAuth from "@/hooks/authUser";
 
 const PendingReservation = () => {
+  const { isHost } = useAuth();
   const [params, setParams] = useState<FetchParam>({
     status: RESERVATION_STATUS.PENDING,
     page: 1,
+    isGuest: isHost,
   });
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchReservation(params),

@@ -6,11 +6,14 @@ import EmptyNetState from "@/components/empty-states/empty-net";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 import { FetchParam } from "@/lib/contracts/routine";
 import ConfirmedReservationList from "./components/reservation-lisiting";
+import useAuth from "@/hooks/authUser";
 
 const ConfirmedReservation = () => {
+  const { isHost } = useAuth();
   const [params, setParams] = useState<FetchParam>({
     status: RESERVATION_STATUS.CONFIRMED,
-    page: 1
+    page: 1,
+    isGuest: isHost,
   });
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchReservation(params),
@@ -20,9 +23,9 @@ const ConfirmedReservation = () => {
   const handleNext = () => {
     setParams({
       ...params,
-      page: 2
-    })
-  }
+      page: 2,
+    });
+  };
 
   return (
     <div>
@@ -32,7 +35,11 @@ const ConfirmedReservation = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <ConfirmedReservationList refetch={refetch} data={data?.data} next={handleNext}/>
+        <ConfirmedReservationList
+          refetch={refetch}
+          data={data?.data}
+          next={handleNext}
+        />
       )}
       {!isLoading && !data?.data?.length && (
         <div>

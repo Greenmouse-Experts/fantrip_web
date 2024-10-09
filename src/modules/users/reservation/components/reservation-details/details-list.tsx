@@ -48,7 +48,7 @@ const DetailsList: FC<Props> = ({ data, close }) => {
             <div className="flex gap-x-2">
               <p className="text-gray-600">Host:</p>
               <p className="fw-500">
-                {stay.host.firstName} {stay.host.lastName}
+                {stay.host?.firstName} {stay.host?.lastName}
               </p>
             </div>
             <div className="flex gap-x-2">

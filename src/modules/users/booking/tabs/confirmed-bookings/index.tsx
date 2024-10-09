@@ -5,11 +5,14 @@ import { useState } from "react";
 import ConfirmedBookingList from "./components/booking-lisiting";
 import EmptyNetState from "@/components/empty-states/empty-net";
 import { FetchParam } from "@/lib/contracts/routine";
+import useAuth from "@/hooks/authUser";
 
 const ConfirmedBooking = () => {
+  const { isHost } = useAuth();
   const [params, setParams] = useState<FetchParam>({
-    status: 'pending',
-    page: 1
+    status: "pending",
+    page: 1,
+    isGuest: isHost,
   });
   const { isLoading, data, refetch } = useQuery({
     queryFn: () => guestFetchBooking(params),
@@ -19,9 +22,9 @@ const ConfirmedBooking = () => {
   const handleNext = () => {
     setParams({
       ...params,
-      page: 2
-    })
-  }
+      page: 2,
+    });
+  };
 
   return (
     <div>
@@ -31,7 +34,11 @@ const ConfirmedBooking = () => {
         </div>
       )}
       {!isLoading && !!data?.data?.length && (
-        <ConfirmedBookingList refetch={refetch} data={data?.data} next={handleNext}/>
+        <ConfirmedBookingList
+          refetch={refetch}
+          data={data?.data}
+          next={handleNext}
+        />
       )}
       {!isLoading && !data?.data?.length && (
         <div>
