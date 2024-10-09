@@ -13,6 +13,7 @@ interface Props {
   id: string;
   socket: any;
   reaction: string | undefined;
+  minusComment: () => void
 }
 const PostActions: FC<Props> = ({
   type,
@@ -21,7 +22,8 @@ const PostActions: FC<Props> = ({
   comment,
   id,
   socket,
-  reaction
+  reaction,
+  minusComment
 }) => {
   const navigate = useNavigate()
   const { token, isLoggedIn } = useAuth();
@@ -118,7 +120,7 @@ const PostActions: FC<Props> = ({
             } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
             onClick={() => handleAction("upvote")}
           >
-            <TbArrowBigUp  className='dark:text-white'/>
+            <TbArrowBigUp className="dark:text-white" />
             <p>{statCount.initLike}</p>
           </button>
           <button
@@ -138,7 +140,7 @@ const PostActions: FC<Props> = ({
             } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
             onClick={() => handleAction("downvote")}
           >
-            <TbArrowBigDown  className='dark:text-white' />
+            <TbArrowBigDown className="dark:text-white" />
             <p>{statCount.initDislike}</p>
           </button>
         </div>
@@ -146,12 +148,20 @@ const PostActions: FC<Props> = ({
           type="button"
           className={`${
             type === "text"
-              ? `${showComment ? "bg-blue-600 text-white" : "bg-white dark:bg-darkColor"}`
-              : `${showComment ? "bg-blue-600 text-white" : "bg-[#EDEDFF] dark:bg-darkColorLight"}`
+              ? `${
+                  showComment
+                    ? "bg-blue-600 text-white"
+                    : "bg-white dark:bg-darkColor"
+                }`
+              : `${
+                  showComment
+                    ? "bg-blue-600 text-white"
+                    : "bg-[#EDEDFF] dark:bg-darkColorLight"
+                }`
           } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
           onClick={() => handleShowComment(id)}
         >
-          <GoComment  className='dark:text-white'/>
+          <GoComment className="dark:text-white" />
           <p>{comment || 0}</p>
         </button>
       </div>
@@ -161,6 +171,7 @@ const PostActions: FC<Props> = ({
           id={id}
           count={comment || 0}
           token={token || ""}
+          minusComment={minusComment}
         />
       )}
     </div>

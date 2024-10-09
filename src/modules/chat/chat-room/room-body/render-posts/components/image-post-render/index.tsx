@@ -16,9 +16,11 @@ interface Props {
 const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
-  const addComment = () => {
-    const currentComment = item.threads;
-    setCommentCount(Number(currentComment) + 1);
+  const addComment = (minus?:boolean) => {
+    const count = minus
+      ? Number(commentCount) - 1
+      : Number(commentCount) + 1;
+    setCommentCount(count);
   };
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
@@ -57,7 +59,7 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
                 socket={socket}
                 id={item.id}
                 user={item.user}
-                openUser={() => setProfileShow(false)}
+                openUser={() => setProfileShow(true)}
                 reload={handleReload}
               />
             </div>
@@ -78,6 +80,7 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
             type="image"
             socket={socket}
             reaction={item.myReaction}
+            minusComment={addComment}
           />
         </div>
       </div>

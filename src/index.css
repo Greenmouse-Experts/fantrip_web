@@ -135,6 +135,13 @@ input[type="radio"]:checked {
   z-index: 90000 !important;
 }
 
+/* menu small screen position */
+@media (max-width: 1000px) {
+    .css-r6z5ec {
+        left: -137px !important;
+    }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

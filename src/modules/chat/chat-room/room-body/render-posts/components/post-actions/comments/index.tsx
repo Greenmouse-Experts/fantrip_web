@@ -8,8 +8,9 @@ interface Props {
   id: string;
   count: number;
   token: string;
+  minusComment: (minus?: boolean) => void;
 }
-const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
+const ViewComments: FC<Props> = ({ socket, id, token, count, minusComment }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [reload, setReload] = useState('')
   const [prevComments, setPrevComments] = useState<CommentItem[]>([]);
@@ -40,13 +41,14 @@ const ViewComments: FC<Props> = ({ socket, id, token, count }) => {
   }, [socket, count, reload]);
 
   const handleReload = () => {
+    minusComment(true)
     setReload(`${new Date()}`)
   }
 
   return (
     <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
       <div>
-        <p className="fs-500 fw-500">{count} Comments</p>
+        <p className="fs-500 fw-500">{count} Comment{count > 1? "s" : ""}</p>
       </div>
       <div className="mt-4 grid gap-2">
         {isLoading && <CommentsLoading />}

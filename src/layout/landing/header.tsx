@@ -144,7 +144,7 @@ const LandingHeader = () => {
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_4} alt="icons" />
                               </div>
-                              <p className="" >Dashboard</p>
+                              <p className="">Dashboard</p>
                             </Link>
                           ) : (
                             <Link
@@ -197,6 +197,19 @@ const LandingHeader = () => {
                             </Link>
                           </MenuItem>
                         )}
+                        {isHost && (
+                          <MenuItem className="border-b !p-0">
+                            <Link
+                              to={"/user/guest-activity"}
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
+                            >
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_7} alt="icons" />
+                              </div>
+                              <p className="">Guest Activity</p>
+                            </Link>
+                          </MenuItem>
+                        )}
                         <MenuItem className="!p-0">
                           <Link
                             to={isHost ? "/user/host" : "/user/host-setup"}
@@ -218,7 +231,11 @@ const LandingHeader = () => {
                             }
                           >
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                            <img src={icon_10} alt="icons" className="w-full h-full" />
+                              <img
+                                src={icon_10}
+                                alt="icons"
+                                className="w-full h-full"
+                              />
                             </div>
                             <p className="">Referrals</p>
                           </Link>
@@ -242,7 +259,11 @@ const LandingHeader = () => {
                             onClick={() => setShowModal(true)}
                           >
                             <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                            <img src={icon_9} alt="icons" className="w-5 h-5" />
+                              <img
+                                src={icon_9}
+                                alt="icons"
+                                className="w-5 h-5"
+                              />
                             </div>
                             <p className="">Logout</p>
                           </div>
@@ -251,14 +272,14 @@ const LandingHeader = () => {
                     </Menu>
                   </li>
                 )}
-                <ThemeSwitch header/>
+                <ThemeSwitch header />
               </ul>
             </div>
           </div>
         </div>
         <Dialog title="" size="xs">
-        <LogoutModal CloseModal={() => setShowModal(false)} />
-      </Dialog>
+          <LogoutModal CloseModal={() => setShowModal(false)} />
+        </Dialog>
       </div>
       <Drawer
         isOpen={show}

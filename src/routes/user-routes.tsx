@@ -1,6 +1,7 @@
 import UserLayout from "@/layout/users";
 import BookingPage from "@/pages/users/booking";
 import BookingSuccess from "@/pages/users/booking-success";
+import GuestActivity from "@/pages/users/guest-activity";
 import HostaFan from "@/pages/users/host";
 import HostSetup from "@/pages/users/host-setup";
 import GuestNotification from "@/pages/users/notifications";
@@ -49,6 +50,10 @@ export const userRoutes = [
             path: 'notifications',
             element: <GuestNotification/>,
           },
+          {
+            path: 'guest-activity',
+            element: <GuestActivity/>
+          }
         ],
       },
 ]
