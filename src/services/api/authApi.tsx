@@ -94,3 +94,9 @@ export const deleteAccount = async () => {
     .delete(`${ENDPOINT.DELETE_ACCOUNT}`)
     .then((response) => response.data);
 };
+
+export const sendInvite = async (payload: any) => {
+  return axios
+    .post(`${ENDPOINT.SEND_INVITE}`, payload)
+    .then((response) => response.data);
+};

@@ -94,7 +94,7 @@ const ChatBody: FC<Props> = ({ socket }) => {
 
   useEffect(() => {
     if (!chatWithHost.length) {
-      // console.log('i still ran');
+      console.log('i still ran');
       
       getMessages();
       // getSentMessages();
@@ -103,7 +103,7 @@ const ChatBody: FC<Props> = ({ socket }) => {
 
   useEffect(() => {
     if (!chatWithHost.length && isLoaded) {
-      // console.log('didnt run');
+      console.log('didnt run');
       
       getSentMessages();
     }
