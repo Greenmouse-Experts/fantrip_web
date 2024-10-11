@@ -10,15 +10,22 @@ interface Props {
   token: string;
   minusComment: (minus?: boolean) => void;
 }
-const ViewComments: FC<Props> = ({ socket, id, token, count, minusComment }) => {
-  const [isLoading, setIsLoading] = useState(false)
-  const [reload, setReload] = useState('')
+const ViewComments: FC<Props> = ({
+  socket,
+  id,
+  token,
+  count,
+  minusComment,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [reload, setReload] = useState("");
   const [prevComments, setPrevComments] = useState<CommentItem[]>([]);
 
   const getComments = () => {
     const onListenEvent = (value: any) => {
+      console.log('');
       setPrevComments(value.data.result);
-      setIsLoading(false)
+      setIsLoading(false);
     };
     socket.on(`publishedCommentsRetrieved`, onListenEvent);
 
@@ -33,22 +40,31 @@ const ViewComments: FC<Props> = ({ socket, id, token, count, minusComment }) => 
       page: 1,
     };
     socket.emit("retrievePublishedComments", payload);
-    setIsLoading(true)
+    setIsLoading(true);
   }, [count, reload]);
 
   useEffect(() => {
     getComments();
-  }, [socket, count, reload]);
-
+  }, [socket, reload]);
+  
   const handleReload = () => {
-    minusComment(true)
-    setReload(`${new Date()}`)
-  }
+    minusComment(true);
+    setReload(`${new Date()}`);
+  };
+
+  useEffect(() => {
+    // minusComment(true);
+    setReload(`${new Date()}`);
+  }, [count]);
+
+  // console.log(prevComments);
 
   return (
     <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
       <div>
-        <p className="fs-500 fw-500">{count} Comment{count > 1? "s" : ""}</p>
+        <p className="fs-500 fw-500">
+          {count} Comment{count > 1 ? "s" : ""}
+        </p>
       </div>
       <div className="mt-4 grid gap-2">
         {isLoading && <CommentsLoading />}

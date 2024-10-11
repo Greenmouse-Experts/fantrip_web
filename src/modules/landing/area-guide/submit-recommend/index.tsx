@@ -98,6 +98,7 @@ const SubmitRecommendIndex: FC<Props> = ({ close }) => {
       tags: tags,
       description: data.description,
       isDisclosed: true,
+      useNickname: nameChoice === "nick"? true : false,
     };
     const id = data.recommend_type;
     if(!photos?.length){

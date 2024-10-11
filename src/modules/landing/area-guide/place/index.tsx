@@ -24,6 +24,7 @@ const AreaCategoryPlaceIndex: FC<Props> = ({ data }) => {
     location,
     description,
     createdDate,
+    useNickname
   } = data;
   const placeTags = JSON.parse(tags);
   const [showMore, setShowMore] = useState(false);
@@ -38,7 +39,7 @@ const AreaCategoryPlaceIndex: FC<Props> = ({ data }) => {
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-x-1">
               <FaRegUser className="shrink-0" />
-              <p className="fw-500">{`${user.firstName} ${user.lastName}`}</p>
+              <p className="fw-500">{useNickname? user.nickname : `${user.firstName} ${user.lastName}`}</p>
             </div>
             <div>
               <p className="opacity-70 fs-500">

@@ -52,7 +52,8 @@ export interface ReccomendationItem {
   user: UserItem;
   totalReviews: number;
   reviews: ReviewResult[];
-  avgRating: string | number
+  avgRating: string | number;
+  useNickname: boolean;
 }
 
 interface PlaceItemLocation {
@@ -62,10 +63,9 @@ interface PlaceItemLocation {
   searchKey: string;
   picture: string;
   published: boolean;
-  createdDate: string; 
-  spot: SpotCategoryItem; 
+  createdDate: string;
+  spot: SpotCategoryItem;
 }
-
 
 export interface CreateReviewItem {
   rating: number;
