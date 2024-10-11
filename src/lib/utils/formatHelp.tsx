@@ -218,3 +218,8 @@ export const getCappedPercentage = (number:number, total:number) => {
   const percentage = (number / total) * 100;
   return Math.min(percentage, 50); // Cap at 50
 }
+
+export const isValidEmail = (email: string): boolean => {
+  const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return pattern.test(email);
+}

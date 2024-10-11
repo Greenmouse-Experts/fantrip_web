@@ -6,12 +6,13 @@ import ChatBubble from "../component/chat-bubble";
 
 interface Props {
   socket: any;
+  reload: string | undefined;
   type: "guest" | "host"
 }
-const HostChatBody: FC<Props> = ({ socket }) => {
+const HostChatBody: FC<Props> = ({ socket, reload }) => {
   const { chatWithMini, miniInfo, chatWithMiniPage, saveChatWithMini } =
     useChat();
-  const { token, userId } = useAuth();
+  const { token, userId, isHost, user, firstName, lastName } = useAuth();
   const [newMsg, setNewMsg] = useState<ChatItem2>();
   const [isLoaded, setIsLoaded] = useState(false)
 
@@ -25,6 +26,49 @@ const HostChatBody: FC<Props> = ({ socket }) => {
 
     // Remove event listener on component unmount
     return () => socket.off(`messagesRetrieved:${userId}`);
+  };
+
+  // get recent chat sent
+  const getSentMessages = () => {
+    const onListenEvent = (value: any) => {
+      setIsLoaded(true);
+      console.log(value);
+      const payload = {
+        chatBuddy: {
+          ...miniInfo,
+        },
+        initiator: {
+          id: user.id,
+          firstName: firstName,
+          lastName: lastName,
+          nickname: user.nickname,
+          verifiedAsHost: false,
+          role: isHost? "host" : "guest",
+          picture: user.image,
+          reviews: [],
+          totalReviews: 0,
+          avgRating: null,
+        },
+        id: value.data.id,
+        message: value.data.lastMessage,
+        file: null,
+        read: false,
+        createdDate: value.data.createdDate,
+        chat: {
+          id: value.data.id,
+          lastMessage: value.data.lastMessage,
+          isArchived: false,
+          unread: "",
+          createdDate: value.data.createdDate,
+          updatedDate: value.data.createdDate,
+        },
+      };
+      saveChatWithMini([payload]);
+    };
+    socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
+
+    // Remove event listener on component unmount
+    return () => socket.off(`recentChatRetrieved:${userId}`);
   };
 
   // get current updates fro sent messages or received msgs
@@ -59,6 +103,17 @@ const HostChatBody: FC<Props> = ({ socket }) => {
       getUpdates();
     }
   }, [socket, isLoaded]);
+
+  console.log(reload);
+  
+
+  useEffect(() => {
+    if (!chatWithMini.length && isLoaded) {
+      console.log('didnt run');
+      
+      getSentMessages();
+    }
+  }, [socket, reload]);
 
    // add updated messages to the chat message array
    useEffect(() => {

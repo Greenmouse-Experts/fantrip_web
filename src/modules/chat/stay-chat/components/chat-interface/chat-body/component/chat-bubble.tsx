@@ -15,7 +15,7 @@ const ChatBubble: FC<Props> = ({ type, text, date }) => {
         <p className="fs-500">
          {text}
         </p>
-        <p className="text-end fs-200 italic mt-[3px]">{dayjs(date).fromNow()}</p>
+        <p className="text-end fs-200 italic mt-[3px]">{dayjs(date).format('hh:mm a')}</p>
       </div>
     );
   else if (type === userId)
@@ -25,7 +25,7 @@ const ChatBubble: FC<Props> = ({ type, text, date }) => {
         <p className="fs-500">
           {text}
         </p>
-        <p className="text-end fs-200 italic mt-[3px]">{dayjs(date).fromNow()}</p>
+        <p className="text-end fs-200 italic mt-[3px]">{dayjs(date).format('hh:mm a')}</p>
       </div>
       </div>
     );

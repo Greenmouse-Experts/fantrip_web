@@ -7,8 +7,9 @@ import { ChatItem2 } from "@/lib/contracts/chat";
 interface Props {
   socket: any;
   type: "guest" | "host";
+  reload: string | undefined;
 }
-const ChatBody: FC<Props> = ({ socket }) => {
+const ChatBody: FC<Props> = ({ socket, reload }) => {
   const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
     useChat();
   const { token,user, userId, firstName, lastName, isHost } = useAuth();
@@ -19,7 +20,9 @@ const ChatBody: FC<Props> = ({ socket }) => {
   const getMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
-      saveChatWithHost(value.data.result);
+      console.log('i am the second');
+      
+      saveChatWithHost([...chatWithHost, ...value.data.result]);
     };
     socket.on(`messagesRetrieved:${userId}`, onListenEvent);
 
@@ -31,7 +34,7 @@ const ChatBody: FC<Props> = ({ socket }) => {
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
-      // console.log(value);
+      console.log(value, 'first');
       const payload = {
         chatBuddy: {
           ...hostInfo,
@@ -94,20 +97,20 @@ const ChatBody: FC<Props> = ({ socket }) => {
 
   useEffect(() => {
     if (!chatWithHost.length) {
-      console.log('i still ran');
-      
       getMessages();
-      // getSentMessages();
     }
-  }, [socket, hostId]);
+  }, [socket, hostInfo]);
+
+  console.log(reload, chatWithHost, isLoaded);
+  
 
   useEffect(() => {
-    if (!chatWithHost.length && isLoaded) {
-      console.log('didnt run');
+    if (!chatWithHost.length && reload && !isLoaded) {
+      console.log('didnt run, lied');
       
       getSentMessages();
     }
-  }, [socket, hostId]);
+  }, [reload]);
 
   useEffect(() => {
     if (isLoaded) {
