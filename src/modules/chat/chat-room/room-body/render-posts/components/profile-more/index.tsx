@@ -110,7 +110,7 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
       <Dialog title="" size="sm">
         <ReusableModal
           type=""
-          title="Are you sure you want to delete this post"
+          title={`Are you sure you want to delete this ${type}`}
           action={handleDelete}
           actionTitle="Yes, Delete"
           cancelTitle="No, Close"

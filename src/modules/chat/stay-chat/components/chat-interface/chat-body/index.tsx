@@ -6,19 +6,19 @@ import { ChatItem2 } from "@/lib/contracts/chat";
 
 interface Props {
   socket: any;
-  type: "guest" | "host"
+  type: "guest" | "host";
 }
 const ChatBody: FC<Props> = ({ socket }) => {
   const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
     useChat();
-  const { token, userId } = useAuth();
+  const { token,user, userId, firstName, lastName, isHost } = useAuth();
   const [newMsg, setNewMsg] = useState<ChatItem2>();
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // on load get previous messages or message history
   const getMessages = () => {
     const onListenEvent = (value: any) => {
-      setIsLoaded(true)
+      setIsLoaded(true);
       saveChatWithHost(value.data.result);
     };
     socket.on(`messagesRetrieved:${userId}`, onListenEvent);
@@ -27,10 +27,53 @@ const ChatBody: FC<Props> = ({ socket }) => {
     return () => socket.off(`messagesRetrieved:${userId}`);
   };
 
+  // get recent chat sent
+  const getSentMessages = () => {
+    const onListenEvent = (value: any) => {
+      setIsLoaded(true);
+      // console.log(value);
+      const payload = {
+        chatBuddy: {
+          ...hostInfo,
+        },
+        initiator: {
+          id: user.id,
+          firstName: firstName,
+          lastName: lastName,
+          nickname: user.nickname,
+          verifiedAsHost: false,
+          role: isHost? "host" : "guest",
+          picture: user.image,
+          reviews: [],
+          totalReviews: 0,
+          avgRating: null,
+        },
+        id: value.data.id,
+        message: value.data.lastMessage,
+        file: null,
+        read: false,
+        createdDate: value.data.createdDate,
+        chat: {
+          id: value.data.id,
+          lastMessage: value.data.lastMessage,
+          isArchived: false,
+          unread: "",
+          createdDate: value.data.createdDate,
+          updatedDate: value.data.createdDate,
+        },
+      };
+      saveChatWithHost([payload]);
+    };
+    socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
+
+    // Remove event listener on component unmount
+    return () => socket.off(`recentChatRetrieved:${userId}`);
+  };
+
   // get current updates fro sent messages or received msgs
   const getUpdates = () => {
     const onListenEvent = (value: any) => {
-      console.log(value.data, 'inside listener');
+      // console.log(value.data, "inside listener");
       setNewMsg(value.data);
     };
     socket.on(`messageSent:${chatWithHost[0].chat.id}`, onListenEvent);
@@ -39,7 +82,7 @@ const ChatBody: FC<Props> = ({ socket }) => {
     return () => socket.off(`messageSent:${chatWithHost[0].chat.id}`);
   };
 
-   // connect to the chat room once page loads or when chat id is changed
+  // connect to the chat room once page loads or when chat id is changed
   useEffect(() => {
     const payload = {
       token: token,
@@ -50,8 +93,19 @@ const ChatBody: FC<Props> = ({ socket }) => {
   }, [socket, hostInfo]);
 
   useEffect(() => {
-    if(!chatWithHost.length){
+    if (!chatWithHost.length) {
+      // console.log('i still ran');
+      
       getMessages();
+      // getSentMessages();
+    }
+  }, [socket, hostId]);
+
+  useEffect(() => {
+    if (!chatWithHost.length && isLoaded) {
+      // console.log('didnt run');
+      
+      getSentMessages();
     }
   }, [socket, hostId]);
 
@@ -61,8 +115,8 @@ const ChatBody: FC<Props> = ({ socket }) => {
     }
   }, [socket, isLoaded]);
 
-   // add updated messages to the chat message array
-   useEffect(() => {
+  // add updated messages to the chat message array
+  useEffect(() => {
     if (newMsg) {
       const filtered = chatWithHost.filter((where) => where.id === newMsg.id);
       if (!filtered.length) {
@@ -71,15 +125,14 @@ const ChatBody: FC<Props> = ({ socket }) => {
       }
     }
   }, [newMsg, socket]);
-  
 
-    // Scroll to the bottom of the div when new message is added
-    const scrollRef = useRef<HTMLDivElement | null>(null);
-    useEffect(() => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-      }
-    }, [chatWithHost]);
+  // Scroll to the bottom of the div when new message is added
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [chatWithHost]);
 
   return (
     <div className="h-full overflow-y-auto" ref={scrollRef}>

@@ -30,7 +30,6 @@ const HostChatBody: FC<Props> = ({ socket }) => {
   // get current updates fro sent messages or received msgs
   const getUpdates = () => {
     const onListenEvent = (value: any) => {
-      console.log(value.data, 'inside listener');
       setNewMsg(value.data);
     };
     socket.on(`messageSent:${chatWithMini[0].chat.id}`, onListenEvent);
