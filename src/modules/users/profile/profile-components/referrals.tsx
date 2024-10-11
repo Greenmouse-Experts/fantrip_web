@@ -1,5 +1,5 @@
 import { getCappedPercentage } from "@/lib/utils/formatHelp";
-import { viewProfile } from "@/services/api/authApi";
+import { sendInvite, viewProfile } from "@/services/api/authApi";
 import { SITE_URL } from "@/services/constant";
 import {
   CircularProgress,
@@ -7,16 +7,47 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import { IoGiftOutline, IoSend } from "react-icons/io5";
 import { LuFileSignature } from "react-icons/lu";
 import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 
 const UserReferrals = () => {
+  const [emailInput, setEmailInput] = useState<string>("");
+  const [isBusy, setIsBusy] = useState<boolean>(false);
   const { data: profile } = useQuery({
     queryKey: ["profile"],
     queryFn: () => viewProfile(),
   });
   const toast = useToast();
+
+  const handleSend = async () => {
+    setIsBusy(true);
+    const payload = {
+      email: emailInput,
+    };
+    await sendInvite(payload)
+      .then((res) => {
+        toast({
+          render: () => (
+            <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+              {res.message}
+            </div>
+          ),
+          position: "top",
+        });
+        setEmailInput("");
+        setIsBusy(false);
+      })
+      .catch((err) => {
+        toast({
+          title: err.response.data.message,
+          position: "top",
+          status: "error",
+        });
+        setIsBusy(false);
+      });
+  };
 
   const handleCopy = async (text: string) => {
     try {
@@ -33,7 +64,7 @@ const UserReferrals = () => {
       toast({
         title: "Failed to copy",
         position: "top",
-        status: "error"
+        status: "error",
       });
     }
   };
@@ -63,7 +94,9 @@ const UserReferrals = () => {
                 </CircularProgressLabel>
               </CircularProgress>
             </div>
-            <p className="text-white font-[300] fs-300 mt-1">{profile?.reward?.referees} invite(s)</p>
+            <p className="text-white font-[300] fs-300 mt-1">
+              {profile?.reward?.referees} invite(s)
+            </p>
           </div>
         </div>
         <div className="mt-4">
@@ -125,10 +158,12 @@ const UserReferrals = () => {
             <div className="border border-gray-400 rounded-[50px] flex gap-x-2 py-2 pr-2 pl-5 w-full">
               <input
                 type="email"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
                 className="outline-none bg-transparent py-1 px-2 w-full"
               />
-              <div className="w-12 h-12 shrink-0 circle place-center bg-[#9847fe] cursor-pointer">
-                <IoSend className="text-[#fff] text-2xl shrink-0" />
+              <div className="w-12 h-12 shrink-0 circle place-center bg-[#9847fe] cursor-pointer" onClick={handleSend}>
+                {!isBusy && <IoSend className="text-[#fff] text-2xl shrink-0" />}
               </div>
             </div>
           </div>
