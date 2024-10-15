@@ -25,7 +25,7 @@ const ContactIndex = () => {
                 window.location.href = "mailto:support@fantrip.app";
                 e.preventDefault();
               }}
-              className="flex gap-x-2 items-center cursor-pointer hover:text-prima"
+              className="flex gap-x-2 items-center cursor-pointer dark:text-white hover:text-prima"
             >
               <IoMail className="text-prima" />
               <span>support@fantrip.app</span>
