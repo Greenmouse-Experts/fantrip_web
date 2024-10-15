@@ -7,7 +7,7 @@ import { ChatItem2 } from "@/lib/contracts/chat";
 interface Props {
   socket: any;
   type: "guest" | "host";
-  reload: string | null
+  reload: string | undefined
 }
 const ChatBody: FC<Props> = ({ socket, reload }) => {
   const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
