@@ -27,10 +27,10 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
       )}
       {data && (
         <div>
-          <div className="lg:m-2 p-4 meet-drop rounded-[23px] bg-white">
+          <div className="lg:m-2 p-4 meet-drop rounded-[23px] bg-white dark:bg-darkColorLight">
             <div className="flex">
               <div className="w-6/12 text-center">
-                <div className="w-7/12 mx-auto aspect-square rounded-full bg-gray-400">
+                <div className="w-7/12 mx-auto aspect-square rounded-full bg-gray-400 dark:bg-darkColorLight">
                   {data?.host?.picture && (
                     <img
                       src={data?.host?.picture}
@@ -98,7 +98,7 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
             <p className="bg-gradient p-[0.4px] my-7"></p>
             <div className="mb-5">
               <button className="flex gap-x-2 items-center">
-                <FaRegFlag />
+                <FaRegFlag className="dark:text-white"/>
                 <p className="fw-600 underline">Submit a report</p>
               </button>
             </div>

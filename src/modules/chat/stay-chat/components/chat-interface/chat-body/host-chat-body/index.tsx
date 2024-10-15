@@ -54,16 +54,18 @@ const HostChatBody: FC<Props> = ({ socket, reload }) => {
         file: null,
         read: false,
         createdDate: value.data.createdDate,
+        isArchived: false,
         chat: {
           id: value.data.id,
           lastMessage: value.data.lastMessage,
           isArchived: false,
           unread: "",
+          read: false,
           createdDate: value.data.createdDate,
           updatedDate: value.data.createdDate,
         },
       };
-      saveChatWithMini([payload]);
+      setNewMsg(payload as ChatItem2);
     };
     socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
 
@@ -104,13 +106,8 @@ const HostChatBody: FC<Props> = ({ socket, reload }) => {
     }
   }, [socket, isLoaded]);
 
-  console.log(reload);
-  
-
   useEffect(() => {
-    if (!chatWithMini.length && isLoaded) {
-      console.log('didnt run');
-      
+    if (!chatWithMini.length && !reload?.length) {
       getSentMessages();
     }
   }, [socket, reload]);

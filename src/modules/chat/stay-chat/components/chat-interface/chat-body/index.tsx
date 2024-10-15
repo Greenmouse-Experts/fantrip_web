@@ -7,7 +7,7 @@ import { ChatItem2 } from "@/lib/contracts/chat";
 interface Props {
   socket: any;
   type: "guest" | "host";
-  reload: string | undefined;
+  reload: string | null
 }
 const ChatBody: FC<Props> = ({ socket, reload }) => {
   const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
@@ -20,9 +20,7 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   const getMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
-      console.log('i am the second');
-      
-      saveChatWithHost([...chatWithHost, ...value.data.result]);
+      saveChatWithHost(value.data.result);
     };
     socket.on(`messagesRetrieved:${userId}`, onListenEvent);
 
@@ -34,7 +32,6 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
-      console.log(value, 'first');
       const payload = {
         chatBuddy: {
           ...hostInfo,
@@ -60,12 +57,14 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
           id: value.data.id,
           lastMessage: value.data.lastMessage,
           isArchived: false,
+          read: false,
           unread: "",
           createdDate: value.data.createdDate,
           updatedDate: value.data.createdDate,
         },
+        isArchived: false
       };
-      saveChatWithHost([payload]);
+      setNewMsg(payload as ChatItem2);
     };
     socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
 
@@ -99,28 +98,25 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
     if (!chatWithHost.length) {
       getMessages();
     }
-  }, [socket, hostInfo]);
-
-  console.log(reload, chatWithHost, isLoaded);
-  
+  }, [socket, hostId]);
 
   useEffect(() => {
-    if (!chatWithHost.length && reload && !isLoaded) {
-      console.log('didnt run, lied');
-      
+    if (!chatWithHost.length && !reload?.length) {
       getSentMessages();
     }
-  }, [reload]);
+  }, [socket, hostId, reload]);
 
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && chatWithHost.length) {
       getUpdates();
     }
   }, [socket, isLoaded]);
 
+  //update sent messages
+
   // add updated messages to the chat message array
   useEffect(() => {
-    if (newMsg) {
+    if (newMsg && newMsg?.chat?.lastMessage) {
       const filtered = chatWithHost.filter((where) => where.id === newMsg.id);
       if (!filtered.length) {
         const newChat = [...chatWithHost, newMsg];

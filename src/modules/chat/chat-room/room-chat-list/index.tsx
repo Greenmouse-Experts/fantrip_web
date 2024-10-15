@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from "react";
 import ChatListHistory from "./components/chat-list";
 import { ChatItem } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
+import dayjs from "dayjs";
 
 interface Props {
   socket: any;
@@ -19,6 +20,7 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
     // Remove event listener on component unmount
     return () => socket.off("chatroom_listen");
   };
+
   useEffect(() => {
     const payload = {
       token: token,
@@ -31,6 +33,13 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
     getMessages();
   }, [socket]);
 
+  const sortedList = prevChats?.length
+  ? prevChats.sort(
+      (a: ChatItem, b: ChatItem) =>
+         dayjs(b.createdDate).unix() - dayjs(a.createdDate).unix()
+    )
+  : [];
+
   return (
     <div className="h-full">
       <div className="bg-[#EDEDFF] dark:bg-darkColorLight rounded-[12px] p-4 mt-4 h-[400px] lg:h-full">
@@ -38,7 +47,7 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
           <p className="lg:text-xl fw-500">Messages</p>
         </div>
         <div>
-          <ChatListHistory prevChats={prevChats} />
+          <ChatListHistory prevChats={sortedList} />
         </div>
       </div>
     </div>
