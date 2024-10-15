@@ -1,4 +1,4 @@
-import { getCappedPercentage } from "@/lib/utils/formatHelp";
+import { getCappedPercentage, isValidEmail } from "@/lib/utils/formatHelp";
 import { sendInvite, viewProfile } from "@/services/api/authApi";
 import { SITE_URL } from "@/services/constant";
 import {
@@ -22,6 +22,14 @@ const UserReferrals = () => {
   const toast = useToast();
 
   const handleSend = async () => {
+    if(!isValidEmail(emailInput)){
+      toast({
+        title: "Invalid email",
+        position: "top",
+        status: "error",
+      });
+      return;
+    }
     setIsBusy(true);
     const payload = {
       email: emailInput,

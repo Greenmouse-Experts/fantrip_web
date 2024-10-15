@@ -32,11 +32,11 @@ const SmallMeetComponent: FC<Props> = ({ item, i, bio, image }) => {
           <div className="row-span-2 h-full grid content-between gap-3 bg-white rounded-[13px] px-3 py-4">
             <div className="">
               <div>
-                <p className="text-xl fw-600 syne">Meet</p>
-                <p className="h-[2px] bg-gradient w-full mt-2"></p>
+                <p className="text-xl fw-600 syne !text-black">Meet</p>
+                <p className="h-[2px] bg-gradient w-full mt-2 !text-black"></p>
               </div>
               <div className="mt-2">
-                <p className="fs-500">
+                <p className="fs-500 !text-black">
                   {item?.host?.bio
                     ? formatName(item?.host?.bio, 34)
                     : formatName(bio || "", 34)}{" "}
@@ -59,7 +59,7 @@ const SmallMeetComponent: FC<Props> = ({ item, i, bio, image }) => {
                       <div className="flex gap-x-2" key={i}>
                         <p className="w-[5px] h-[5px] shrink-0 relative top-[10px] circle bg-black"></p>
                         {item?.name && (
-                          <p className="fs-400">{formatName(item?.name, 24)}</p>
+                          <p className="fs-400 !text-black">{formatName(item?.name, 24)}</p>
                         )}
                       </div>
                     ))}

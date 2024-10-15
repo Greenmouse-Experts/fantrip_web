@@ -24,10 +24,21 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
   const { user, isLoggedIn, token } = useAuth();
   const { community } = useChat();
   const [showInput, setShowInput] = useState(false);
+  const activeCommunity = community.activeId;
   const [selectedChannel, setSelectedChannel] = useState({
     name: community.communities.length ? community.communities[0].name : "",
     id: community.communities.length ? community.communities[0].id : "",
   });
+
+  useEffect(() => {
+    if (activeCommunity.length && community.name !== "all") {
+      setSelectedChannel({
+        name: community.name,
+        id: activeCommunity,
+      });
+    }
+  }, [community]);
+
   const postRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -48,7 +59,6 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
   const [textInput, setTextInput] = useState("");
   const [photo, setPhoto] = useState<File[] | undefined>([]);
   const [video, setVideo] = useState<File[] | undefined>([]);
-
 
   // handle show input
   const handleShowInput = () => {
@@ -91,7 +101,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
           });
           setIsBusy(false);
         });
-    }else if(video?.length){
+    } else if (video?.length) {
       const files = video[0];
       const fd = new FormData();
       fd.append("video", files);

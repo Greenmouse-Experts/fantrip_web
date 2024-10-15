@@ -47,7 +47,7 @@ const BookingTab: FC<Props> = ({ home }) => {
     setParams({ ...params, [field]: val });
   };
   const checkField = () => {
-    if (stayParams.state || stayParams.checkIn || stayParams.checkOut) {
+    if (stayParams.state || stayParams.checkIn || stayParams.checkOut || stayParams.city) {
       return true;
     } else return false;
   };

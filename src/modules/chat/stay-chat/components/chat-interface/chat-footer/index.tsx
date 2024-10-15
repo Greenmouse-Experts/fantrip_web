@@ -5,9 +5,10 @@ import { IoSend } from "react-icons/io5";
 
 interface Props {
   socket: any;
-  type: 'host' | 'guest'
+  type: 'host' | 'guest',
+  handleReload: React.Dispatch<React.SetStateAction<string | undefined>>
 }
-const ChatFooter: FC<Props> = ({ socket, type }) => {
+const ChatFooter: FC<Props> = ({ socket, type, handleReload }) => {
   const { hostId, miniId } = useChat();
   const { token } = useAuth();
   const idToRender = type === 'guest'? hostId : miniId
@@ -24,7 +25,9 @@ const ChatFooter: FC<Props> = ({ socket, type }) => {
       token: `${token}`,
     });
     setMsgInput("");
+    handleReload(new Date().toISOString())
   };
+
   return (
     <div className="p-2">
       <form

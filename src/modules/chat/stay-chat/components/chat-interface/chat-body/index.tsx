@@ -7,8 +7,9 @@ import { ChatItem2 } from "@/lib/contracts/chat";
 interface Props {
   socket: any;
   type: "guest" | "host";
+  reload: string | undefined
 }
-const ChatBody: FC<Props> = ({ socket }) => {
+const ChatBody: FC<Props> = ({ socket, reload }) => {
   const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
     useChat();
   const { token,user, userId, firstName, lastName, isHost } = useAuth();
@@ -31,7 +32,6 @@ const ChatBody: FC<Props> = ({ socket }) => {
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
-      // console.log(value);
       const payload = {
         chatBuddy: {
           ...hostInfo,
@@ -57,12 +57,14 @@ const ChatBody: FC<Props> = ({ socket }) => {
           id: value.data.id,
           lastMessage: value.data.lastMessage,
           isArchived: false,
+          read: false,
           unread: "",
           createdDate: value.data.createdDate,
           updatedDate: value.data.createdDate,
         },
+        isArchived: false
       };
-      saveChatWithHost([payload]);
+      setNewMsg(payload as ChatItem2);
     };
     socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
 
@@ -94,30 +96,27 @@ const ChatBody: FC<Props> = ({ socket }) => {
 
   useEffect(() => {
     if (!chatWithHost.length) {
-      console.log('i still ran');
-      
       getMessages();
-      // getSentMessages();
     }
   }, [socket, hostId]);
 
   useEffect(() => {
-    if (!chatWithHost.length && isLoaded) {
-      console.log('didnt run');
-      
+    if (!chatWithHost.length && !reload?.length) {
       getSentMessages();
     }
-  }, [socket, hostId]);
+  }, [socket, hostId, reload]);
 
   useEffect(() => {
-    if (isLoaded) {
+    if (isLoaded && chatWithHost.length) {
       getUpdates();
     }
   }, [socket, isLoaded]);
 
+  //update sent messages
+
   // add updated messages to the chat message array
   useEffect(() => {
-    if (newMsg) {
+    if (newMsg && newMsg?.chat?.lastMessage) {
       const filtered = chatWithHost.filter((where) => where.id === newMsg.id);
       if (!filtered.length) {
         const newChat = [...chatWithHost, newMsg];
