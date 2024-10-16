@@ -24,7 +24,8 @@ const InLoop = () => {
     },
     {
       name: "facebook",
-      route: "",
+      route:
+        "https://www.facebook.com/profile.php?id=61567200627982&mibextid=LQQJ4d",
       img: "https://res.cloudinary.com/greenmouse-tech/image/upload/v1726752451/fantrip/image_4_lp4gue.png",
     },
   ];

@@ -1,4 +1,5 @@
 import { AmenityItem } from "@/lib/contracts/routine";
+import { getShortAddress } from "@/lib/utils/formatHelp";
 import { FC } from "react";
 import { CiDiscount1 } from "react-icons/ci";
 import { FaStar } from "react-icons/fa6";
@@ -28,7 +29,7 @@ const CondoDetails: FC<Props> = ({
   address,
   price,
   percent,
-  currency
+  currency,
 }) => {
   return (
     <div>
@@ -49,7 +50,7 @@ const CondoDetails: FC<Props> = ({
         <p className="mt-2 text-[#494949]">{desc}</p>
         <div className="mt-2 flex gap-x-2 items-center">
           <HiOutlineLocationMarker className="text-[#494949]" />
-          <p className="syne text-[#494949]">{address}</p>
+          <p className="syne text-[#494949]">{getShortAddress(address)}</p>
         </div>
       </div>
       <div className="mt-6 border-b border-[#D2D2D2] pb-5 lg:pb-8">
@@ -97,7 +98,10 @@ const CondoDetails: FC<Props> = ({
           <ul className="grid gap-5">
             <li className="flex items-center gap-x-3">
               <IoPricetagOutline className="text-[18px] text-[#9847FE]" />
-              <p className="fs-400">All Days: {currency}{price}/night</p>
+              <p className="fs-400">
+                All Days: {currency}
+                {price}/night
+              </p>
             </li>
             {percent !== 0 && (
               <li className="flex items-center gap-x-3">
