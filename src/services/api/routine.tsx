@@ -148,3 +148,9 @@ export const getAnalytics = async () => {
     .get(`${ENDPOINT.GET_ANALYTICS}`)
     .then((response) => response.data);
 };
+
+export const getTransaction = async () => {
+   return axios
+     .get(`${ENDPOINT.GET_TRANSACTIONS}`)
+     .then((response) => response.data);
+}

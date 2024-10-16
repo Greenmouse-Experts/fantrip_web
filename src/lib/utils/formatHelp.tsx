@@ -22,7 +22,7 @@ export const formatNumber = (value: number | string) => {
 export const formatAsNgnMoney = (value: number | string, currency?: string) => {
   if (!value) return "";
   const val = Number(value);
-  if(val === 0) return `€0.00`;
+  if (val === 0) return `€0.00`;
   return `${currency || "€"}${val
     .toLocaleString("en-US")
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
@@ -212,14 +212,21 @@ export const extractNumbers = (text: string): string[] => {
   const matches = text.match(/\d+/g);
   // Return the matches, or an empty array if no matches found
   return matches ? matches : [];
-}
+};
 
-export const getCappedPercentage = (number:number, total:number) => {
+export const getCappedPercentage = (number: number, total: number) => {
   const percentage = (number / total) * 100;
   return Math.min(percentage, 50); // Cap at 50
-}
+};
 
 export const isValidEmail = (email: string): boolean => {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   return pattern.test(email);
-}
+};
+
+export const getShortAddress = (str: string): string => {
+  const words = str.split(','); // Split by whitespace
+  const first = words[words.length - 3];
+  const last = words.slice(-1);
+  return `${first}, ${last}`; // Get the last two words
+};

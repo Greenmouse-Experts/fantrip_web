@@ -87,3 +87,4 @@ export const MARK_AS_READ = `/notifications/mark-as-read`
 
 // analytics
 export const GET_ANALYTICS = `/analytics/host-stat`
+export const GET_TRANSACTIONS = `/transactions/my-details`;

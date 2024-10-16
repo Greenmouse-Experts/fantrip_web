@@ -1,8 +1,11 @@
+import TransactionIndex from "@/modules/host/transactions";
 
 const HostTransactions = () => {
   return (
-    <div>HostTransactions</div>
-  )
-}
+    <div>
+      <TransactionIndex />
+    </div>
+  );
+};
 
-export default HostTransactions
+export default HostTransactions;

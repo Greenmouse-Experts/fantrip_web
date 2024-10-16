@@ -11,7 +11,11 @@ const LandingFooter = () => {
       icon: <SlSocialInstagram />,
     },
     { route: "", icon: <FaLinkedinIn /> },
-    { route: "", icon: <FaFacebookF /> },
+    {
+      route:
+        "https://www.facebook.com/profile.php?id=61567200627982&mibextid=LQQJ4d",
+      icon: <FaFacebookF />,
+    },
     { route: "https://x.com/joinfantrip", icon: <FaXTwitter /> },
   ];
   const routes = [

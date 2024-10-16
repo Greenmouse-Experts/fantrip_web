@@ -1,3 +1,5 @@
+import { UserItem } from "./auth";
+
 export interface AmenityItem {
   id: string;
   name: string;
@@ -29,7 +31,7 @@ export interface FetchParam {
   page?: number;
   isPublished?: boolean;
   status?: string;
-  isGuest?: boolean
+  isGuest?: boolean;
 }
 
 export enum REUSABLE_MODAL_TYPES {
@@ -73,4 +75,32 @@ export interface AnalyticItem {
   };
   reviews: number;
   totalListings: number;
+}
+
+export interface TransactItem {
+  amount: number;
+  booking: {
+    createdDate: string;
+    currency: string;
+    enableRewardForPayment: boolean;
+    id: string;
+    number: string;
+    price: number;
+    pricePerNight: number;
+    rewardAmount: string | null;
+    serviceFee: number;
+    status: string;
+    tax: number;
+    total: number;
+  };
+  createdDate: string;
+  gateway: string;
+  id: string;
+  narration: string;
+  purpose: string;
+  reference: string;
+  status: string;
+  subAmount: string;
+  thirdPartyRes: string;
+  user: UserItem
 }
