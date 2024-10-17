@@ -44,13 +44,13 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
             <div>
               <p className="fw-500 fs-500">
                 <AltName
-                  name={`${item.user.firstName} ${item.user.lastName}`}
-                  useNick={item.user.isNickname}
-                  nick={item.user.nickname}
+                  name={`${item.user?.firstName} ${item.user?.lastName}`}
+                  useNick={item.user?.isNickname}
+                  nick={item.user?.nickname}
                 />
               </p>
               <p className="opacity-80  fs-300">
-                <span className="capitalize fw-500">{item.user.role}</span>
+                <span className="capitalize fw-500">{item.user?.role}</span>
                 {" - "}
                 <span>{dayjs(item.createdDate).fromNow()}</span>
               </p>

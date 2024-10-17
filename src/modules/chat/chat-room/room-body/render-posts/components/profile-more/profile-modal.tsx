@@ -35,10 +35,10 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
   const openChatWithUser = () => {
     const payload = {
       id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      nickname: user.nickname,
-      verifiedAsHost: user.verifiedAsHost,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      nickname: user?.nickname,
+      verifiedAsHost: user?.verifiedAsHost,
       role: user.role,
       picture: user.picture,
     };
@@ -64,8 +64,8 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
             <p className="fw-600  lg:text-xl my-1">
               <AltName
                 name={`${user?.firstName} ${user?.lastName}`}
-                nick={user.nickname}
-                useNick={user.isNickname}
+                nick={user?.nickname}
+                useNick={user?.isNickname}
               />
             </p>
             <p className="fw-600 text-orange-600 fs-500">{user?.favTeam}</p>

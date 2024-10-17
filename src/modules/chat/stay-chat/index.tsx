@@ -14,9 +14,9 @@ const ChatForStay: FC<Props> = ({ host }) => {
   const openChatWithHost = () => {
     const payload = {
       id: host.id,
-      firstName: host.firstName,
-      lastName: host.lastName,
-      nickname: host.nickname,
+      firstName: host?.firstName,
+      lastName: host?.lastName,
+      nickname: host?.nickname,
       verifiedAsHost: host.verifiedAsHost,
       role: host.role,
       picture: host.picture,

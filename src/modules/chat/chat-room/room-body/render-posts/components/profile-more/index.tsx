@@ -84,7 +84,7 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
             </div>
           </MenuButton>
           <MenuList className="text-black !w-[180px] relative">
-            {user.id !== userId && (
+            {user?.id !== userId && (
               <>
                 <MenuItem onClick={() => openChatWithUser()}>
                   <p className="text-black fs-400">Start Chat</p>
@@ -97,7 +97,7 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
             {/* <MenuItem>
               <p className="text-black fs-400">Report this user</p>
             </MenuItem> */}
-            {user.id === userId && (
+            {user?.id === userId && (
               <MenuItem onClick={() => ShowDialog(true)}>
                 <p className="text-red-500 fs-400">
                   {type === "comment" ? "Delete Comment" : "Delete Post"}

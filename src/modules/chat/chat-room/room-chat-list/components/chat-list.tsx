@@ -22,12 +22,12 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
     }
     const payload = {
       id: receiver.id,
-      firstName: receiver.firstName,
-      lastName: receiver.lastName,
-      nickname: receiver.nickname,
+      firstName: receiver?.firstName,
+      lastName: receiver?.lastName,
+      nickname: receiver?.nickname,
       verifiedAsHost: receiver.verifiedAsHost,
-      role: receiver.role,
-      picture: receiver.picture,
+      role: receiver?.role,
+      picture: receiver?.picture,
     };
     saveHostInfo(payload);
     setShowModal(true);
@@ -44,7 +44,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
           >
             <img
               src={
-                (item.chatBuddy.picture) ||
+                (item.chatBuddy?.picture) ||
                 "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
               }
               alt=""
@@ -52,7 +52,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
             />
             <div>
               <p className="fs-500 fw-500 leading-none">
-                {`${item.chatBuddy.firstName} ${item.chatBuddy.lastName}`}
+                {`${item.chatBuddy?.firstName} ${item.chatBuddy?.lastName}`}
               </p>
               <p className="opacity-70 text-[12px]">
                 {formatName(item.lastMessage, 25)}
