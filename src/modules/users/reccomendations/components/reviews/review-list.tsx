@@ -26,7 +26,7 @@ const ReviewList:FC<Props> = ({data, count}) => {
           data.results.map((item) => (
             <div>
               <div className="flex gap-x-2 items-center">
-                <p className="fw-600">{`${item.user.firstName} ${item.user.lastName}`}</p>
+                <p className="fw-600">{`${item.user?.firstName} ${item.user?.lastName}`}</p>
                 <RiVerifiedBadgeFill className="text-[#9847FE]" />
               </div>
               <div className="flex gap-x-1 mt-1">

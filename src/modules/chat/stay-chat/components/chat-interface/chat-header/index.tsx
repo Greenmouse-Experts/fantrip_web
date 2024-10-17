@@ -15,13 +15,13 @@ const ChatHeader: FC<Props> = ({ close, type }) => {
         <div className="flex gap-x-2 items-center">
           <img
             src={
-              infotoRender.picture ||
+              infotoRender?.picture ||
               "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
             }
             alt="profile"
             className="w-12 h-12 object-cover circle"
           />
-          <p className="fw-600 lg:text-lg">{`${infotoRender.firstName} ${infotoRender.lastName}`}</p>
+          <p className="fw-600 lg:text-lg">{`${infotoRender?.firstName} ${infotoRender?.lastName}`}</p>
         </div>
         <div className="relative z-20 cursor-pointer">
           <FaTimes className="text-xl" onClick={close} />
