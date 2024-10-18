@@ -1,4 +1,5 @@
 import AltName from "@/components/alt-name";
+import useAuth from "@/hooks/authUser";
 import { useChat } from "@/hooks/useChat";
 import { useUtils } from "@/hooks/useUtils";
 import { formatName } from "@/lib/utils/formatHelp";
@@ -22,10 +23,11 @@ interface Props {
   close: () => void;
 }
 const ProfileModal: FC<Props> = ({ user, close }) => {
+  const { userId } = useAuth();
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
   const [initLength, setInitLength] = useState<number>(150);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleViewAll = () => {
     const num = initLength === 400 ? 150 : 400;
@@ -77,7 +79,7 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
                   {formatName(user?.bio, initLength)}
                   {user?.bio?.length > 150 && (
                     <span className="fw-500 text-prima" onClick={handleViewAll}>
-                      view {initLength === 150?'more' : 'less'}
+                      view {initLength === 150 ? "more" : "less"}
                     </span>
                   )}
                 </p>
@@ -86,34 +88,37 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
           </div>
         </div>
         <div className="mt-3">
-          <button
-            onClick={() => openChatWithUser()}
-            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 dark:text-white"
-          >
-            <BsChatDots className="dark:text-white" />
-            Chat with{" "}
-            <AltName
-              name={`${user?.firstName} ${user?.lastName}`}
-              nick={user.nickname}
-              useNick={user.isNickname}
-            />
-          </button>
-          {user.role === "host" && <button
-            onClick={() => navigate(`/host-stay/${user.id}`)}
-            className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 text-left dark:text-white"
-          >
-            <BsFillHouseCheckFill className="dark:text-white text-lg shink-0" />{" "}
-            <div className="inline-block gap-x-1">
-              <p className="inline">View</p>
-              {" "}
+          {user.id !== userId && (
+            <button
+              onClick={() => openChatWithUser()}
+              className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 dark:text-white"
+            >
+              <BsChatDots className="dark:text-white" />
+              Chat with{" "}
               <AltName
                 name={`${user?.firstName} ${user?.lastName}`}
                 nick={user.nickname}
                 useNick={user.isNickname}
-              />{" "}
-              <p className="inline">fan stay listing</p>
-            </div>
-          </button>}
+              />
+            </button>
+          )}
+          {user.role === "host" && (
+            <button
+              onClick={() => navigate(`/host-stay/${user.id}`)}
+              className="flex gap-x-2 p-2 fs-400 md:fs-600 items-center fw-500 text-left dark:text-white"
+            >
+              <BsFillHouseCheckFill className="dark:text-white text-lg shink-0" />{" "}
+              <div className="inline-block gap-x-1">
+                <p className="inline">View</p>{" "}
+                <AltName
+                  name={`${user?.firstName} ${user?.lastName}`}
+                  nick={user.nickname}
+                  useNick={user.isNickname}
+                />{" "}
+                <p className="inline">fan stay listing</p>
+              </div>
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -26,7 +26,7 @@ const ConfirmedBookingList: FC<Props> = ({ data }) => {
       {data.map((item: PaidBookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
           <div className="bg-white dark:bg-darkColor rounded-lg md:flex gap-x-4 p-1 h-full">
-            <div className="w-full h-[130px] md:w-[160px] md:h-[100%] shrink-0 overflow-hidden rounded-[8px]">
+            <div className="w-full h-[130px] md:w-[160px] md:h-[100%] max-h-[140px] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={
                   !!item.reservation.stay.photos
