@@ -61,7 +61,7 @@ const GuestNoInput: FC<Props> = ({
             {no_of_guests ? (
               <div className="w-full flex justify-between items-center">
                 <p className="fs-400 lg:fs-600 fw-500">
-                  Guests ({no_of_guests} Adult{no_of_guests > 1? 's' : ''}, {no_of_child} Children)
+                  Guests ({no_of_guests} Adult{no_of_guests > 1? 's' : ''}, {no_of_child} {childVal > 1? 'Children' : 'Child'})
                 </p>
                 <PiCaretDownThin />
               </div>
