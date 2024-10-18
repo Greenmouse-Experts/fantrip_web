@@ -76,7 +76,7 @@ const GuestNoInput: FC<Props> = ({
         <MenuList className="p-3 w-[300px] lg:w-[340px] !rounded-[10px]">
           <MenuItem className="w-full my-3 hover:bg-white">
             <div className="w-full flex items-center justify-between">
-              <p className="fw-500">Adults</p>
+              <p className="fw-500">Adult</p>
               <div className="flex items-center gap-x-3">
                 <button
                   className="bg-gray-200 p-1 rounded"
@@ -84,7 +84,7 @@ const GuestNoInput: FC<Props> = ({
                 >
                   <LuMinus />
                 </button>
-                <span className="fw-600">{adultVal}</span>
+                <span className="fw-600 dark:text-white">{adultVal}</span>
                 <button
                   className="bg-gray-200 p-1 rounded"
                   onClick={() => handleAdultChange("add")}
@@ -96,7 +96,7 @@ const GuestNoInput: FC<Props> = ({
           </MenuItem>
           <MenuItem className="w-full mb-3 hover:bg-white">
             <div className="w-full flex items-center justify-between">
-              <p className="fw-500">Children</p>
+              <p className="fw-500">Child</p>
               <div className="flex items-center gap-x-3">
                 <button
                   className="bg-gray-200 p-1 rounded"
@@ -104,7 +104,7 @@ const GuestNoInput: FC<Props> = ({
                 >
                   <LuMinus />
                 </button>
-                <span className="fw-600">{childVal}</span>
+                <span className="fw-600 dark:text-white">{childVal}</span>
                 <button
                   className="bg-gray-200 p-1 rounded"
                   onClick={() => handleChildChange("add")}
