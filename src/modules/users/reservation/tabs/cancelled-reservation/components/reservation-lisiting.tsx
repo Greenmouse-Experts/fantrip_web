@@ -25,7 +25,7 @@ const CancelledReservationList: FC<Props> = ({ data }) => {
       {data.map((item: BookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
           <div className="bg-white dark:bg-darkColor rounded-lg md:flex gap-x-4 p-1 h-full">
-          <div className="w-full h-[130px] md:w-[160px] md:h-[100%] shrink-0 overflow-hidden rounded-[8px]">
+          <div className="w-full h-[130px] md:w-[160px] md:h-[100%] max-h-[140px] shrink-0 overflow-hidden rounded-[8px]">
             <img
               src={
                 !!item?.stay?.photos?.length
@@ -64,7 +64,7 @@ const CancelledReservationList: FC<Props> = ({ data }) => {
               <div className="grid gap-1 md:gap-3 md:justify-end pb-2 md:p-2">
                <div className="flex md:justify-end">
                  <p className="mt-2 text-[#9847fe] fw-600 fs-300 md:fs-500">
-                   Booked: {dayjs(item.createdDate).fromNow()}
+                   Reserved: {dayjs(item.createdDate).fromNow()}
                  </p>
                </div>
                <div className="flex gap-x-3 md:justify-end relative">
