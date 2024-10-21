@@ -191,3 +191,29 @@ export interface CommentItem {
   };
   userId: string;
 }
+
+export interface ChatHistoryItem {
+  id: string;
+  lastMessage: string;
+  isArchived: boolean;
+  read: boolean;
+  createdDate: string;
+  initiator: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    nickname: string;
+    verifiedAsHost: boolean;
+    role: string;
+    picture: string;
+  };
+  chatBuddy: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    nickname: string | null;
+    verifiedAsHost: boolean;
+    role: string;
+    picture: string | null;
+  };
+}

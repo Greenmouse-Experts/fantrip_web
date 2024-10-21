@@ -1,4 +1,8 @@
-import { ChatUserItem, CommunityItem } from "@/lib/contracts/chat";
+import {
+  ChatHistoryItem,
+  ChatUserItem,
+  CommunityItem,
+} from "@/lib/contracts/chat";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
@@ -7,10 +11,12 @@ interface Props {
   guest: ChatUserItem;
   mini: ChatUserItem;
   community: CommunityItem;
+  history: ChatHistoryItem[];
   saveMiniChat: (data: ChatUserItem) => void;
   saveGuestChat: (data: ChatUserItem) => void;
   saveHostChat: (data: ChatUserItem) => void;
   saveCommunity: (data: CommunityItem) => void;
+  saveHistory: (data: ChatHistoryItem[]) => void;
   clearHost: () => void;
   clearGuest: () => void;
   clearMini: () => void;
@@ -64,6 +70,7 @@ const chatInitState = {
     activeId: "all",
     name: "all",
   },
+  history: [],
 };
 const useChatStore = create<Props>()(
   persist(
@@ -72,6 +79,7 @@ const useChatStore = create<Props>()(
       guest: chatInitState.guest,
       mini: chatInitState.mini,
       community: chatInitState.community,
+      history: chatInitState.history,
       saveGuestChat: (data: ChatUserItem) =>
         set(() => ({
           guest: data,
@@ -88,6 +96,10 @@ const useChatStore = create<Props>()(
         set(() => ({
           community: data,
         })),
+      saveHistory: (data: ChatHistoryItem[]) =>
+        set(() => ({
+          history: data,
+        })),
       clearGuest: () =>
         set(() => ({
           guest: chatInitState.guest,
@@ -103,6 +115,10 @@ const useChatStore = create<Props>()(
       clearCommunity: () =>
         set(() => ({
           community: chatInitState.community,
+        })),
+      clearHistory: () =>
+        set(() => ({
+          history: chatInitState.history,
         })),
     }),
     {

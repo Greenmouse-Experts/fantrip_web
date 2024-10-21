@@ -58,6 +58,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
       setPostsToRender(posts);
     }
   }, [prevPosts]);
+  
 
   return (
     <div className="grid mt-4 gap-4">
