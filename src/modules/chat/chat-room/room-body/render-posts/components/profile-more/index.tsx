@@ -6,6 +6,7 @@ import { useUtils } from "@/hooks/useUtils";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FC } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import ReportUser from "./report-user";
 
 interface Props {
   user: {
@@ -26,11 +27,19 @@ interface Props {
   reload: () => void;
   type?: string;
 }
-const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) => {
+const ProfileMore: FC<Props> = ({
+  user,
+  openUser,
+  socket,
+  id,
+  reload,
+  type,
+}) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
   const { Dialog, setShowModal: ShowDialog } = useDialog();
+  const { Dialog: Report, setShowModal: ShowReport } = useDialog();
 
   const openChatWithUser = () => {
     const payload = {
@@ -47,29 +56,29 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
     close();
   };
 
-  const deleteUserPost = (payload:{id:string, token:string}) => {
+  const deleteUserPost = (payload: { id: string; token: string }) => {
     socket.emit("deletePost", payload);
-    ShowDialog(false)
-    reload()
+    ShowDialog(false);
+    reload();
   };
 
-  const deleteUserCooment = (payload:{id:string, token:string}) => {
-    socket.emit("deleteComment", payload)
-    ShowDialog(false)
-    reload()
-  }
+  const deleteUserCooment = (payload: { id: string; token: string }) => {
+    socket.emit("deleteComment", payload);
+    ShowDialog(false);
+    reload();
+  };
 
   const handleDelete = () => {
     const payload = {
       token: token || "",
       id: id,
     };
-    if(type === "comment"){
-      deleteUserCooment(payload)
-    }else{
-      deleteUserPost(payload)
+    if (type === "comment") {
+      deleteUserCooment(payload);
+    } else {
+      deleteUserPost(payload);
     }
-  }
+  };
 
   return (
     <div>
@@ -92,11 +101,11 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
                 <MenuItem onClick={openUser}>
                   <p className="text-black fs-400">View User Profile</p>
                 </MenuItem>
+                <MenuItem onClick={() => ShowReport(true)}>
+                  <p className="text-black fs-400">Report this user</p>
+                </MenuItem>
               </>
             )}
-            {/* <MenuItem>
-              <p className="text-black fs-400">Report this user</p>
-            </MenuItem> */}
             {user?.id === userId && (
               <MenuItem onClick={() => ShowDialog(true)}>
                 <p className="text-red-500 fs-400">
@@ -110,7 +119,9 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
       <Dialog title="" size="sm">
         <ReusableModal
           type=""
-          title={`Are you sure you want to delete this ${type === "comment" ? "comment" : "post"}`}
+          title={`Are you sure you want to delete this ${
+            type === "comment" ? "comment" : "post"
+          }`}
           action={handleDelete}
           actionTitle="Yes, Delete"
           cancelTitle="No, Close"
@@ -118,6 +129,13 @@ const ProfileMore: FC<Props> = ({ user, openUser, socket, id, reload, type }) =>
           isBusy={false}
         />
       </Dialog>
+      <Report title="" size="sm">
+        <ReportUser
+          socket={socket}
+          userId={user.id}
+          close={() => ShowReport(false)}
+        />
+      </Report>
     </div>
   );
 };

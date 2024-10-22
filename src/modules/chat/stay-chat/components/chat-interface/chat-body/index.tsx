@@ -58,7 +58,7 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
           totalReviews: 0,
           avgRating: null,
         },
-        id: value.data.id,
+        id: value.data.lastMessageId,
         message: value.data.lastMessage,
         file: null,
         read: false,
@@ -128,27 +128,28 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   useEffect(() => {
     if (newMsg && newMsg?.chat?.lastMessage) {
       const filtered = chatWithHost.filter((where) => where.id === newMsg.id);
-      const historyFilter = history.filter((where) => where.id !== newMsg.id);
+      const historyFilter = history.filter(
+        (where) => where.chatBuddy.id !== hostInfo.id
+      );
       if (!filtered.length) {
         const newChat = [...chatWithHost, newMsg];
         saveChatWithHost(newChat);
       }
-      if(!historyFilter.find((where) => where.id === newMsg.id)){
-        const newPayload = {
-          id: newMsg.id,
-          lastMessage: newMsg.message,
-          isArchived: false,
-          read: false,
-          createdDate: dayjs().toISOString(),
-          initiator: {
-            ...newMsg.initiator
-          },
-          chatBuddy: {
-            ...newMsg.chatBuddy
-          },
-        };
-        saveHistory([newPayload, ...historyFilter]);
-      }
+      const newPayload = {
+        id: newMsg.id,
+        lastMessage: newMsg.message,
+        isArchived: false,
+        read: false,
+        createdDate: dayjs().toISOString(),
+        updatedDate: dayjs().toISOString(),
+        initiator: {
+          ...newMsg.initiator,
+        },
+        chatBuddy: {
+          ...newMsg.chatBuddy,
+        },
+      };
+      saveHistory([newPayload, ...historyFilter]);
     }
   }, [newMsg, socket]);
 

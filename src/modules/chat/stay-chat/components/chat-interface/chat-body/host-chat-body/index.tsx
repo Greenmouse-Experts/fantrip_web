@@ -49,7 +49,7 @@ const HostChatBody: FC<Props> = ({ socket, reload }) => {
           totalReviews: 0,
           avgRating: null,
         },
-        id: value.data.id,
+        id: value.data.lastMessageId,
         message: value.data.lastMessage,
         file: null,
         read: false,

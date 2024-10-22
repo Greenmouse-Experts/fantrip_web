@@ -15,11 +15,11 @@ const HostInboxIndex = () => {
           <div className="lg:w-[300px] shrink-0">
             <ChatSidebarIndex socket={socket} />
           </div>
-          <div className="w-full h-full border-l border-gray-800 pl-2">
-            <div className="h-[70px] flex items-center">
+          <div className="w-full h-full border-l border-gray-800">
+            <div className="h-[60px] flex items-center bg-white dark:bg-gray-900 shadow-md">
               <ChatHeaderIndex />
             </div>
-            <div className="h-[calc(100%_-_140px)]">
+            <div className="h-[calc(100%_-_133px)] pl-2">
               <ChatBodyIndex socket={socket} />
             </div>
             <div className="h-[70px] flex items-center">

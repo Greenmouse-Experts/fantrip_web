@@ -50,7 +50,7 @@ const ChatList: FC<Props> = ({ prevChats }) => {
   };
 
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-1">
       {prevChats &&
         prevChats.map((item) => (
           <div

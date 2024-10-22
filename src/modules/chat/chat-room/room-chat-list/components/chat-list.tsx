@@ -35,7 +35,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
 
   return (
     <div className="mt-4">
-      <ul className="grid gap-3 lg:gap-5">
+      <ul className="grid gap-5 lg:gap-5">
         {prevChats.map((item, i) => (
           <li
             className="flex gap-x-1 items-center cursor-pointer"

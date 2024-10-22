@@ -37,6 +37,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
   };
 
   const optionLabel = ["A", "B", "C", "D", "E", "F", "G"];
+  const totalCount = data?.attemptResults?.reduce((sum, item) => sum + item.total, 0)
 
   return (
     <div className="p-2 mb-4 rounded-lg">
@@ -82,7 +83,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
         ))}
       </>
       <div className="border-t border-gray-400 pt-2 lg:px-3">
-        <p>{data.attemptResults.length} answers.</p>
+        <p>{totalCount} answers.</p>
       </div>
     </div>
   );

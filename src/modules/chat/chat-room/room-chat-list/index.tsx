@@ -39,7 +39,7 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
     const sortedList = prevChats?.length
       ? prevChats.sort(
           (a: ChatHistoryItem, b: ChatHistoryItem) =>
-            dayjs(b.createdDate).unix() - dayjs(a.createdDate).unix()
+            dayjs(b.updatedDate).unix() - dayjs(a.updatedDate).unix()
         )
       : [];
     saveHistory(sortedList);
@@ -47,11 +47,11 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
 
   return (
     <div className="h-full">
-      <div className="bg-[#EDEDFF] dark:bg-darkColorLight rounded-[12px] p-4 mt-4 h-[400px] lg:h-full">
+      <div className="bg-[#EDEDFF] dark:bg-darkColorLight lg:rounded-[12px] p-4 lg:mt-4 min-h-[400px] lg:h-full text-black dark:text-white">
         <div>
           <p className="lg:text-xl fw-500">Messages</p>
         </div>
-        <div>
+        <div className="pt-5 lg:pt-1">
           <ChatListHistory prevChats={history} />
         </div>
       </div>

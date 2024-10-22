@@ -4,12 +4,13 @@ import { useChat } from "@/hooks/useChat";
 import useAuth from "@/hooks/authUser";
 import { ChatItem2 } from "@/lib/contracts/chat";
 import EmptyChat from "@/components/empty-states/empty-chat";
+import dayjs from "dayjs";
 
 interface Props {
   socket: any;
 }
 const ChatBodyIndex: FC<Props> = ({ socket }) => {
-  const { guestId, guestInfo, chatWithGuest, saveChatWithGuest } = useChat();
+  const { guestId, guestInfo, chatWithGuest, saveChatWithGuest, history, saveHistory } = useChat();
   const { token, userId } = useAuth();
   const [isLoaded, setIsLoaded] = useState(false)
   const [newMsg, setNewMsg] = useState<ChatItem2>();
@@ -64,11 +65,32 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
   // add updated messages to the chat message array
   useEffect(() => {
     if (newMsg) {
+
+      const historyFilter = history.filter(
+        (where) => where.chatBuddy.id !== newMsg.chatBuddy.id
+      );
+
       const filtered = chatWithGuest.filter((where) => where.id === newMsg.id);
       if (!filtered.length) {
         const newChat = [...chatWithGuest, newMsg];
         saveChatWithGuest(newChat);
       }
+
+      const newPayload = {
+        id: newMsg.id,
+        lastMessage: newMsg.message,
+        isArchived: false,
+        read: false,
+        createdDate: dayjs().toISOString(),
+        updatedDate: dayjs().toISOString(),
+        initiator: {
+          ...newMsg.initiator,
+        },
+        chatBuddy: {
+          ...newMsg.chatBuddy,
+        },
+      };
+      saveHistory([newPayload, ...historyFilter]);
     }
   }, [newMsg]);
 
