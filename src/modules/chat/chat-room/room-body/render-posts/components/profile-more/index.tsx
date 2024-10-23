@@ -96,7 +96,7 @@ const ProfileMore: FC<Props> = ({
               />
             </div>
           </MenuButton>
-          <MenuList className="text-black !w-[180px] relative">
+          <MenuList className="text-black !w-[180px] relative chat-pope">
             {user?.id !== userId && (
               <>
                 <MenuItem onClick={() => openChatWithUser()}>
