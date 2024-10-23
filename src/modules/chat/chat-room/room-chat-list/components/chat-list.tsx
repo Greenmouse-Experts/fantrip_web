@@ -1,12 +1,12 @@
 import useAuth from "@/hooks/authUser";
 import { useChat } from "@/hooks/useChat";
 import { useUtils } from "@/hooks/useUtils";
-import { ChatItem, UserChatItem } from "@/lib/contracts/chat";
+import { ChatHistoryItem, ChatItem, UserChatItem } from "@/lib/contracts/chat";
 import { formatName } from "@/lib/utils/formatHelp";
 import { FC } from "react";
 
 interface Props {
-  prevChats: ChatItem[];
+  prevChats: ChatHistoryItem[];
 }
 const ChatListHistory: FC<Props> = ({ prevChats }) => {
   const { userId } = useAuth();
@@ -35,12 +35,12 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
 
   return (
     <div className="mt-4">
-      <ul className="grid gap-3 lg:gap-5">
+      <ul className="grid gap-5 lg:gap-5">
         {prevChats.map((item, i) => (
           <li
             className="flex gap-x-1 items-center cursor-pointer"
             key={i}
-            onClick={() => openChatWithUser(item)}
+            onClick={() => openChatWithUser(item as unknown as ChatItem)}
           >
             <img
               src={

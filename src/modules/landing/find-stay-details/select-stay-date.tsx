@@ -344,8 +344,9 @@ const SelectStayDate: FC<Props> = ({
       <div className="flex gap-x-2">
         <FaCircleInfo className="text-lg text-sec shrink-0 relative top-1 text-[#feb470]" />
         <p className="fs-400 text-gray-700">
-          Please note that reservation will only be available for a period of
-          24hours without payment.
+          Your reservation will be held for 24 hours. Please complete payment
+          within this time to confirm your stay. Unpaid reservations will be
+          canceled after 24 hours.
         </p>
       </div>
       <div className="mt-3">

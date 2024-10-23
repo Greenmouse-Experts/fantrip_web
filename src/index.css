@@ -137,7 +137,7 @@ input[type="radio"]:checked {
 
 /* menu small screen position */
 @media (max-width: 1000px) {
-    .css-r6z5ec {
+    .chat-pope {
         left: -137px !important;
     }
 }

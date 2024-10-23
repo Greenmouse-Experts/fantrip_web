@@ -1,9 +1,16 @@
 import Button from "@/components/Button";
 import { useNavigate } from "react-router-dom";
 import ball from '@/assets/svg/ball-img.svg'
+import useAuth from "@/hooks/authUser";
 
 const BookingSuccess = () => {
+  const {isHost} = useAuth()
   const navigate = useNavigate();
+  const handleNavigation = () => {
+    const route = isHost ? "/user/guest-activity" : "/user/reservation";
+    navigate(`${route}`);
+  }
+
   return (
     <div className="py-3">
       <div>
@@ -26,7 +33,7 @@ const BookingSuccess = () => {
         />
         <Button
           title={"View Reservations"}
-          onClick={() => navigate("/user/reservation")}
+          onClick={() => handleNavigation()}
           altClassName="btn-primary px-5 lg:px-9 py-2 rounded-full"
         />
       </div>

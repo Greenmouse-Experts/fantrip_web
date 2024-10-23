@@ -1,12 +1,11 @@
 import { useChat } from "@/hooks/useChat";
-import { BsThreeDotsVertical } from "react-icons/bs";
 
 const ChatHeaderIndex = () => {
   const { guestId, guestInfo } = useChat();
   return (
     <div className="w-full">
       {guestId ? (
-        <div className="flex pr-4 justify-between items-center">
+        <div className="flex px-4 justify-between items-center">
           <div className="flex items-center gap-x-2">
             <img
               src={
@@ -21,7 +20,7 @@ const ChatHeaderIndex = () => {
             </div>
           </div>
           <div>
-            <BsThreeDotsVertical className="text-2xl cursor-pointer" />
+            {/* <BsThreeDotsVertical className="text-2xl cursor-pointer" /> */}
           </div>
         </div>
       ) : (

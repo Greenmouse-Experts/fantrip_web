@@ -8,9 +8,13 @@ import RoomChatListIndex from "./room-chat-list";
 import RoomHeaderIndex from "./room-header";
 import RoomSidebarIndex from "./room-sidebar";
 import { useUtils } from "@/hooks/useUtils";
+import { useSearchParams } from "react-router-dom";
+import PostDetails from "./post-details";
 
 const socket = io(`${SOCKET_URL}`);
 const ChatRoomIndex = () => {
+  const [searchParams] = useSearchParams();
+  const postMode = searchParams.get("chatpost-id");
   const { isLoggedIn } = useAuth();
   const { activeModal, setNewActiveModal } = useUtils();
   const [reloadSocket, setReloadSocket] = useState("");
@@ -32,11 +36,15 @@ const ChatRoomIndex = () => {
               <RoomSidebarIndex socket={socket} reload={handleReload} />
             </div>
             <div className="lg:w-[48%]">
-              <RoomBodyIndex
-                reloadSocket={reloadSocket}
-                reload={handleReload}
-                socket={socket}
-              />
+              {postMode ? (
+                <PostDetails socket={socket} id={postMode}/>
+              ) : (
+                <RoomBodyIndex
+                  reloadSocket={reloadSocket}
+                  reload={handleReload}
+                  socket={socket}
+                />
+              )}
             </div>
             {isLoggedIn && (
               <div className="hidden lg:block lg:w-[25%] h-full sticky top-0">

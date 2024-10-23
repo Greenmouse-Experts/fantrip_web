@@ -77,11 +77,11 @@ const ReccomendationListing: FC<Props> = ({ data, refetch }) => {
               <div className="lg:h-[280px] relative">
                 <GuideImageSlider images={item.photos} />
                 {item.isDisclosed ? (
-                  <p className="absolute z-[20] top-2 right-2 text-green-600 bg-green-50 px-3 py-1 fw-500">
+                  <p className="absolute z-[20] top-2 right-2 text-green-600 bg-green-50 dark:bg-green-600 px-3 py-1 fw-500">
                     Active
                   </p>
                 ) : (
-                  <p className="absolute z-[20] top-2 right-2 text-orange-600 bg-orange-50 px-3 py-1 fw-500">
+                  <p className="absolute z-[20] top-2 right-2 text-orange-600 bg-orange-50 dark:bg-orange-700 px-3 py-1 fw-500">
                     Inactive
                   </p>
                 )}

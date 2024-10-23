@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { QuizQuestion } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
 import { extractNumbers } from "@/lib/utils/formatHelp";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   data: QuizQuestion;
@@ -9,12 +10,19 @@ interface Props {
   reload: () => void;
 }
 const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
-  const { token } = useAuth();
+  const { token, isLoggedIn } = useAuth();
+  const navigate = useNavigate();
   const [showResult, setShowResult] = useState<number>();
-  const [answer, setAnswer] = useState<number>(Number(extractNumbers(data.rightAnswer)[0]))
+  const [answer, setAnswer] = useState<number>(
+    Number(extractNumbers(data.rightAnswer)[0])
+  );
   const hasAttempt = data.attemptResults.find((where) => where.myAttempt);
   const markQuestion = (index: number) => {
     if (hasAttempt) {
+      return;
+    }
+    if (!isLoggedIn) {
+      navigate("/auth/login");
       return;
     }
     const payload = {
@@ -24,11 +32,12 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
     };
     socket.emit("attempt", payload);
     setShowResult(index);
-    setAnswer(Number(extractNumbers(data.rightAnswer)[0]))
+    setAnswer(Number(extractNumbers(data.rightAnswer)[0]));
     reload();
   };
 
   const optionLabel = ["A", "B", "C", "D", "E", "F", "G"];
+  const totalCount = data?.attemptResults?.reduce((sum, item) => sum + item.total, 0)
 
   return (
     <div className="p-2 mb-4 rounded-lg">
@@ -47,8 +56,22 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
                 }`}
               >
                 {/* <input type="radio" /> */}
-                <div className={`absolute fw-500 shadow-xl w-12 h-12 circle place-center ${answer === i && hasAttempt? 'bg-green-500 text-white' : 'bg-white text-black'}`}>
-                  <p>{optionLabel[i]}</p>
+                <div
+                  className={`absolute fw-500 shadow-xl w-12 h-12 circle place-center ${
+                    hasAttempt
+                      ? answer === i
+                        ? "bg-green-500 text-white"
+                        : "bg-red-500 text-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  <p
+                    className={`${
+                      hasAttempt ? "!text-white" : "dark:!text-black"
+                    }`}
+                  >
+                    {optionLabel[i]}
+                  </p>
                 </div>
                 <p className="fs-500 pl-16 p-2">{item.option}</p>
                 {hasAttempt && (
@@ -59,6 +82,9 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
           </div>
         ))}
       </>
+      <div className="border-t border-gray-400 pt-2 lg:px-3">
+        <p>{totalCount} answers.</p>
+      </div>
     </div>
   );
 };

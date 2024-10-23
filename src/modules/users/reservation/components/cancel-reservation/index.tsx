@@ -39,18 +39,18 @@ const CancelReservation: FC<Props> = ({ id, close }) => {
       });
   };
   return (
-    <div>
+    <div className="dark:text-white">
       <p
-        className="text-red-600 fw-500 cursor-pointer underline fs-500"
+        className="!text-red-600 fw-500 cursor-pointer underline fs-500"
         onClick={() => setShowModal(true)}
       >
-        Cancel Booking
+        Cancel Resevation
       </p>
       <Dialog title="" size="md">
         <ReusableModal
           type="cancel"
-          title="Are you sure you want to cancel this booking?"
-          actionTitle="Cancel Booking"
+          title="Are you sure you want to cancel this reservation?"
+          actionTitle="Cancel Reservation"
           action={cancelAction}
           closeModal={() => setShowModal(false)}
           cancelTitle="Close"

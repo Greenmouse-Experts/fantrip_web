@@ -7,7 +7,7 @@ const SearchInput = () => {
       <input
         type="search"
         placeholder="Search fantrip"
-        className="border-none outline-none bg-transparent p-2 w-full dark:text-white"
+        className="border-none outline-none bg-transparent p-2 w-full rounded-r-full dark:text-white"
       />
     </div>
   );

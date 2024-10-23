@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import AltName from "@/components/alt-name";
 import { ComponentModal } from "@/components/modal-component";
 import ProfileModal from "../profile-more/profile-modal";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   item: PostTyping;
@@ -14,19 +15,21 @@ interface Props {
   handleReload: () => void;
 }
 const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
+  const navigate = useNavigate();
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
-  const addComment = (minus?:boolean) => {
-    const count = minus
-      ? Number(commentCount) - 1
-      : Number(commentCount) + 1;
+  const addComment = (minus?: boolean) => {
+    const count = minus ? Number(commentCount) - 1 : Number(commentCount) + 1;
     setCommentCount(count);
   };
   return (
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="">
         <div className="rounded-[12px] overflow-hidden">
-          <div className="p-4 bg-gradient rounded-t-[12px] text-white">
+          <div
+            className="p-4 bg-gradient cursor-pointer rounded-t-[12px] text-white"
+            onClick={() => navigate(`/chat-room?chatpost-id=${item.id}`)}
+          >
             <div className="flex justify-between">
               <div className="flex gap-x-2 items-center">
                 <div className="w-[35px] lg:w-[40px] h-[35px] lg:h-[40px] bg-gradient p-[1px] circle">

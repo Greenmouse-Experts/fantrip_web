@@ -41,6 +41,7 @@ const PushNotification = () => {
 
   onMessageListener()
     .then((payload: any) => {
+      console.log(payload);
       setNotification({
         title: payload?.notification?.title,
         body: payload?.notification?.body,

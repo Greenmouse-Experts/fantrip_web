@@ -3,16 +3,24 @@ import ChatBubble from "./component/chat-bubble";
 import { useChat } from "@/hooks/useChat";
 import useAuth from "@/hooks/authUser";
 import { ChatItem2 } from "@/lib/contracts/chat";
+import dayjs from "dayjs";
 
 interface Props {
   socket: any;
   type: "guest" | "host";
-  reload: string | undefined
+  reload: string | undefined;
 }
 const ChatBody: FC<Props> = ({ socket, reload }) => {
-  const { hostId, chatWithHost, hostInfo, chatWithHostPage, saveChatWithHost } =
-    useChat();
-  const { token,user, userId, firstName, lastName, isHost } = useAuth();
+  const {
+    hostId,
+    chatWithHost,
+    hostInfo,
+    chatWithHostPage,
+    saveChatWithHost,
+    history,
+    saveHistory,
+  } = useChat();
+  const { token, user, userId, firstName, lastName, isHost } = useAuth();
   const [newMsg, setNewMsg] = useState<ChatItem2>();
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -32,6 +40,8 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
+      console.log(value, "sent message");
+
       const payload = {
         chatBuddy: {
           ...hostInfo,
@@ -42,27 +52,27 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
           lastName: lastName,
           nickname: user.nickname,
           verifiedAsHost: false,
-          role: isHost? "host" : "guest",
+          role: isHost ? "host" : "guest",
           picture: user.image,
           reviews: [],
           totalReviews: 0,
           avgRating: null,
         },
-        id: value.data.id,
+        id: value.data.lastMessageId,
         message: value.data.lastMessage,
         file: null,
         read: false,
-        createdDate: value.data.createdDate,
+        createdDate: value.data.updatedDate,
         chat: {
           id: value.data.id,
           lastMessage: value.data.lastMessage,
           isArchived: false,
           read: false,
           unread: "",
-          createdDate: value.data.createdDate,
-          updatedDate: value.data.createdDate,
+          createdDate: value.data.updatedDate,
+          updatedDate: value.data.updatedDate,
         },
-        isArchived: false
+        isArchived: false,
       };
       setNewMsg(payload as ChatItem2);
     };
@@ -118,10 +128,28 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   useEffect(() => {
     if (newMsg && newMsg?.chat?.lastMessage) {
       const filtered = chatWithHost.filter((where) => where.id === newMsg.id);
+      const historyFilter = history.filter(
+        (where) => where.chatBuddy.id !== hostInfo.id
+      );
       if (!filtered.length) {
         const newChat = [...chatWithHost, newMsg];
         saveChatWithHost(newChat);
       }
+      const newPayload = {
+        id: newMsg.id,
+        lastMessage: newMsg.message,
+        isArchived: false,
+        read: false,
+        createdDate: dayjs().toISOString(),
+        updatedDate: dayjs().toISOString(),
+        initiator: {
+          ...newMsg.initiator,
+        },
+        chatBuddy: {
+          ...newMsg.chatBuddy,
+        },
+      };
+      saveHistory([newPayload, ...historyFilter]);
     }
   }, [newMsg, socket]);
 
