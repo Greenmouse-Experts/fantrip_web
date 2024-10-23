@@ -26,12 +26,12 @@ const Tabs: FC<Props> = ({ tabs, broadcastCurrentIndex, type }) => {
   };
   const navActiveClass = {
     charts: "bg-gradient text-white fw-600 rounded-[10px] duration-100",
-    norm: "border-b-[4px] text-[#052b5e] border-[#052b5e]",
+    norm: "border-b-[4px] text-[#052b5e] dark:text-white border-[#052b5e] dark:border-white",
     "": "border-b-[4px] text-[#052b5e] cursor-pointer fw-600 border-[#052b5e] px-5",
   };
   const navInactiveClass = {
     charts: "text-[#A6A6A6] bg-[#FAFAFA] dark:bg-[#131313] hover:text-gray-700",
-    norm: "text-[#A6A6A6] border-b-[4px] border-[#FAFAFA] hover:text-gray-700",
+    norm: "text-[#A6A6A6] dark:text-gray-600 border-b-[4px] border-[#FAFAFA] dark:border-gray-600 hover:text-gray-700",
   };
 
   return (

@@ -175,7 +175,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
           <div className="absolute -top-7 right-5">
             <Menu>
               <MenuButton>
-                <div className="flex fs-400 gap-x-2 items-center">
+                <div className="flex fs-400 gap-x-2 dark:text-white items-center">
                   {selectedChannel.name}{" "}
                   <ChevronDownIcon size={14} className="text-xs" />
                 </div>
@@ -189,7 +189,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
                       setSelectedChannel({ id: item.id, name: item.name })
                     }
                   >
-                    <p className="!text-black z-20">{item.name}</p>
+                    <p className="text-black z-20">{item.name}</p>
                   </MenuItem>
                 ))}
               </MenuList>

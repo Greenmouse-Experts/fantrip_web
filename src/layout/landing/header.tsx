@@ -206,7 +206,7 @@ const LandingHeader = () => {
                               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                                 <img src={icon_7} alt="icons" />
                               </div>
-                              <p className="">Guest Activity</p>
+                              <p className="">My Fanstay trips</p>
                             </Link>
                           </MenuItem>
                         )}

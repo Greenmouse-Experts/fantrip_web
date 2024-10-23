@@ -1,5 +1,9 @@
 import { BookingItemWithPricing } from "@/lib/contracts/booking";
-import { formatAsNgnMoney, formatNumber, formatStatus } from "@/lib/utils/formatHelp";
+import {
+  formatAsNgnMoney,
+  formatNumber,
+  formatStatus,
+} from "@/lib/utils/formatHelp";
 import dayjs from "dayjs";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa6";
@@ -24,7 +28,7 @@ const DetailsList: FC<Props> = ({ data, close }) => {
     children,
     createdDate,
     status,
-    enableRewardForPayment
+    enableRewardForPayment,
   } = data;
   return (
     <div className="max-h-[calc(95vh_-_100px)] overflow-y-auto">
@@ -35,7 +39,8 @@ const DetailsList: FC<Props> = ({ data, close }) => {
         </p>
       </div>
       <div>
-        {status === RESERVATION_STATUS.PENDING && (
+        {(status === RESERVATION_STATUS.PENDING ||
+          status === RESERVATION_STATUS.CONFIRMED) && (
           <CancelReservation id={id} close={close} />
         )}
       </div>
@@ -57,9 +62,11 @@ const DetailsList: FC<Props> = ({ data, close }) => {
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Ratings:</p>
-              {Number(stay.avrRating) > 0 && <p className="fw-500 flex items-center gap-x-2 text-[#fc819f]">
-                <FaStar /> <span className="">{stay.avrRating}</span>
-              </p>}
+              {Number(stay.avrRating) > 0 && (
+                <p className="fw-500 flex items-center gap-x-2 text-[#fc819f]">
+                  <FaStar /> <span className="">{stay.avrRating}</span>
+                </p>
+              )}
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Highlight:</p>
@@ -125,14 +132,23 @@ const DetailsList: FC<Props> = ({ data, close }) => {
             <div className="flex gap-x-2">
               <p className="text-gray-600">Point Reward:</p>
               <p className="fw-500">
-                {enableRewardForPayment? <div className="flex gap-x-2 items-center">{formatStatus["active"]} <span className="text-green-500">-{formatAsNgnMoney(5)}</span></div> : formatStatus["inactive"]}
+                {enableRewardForPayment ? (
+                  <div className="flex gap-x-2 items-center">
+                    {formatStatus["active"]}{" "}
+                    <span className="text-green-500">
+                      -{formatAsNgnMoney(5)}
+                    </span>
+                  </div>
+                ) : (
+                  formatStatus["inactive"]
+                )}
               </p>
             </div>
             <div className="flex items-center gap-x-2">
               <p className="text-gray-600">Total:</p>
               <p className="fw-500 text-lg">
                 {stay.currency}
-                {formatNumber(total - (enableRewardForPayment? 5 : 0))}
+                {formatNumber(total - (enableRewardForPayment ? 5 : 0))}
               </p>
             </div>
           </div>

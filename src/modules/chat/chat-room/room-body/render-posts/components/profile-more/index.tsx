@@ -7,6 +7,7 @@ import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FC } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ReportUser from "./report-user";
+import SharePost from "./share-post";
 
 interface Props {
   user: {
@@ -26,6 +27,7 @@ interface Props {
   socket: any;
   reload: () => void;
   type?: string;
+  title?: string;
 }
 const ProfileMore: FC<Props> = ({
   user,
@@ -34,12 +36,14 @@ const ProfileMore: FC<Props> = ({
   id,
   reload,
   type,
+  title
 }) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
   const { toggleStayChatmodal: setShowModal } = useUtils();
   const { Dialog, setShowModal: ShowDialog } = useDialog();
   const { Dialog: Report, setShowModal: ShowReport } = useDialog();
+  const { Dialog: Share, setShowModal: ShowShare } = useDialog();
 
   const openChatWithUser = () => {
     const payload = {
@@ -85,7 +89,7 @@ const ProfileMore: FC<Props> = ({
       <div className="relative">
         <Menu placement="end" direction="rtl">
           <MenuButton>
-            <div className="flex gap-x-2 items-center">
+            <div className="flex gap-x-2 items-center dark:text-white">
               <BsThreeDotsVertical
                 size={19}
                 className={`${type ? "text-[14px]" : "text-2xl"}`}
@@ -106,9 +110,14 @@ const ProfileMore: FC<Props> = ({
                 </MenuItem>
               </>
             )}
+            <MenuItem onClick={() => ShowShare(true)}>
+              <p className=" fs-400">
+                Share Post
+              </p>
+            </MenuItem>
             {user?.id === userId && (
               <MenuItem onClick={() => ShowDialog(true)}>
-                <p className="text-red-500 fs-400">
+                <p className="!text-red-500 fs-400">
                   {type === "comment" ? "Delete Comment" : "Delete Post"}
                 </p>
               </MenuItem>
@@ -136,6 +145,9 @@ const ProfileMore: FC<Props> = ({
           close={() => ShowReport(false)}
         />
       </Report>
+      <Share title="Share Post" size="md">
+        <SharePost id={id} title={title}/>
+      </Share>
     </div>
   );
 };
