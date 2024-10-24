@@ -16,7 +16,6 @@ const AutoCompleteAddressInput = () => {
         setResult(res.predictions)
     })
   };
-  console.log(result);
   
   return (
     <div>

@@ -14,6 +14,13 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
   const { token, userId } = useAuth();
   const [isLoaded, setIsLoaded] = useState(false)
   const [newMsg, setNewMsg] = useState<ChatItem2>();
+  const [showMsg, setShowMsg] = useState<string>(guestId)
+
+  useEffect(() => {
+    if(guestId){
+      setShowMsg(guestId)
+    }
+  },[])
 
   // on load get previous messages or message history
   const getMessages = () => {
@@ -104,7 +111,7 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
 
   return (
     <div className="w-full h-full p-1 pr-2">
-      {guestId ? (
+      {showMsg && isLoaded ? (
         <div className=" dark:bg-darkColor p-1 pr-2 rounded-lg h-full">
           <div className="h-full overflow-y-auto scroll-pro" ref={scrollRef}>
             <div className="p-2">
@@ -113,6 +120,7 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
                   <div className="flex" key={item?.id}>
                     <ChatBubble
                       type={item?.initiator?.role}
+                      id={item.initiator?.id}
                       text={item.message || ""}
                       date={item.createdDate}
                     />
