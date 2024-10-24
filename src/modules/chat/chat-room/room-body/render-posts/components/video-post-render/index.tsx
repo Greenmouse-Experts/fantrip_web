@@ -7,6 +7,7 @@ import dayjs from "dayjs";
 import AltName from "@/components/alt-name";
 import { ComponentModal } from "@/components/modal-component";
 import ProfileModal from "../profile-more/profile-modal";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   item: PostTyping;
@@ -14,6 +15,7 @@ interface Props {
   handleReload: () => void
 }
 const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
+  const navigate = useNavigate()
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = (minus?: boolean) => {
@@ -62,7 +64,7 @@ const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
                 reload={handleReload}
               />
             </div>
-            <div className="mt-3">
+            <div className="mt-3" onClick={() => navigate(`/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`)}>
               <p className="whitespace-pre-line">{item.message}</p>
             </div>
           </div>

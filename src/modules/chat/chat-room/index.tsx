@@ -15,6 +15,7 @@ const socket = io(`${SOCKET_URL}`);
 const ChatRoomIndex = () => {
   const [searchParams] = useSearchParams();
   const postMode = searchParams.get("chatpost-id");
+  const userId = searchParams.get("chatinit-id");
   const { isLoggedIn } = useAuth();
   const { activeModal, setNewActiveModal } = useUtils();
   const [reloadSocket, setReloadSocket] = useState("");
@@ -37,7 +38,7 @@ const ChatRoomIndex = () => {
             </div>
             <div className="lg:w-[48%]">
               {postMode ? (
-                <PostDetails socket={socket} id={postMode}/>
+                <PostDetails socket={socket} id={postMode} userId={userId || ""}/>
               ) : (
                 <RoomBodyIndex
                   reloadSocket={reloadSocket}

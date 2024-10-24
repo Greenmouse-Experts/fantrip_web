@@ -23,12 +23,13 @@ const SidebarLayout: FC<Props> = ({ toggled, setToggled }) => {
   const { user } = useAuth();
 
   return (
-    <div className="left-0 top-0 fixed overflow-y-hidden  dark:bg-darkColor dark:text-white">
+    <div className="left-0 top-0 lg:fixed overflow-y-hidden  dark:bg-darkColor dark:text-white">
       <Sidebar
         customBreakPoint="1024px"
         className="h-screen bg-white dark:bg-darkColor overflow-y-hidden !border-none scroll-pro fs-700 fw-500 px-4"
         backgroundColor=""
         width="275px"
+        onBackdropClick={() => setToggled(false)}
         toggled={toggled}
         onClick={() => setToggled(false)}
       >

@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LiaTimesSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
 import Button from "./Button";
@@ -8,9 +8,11 @@ const CookieModal = () => {
   const [show, setShow] = useState(true);
   const accept = Cookies.get("fantrip_cookie");
 
-  useEffect(() => {
+  const handleAccept = () => {
+    setShow(false)
     Cookies.set("fantrip_cookie", `yes`);
-  }, []);
+  }
+
   return (
     <div>
       {!accept && show && (
@@ -56,7 +58,7 @@ const CookieModal = () => {
                 <div className="">
                   <Button
                     title={"Accept"}
-                    onClick={() => setShow(false)}
+                    onClick={() => handleAccept()}
                     altClassName="btn-int px-5 py-2"
                   />
                 </div>

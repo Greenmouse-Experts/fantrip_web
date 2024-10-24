@@ -10,6 +10,7 @@ import { ComponentModal } from "@/components/modal-component";
 import ProfileModal from "../profile-more/profile-modal";
 import PollQuestionIndex from "../poll-question";
 import QuizQuestionIndex from "../quiz-question";
+import { useNavigate } from "react-router-dom";
 dayjs.extend(relativeTime);
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
   handleReload: () => void;
 }
 const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
+  const navigate = useNavigate()
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = (minus?: boolean) => {
@@ -64,7 +66,7 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
             reload={handleReload}
           />
         </div>
-        <div className="my-3">
+        <div className="my-3" onClick={() => navigate(`/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`)}>
           <p className="whitespace-pre-line">{item.message}</p>
         </div>
         {item.pollQuestion && <PollQuestionIndex data={item.pollQuestion} socket={socket} reload={handleReload} />}

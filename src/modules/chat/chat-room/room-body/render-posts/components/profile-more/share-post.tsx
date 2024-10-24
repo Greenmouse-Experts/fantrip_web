@@ -18,9 +18,10 @@ import {
 interface Props {
   id: string;
   title: string | undefined;
+  userId: string;
 }
-const SharePost: FC<Props> = ({ id, title }) => {
-  const url = `${SITE_URL}/chat-room?chatpost-id=${id}`;
+const SharePost: FC<Props> = ({ id, title, userId }) => {
+  const url = `${SITE_URL}/chat-room?chatpost-id=${id}&chatinit-id=${userId}`;
   const head = title || "";
   const toast = useToast();
 
