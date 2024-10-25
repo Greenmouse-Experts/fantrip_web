@@ -38,7 +38,7 @@ const ChatFooter: FC<Props> = ({ socket, type, handleReload }) => {
           type="text"
           value={msgInput}
           placeholder="Type a message..."
-          className="p-2 pl-4 w-full rounded-l-full outline-none"
+          className="p-2 pl-4 w-full bg-transparent rounded-l-full outline-none"
           onChange={(e) => setMsgInput(e.target.value)}
         />
         <button

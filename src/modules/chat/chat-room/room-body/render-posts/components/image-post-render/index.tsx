@@ -28,7 +28,11 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
         <div className="rounded-[12px] overflow-hidden">
           <div
             className="p-4 bg-gradient cursor-pointer rounded-t-[12px] text-white"
-            onClick={() => navigate(`/chat-room?chatpost-id=${item.id}`)}
+            onClick={() =>
+              navigate(
+                `/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`
+              )
+            }
           >
             <div className="flex justify-between">
               <div className="flex gap-x-2 items-center">

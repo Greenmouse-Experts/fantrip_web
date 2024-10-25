@@ -15,7 +15,7 @@ const PollQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
     dayjs().isBefore(dayjs(data.expiryDate)) ? "" : data.id
   );
 
-  const hasTrueValue = data.voteResults.find((where) => where.myVote);
+  const hasTrueValue = data.voteResults?.find((where) => where.myVote);
 
   const markQuestion = (index: number) => {
     const payload = {

@@ -45,8 +45,6 @@ const VerifyUser = () => {
         setIsError(true);
       }
     } catch (error: any) {
-      console.log(error);
-
       setIsLoading(false);
       setIsError(true);
       toast({

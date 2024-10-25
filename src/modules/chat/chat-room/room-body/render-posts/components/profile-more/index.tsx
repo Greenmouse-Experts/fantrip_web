@@ -146,7 +146,7 @@ const ProfileMore: FC<Props> = ({
         />
       </Report>
       <Share title="Share Post" size="md">
-        <SharePost id={id} title={title}/>
+        <SharePost id={id} title={title} userId={user.id}/>
       </Share>
     </div>
   );

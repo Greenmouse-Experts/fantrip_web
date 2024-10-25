@@ -134,14 +134,18 @@ const BookingTableListing: FC<Props> = ({
     columnHelper.accessor((row) => row.trx.thirdPartyRes.ref, {
       id: "Action",
       cell: (info) => (
-        <Menu>
+       <div className="relative !w-[20px]">
+         <Menu placement="start-start">
           <MenuButton>
             <BsThreeDotsVertical className="text-2xl" />
           </MenuButton>
           <MenuList className="">
-            <MenuItem>
-              <CancelBooking id={info.getValue()} refetch={refetch} />
-            </MenuItem>
+            {(info.row.original.status === "checked-in" ||
+              info.row.original.status === "pending") && (
+              <MenuItem>
+                <CancelBooking id={info.getValue()} refetch={refetch} />
+              </MenuItem>
+            )}
             <MenuItem>
               <button
                 onClick={() =>
@@ -155,6 +159,7 @@ const BookingTableListing: FC<Props> = ({
             </MenuItem>
           </MenuList>
         </Menu>
+       </div>
       ),
     }),
   ];

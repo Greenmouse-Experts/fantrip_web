@@ -32,7 +32,6 @@ const HostChatBody: FC<Props> = ({ socket, reload }) => {
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
       setIsLoaded(true);
-      console.log(value);
       const payload = {
         chatBuddy: {
           ...miniInfo,

@@ -74,7 +74,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
       <div className="grid gap-3 mt-6">
         {data.map((item: StayItem) => (
           <div
-            className="flex gap-x-4 border border-[#343B4F] rounded p-1"
+            className="flex relative overflow-hidden gap-x-4 border border-[#343B4F] rounded p-1"
             key={item.id}
           >
             <div className="w-[160px] md:h-[110px] shrink-0 overflow-hidden rounded-[8px]">
@@ -93,11 +93,11 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                 <div className="md:flex items-center gap-x-2">
                   <p className="lg:text-xl fw-500">{item.name}</p>
                   {item.approved ? (
-                    <p className="bg-green-50 inline !text-green-500 px-3 fs-500 fw-500 leading-none py-[3px]">
+                    <p className="bg-green-50 inline !text-green-500 px-3 fs-500 fw-500 leading-none lg:py-[3px]">
                       Active
                     </p>
                   ) : (
-                    <p className="bg-orange-50 inline !text-orange-500 px-3 fs-500 fw-500 leading-none py-[3px]">
+                    <p className="bg-orange-50 inline !text-orange-500 px-3 fs-500 fw-500 leading-none lg:py-[3px]">
                       Awaiting
                     </p>
                   )}
@@ -114,8 +114,8 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                 </p>
               </div>
               <div>
-                <div className="flex justify-end">
-                  <Menu>
+                <div className="flex relative justify-end">
+                  <Menu placement="start-start">
                     <MenuButton>
                       <div className="flex gap-x-2 items-center">
                         <p>Status:</p>
@@ -125,7 +125,7 @@ const StayTableListing: FC<Props> = ({ data, refetch }) => {
                         <FaChevronDown className="opacity-60 fs-500" />
                       </div>
                     </MenuButton>
-                    <MenuList className="">
+                    <MenuList>
                       <MenuItem>
                         {item.isDisclosed ? (
                           <p

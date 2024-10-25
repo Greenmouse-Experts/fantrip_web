@@ -16,7 +16,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
   const [answer, setAnswer] = useState<number>(
     Number(extractNumbers(data.rightAnswer)[0])
   );
-  const hasAttempt = data.attemptResults.find((where) => where.myAttempt);
+  const hasAttempt = data.attemptResults?.find((where) => where.myAttempt);
   const markQuestion = (index: number) => {
     if (hasAttempt) {
       return;

@@ -57,7 +57,6 @@ const ViewComments: FC<Props> = ({
     setReload(`${new Date()}`);
   }, [count]);
 
-  // console.log(prevComments);
 
   return (
     <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">

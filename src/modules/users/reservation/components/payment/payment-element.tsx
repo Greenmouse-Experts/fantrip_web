@@ -39,8 +39,6 @@ const CheckoutForm: FC<Props> = ({}) => {
             ),
             position: "top",
           });
-          console.log(data);
-          
           navigate(`/user/booking-success/${data.data.trxId}`)
     },
     onError: (err:any) => {
@@ -76,7 +74,6 @@ const CheckoutForm: FC<Props> = ({}) => {
 
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
-      console.log(result.error.message);
       toast({
         title: result.error.message,
         isClosable: true,

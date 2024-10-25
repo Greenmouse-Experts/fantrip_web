@@ -4,11 +4,11 @@ import { Switch, useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { FC } from "react";
 
-interface Props{
-    reload: () => void
+interface Props {
+  reload: () => void;
 }
-const UseNickname:FC<Props> = ({reload}) => {
-  const { user, saveUser } = useAuth();
+const UseNickname: FC<Props> = ({ reload }) => {
+  const { user, saveUser, isLoggedIn } = useAuth();
   const toast = useToast();
   const mutation = useMutation({
     mutationFn: updateProfile,
@@ -46,17 +46,19 @@ const UseNickname:FC<Props> = ({reload}) => {
   };
   return (
     <div>
-      <div className="flex gap-x-6 items-center lg:mt-4">
-        <label className="fw-500 ">Use Nickname</label>
-        <div className="">
-          <Switch
-            isChecked={user.isNickname}
-            colorScheme="pink"
-            onChange={onSubmit}
-            size={"md"}
-          />
+      {isLoggedIn && (
+        <div className="flex gap-x-6 items-center lg:mt-4">
+          <label className="fw-500 ">Use Nickname</label>
+          <div className="">
+            <Switch
+              isChecked={user.isNickname}
+              colorScheme="pink"
+              onChange={onSubmit}
+              size={"md"}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
