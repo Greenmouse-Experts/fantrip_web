@@ -7,8 +7,9 @@ import { FC, useState } from "react";
 interface Props {
   id: string;
   close: () => void;
+  refetch: () => void;
 }
-const CancelReservation: FC<Props> = ({ id, close }) => {
+const CancelReservation: FC<Props> = ({ id, close, refetch }) => {
   const { Dialog, setShowModal } = useDialog();
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
@@ -25,6 +26,7 @@ const CancelReservation: FC<Props> = ({ id, close }) => {
           position: "top",
         });
         setIsBusy(false);
+        refetch()
         close();
         setShowModal(false);
       })

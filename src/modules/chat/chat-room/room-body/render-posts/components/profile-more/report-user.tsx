@@ -1,7 +1,8 @@
 import Button from "@/components/Button";
+import TextInput, { InputType } from "@/components/TextInput";
 import useAuth from "@/hooks/authUser";
 import { useToast } from "@chakra-ui/react";
-import { FC, useState } from "react";
+import { ChangeEvent, FC, useState } from "react";
 
 interface Props {
   socket: any;
@@ -9,9 +10,18 @@ interface Props {
   close: () => void;
 }
 const ReportUser: FC<Props> = ({ socket, userId, close }) => {
+  const [textInput, setTextInput] = useState<boolean>(false);
   const [text, setText] = useState<string>("");
   const { token } = useAuth();
   const toast = useToast();
+
+  const options = [
+    "This post contains rude, harmful, or inappropriate material",
+    "This post shares false or unverified information",
+    "This user is spamming or posting irrelevant content",
+    "This user is harassing or bullying others",
+    "Other (Please provide more details)",
+  ];
 
   const handleSend = () => {
     const payload = {
@@ -25,7 +35,8 @@ const ReportUser: FC<Props> = ({ socket, userId, close }) => {
     toast({
       render: () => (
         <div className="text-white text-center fw-600 syne bg-gradient rounded p-3">
-          Submitted successfully
+          Thank you for your report. We&apos;ll review the situation, and if it
+          violates our community guidelines, we&apos;ll take the necessary action.
         </div>
       ),
       position: "top",
@@ -37,18 +48,42 @@ const ReportUser: FC<Props> = ({ socket, userId, close }) => {
     <div className="">
       <div>
         <p className="mb-1 fs-500">Reason for Reporting</p>
-        <textarea
-          placeholder="write here..."
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          className="w-full p-2 h-24 border rounded-lg shadow-sm outline-none"
-        />
+        <div className="mt-3 grid gap-3">
+          {options.map((item, i) => (
+            <div
+              className={`border border-gray-200 flex p-2 cursor-pointer hover:bg-prima hover:text-white items-center rounded-lg gap-x-3 ${
+                item === text ? "bg-prima text-white" : ""
+              }`}
+              key={i}
+              onClick={() => {
+                setText(item);
+                item === "Other (Please provide more details)"
+                  ? setTextInput(true)
+                  : setTextInput(false);
+              }}
+            >
+              <input type="radio" className="w-4 h-4" checked={item === text} />
+              <p>{item}</p>
+            </div>
+          ))}
+          {textInput && (
+            <TextInput
+              type={InputType.text}
+              label=""
+              placeholder="Type here"
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setText(e.target.value)
+              }
+            />
+          )}
+        </div>
       </div>
       <div className="mt-4">
         <Button
           title={"Submit"}
           onClick={handleSend}
           altClassName="btn-int w-full py-[8px]"
+          disabled={!text.length}
         />
       </div>
     </div>

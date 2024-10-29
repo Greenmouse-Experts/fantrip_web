@@ -12,7 +12,7 @@ interface Props {
   refetch: () => void;
   next: () => void;
 }
-const CancelledReservationList: FC<Props> = ({ data }) => {
+const CancelledReservationList: FC<Props> = ({ data, refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const closeDrawer = () => setIsOpen(false);
@@ -94,7 +94,7 @@ const CancelledReservationList: FC<Props> = ({ data }) => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <BookingDetails id={selectedId} close={closeDrawer} />
+          <BookingDetails id={selectedId} close={closeDrawer} refetch={refetch} />
         </DrawerContent>
       </Drawer>
     </div>

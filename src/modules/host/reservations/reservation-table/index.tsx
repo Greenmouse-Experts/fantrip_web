@@ -3,19 +3,30 @@ import { guestFetchReservation } from "@/services/api/booking-api";
 import { useQuery } from "@tanstack/react-query";
 import ReserveItemDisplay from "./reserve-item";
 import { BookingItem } from "@/lib/contracts/booking";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReservationFilter from "./filter";
+import PaginationIndex from "@/modules/landing/find-stay/fetch-component/pagination";
 
 const ReservationListingTable = () => {
+  const [page, setPage] = useState(1)
   const [params, setParams] = useState({
     status: "all",
-    page: 1,
+    page: page,
   });
 
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["host-get-reservations", params],
     queryFn: () => guestFetchReservation(params),
   });
+
+  useEffect(() => {
+    setParams({
+      ...params,
+      page: page
+    })
+  },[page])
+
+  const total = data?.count || 0
 
   return (
     <div>
@@ -33,6 +44,9 @@ const ReservationListingTable = () => {
           data.data.map((item: BookingItem) => (
             <ReserveItemDisplay key={item.id} data={item} refetch={refetch} />
           ))}
+      </div>
+      <div className="flex justify-center mt-12 lg:mt-24">
+        <PaginationIndex total={total} page={params.page} setPage={setPage}/>
       </div>
     </div>
   );

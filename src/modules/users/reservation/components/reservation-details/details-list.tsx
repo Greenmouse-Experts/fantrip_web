@@ -13,8 +13,9 @@ import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 interface Props {
   data: BookingItemWithPricing;
   close: () => void;
+  refetch: () => void;
 }
-const DetailsList: FC<Props> = ({ data, close }) => {
+const DetailsList: FC<Props> = ({ data, close, refetch }) => {
   const {
     id,
     stay,
@@ -41,7 +42,7 @@ const DetailsList: FC<Props> = ({ data, close }) => {
       <div>
         {(status === RESERVATION_STATUS.PENDING ||
           status === RESERVATION_STATUS.CONFIRMED) && (
-          <CancelReservation id={id} close={close} />
+          <CancelReservation id={id} close={close} refetch={refetch}/>
         )}
       </div>
       <div>

@@ -111,7 +111,7 @@ const ProfileMore: FC<Props> = ({
               </>
             )}
             <MenuItem onClick={() => ShowShare(true)}>
-              <p className=" fs-400">
+              <p className="text-black fs-400">
                 Share Post
               </p>
             </MenuItem>
@@ -138,7 +138,7 @@ const ProfileMore: FC<Props> = ({
           isBusy={false}
         />
       </Dialog>
-      <Report title="" size="sm">
+      <Report title="" size="md">
         <ReportUser
           socket={socket}
           userId={user.id}

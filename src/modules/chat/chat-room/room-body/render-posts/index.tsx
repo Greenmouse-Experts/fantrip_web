@@ -58,7 +58,6 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
       setPostsToRender(posts);
     }
   }, [prevPosts]);
-  
 
   return (
     <div className="grid mt-4 gap-4">
@@ -93,12 +92,14 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
           );
       })}
       <div className="flex justify-center">
-        <button
-          className="flex items-center gap-x-2"
-          onClick={() => setPage(page + 1)}
-        >
-          View More <FaAnglesDown />
-        </button>
+        {postsToRender.length > 11 && (
+          <button
+            className="flex items-center gap-x-2"
+            onClick={() => setPage(page + 1)}
+          >
+            View More <FaAnglesDown />
+          </button>
+        )}
       </div>
     </div>
   );

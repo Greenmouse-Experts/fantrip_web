@@ -7,13 +7,14 @@ import ProfileAvatar from "@/components/ProfileAvatar";
 import { Drawer, DrawerOverlay, DrawerContent } from "@chakra-ui/react";
 import BookingDetails from "../../../components/reservation-details";
 import ChatForStay from "@/modules/chat/stay-chat";
+import PaymentButton from "../../../components/payment";
 
 interface Props {
   data: BookingItem[];
   refetch: () => void;
   next: () => void;
 }
-const ConfirmedReservationList: FC<Props> = ({ data }) => {
+const ConfirmedReservationList: FC<Props> = ({ data, refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const closeDrawer = () => setIsOpen(false);
@@ -26,7 +27,7 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
       {data.map((item: BookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
           <div className="bg-white dark:bg-darkColor rounded-lg md:flex  gap-x-2 md:gap-x-4 p-1 h-full">
-            <div className="w-full h-[130px] md:w-[160px] md:h-[100%] max-h-[140px] shrink-0 overflow-hidden rounded-[8px]">
+            <div className="w-full h-[130px] md:w-[160px] md:h-[100%] max-h-[160px] shrink-0 overflow-hidden rounded-[8px]">
               <img
                 src={
                   !!item?.stay?.photos?.length
@@ -63,8 +64,15 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
                 </div>
               </div>
               <div className="grid gap-1 md:gap-3 md:justify-end pb-2 md:p-2">
+                <div className="relative flex justify-end">
+                  <PaymentButton
+                    id={item.id}
+                    currency={item.stay.currency}
+                    checkin={item.checkIn}
+                  />
+                </div>
                 <div className="flex md:justify-end">
-                  <p className="mt-2 text-[#9847fe] fw-600 fs-300 md:fs-500">
+                  <p className="text-[#9847fe] fw-600 fs-300 md:fs-500">
                     Reserved: {dayjs(item.createdDate).fromNow()}
                   </p>
                 </div>
@@ -83,7 +91,7 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
                   </Link>
                 </div>
                 <div className="flex md:justify-end">
-                <ChatForStay id="" host={item.stay.host}/>
+                  <ChatForStay id="" host={item.stay.host} />
                 </div>
               </div>
             </div>
@@ -98,7 +106,11 @@ const ConfirmedReservationList: FC<Props> = ({ data }) => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <BookingDetails id={selectedId} close={closeDrawer} />
+          <BookingDetails
+            id={selectedId}
+            close={closeDrawer}
+            refetch={refetch}
+          />
         </DrawerContent>
       </Drawer>
     </div>
