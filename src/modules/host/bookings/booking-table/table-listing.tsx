@@ -7,7 +7,7 @@ import { DynamicTable } from "@/components/DynamicTable";
 import { createColumnHelper } from "@tanstack/react-table";
 import ProfileAvatar from "@/components/ProfileAvatar";
 import {
-  formatAsDollar,
+  formatAsNgnMoney,
   formatName,
   formatStatus,
   formatStayStatus,
@@ -95,7 +95,7 @@ const BookingTableListing: FC<Props> = ({
     columnHelper.accessor((row) => row.pricePerNight, {
       id: "Amount Paid",
       cell: (info) => (
-        <p className="text-lg fw-600">{formatAsDollar(info.getValue())}</p>
+        <p className="text-lg fw-600">{formatAsNgnMoney(info.getValue(), info.row.original.currency)}</p>
       ),
       header: (info) => info.column.id,
     }),

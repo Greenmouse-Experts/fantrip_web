@@ -10,8 +10,9 @@ import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 interface Props {
   id: string;
   close: () => void;
+  refetch: () => void;
 }
-const BookingDetails: FC<Props> = ({ id, close }) => {
+const BookingDetails: FC<Props> = ({ id, close, refetch }) => {
   const { isLoading, data } = useQuery({
     queryKey: ["get-reservation-details", id],
     queryFn: () => fetchReservationDetails(id),
@@ -31,7 +32,7 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
           </div>
           {/* booking-details */}
           <div className="mt-4">
-            <DetailsList data={data} close={close} />
+            <DetailsList data={data} close={close} refetch={refetch} />
           </div>
           {/* pay button */}
           <div>

@@ -26,14 +26,7 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
     <div className="border-b pb-3 border-[#D2D2D2]">
       <div className="">
         <div className="rounded-[12px] overflow-hidden">
-          <div
-            className="p-4 bg-gradient cursor-pointer rounded-t-[12px] text-white"
-            onClick={() =>
-              navigate(
-                `/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`
-              )
-            }
-          >
+          <div className="p-4 bg-gradient cursor-pointer rounded-t-[12px] text-white">
             <div className="flex justify-between">
               <div className="flex gap-x-2 items-center">
                 <div className="w-[35px] lg:w-[40px] h-[35px] lg:h-[40px] bg-gradient p-[1px] circle">
@@ -70,7 +63,14 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
                 reload={handleReload}
               />
             </div>
-            <div className="mt-3">
+            <div
+              className="mt-3"
+              onClick={() =>
+                navigate(
+                  `/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`
+                )
+              }
+            >
               <p className="whitespace-pre-line">{item.message}</p>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import useAuth from "@/hooks/authUser";
 import { getCappedPercentage, isValidEmail } from "@/lib/utils/formatHelp";
 import { sendInvite, viewProfile } from "@/services/api/authApi";
 import { SITE_URL } from "@/services/constant";
@@ -15,6 +16,7 @@ import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 const UserReferrals = () => {
   const [emailInput, setEmailInput] = useState<string>("");
   const [isBusy, setIsBusy] = useState<boolean>(false);
+  const { firstName } = useAuth();
   const { data: profile } = useQuery({
     queryKey: ["profile"],
     queryFn: () => viewProfile(),
@@ -22,7 +24,7 @@ const UserReferrals = () => {
   const toast = useToast();
 
   const handleSend = async () => {
-    if(!isValidEmail(emailInput)){
+    if (!isValidEmail(emailInput)) {
       toast({
         title: "Invalid email",
         position: "top",
@@ -57,9 +59,23 @@ const UserReferrals = () => {
       });
   };
 
-  const handleCopy = async (text: string) => {
+
+  const textToCopy = `Hey Champ,
+
+Your friend, ${firstName} just gave you the golden ticket to join fantrip – the future of sports travel.
+
+Fan-to-fan stays without the extra costs. No cleaning fees. No anonymous hosts. Just real fans ready to welcome you before the big game.
+
+Download the app on the https://www.appstore.com/store/fantrip or https://www.play.google.com/store/fantrip and use this code ${profile?.referralCode} on sign up to help your friend earn points. You’ll start earning, too, when you refer others!
+
+See you on the field,
+Team fantrip 🏆
+
+`;
+
+  const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(textToCopy);
       toast({
         render: () => (
           <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
@@ -170,8 +186,13 @@ const UserReferrals = () => {
                 onChange={(e) => setEmailInput(e.target.value)}
                 className="outline-none bg-transparent py-1 px-2 w-full"
               />
-              <div className="w-12 h-12 shrink-0 circle place-center bg-[#9847fe] cursor-pointer" onClick={handleSend}>
-                {!isBusy && <IoSend className="text-[#fff] text-2xl shrink-0" />}
+              <div
+                className="w-12 h-12 shrink-0 circle place-center bg-[#9847fe] cursor-pointer"
+                onClick={handleSend}
+              >
+                {!isBusy && (
+                  <IoSend className="text-[#fff] text-2xl shrink-0" />
+                )}
               </div>
             </div>
           </div>
@@ -182,7 +203,7 @@ const UserReferrals = () => {
             Copy your referral link and share it on your socials!
           </p>
           <div className="mt-3">
-            <div className="bg-[#FFEDF2] border border-gray-400 rounded-[50px] flex gap-x-2 py-2 px-5 items-center w-full">
+            <div className="bg-[#FFEDF2] dark:bg-darkColor border border-gray-400 rounded-[50px] flex gap-x-2 py-2 px-5 items-center w-full">
               <input
                 type="text"
                 className="bg-[#FFEDF2] outline-none py-1 px-2 w-full"
@@ -191,11 +212,7 @@ const UserReferrals = () => {
               />
               <p
                 className="cursor-pointer text-[#9847fe] fw-600 fs-500 whitespace-nowrap"
-                onClick={() =>
-                  handleCopy(
-                    `${SITE_URL}/auth/register?referralCode=${profile?.referralCode}`
-                  )
-                }
+                onClick={() => handleCopy()}
               >
                 Copy Link
               </p>

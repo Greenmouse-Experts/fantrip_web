@@ -33,10 +33,12 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
           <div className="grid items-center lg:grid-cols-2 gap-4 lg:gap-x-12">
             <div>
               <img src={favicon} alt="favicon" className="w-16" />
-              <p className="syne text-5xl fw-600 mt-10">
-                Booking confirmed successfully!
+              <p className="syne text-5xl fw-600 mt-6 lg:!leading-[60px]">
+              You&apos;re in! Payment confirmed! 🏆
               </p>
-              <p className="mt-6 text-gray-700">
+              <p className="mt-6 text-gray-700">Check your booking details and get ready for a fan-filled stay! Travelling for a game? Pack your jerseys. It&apos;s almost game time!              </p>
+              <p className="mt-4">Remember, respect your host&apos;s space and be the kind of guest you&apos;d welcome back!</p>
+              {/* <p className="mt-6 text-gray-700">
                 We are delighted to confirm your booking with us. Your payment
                 of{" "}
                 <span className="fw-500">{`${data.currency}${data.total}`}</span>{" "}
@@ -45,16 +47,19 @@ const BookingSuccessIndex: FC<Props> = ({ id }) => {
                 <span className="fw-500">{data.reservation.checkIn}</span>.
                 Should you have any questions or require further assistance,
                 please do not hesitate to contact
-              </p>
-              <div className="mt-10 flex gap-x-4 items-center">
+              </p> */}
+              <div className="mt-10 ">
+                <p>Need help? We&apos;re here for you anytime.</p>
+                <div className="flex gap-x-4 items-center mt-4">
                 <Button
                   onClick={() => navigate(isHost? "/user/guest-activity" : "/user/booking")}
-                  title={"View All Bookings"}
+                  title={"View all bookings"}
                   altClassName="btn-primary px-5 py-3 fw-600"
                 />
-                <Link to={"/"} className="underline text-prima fw-600">
-                  Goto Hompage
+                <Link to={"/area-guide"} className="underline text-prima fw-600">
+               Check Area Guide
                 </Link>
+                </div>
               </div>
             </div>
             <div className="gap-6">
