@@ -37,11 +37,15 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
     return () => socket.off(`unmutedPostsRetrieved`);
   };
 
+  const convertSlug = (text: string): string => {
+    return text.replace(/\s+/g, "-")
+  };
+
   useEffect(() => {
     const payload = {
       page: page,
       ...(isLoggedIn && { token: token }),
-      ...(community.name !== "all" && { slug: community.name }),
+      ...(community.name !== "all" && { slug: convertSlug(community.name) }),
     };
     socket.emit("retrieveUnmutedPosts", payload);
   }, [community, reload, page]);
