@@ -111,7 +111,7 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
 
   return (
     <div className="w-full h-full p-1 pr-2">
-      {showMsg && isLoaded ? (
+      {showMsg ? (
         <div className=" dark:bg-darkColor p-1 pr-2 rounded-lg h-full">
           <div className="h-full overflow-y-auto scroll-pro" ref={scrollRef}>
             <div className="p-2">

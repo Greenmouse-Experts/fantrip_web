@@ -35,11 +35,15 @@ messaging.onBackgroundMessage(function (payload) {
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
     body: payload.notification.body,
+    icon: '/favicon.png', // optional
+    badge: '/favicon.png', // optional
+    sound: "/notify.mp3", // Specify sound file path
+    silent: false 
   };
 
   // Play sound
-  const audio = new Audio("/notify.mp3");
-  audio.play().catch((error) => console.error("Error playing sound:", error));
+  // const audio = new Audio("/notify.mp3");
+  // audio.play().catch((error) => console.error("Error playing sound:", error));
 
   self.registration.showNotification(notificationTitle, notificationOptions);
 });
