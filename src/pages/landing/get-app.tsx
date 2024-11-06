@@ -20,7 +20,7 @@ const GetAppPage = () => {
           <div className="lg:flex">
             <div className="lg:w-6/12">
               <img
-                src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1718032473/fantrip/Group_1171275109_1_qtdup5.png"
+                src="/ftss1.png"
                 alt="mobile-app"
                 className="w-10/12 lg:w-8/12 mx-auto"
               />

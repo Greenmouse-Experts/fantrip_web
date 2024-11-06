@@ -28,8 +28,11 @@ const PollQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
     reload();
   };
 
-  const totalCount = data?.voteResults?.reduce((sum, item) => sum + item.total, 0)
-  const isExpired = dayjs().isBefore(dayjs(data.expiryDate))
+  const totalCount = data?.voteResults?.reduce(
+    (sum, item) => sum + item.total,
+    0
+  );
+  const isExpired = dayjs().isBefore(dayjs(data.expiryDate));
 
   return (
     <div className="p-2 mb-4 rounded-lg glass">
@@ -86,8 +89,13 @@ const PollQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
           ))}
         </>
       )}
-       <div className="border-t border-gray-300 pt-2 lg:px-3">
-        <p className="fs-500">{totalCount} {totalCount > 1? `votes` : `vote`}, {!isExpired? "Voting Closed" : `expires ${dayjs(data.expiryDate).fromNow()}`}</p>
+      <div className="border-t border-gray-300 pt-2 lg:px-3">
+        <p className="fs-500">
+          {totalCount} {totalCount > 1 ? `votes` : `vote`},{" "}
+          {!isExpired
+            ? "Voting Closed"
+            : `expires ${dayjs(data.expiryDate).fromNow()}`}
+        </p>
       </div>
     </div>
   );

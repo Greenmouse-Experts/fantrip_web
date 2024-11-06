@@ -44,7 +44,7 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
           >
             <img
               src={
-                (item.chatBuddy?.picture) ||
+                item.chatBuddy?.picture ||
                 "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
               }
               alt=""

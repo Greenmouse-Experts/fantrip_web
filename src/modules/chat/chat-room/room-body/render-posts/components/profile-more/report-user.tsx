@@ -3,6 +3,7 @@ import TextInput, { InputType } from "@/components/TextInput";
 import useAuth from "@/hooks/authUser";
 import { useToast } from "@chakra-ui/react";
 import { ChangeEvent, FC, useState } from "react";
+import { Modal, ModalOverlay, ModalContent } from "@chakra-ui/react";
 
 interface Props {
   socket: any;
@@ -34,10 +35,23 @@ const ReportUser: FC<Props> = ({ socket, userId, close }) => {
     setText("");
     toast({
       render: () => (
-        <div className="text-white text-center fw-600 syne bg-gradient rounded p-3">
-          Thank you for your report. We&apos;ll review the situation, and if it
-          violates our community guidelines, we&apos;ll take the necessary action.
-        </div>
+        <Modal
+          size="sm"
+          blockScrollOnMount={false}
+          isCentered
+          motionPreset="slideInBottom"
+          isOpen={true}
+          onClose={() => false}
+        >
+          <ModalOverlay />
+          <ModalContent className="dark:!bg-darkColorLight">
+            <div className="text-white text-center fw-600 syne bg-gradient rounded p-3">
+              Thank you for your report. We&apos;ll review the situation, and if
+              it violates our community guidelines, we&apos;ll take the
+              necessary action.
+            </div>
+          </ModalContent>
+        </Modal>
       ),
       position: "top",
     });

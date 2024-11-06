@@ -1,5 +1,5 @@
-import BtnContent from "@/components/btn-content"
-import { Link } from "react-router-dom"
+import BtnContent from "@/components/btn-content";
+import { Link } from "react-router-dom";
 
 const FandomHome = () => {
   return (
@@ -7,11 +7,7 @@ const FandomHome = () => {
       <div className="box">
         <div className="lg:flex items-center justify-between flex-row-reverse">
           <div className="lg:w-5/12 flex justify-end">
-            <img
-              src="https://res.cloudinary.com/greenmouse-tech/image/upload/v1722605103/fantrip/Group_1171275139_ae2wcm.png"
-              alt="fandom"
-              className="lg:w-10/12"
-            />
+            <img src="/ftss.png" alt="fandom" className="lg:w-9/12" />
           </div>
           <div className="text-white lg:w-6/12 mt-8 lg:mt-0">
             <p className="text-3xl lg:text-5xl fw-600 syne">
@@ -36,6 +32,6 @@ const FandomHome = () => {
       </div>
     </div>
   );
-}
+};
 
-export default FandomHome
+export default FandomHome;
