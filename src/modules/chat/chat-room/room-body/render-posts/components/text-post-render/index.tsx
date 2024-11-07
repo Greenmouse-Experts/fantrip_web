@@ -19,7 +19,7 @@ interface Props {
   handleReload: () => void;
 }
 const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = (minus?: boolean) => {
@@ -54,7 +54,9 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
               <p className="opacity-80  fs-300">
                 <span className="capitalize fw-500">{item.user?.role}</span>
                 {" - "}
-                <span>{dayjs(item.createdDate).fromNow()}</span>
+                <span>
+                  ( {dayjs(item.createdDate).format("hh:mm a - DD/MM/YYYY")} )
+                </span>
               </p>
             </div>
           </div>
@@ -66,11 +68,30 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
             reload={handleReload}
           />
         </div>
-        <div className="my-3" onClick={() => navigate(`/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`)}>
+        <div
+          className="my-3"
+          onClick={() =>
+            navigate(
+              `/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`
+            )
+          }
+        >
           <p className="whitespace-pre-line">{item.message}</p>
         </div>
-        {item.pollQuestion && <PollQuestionIndex data={item.pollQuestion} socket={socket} reload={handleReload} />}
-        {item.quizQuestion && <QuizQuestionIndex data={item.quizQuestion} socket={socket} reload={handleReload} />}
+        {item.pollQuestion && (
+          <PollQuestionIndex
+            data={item.pollQuestion}
+            socket={socket}
+            reload={handleReload}
+          />
+        )}
+        {item.quizQuestion && (
+          <QuizQuestionIndex
+            data={item.quizQuestion}
+            socket={socket}
+            reload={handleReload}
+          />
+        )}
         <PostActions
           id={item.id}
           like={item.upvotes}

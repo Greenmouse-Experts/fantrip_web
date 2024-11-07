@@ -115,8 +115,8 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
           </div>
         </div>
       </div>
-      <div className="mt-12 lg:mt-20 bg-[#EDEDFF] p-4 lg:px-8 lg:py-12 rounded-[11px]">
-        <p className="text-[#494949] lg:w-9/12 mx-auto text-center">
+      <div className="mt-12 lg:mt-20 p-4 lg:px-8 lg:py-12 rounded-[11px]">
+        <p className="lg:w-9/12 mx-auto text-center">
           Make your next game day unforgettable by staying in the heart of the
           action. Ready to feel the roar of the crowd and the comfort of home?
           Book now or message us for more details!

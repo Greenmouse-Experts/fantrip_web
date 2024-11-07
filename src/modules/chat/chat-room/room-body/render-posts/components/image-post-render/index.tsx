@@ -51,7 +51,9 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
                   <p className="opacity-80  fs-300">
                     <span className="capitalize fw-500">{item.user.role}</span>
                     {" - "}
-                    <span>{dayjs(item.createdDate).fromNow()}</span>
+                    <span>
+                      {dayjs(item.createdDate).format("hh:mm a - DD/MM/YYYY")}
+                    </span>
                   </p>
                 </div>
               </div>

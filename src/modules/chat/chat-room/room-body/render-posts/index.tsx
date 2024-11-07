@@ -15,7 +15,7 @@ interface Props {
   handleReload: () => void;
 }
 const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
-  const { isLoggedIn, token } = useAuth();
+  const { isLoggedIn, token, userId } = useAuth();
   const [page, setPage] = useState<number>(1);
   const { community } = useChat();
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
@@ -31,14 +31,19 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
       setPrevPosts(value.data.result);
       setIsLoading(false);
     };
-    socket.on(`unmutedPostsRetrieved`, onListenEvent);
+    if (userId !== "") {
+      socket.on(`unmutedPostsRetrieved:${userId}`, onListenEvent);
+    } else {
+      socket.on(`unmutedPostsRetrieved`, onListenEvent);
+    }
 
     // Remove event listener on component unmount
-    return () => socket.off(`unmutedPostsRetrieved`);
+    return () =>
+      socket.off(`unmutedPostsRetrieved${userId !== "" ? `:${userId}` : ""}`);
   };
 
   const convertSlug = (text: string): string => {
-    return text.replace(/\s+/g, "-")
+    return text.replace(/\s+/g, "-");
   };
 
   useEffect(() => {

@@ -30,6 +30,7 @@ export const requestForToken = async () => {
   const messaging = getMessaging(app);
   await getToken(messaging, { vapidKey: `${VAPID_KEY}` })
     .then((currentToken: string) => {
+      console.log(currentToken);
       if (currentToken) {
         sendToken(currentToken);
         // Perform any other neccessary action with the token

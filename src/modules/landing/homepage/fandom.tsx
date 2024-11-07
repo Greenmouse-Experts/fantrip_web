@@ -7,7 +7,11 @@ const FandomHome = () => {
       <div className="box">
         <div className="lg:flex items-center justify-between flex-row-reverse">
           <div className="lg:w-5/12 flex justify-end">
-            <img src="/ftss.png" alt="fandom" className="lg:w-9/12" />
+            <img
+              src="https://res.cloudinary.com/do2kojulq/image/upload/v1730999120/FTCRT_ce0rnm.png"
+              alt="fandom"
+              className="lg:w-9/12"
+            />
           </div>
           <div className="text-white lg:w-6/12 mt-8 lg:mt-0">
             <p className="text-3xl lg:text-5xl fw-600 syne">

@@ -12,10 +12,10 @@ import { useNavigate } from "react-router-dom";
 interface Props {
   item: PostTyping;
   socket: any;
-  handleReload: () => void
+  handleReload: () => void;
 }
 const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [profileShow, setProfileShow] = useState(false);
   const [commentCount, setCommentCount] = useState<number>(item.threads);
   const addComment = (minus?: boolean) => {
@@ -52,7 +52,10 @@ const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
                   <p className="opacity-80 fs-300">
                     <span className="capitalize fw-500">{item.user?.role}</span>
                     {" - "}
-                    <span>{dayjs(item.createdDate).fromNow()}</span>
+                    <span>
+                      ( {dayjs(item.createdDate).format("hh:mm a - DD/MM/YYYY")}{" "}
+                      )
+                    </span>
                   </p>
                 </div>
               </div>
@@ -64,7 +67,14 @@ const VideoPostRender: FC<Props> = ({ item, socket, handleReload }) => {
                 reload={handleReload}
               />
             </div>
-            <div className="mt-3" onClick={() => navigate(`/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`)}>
+            <div
+              className="mt-3"
+              onClick={() =>
+                navigate(
+                  `/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`
+                )
+              }
+            >
               <p className="whitespace-pre-line">{item.message}</p>
             </div>
           </div>

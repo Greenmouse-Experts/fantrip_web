@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { onMessageListener, requestForToken } from "../firebase/firebase";
 import { useToast } from "@chakra-ui/react";
-import audioFile from "../assets/audio/notify.mp3"
+import audioFile from "../assets/audio/notify.mp3";
 interface Notify {
   title: string;
   body: string;
@@ -13,8 +13,8 @@ const PushNotification = () => {
 
   useEffect(() => {
     const checkAndRequestPermission = async () => {
-      if (!('Notification' in window)) {
-        console.error('This browser does not support notifications');
+      if (!("Notification" in window)) {
+        console.error("This browser does not support notifications");
         return;
       }
 
@@ -23,7 +23,7 @@ const PushNotification = () => {
 
       // Automatically request permission if in default state
       // Uncomment the following lines to enable automatic permission request
-      if (Notification.permission === 'default') {
+      if (Notification.permission === "default") {
         const result = await Notification.requestPermission();
         setPermission(result);
       }

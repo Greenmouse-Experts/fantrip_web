@@ -97,7 +97,7 @@ const MobileMenu: FC<Props> = ({ close }) => {
           </li>
           <li className="border-b">
             <Link
-              to={"/auth/login"}
+              to={"/chat-room?quiz=true"}
               className="px-3 flex items-center gap-2 pb-1"
             >
               <span>
