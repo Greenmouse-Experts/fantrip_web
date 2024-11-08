@@ -5,14 +5,16 @@ import { IoSend } from "react-icons/io5";
 
 interface Props {
   socket: any;
-  type: 'host' | 'guest',
-  handleReload: React.Dispatch<React.SetStateAction<string | undefined>>
+  type: "host" | "guest";
+  handleReload: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 const ChatFooter: FC<Props> = ({ socket, type, handleReload }) => {
   const { hostId, miniId } = useChat();
   const { token } = useAuth();
-  const idToRender = type === 'guest'? hostId : miniId
+  const idToRender = type === "guest" ? hostId : miniId;
   const [msgInput, setMsgInput] = useState("");
+
+  console.log(hostId, miniId);
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     if (msgInput === "") {
@@ -25,7 +27,7 @@ const ChatFooter: FC<Props> = ({ socket, type, handleReload }) => {
       token: `${token}`,
     });
     setMsgInput("");
-    handleReload(new Date().toISOString())
+    handleReload(new Date().toISOString());
   };
 
   return (
