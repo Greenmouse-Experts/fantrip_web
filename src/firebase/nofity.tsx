@@ -1,31 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { onMessageListener, requestForToken } from "../firebase/firebase";
 import { useToast } from "@chakra-ui/react";
 import audioFile from "../assets/audio/notify.mp3";
+
 interface Notify {
   title: string;
   body: string;
 }
+
 const PushNotification = () => {
   const [permission, setPermission] =
     useState<NotificationPermission>("default");
-  const [audio] = useState(new Audio(audioFile)); // Replace with your sound file
+  const [audio] = useState(new Audio(audioFile));
+  const [notification, setNotification] = useState<Notify>({
+    title: "",
+    body: "",
+  });
+  const toast = useToast();
+  const initializedRef = useRef(false); // Ref to track initialization
 
   useEffect(() => {
+    if (initializedRef.current) return; // Skip if already initialized
+    initializedRef.current = true; // Set to true after first run
+
     const checkAndRequestPermission = async () => {
       if (!("Notification" in window)) {
         console.error("This browser does not support notifications");
         return;
       }
 
-      // Get current permission status
-      setPermission(Notification.permission);
+      const currentPermission = Notification.permission;
+      setPermission(currentPermission);
 
-      // Automatically request permission if in default state
-      // Uncomment the following lines to enable automatic permission request
-      if (Notification.permission === "default") {
+      if (currentPermission === "default") {
         const result = await Notification.requestPermission();
         setPermission(result);
+
+        if (result === "granted") {
+          requestForToken();
+        }
+      } else if (currentPermission === "granted") {
+        requestForToken();
       }
     };
 
@@ -39,13 +54,6 @@ const PushNotification = () => {
       console.error("Error playing notification sound:", error);
     }
   };
-
-  const [notification, setNotification] = useState<Notify>({
-    title: "",
-    body: "",
-  });
-
-  const toast = useToast();
 
   const notify = () =>
     toast({
@@ -70,26 +78,29 @@ const PushNotification = () => {
 
   useEffect(() => {
     if (notification?.title) {
-      if (permission !== "granted") {
-        console.warn("Notification permission not granted");
-        return;
-      } else {
+      if (permission === "granted") {
         playNotificationSound();
+        notify();
+      } else {
+        console.warn("Notification permission not granted");
       }
-      notify();
     }
   }, [notification]);
 
-  requestForToken();
+  useEffect(() => {
+    const onMessage = async () => {
+      onMessageListener()
+        .then((payload: any) => {
+          setNotification({
+            title: payload?.notification?.title,
+            body: payload?.notification?.body,
+          });
+        })
+        .catch((err) => console.log("failed: ", err));
+    };
 
-  onMessageListener()
-    .then((payload: any) => {
-      setNotification({
-        title: payload?.notification?.title,
-        body: payload?.notification?.body,
-      });
-    })
-    .catch((err) => console.log("failed: ", err));
+    onMessage();
+  }, []);
 
   return <></>;
 };
