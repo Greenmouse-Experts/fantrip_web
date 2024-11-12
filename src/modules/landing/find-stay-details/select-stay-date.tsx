@@ -28,7 +28,6 @@ interface SearchParam {
 interface Props {
   from: string;
   to: string;
-  price: number;
   currency: string;
   id: string;
   maxNight: number;
@@ -37,7 +36,6 @@ interface Props {
 const SelectStayDate: FC<Props> = ({
   from,
   to,
-  price,
   id,
   currency,
   maxNight,
@@ -48,7 +46,7 @@ const SelectStayDate: FC<Props> = ({
   const [usePoint, setUsePoint] = useState<boolean>(false);
   const [showPointError, setShowPointError] = useState(false);
 
-  const point = user.points || 0
+  const point = user.points || 0;
 
   const [params, setParams] = useState<SearchParam>({
     city: "",
@@ -62,6 +60,7 @@ const SelectStayDate: FC<Props> = ({
     tax: 0,
     fee: 0,
     total: 0,
+    price: 0,
     night_fee: 0,
   });
 
@@ -72,7 +71,7 @@ const SelectStayDate: FC<Props> = ({
       setParams({ ...params, checkIn: val });
       return val;
     } else {
-      const val = dayjs().startOf('date').add(1, 'day').toDate();
+      const val = dayjs().startOf("date").add(1, "day").toDate();
       setParams({ ...params, checkIn: val });
       return val;
     }
@@ -129,6 +128,7 @@ const SelectStayDate: FC<Props> = ({
           tax: res.taxFee,
           total: res.total,
           fee: res.serviceFee,
+          price: res.price,
           night_fee: res.priceWithNightInclusion,
         });
         setIsBusy(false);
@@ -265,7 +265,7 @@ const SelectStayDate: FC<Props> = ({
             <div className="pt-3 flex justify-between items-center">
               <p className="fw-500">
                 {currency}
-                {price} &#215; {getDiff()}
+                {pricing.price} &#215; {getDiff()}
                 {" night(s)"}
               </p>
               <p className="fw-500 text-lg">

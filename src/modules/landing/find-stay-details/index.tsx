@@ -105,7 +105,6 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
               <SelectStayDate
                 from={availableFrom}
                 to={availableTo}
-                price={price}
                 id={id}
                 currency={currency}
                 maxNight={maxNights}
