@@ -28,7 +28,6 @@ interface SearchParam {
 interface Props {
   from: string;
   to: string;
-  price: number;
   currency: string;
   id: string;
   maxNight: number;
@@ -37,7 +36,6 @@ interface Props {
 const SelectStayDate: FC<Props> = ({
   from,
   to,
-  price,
   id,
   currency,
   maxNight,
