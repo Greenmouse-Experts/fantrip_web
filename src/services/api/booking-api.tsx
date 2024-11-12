@@ -18,9 +18,7 @@ export const computePrice = async (payload: ComputePricePayload) => {
 export const hostFetchBooking = async (params: FetchParam) => {
   const status = params.status === "all" ? `` : `status=${params.status}&`;
   return axios
-    .get(
-      `${ENDPOINT.FETCH_CLIENT_BOOKINGS}?${status}page=${params.page}`
-    )
+    .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?${status}page=${params.page}`)
     .then((response) => response.data);
 };
 
@@ -38,7 +36,7 @@ export const hostCancelReservation = async (id: string) => {
 
 export const guestFetchReservation = async (params: FetchParam) => {
   const status = params.status === "all" ? `` : `status=${params.status}&`;
-  const isGuest = params.isGuest? `&isGuest=1` : ``
+  const isGuest = params.isGuest ? `&isGuest=1` : ``;
   return axios
     .get(
       `${ENDPOINT.FETCH_CLIENT_RESERVATION}?${status}page=${params.page}${isGuest}`
@@ -47,7 +45,7 @@ export const guestFetchReservation = async (params: FetchParam) => {
 };
 
 export const guestFetchBooking = async (params: FetchParam) => {
-   const isGuest = params.isGuest ? `&isGuest=1` : ``;
+  const isGuest = params.isGuest ? `&isGuest=1` : ``;
   return axios
     .get(`${ENDPOINT.FETCH_CLIENT_BOOKINGS}?status=${params.status}${isGuest}`)
     .then((response) => response.data);
@@ -86,6 +84,12 @@ export const guestCancelReservation = async (id: string) => {
 export const guestCancelBooking = async (id: string) => {
   return axios
     .patch(`${ENDPOINT.GUEST_CANCEL_RESERVATION}/${id}`)
+    .then((response) => response.data);
+};
+
+export const createBilling = async (payload: any) => {
+  return axios
+    .post(`${ENDPOINT.CREATE_BILLING_ADDRESS}`, payload)
     .then((response) => response.data);
 };
 

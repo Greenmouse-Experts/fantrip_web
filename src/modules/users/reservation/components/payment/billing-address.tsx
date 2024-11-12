@@ -4,16 +4,19 @@ import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { BeatLoader } from "react-spinners";
 import { Country } from "country-state-city";
+import { useMutation } from "@tanstack/react-query";
+import { createBilling } from "@/services/api/booking-api";
 
 interface Props {
   next: () => void;
 }
 const BillingAddress: FC<Props> = ({ next }) => {
   const [isBusy, setIsBusy] = useState<boolean>(false);
-  // const mutation = useMutation({
-  //     mutationFn: () => void,
-  //     mutationKey: ["create-billing"],
-  //   });
+
+  const mutation = useMutation({
+    mutationFn: createBilling,
+    mutationKey: ["create-billing"],
+  });
 
   const {
     control,
@@ -22,37 +25,36 @@ const BillingAddress: FC<Props> = ({ next }) => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      address: "",
-      street: "",
       country: "",
-      postal: "",
-      state: "",
+      street: "",
       city: "",
-      suite: "",
+      postalCode: "",
+      region: "",
+      areaNumber: "",
     },
   });
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: any) => {
     setIsBusy(true);
-    next();
-    // const payload = {
-    //   country: datas.country,
-    //   state: datas.state,
-    //   city: datas.city,
-    //   postalCode: datas.postal,
-    //   street: datas.street,
-    //   aptSuitUnit: datas.suite,
-    // };
-    // mutation.mutate(payload, {
-    //   onSuccess: (data) => {
-    //     setIsBusy(false);
-    //     next();
-    //   },
-    //   onError: (error: any) => {
-    //     console.log(error);
-    //     setIsBusy(false);
-    //   },
-    // });
+    const payload = {
+      country: data.country,
+      street: data.street,
+      city: data.city,
+      postalCode: data.postalCode,
+      region: data.region,
+      areaNumber: data.areaNumber,
+    };
+    mutation.mutate(payload, {
+      onSuccess: (data) => {
+        setIsBusy(false);
+        console.log(data);
+        next();
+      },
+      onError: (error: any) => {
+        console.log(error);
+        setIsBusy(false);
+      },
+    });
   };
 
   return (
@@ -116,7 +118,7 @@ const BillingAddress: FC<Props> = ({ next }) => {
                 labelClassName="text-black block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.state?.message}
+                error={errors.street?.message}
                 {...field}
                 ref={null}
               />
@@ -145,7 +147,7 @@ const BillingAddress: FC<Props> = ({ next }) => {
             )}
           />
           <Controller
-            name="state"
+            name="region"
             control={control}
             rules={{
               required: {
@@ -160,14 +162,14 @@ const BillingAddress: FC<Props> = ({ next }) => {
                 labelClassName="text-black block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.state?.message}
+                error={errors.region?.message}
                 {...field}
                 ref={null}
               />
             )}
           />
           <Controller
-            name="postal"
+            name="postalCode"
             control={control}
             rules={{
               required: {
@@ -182,14 +184,14 @@ const BillingAddress: FC<Props> = ({ next }) => {
                 labelClassName="text-black block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.postal?.message}
+                error={errors.postalCode?.message}
                 {...field}
                 ref={null}
               />
             )}
           />
           <Controller
-            name="suite"
+            name="areaNumber"
             control={control}
             render={({ field }) => (
               <TextInput
@@ -198,7 +200,7 @@ const BillingAddress: FC<Props> = ({ next }) => {
                 labelClassName="text-black block mb-3"
                 borderClass="border border-[#D2D2D2] bg-[#F9FAFC] rounded-[10px] outline-none"
                 altClassName="bg-[#F9FAFC] p-3 lg:p-4 rounded-[10px] w-full"
-                error={errors.suite?.message}
+                error={errors.areaNumber?.message}
                 {...field}
                 ref={null}
               />
@@ -209,7 +211,11 @@ const BillingAddress: FC<Props> = ({ next }) => {
           <Button
             title={isBusy ? <BeatLoader size={12} color="white" /> : "Continue"}
             disabled={!isValid}
-            altClassName={`${!isValid? "btn-disabled px-6 py-3 cursor-disabled" : "btn-int px-6 py-3"}`}
+            altClassName={`${
+              !isValid
+                ? "btn-disabled px-6 py-3 cursor-disabled"
+                : "btn-int px-6 py-3"
+            }`}
           />
         </div>
       </form>
