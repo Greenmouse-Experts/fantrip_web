@@ -4,7 +4,7 @@ import RenderPostsIndex from "./render-posts";
 interface Props {
   reloadSocket: string;
   socket: any;
-  reload: () => void;
+  reload: any;
 }
 const RoomBodyIndex: FC<Props> = ({ reloadSocket, socket, reload }) => {
   return (

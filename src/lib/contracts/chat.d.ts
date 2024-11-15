@@ -196,7 +196,7 @@ export interface ChatHistoryItem {
   id: string;
   lastMessage: string;
   isArchived: boolean;
-  read: boolean;
+  unread: integer;
   createdDate: string;
   updatedDate: string;
   initiator: {

@@ -13,7 +13,7 @@ interface Props {
   id: string;
   socket: any;
   reaction: string | undefined;
-  minusComment: (minus?:boolean) => void
+  minusComment: (minus?: boolean) => void;
 }
 const PostActions: FC<Props> = ({
   type,
@@ -23,15 +23,15 @@ const PostActions: FC<Props> = ({
   id,
   socket,
   reaction,
-  minusComment
+  minusComment,
 }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { token, isLoggedIn } = useAuth();
 
   const formatReaction = {
     upvote: "like",
     downvote: "dislike",
-  }
+  };
 
   const [statCount, setStatCount] = useState({
     initLike: like,
@@ -40,7 +40,9 @@ const PostActions: FC<Props> = ({
   });
 
   const [showComment, setShowComment] = useState("");
-  const [likeAction, setLikeAction] = useState(reaction? formatReaction[reaction as keyof typeof formatReaction] : "");
+  const [likeAction, setLikeAction] = useState(
+    reaction ? formatReaction[reaction as keyof typeof formatReaction] : ""
+  );
 
   const handleLike = () => {
     if (likeAction === "dislike") {
@@ -69,8 +71,8 @@ const PostActions: FC<Props> = ({
   };
 
   const handleAction = (type: string) => {
-    if(!isLoggedIn){
-      navigate('/auth/login')
+    if (!isLoggedIn) {
+      navigate("/auth/login");
       return;
     }
     const payload = {
@@ -96,8 +98,6 @@ const PostActions: FC<Props> = ({
 
   // console.log(id, 'init id');
   // console.log(showComment, 'show comment');
-  
-  
 
   return (
     <div>

@@ -38,7 +38,11 @@ const ChatRoomIndex = () => {
             </div>
             <div className="lg:w-[48%]">
               {postMode ? (
-                <PostDetails socket={socket} id={postMode} userId={userId || ""}/>
+                <PostDetails
+                  socket={socket}
+                  id={postMode}
+                  userId={userId || ""}
+                />
               ) : (
                 <RoomBodyIndex
                   reloadSocket={reloadSocket}

@@ -36,7 +36,7 @@ const ProfileMore: FC<Props> = ({
   id,
   reload,
   type,
-  title
+  title,
 }) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
@@ -99,21 +99,23 @@ const ProfileMore: FC<Props> = ({
           <MenuList className="text-black !w-[180px] relative chat-pope">
             {user?.id !== userId && (
               <>
-                <MenuItem onClick={() => openChatWithUser()}>
-                  <p className="text-black fs-400">Start Chat</p>
-                </MenuItem>
+                {userId && (
+                  <MenuItem onClick={() => openChatWithUser()}>
+                    <p className="text-black fs-400">Start Chat</p>
+                  </MenuItem>
+                )}
                 <MenuItem onClick={openUser}>
                   <p className="text-black fs-400">View User Profile</p>
                 </MenuItem>
-                <MenuItem onClick={() => ShowReport(true)}>
-                  <p className="text-black fs-400">Report this user</p>
-                </MenuItem>
+                {userId && (
+                  <MenuItem onClick={() => ShowReport(true)}>
+                    <p className="text-black fs-400">Report this user</p>
+                  </MenuItem>
+                )}
               </>
             )}
             <MenuItem onClick={() => ShowShare(true)}>
-              <p className="text-black fs-400">
-                Share Post
-              </p>
+              <p className="text-black fs-400">Share Post</p>
             </MenuItem>
             {user?.id === userId && (
               <MenuItem onClick={() => ShowDialog(true)}>
@@ -146,7 +148,7 @@ const ProfileMore: FC<Props> = ({
         />
       </Report>
       <Share title="Share Post" size="md">
-        <SharePost id={id} title={title} userId={user.id}/>
+        <SharePost id={id} title={title} userId={user.id} />
       </Share>
     </div>
   );
