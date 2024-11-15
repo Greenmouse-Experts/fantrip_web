@@ -20,7 +20,7 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
     history,
     saveHistory,
   } = useChat();
-  const { token, user, userId, firstName, lastName, isHost } = useAuth();
+  const { token, userId } = useAuth();
   const [newMsg, setNewMsg] = useState<ChatItem2>();
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -39,23 +39,13 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   // get recent chat sent
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
+      console.log(value);
       setIsLoaded(true);
       const payload = {
         chatBuddy: {
           ...hostInfo,
         },
-        initiator: {
-          id: user.id,
-          firstName: firstName,
-          lastName: lastName,
-          nickname: user.nickname,
-          verifiedAsHost: false,
-          role: isHost ? "host" : "guest",
-          picture: user.image,
-          reviews: [],
-          totalReviews: 0,
-          avgRating: null,
-        },
+        initiator: value.data.initiator,
         id: value.data.lastMessageId,
         message: value.data.lastMessage,
         file: null,
@@ -66,7 +56,7 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
           lastMessage: value.data.lastMessage,
           isArchived: false,
           read: false,
-          unread: "",
+          unread: 0,
           createdDate: value.data.updatedDate,
           updatedDate: value.data.updatedDate,
         },

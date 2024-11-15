@@ -8,6 +8,7 @@ import { FC } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ReportUser from "./report-user";
 import SharePost from "./share-post";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   user: {
@@ -45,19 +46,25 @@ const ProfileMore: FC<Props> = ({
   const { Dialog: Report, setShowModal: ShowReport } = useDialog();
   const { Dialog: Share, setShowModal: ShowShare } = useDialog();
 
+  const navigate = useNavigate();
+
   const openChatWithUser = () => {
-    const payload = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      nickname: user.nickname,
-      verifiedAsHost: user.verifiedAsHost,
-      role: user.role,
-      picture: user.picture,
-    };
-    saveHostInfo(payload);
-    setShowModal(true);
-    close();
+    if (userId) {
+      const payload = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        nickname: user.nickname,
+        verifiedAsHost: user.verifiedAsHost,
+        role: user.role,
+        picture: user.picture,
+      };
+      saveHostInfo(payload);
+      setShowModal(true);
+      close();
+    } else {
+      navigate("/auth/login");
+    }
   };
 
   const deleteUserPost = (payload: { id: string; token: string }) => {
@@ -99,19 +106,15 @@ const ProfileMore: FC<Props> = ({
           <MenuList className="text-black !w-[180px] relative chat-pope">
             {user?.id !== userId && (
               <>
-                {userId && (
-                  <MenuItem onClick={() => openChatWithUser()}>
-                    <p className="text-black fs-400">Start Chat</p>
-                  </MenuItem>
-                )}
+                <MenuItem onClick={() => openChatWithUser()}>
+                  <p className="text-black fs-400">Start Chat</p>
+                </MenuItem>
                 <MenuItem onClick={openUser}>
                   <p className="text-black fs-400">View User Profile</p>
                 </MenuItem>
-                {userId && (
-                  <MenuItem onClick={() => ShowReport(true)}>
-                    <p className="text-black fs-400">Report this user</p>
-                  </MenuItem>
-                )}
+                <MenuItem onClick={() => ShowReport(true)}>
+                  <p className="text-black fs-400">Report this user</p>
+                </MenuItem>
               </>
             )}
             <MenuItem onClick={() => ShowShare(true)}>

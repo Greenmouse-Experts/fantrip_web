@@ -15,18 +15,15 @@ const ChatRoom = () => {
           </div>
           <div className="text-white lg:w-6/12">
             <p className="text-3xl lg:text-5xl fw-600 syne">
-              The ultimate fan{" "}
-              <span className="text-gradient syne">chat room</span>{" "}
+              Show off your{" "}
+              <span className="text-gradient syne">sports smarts</span>{" "}
             </p>
             <div className="mt-9">
-              <p className="fw-500 italics">Dive into the fan frenzy!</p>
               <p className="mt-7 fw-500 italics">
                 {" "}
-                Our fan community chat room is the virtual tailgate party where
-                every opinion counts. Share your game predictions, celebrate the
-                wins, or debate that last referee call. And don't forget our
-                quizzes - climb up the leaderboard, earn your badges, and show
-                off your sports smarts. 
+                Share your game predictions, celebrate the wins, or debate that
+                last referee call. And don't forget our quizzes - climb up the
+                leaderboard and earn your badges.
               </p>
               <p className="mt-7 fw-500 italics">
                 {" "}

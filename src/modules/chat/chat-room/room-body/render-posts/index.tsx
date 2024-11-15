@@ -19,7 +19,6 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
   const [page, setPage] = useState<number>(1);
   const { community } = useChat();
   const [prevPosts, setPrevPosts] = useState<PostTyping[]>([]);
-  //const [newPosts, setNewPosts] = useState<PostTyping[]>([]);
   const [postsToRender, setPostsToRender] = useState<PostTyping[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -71,31 +70,15 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
 
   useEffect(() => {
     const onListenEventPost = (value: any) => {
-      console.log(value.data);
-      // setNewPosts(value.data);
-      // getNewPosts(value.data);
-      /*const matchingPost = postsToRender.find(
-        (post) => post.user.id === value.data.user.id
-      );
-      console.log(postsToRender);
-      value.data.user = matchingPost?.user;
-      const newPosts = [value.data];
-      const posts = [...newPosts, ...postsToRender];
-      setPostsToRender(posts);*/
+      const newPost = [value.data];
+      const posts = [...newPost, ...postsToRender];
+      setPostsToRender(posts);
     };
     socket.on(`postCreated`, onListenEventPost);
 
     // Cleanup on unmount
     return () => socket.off(`postCreated`, onListenEventPost);
   }, [socket]);
-
-  /*const getNewPosts = (data: any) => {
-    const arrayData = [data];
-    const posts = [...arrayData, ...postsToRender];
-    setPostsToRender(posts);
-  };
-
-  console.log(postsToRender);*/
 
   return (
     <div className="grid mt-4 gap-4">
