@@ -12,7 +12,7 @@ import { FaAnglesDown } from "react-icons/fa6";
 interface Props {
   reload: string;
   socket: any;
-  handleReload: () => void;
+  handleReload: any;
 }
 const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
   const { isLoggedIn, token, userId } = useAuth();
@@ -57,7 +57,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
 
   useEffect(() => {
     getPosts();
-  }, [socket, reload]);
+  }, []);
 
   useEffect(() => {
     if (page === 1) {
@@ -67,6 +67,27 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
       setPostsToRender(posts);
     }
   }, [prevPosts]);
+
+  useEffect(() => {
+    const onListenEventPost = (value: any) => {
+      const matchingPost = postsToRender.find(
+        (post) => post.user.id === value.data.user.id
+      );
+      console.log(matchingPost);
+      /* value.data.user = matchingPost?.user;
+        console.log(matchingPost);
+        const newPosts = [value.data];
+        const posts = [...newPosts, ...postsToRender];
+        setPostsToRender(posts); */
+      getPosts();
+    };
+    socket.on(`postCreated`, onListenEventPost);
+
+    // Cleanup on unmount
+    return () => socket.off(`postCreated`, onListenEventPost);
+  }, [socket]);
+
+  console.log(postsToRender);
 
   return (
     <div className="grid mt-4 gap-4">

@@ -8,27 +8,26 @@ import { useNavigate } from "react-router-dom";
 import SinglePost from "./single-post";
 
 interface Props {
-  id: string;
+  id: any;
   socket: any;
-  userId: string
+  userId: string;
 }
 const PostDetails: FC<Props> = ({ socket, id, userId }) => {
   const navigate = useNavigate();
-  const {token} = useAuth()
+  const { token } = useAuth();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [post, setPost] = useState<PostTyping>()
-  const [reload, setRelaod] = useState<string>()
-  
+  const [post, setPost] = useState<PostTyping>();
+  const [reload, setRelaod] = useState<string>();
 
   const getPost = () => {
     const onListenEvent = (value: any) => {
-      setPost(value.data)
-      setIsLoading(false)
+      setPost(value.data);
+      setIsLoading(false);
     };
     socket.on(`postRetrieved:${userId}`, onListenEvent);
 
     // Remove event listener on component unmount
-    return () => socket.off("postRetrieved");
+    //  return () => socket.off("postRetrieved");
   };
 
   useEffect(() => {
@@ -44,11 +43,8 @@ const PostDetails: FC<Props> = ({ socket, id, userId }) => {
   }, [socket, reload]);
 
   const handleReload = () => {
-    setRelaod(new Date().toISOString)
-  }
-
-  console.log(post);
-  
+    setRelaod(new Date().toISOString);
+  };
 
   return (
     <div>
@@ -65,7 +61,9 @@ const PostDetails: FC<Props> = ({ socket, id, userId }) => {
       </div>
       <div className="mt-4">
         {isLoading && <PostLoader count={1} />}
-        {post && <SinglePost item={post} socket={socket} handleReload={handleReload}/>}
+        {post && (
+          <SinglePost item={post} socket={socket} handleReload={handleReload} />
+        )}
       </div>
     </div>
   );

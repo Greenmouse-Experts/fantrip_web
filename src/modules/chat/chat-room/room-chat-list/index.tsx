@@ -33,6 +33,10 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
 
   useEffect(() => {
     getMessages();
+  }, []);
+
+  useEffect(() => {
+    recentChatRetrieved();
   }, [socket]);
 
   useEffect(() => {
@@ -44,6 +48,31 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
       : [];
     saveHistory(sortedList);
   }, [prevChats]);
+
+  const recentChatRetrieved = () => {
+    const onListenEvent = (value: any) => {
+      const idToMatch = value.data.id;
+
+      const updatedArray = history.map((item) => {
+        if (item.id === idToMatch) {
+          return {
+            ...item,
+            lastMessage: value.data.lastMessage,
+            createdDate: value.data.createdDate,
+            updatedDate: value.data.updatedDate,
+            unread: value.data.unread,
+          };
+        }
+        return item;
+      });
+
+      setPrevChats(updatedArray);
+    };
+    socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
+
+    // Remove event listener on component unmount
+    return () => socket.off("chatroom_listen");
+  };
 
   return (
     <div className="h-full">

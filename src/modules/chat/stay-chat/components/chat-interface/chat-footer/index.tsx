@@ -14,7 +14,6 @@ const ChatFooter: FC<Props> = ({ socket, type, handleReload }) => {
   const idToRender = type === "guest" ? hostId : miniId;
   const [msgInput, setMsgInput] = useState("");
 
-  console.log(hostId, miniId);
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
     if (msgInput === "") {

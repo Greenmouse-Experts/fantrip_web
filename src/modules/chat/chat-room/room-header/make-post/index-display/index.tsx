@@ -16,7 +16,7 @@ import DisplayInput from "./display-input";
 
 interface Props {
   socket: any;
-  setReload: () => void;
+  setReload: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
   const navigate = useNavigate();
@@ -86,13 +86,13 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
         .then((res) => {
           payload.file = res.image;
           console.log(payload);
-          
+
           socket.emit("createPost", payload);
           setIsBusy(false);
           setTextInput("");
           setPhoto([]);
           setShowInput(false);
-          setReload();
+          setReload(new Date().toISOString());
         })
         .catch((error: any) => {
           toast({
@@ -116,7 +116,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
           setTextInput("");
           setVideo([]);
           setShowInput(false);
-          setReload();
+          setReload(new Date().toISOString());
         })
         .catch((error: any) => {
           toast({
@@ -134,7 +134,7 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       setTextInput("");
       setPhoto([]);
       setShowInput(false);
-      setReload();
+      setReload(new Date().toISOString());
     }
   };
 

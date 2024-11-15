@@ -10,22 +10,29 @@ interface Props {
   socket: any;
 }
 const ChatBodyIndex: FC<Props> = ({ socket }) => {
-  const { guestId, guestInfo, chatWithGuest, saveChatWithGuest, history, saveHistory } = useChat();
+  const {
+    guestId,
+    guestInfo,
+    chatWithGuest,
+    saveChatWithGuest,
+    history,
+    saveHistory,
+  } = useChat();
   const { token, userId } = useAuth();
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
   const [newMsg, setNewMsg] = useState<ChatItem2>();
-  const [showMsg, setShowMsg] = useState<string>(guestId)
+  const [showMsg, setShowMsg] = useState<string>(guestId);
 
   useEffect(() => {
-    if(guestId){
-      setShowMsg(guestId)
+    if (guestId) {
+      setShowMsg(guestId);
     }
-  },[])
+  }, []);
 
   // on load get previous messages or message history
   const getMessages = () => {
     const onListenEvent = (value: any) => {
-      setIsLoaded(true)
+      setIsLoaded(true);
       saveChatWithGuest(value.data.result);
     };
     socket.on(`messagesRetrieved:${guestId}:${userId}`, onListenEvent);
@@ -52,7 +59,7 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
       chatBuddy: guestInfo.id,
       page: 1,
     };
-    setIsLoaded(false)
+    setIsLoaded(false);
     socket.emit("retrieveMessages", payload);
   }, [socket, guestInfo]);
 
@@ -72,7 +79,6 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
   // add updated messages to the chat message array
   useEffect(() => {
     if (newMsg) {
-
       const historyFilter = history.filter(
         (where) => where.chatBuddy.id !== newMsg.chatBuddy.id
       );
@@ -88,6 +94,7 @@ const ChatBodyIndex: FC<Props> = ({ socket }) => {
         lastMessage: newMsg.message,
         isArchived: false,
         read: false,
+        unread: 0,
         createdDate: dayjs().toISOString(),
         updatedDate: dayjs().toISOString(),
         initiator: {

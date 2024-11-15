@@ -48,13 +48,17 @@ const ChatListHistory: FC<Props> = ({ prevChats }) => {
                 "https://res.cloudinary.com/greenmouse-tech/image/upload/v1721902661/fantrip/avatars_cyhkdy.webp"
               }
               alt=""
-              className="w-8 h-8 circle shrink-0 object-cover"
+              className="w-8 h-8 circle shrink-0 -mt-1 object-cover"
             />
             <div>
-              <p className="fs-500 fw-500 leading-none">
+              <p className="fs-500 fw-500 mx-1 leading-none">
                 {`${item.chatBuddy?.firstName} ${item.chatBuddy?.lastName}`}
               </p>
-              <p className="opacity-70 text-[12px]">
+              <p
+                className={`opacity-70 mt-1 mx-1 text-[12px] ${
+                  item.unread > 0 ? "font-semibold text-[#9847fe]" : ""
+                }`}
+              >
                 {formatName(item.lastMessage, 25)}
               </p>
             </div>

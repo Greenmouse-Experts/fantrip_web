@@ -138,6 +138,7 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
         lastMessage: newMsg.message,
         isArchived: false,
         read: false,
+        unread: 0,
         createdDate: dayjs().toISOString(),
         updatedDate: dayjs().toISOString(),
         initiator: {
