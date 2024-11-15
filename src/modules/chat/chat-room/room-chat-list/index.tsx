@@ -52,7 +52,6 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
   const recentChatRetrieved = () => {
     const onListenEvent = (value: any) => {
       const idToMatch = value.data.id;
-
       const updatedArray = history.map((item) => {
         if (item.id === idToMatch) {
           return {
