@@ -73,7 +73,7 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
       const matchingPost = postsToRender.find(
         (post) => post.user.id === value.data.user.id
       );
-      console.log("me");
+      console.log(matchingPost);
       /* value.data.user = matchingPost?.user;
         console.log(matchingPost);
         const newPosts = [value.data];
