@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import ChatListHistory from "./components/chat-list";
 import { ChatHistoryItem } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
@@ -13,44 +13,17 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
   const { history, saveHistory } = useChat();
   const { token, userId } = useAuth();
 
-  const getMessages = () => {
-    const onListenEvent = (value: any) => {
+  useEffect(() => {
+    const fetchChats = () => {
+      const payload = { token, page: 1 };
+      socket.emit("retrieveChats", payload);
+    };
+
+    const onChatsRetrieved = (value: any) => {
       setPrevChats(value.data.result);
     };
-    socket.on(`chatsRetrieved:${userId}`, onListenEvent);
 
-    // Remove event listener on component unmount
-    return () => socket.off("chatroom_listen");
-  };
-
-  useEffect(() => {
-    const payload = {
-      token: token,
-      page: 1,
-    };
-    socket.emit("retrieveChats", payload);
-  }, []);
-
-  useEffect(() => {
-    getMessages();
-  }, []);
-
-  useEffect(() => {
-    recentChatRetrieved();
-  }, [socket]);
-
-  useEffect(() => {
-    const sortedList = prevChats?.length
-      ? prevChats.sort(
-          (a: ChatHistoryItem, b: ChatHistoryItem) =>
-            dayjs(b.updatedDate).unix() - dayjs(a.updatedDate).unix()
-        )
-      : [];
-    saveHistory(sortedList);
-  }, [prevChats]);
-
-  const recentChatRetrieved = () => {
-    const onListenEvent = (value: any) => {
+    const onRecentChat = (value: any) => {
       const idToMatch = value.data.id;
       const updatedArray = history.map((item) => {
         if (item.id === idToMatch) {
@@ -59,7 +32,7 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
             lastMessage: value.data.lastMessage,
             createdDate: value.data.createdDate,
             updatedDate: value.data.updatedDate,
-            unread: value.data.unread,
+            unread: 0,
           };
         }
         return item;
@@ -67,11 +40,30 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
 
       setPrevChats(updatedArray);
     };
-    socket.on(`recentChatRetrieved:${userId}`, onListenEvent);
 
-    // Remove event listener on component unmount
-    return () => socket.off("chatroom_listen");
-  };
+    socket.on(`chatsRetrieved:${userId}`, onChatsRetrieved);
+    socket.on(`recentChatRetrieved:${userId}`, onRecentChat);
+
+    fetchChats();
+
+    return () => {
+      socket.off(`chatsRetrieved:${userId}`, onChatsRetrieved);
+      socket.off(`recentChatRetrieved:${userId}`, onRecentChat);
+    };
+  }, [socket, userId]);
+
+  const sortedChats = useMemo(() => {
+    return prevChats?.length
+      ? [...prevChats].sort(
+          (a: ChatHistoryItem, b: ChatHistoryItem) =>
+            dayjs(b.updatedDate).unix() - dayjs(a.updatedDate).unix()
+        )
+      : [];
+  }, [prevChats]);
+
+  useEffect(() => {
+    saveHistory(sortedChats);
+  }, [sortedChats, saveHistory]);
 
   return (
     <div className="h-full">
