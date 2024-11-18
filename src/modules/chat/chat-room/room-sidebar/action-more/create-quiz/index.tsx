@@ -39,32 +39,33 @@ const CreateQuiz: FC<Props> = ({ socket, reload, close }) => {
       navigate("/auth/login");
       return;
     }
-    if (!answer.length) {
+    if (answer.length === 0) {
       toast({
         title: "Please select an answer",
         isClosable: true,
         position: "top",
         status: "error",
       });
+    } else {
+      const payload = {
+        token: token,
+        message: question,
+        file: "",
+        community: selectedChannel.id,
+        chatType: "quiz",
+        quizQuestion: {
+          question: question,
+          options: options,
+          multipleVote: multiVote,
+          rightAnswer: answer,
+        },
+      };
+      socket.emit("createPost", payload);
+      reload();
+      setTimeout(() => {
+        close();
+      }, 300);
     }
-    const payload = {
-      token: token,
-      message: question,
-      file: "",
-      community: selectedChannel.id,
-      chatType: "quiz",
-      quizQuestion: {
-        question: question,
-        options: options,
-        multipleVote: multiVote,
-        rightAnswer: answer,
-      },
-    };
-    socket.emit("createPost", payload);
-    reload();
-    setTimeout(() => {
-      close();
-    }, 300);
   };
 
   return (

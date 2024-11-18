@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { GoComment } from "react-icons/go";
 import { TbArrowBigDown, TbArrowBigUp } from "react-icons/tb";
 import ViewComments from "./comments";
@@ -45,29 +45,19 @@ const PostActions: FC<Props> = ({
   );
 
   const handleLike = () => {
-    if (likeAction === "dislike") {
-      setStatCount({ ...statCount, initDislike: statCount.initLike - 1 });
-    }
     if (likeAction === "like") {
       setLikeAction("");
-      setStatCount({ ...statCount, initLike: statCount.initLike - 1 });
       return;
     }
     setLikeAction("like");
-    setStatCount({ ...statCount, initLike: statCount.initLike + 1 });
   };
 
   const handleDisike = () => {
-    if (likeAction === "like") {
-      setStatCount({ ...statCount, initLike: statCount.initLike - 1 });
-    }
     if (likeAction === "dislike") {
       setLikeAction("");
-      setStatCount({ ...statCount, initDislike: statCount.initDislike - 1 });
       return;
     }
     setLikeAction("dislike");
-    setStatCount({ ...statCount, initDislike: statCount.initDislike + 1 });
   };
 
   const handleAction = (type: string) => {
@@ -95,6 +85,27 @@ const PostActions: FC<Props> = ({
       setShowComment("");
     } else setShowComment(id);
   };
+
+  const getReactions = () => {
+    const onListenEvent = (value: any) => {
+      if (id === value.data.postId) {
+        console.log(value.data);
+        setStatCount({
+          ...statCount,
+          initLike: value.data.full.upvotes,
+          initDislike: value.data.full.downvotes,
+        });
+      }
+    };
+    socket.on(`reacted`, onListenEvent);
+
+    // Remove event listener on component unmount
+    return () => socket.off(`reacted`);
+  };
+
+  useEffect(() => {
+    getReactions();
+  }, [socket]);
 
   // console.log(id, 'init id');
   // console.log(showComment, 'show comment');
@@ -162,7 +173,7 @@ const PostActions: FC<Props> = ({
           onClick={() => handleShowComment(id)}
         >
           <GoComment className="dark:text-white" />
-          <p>{comment || 0}</p>
+          <p>{statCount.initComment || 0}</p>
         </button>
       </div>
       {showComment === id && (

@@ -23,7 +23,7 @@ const ViewComments: FC<Props> = ({
 
   const getComments = () => {
     const onListenEvent = (value: any) => {
-      console.log('');
+      console.log("");
       setPrevComments(value.data.result);
       setIsLoading(false);
     };
@@ -46,7 +46,7 @@ const ViewComments: FC<Props> = ({
   useEffect(() => {
     getComments();
   }, [socket, reload]);
-  
+
   const handleReload = () => {
     minusComment(true);
     setReload(`${new Date()}`);
@@ -56,7 +56,6 @@ const ViewComments: FC<Props> = ({
     // minusComment(true);
     setReload(`${new Date()}`);
   }, [count]);
-
 
   return (
     <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
