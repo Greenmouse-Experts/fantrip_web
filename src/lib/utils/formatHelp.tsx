@@ -225,7 +225,7 @@ export const isValidEmail = (email: string): boolean => {
 };
 
 export const getShortAddress = (str: string): string => {
-  const words = str.split(','); // Split by whitespace
+  const words = str.split(","); // Split by whitespace
   const first = words[words.length - 3];
   const last = words.slice(-1);
   return `${first}, ${last}`; // Get the last two words
