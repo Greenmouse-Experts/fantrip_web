@@ -12,6 +12,8 @@ const ChatFooterIndex: FC<Props> = ({ socket }) => {
   const [msgInput, setMsgInput] = useState("");
   const handleSend = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(guestInfo);
+
     if (msgInput === "") {
       return;
     }
@@ -31,7 +33,7 @@ const ChatFooterIndex: FC<Props> = ({ socket }) => {
       >
         <input
           type="text"
-           placeholder="Type a message..."
+          placeholder="Type a message..."
           className="p-3 dark:bg-darkColorLight pl-4 w-full rounded-l-full outline-none"
           value={msgInput}
           onChange={(e) => setMsgInput(e.target.value)}

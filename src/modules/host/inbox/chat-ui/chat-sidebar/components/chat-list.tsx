@@ -1,16 +1,16 @@
 import useAuth from "@/hooks/authUser";
 import { useChat } from "@/hooks/useChat";
-import { ChatItem } from "@/lib/contracts/chat";
+import { ChatHistoryItem } from "@/lib/contracts/chat";
 import { formatName } from "@/lib/utils/formatHelp";
 import { FC } from "react";
 
 interface Props {
-  prevChats: ChatItem[];
+  prevChats: ChatHistoryItem[];
 }
 const ChatList: FC<Props> = ({ prevChats }) => {
   const { userId } = useAuth();
   const { saveGuestInfo, guestId } = useChat();
-  const selectThisGuest = (guest: ChatItem) => {
+  const selectThisGuest = (guest: any) => {
     if (guest.id === guestId) return;
     if (guest.chatBuddy.id === userId) {
       const payload = {
@@ -37,13 +37,13 @@ const ChatList: FC<Props> = ({ prevChats }) => {
     }
   };
 
-  const getRecieverPicture = (item: ChatItem) => {
+  const getRecieverPicture = (item: any) => {
     if (item.chatBuddy.id === userId) {
       return item?.initiator?.picture;
     } else return item?.chatBuddy?.picture;
   };
 
-  const getRecieverName = (item: ChatItem) => {
+  const getRecieverName = (item: any) => {
     if (item.chatBuddy.id === userId) {
       return `${item.initiator?.firstName} ${item.initiator?.lastName}`;
     } else return `${item.chatBuddy?.firstName} ${item.chatBuddy?.lastName}`;

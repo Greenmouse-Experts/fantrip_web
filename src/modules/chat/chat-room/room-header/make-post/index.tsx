@@ -3,13 +3,13 @@ import IndexDisplayUi from "./index-display";
 
 interface Props {
   socket: any;
-  setReload: () => void;
+  setReload: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
-const MakePostIndex:FC<Props> = ({socket, setReload}) => {
+const MakePostIndex: FC<Props> = ({ socket, setReload }) => {
   return (
     <div>
       <div>
-        <IndexDisplayUi socket={socket} setReload={setReload}/>
+        <IndexDisplayUi socket={socket} setReload={setReload} />
       </div>
     </div>
   );

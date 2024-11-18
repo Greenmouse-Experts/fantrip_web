@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { QuizQuestion } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
 import { extractNumbers } from "@/lib/utils/formatHelp";
@@ -13,9 +13,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
   const { token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const [showResult, setShowResult] = useState<number>();
-  const [answer, setAnswer] = useState<number>(
-    Number(extractNumbers(data.rightAnswer)[0])
-  );
+  const [answer, setAnswer] = useState<number>(0);
   const hasAttempt = data.attemptResults?.find((where) => where.myAttempt);
   const markQuestion = (index: number) => {
     if (hasAttempt) {
@@ -37,7 +35,26 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
   };
 
   const optionLabel = ["A", "B", "C", "D", "E", "F", "G"];
-  const totalCount = data?.attemptResults?.reduce((sum, item) => sum + item.total, 0)
+  const totalCount = data?.attemptResults?.reduce(
+    (sum, item) => sum + item.total,
+    0
+  );
+
+  const getQuizAttempt = () => {
+    const onListenEvent = (value: any) => {
+      console.log(value.data);
+    };
+    socket.on(`attempted`, onListenEvent);
+
+    // Remove event listener on component unmount
+    return () => socket.off(`attempted`);
+  };
+
+  useEffect(() => {
+    getQuizAttempt();
+  }, [socket]);
+
+  console.log(data);
 
   return (
     <div className="p-2 mb-4 rounded-lg">

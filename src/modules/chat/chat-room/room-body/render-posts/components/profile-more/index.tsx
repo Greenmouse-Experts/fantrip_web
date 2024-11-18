@@ -8,6 +8,7 @@ import { FC } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import ReportUser from "./report-user";
 import SharePost from "./share-post";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   user: {
@@ -36,7 +37,7 @@ const ProfileMore: FC<Props> = ({
   id,
   reload,
   type,
-  title
+  title,
 }) => {
   const { userId, token } = useAuth();
   const { saveHostInfo } = useChat();
@@ -45,19 +46,25 @@ const ProfileMore: FC<Props> = ({
   const { Dialog: Report, setShowModal: ShowReport } = useDialog();
   const { Dialog: Share, setShowModal: ShowShare } = useDialog();
 
+  const navigate = useNavigate();
+
   const openChatWithUser = () => {
-    const payload = {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      nickname: user.nickname,
-      verifiedAsHost: user.verifiedAsHost,
-      role: user.role,
-      picture: user.picture,
-    };
-    saveHostInfo(payload);
-    setShowModal(true);
-    close();
+    if (userId) {
+      const payload = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        nickname: user.nickname,
+        verifiedAsHost: user.verifiedAsHost,
+        role: user.role,
+        picture: user.picture,
+      };
+      saveHostInfo(payload);
+      setShowModal(true);
+      close();
+    } else {
+      navigate("/auth/login");
+    }
   };
 
   const deleteUserPost = (payload: { id: string; token: string }) => {
@@ -111,9 +118,7 @@ const ProfileMore: FC<Props> = ({
               </>
             )}
             <MenuItem onClick={() => ShowShare(true)}>
-              <p className="text-black fs-400">
-                Share Post
-              </p>
+              <p className="text-black fs-400">Share Post</p>
             </MenuItem>
             {user?.id === userId && (
               <MenuItem onClick={() => ShowDialog(true)}>
@@ -146,7 +151,7 @@ const ProfileMore: FC<Props> = ({
         />
       </Report>
       <Share title="Share Post" size="md">
-        <SharePost id={id} title={title} userId={user.id}/>
+        <SharePost id={id} title={title} userId={user.id} />
       </Share>
     </div>
   );

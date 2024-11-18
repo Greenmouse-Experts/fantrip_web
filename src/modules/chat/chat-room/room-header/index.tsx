@@ -9,7 +9,7 @@ import useAuth from "@/hooks/authUser";
 
 interface Props {
   socket: any;
-  setReload: () => void;
+  setReload: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 const RoomHeaderIndex: FC<Props> = ({ socket, setReload }) => {
   const { setNewActiveModal } = useUtils();
