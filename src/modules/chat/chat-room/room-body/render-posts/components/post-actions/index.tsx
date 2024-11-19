@@ -89,7 +89,6 @@ const PostActions: FC<Props> = ({
   const getReactions = () => {
     const onListenEvent = (value: any) => {
       if (id === value.data.postId) {
-        console.log(value.data);
         setStatCount({
           ...statCount,
           initLike: value.data.full.upvotes,

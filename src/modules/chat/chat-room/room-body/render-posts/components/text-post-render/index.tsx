@@ -86,11 +86,7 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
           />
         )}
         {item.quizQuestion && (
-          <QuizQuestionIndex
-            data={item.quizQuestion}
-            socket={socket}
-            reload={handleReload}
-          />
+          <QuizQuestionIndex data={item.quizQuestion} socket={socket} />
         )}
         <PostActions
           id={item.id}
