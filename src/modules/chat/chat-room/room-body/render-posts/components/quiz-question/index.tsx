@@ -7,13 +7,15 @@ import { useNavigate } from "react-router-dom";
 interface Props {
   data: QuizQuestion;
   socket: any;
-  reload: () => void;
 }
-const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
+const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
   const { token, isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const [quizData, setQuizData] = useState(data);
   const [showResult, setShowResult] = useState<number>();
-  const [answer, setAnswer] = useState<number>(0);
+  const [answer, setAnswer] = useState<number>(
+    Number(extractNumbers(JSON.stringify(data.rightAnswer[0])))
+  );
   const hasAttempt = data.attemptResults?.find((where) => where.myAttempt);
   const markQuestion = (index: number) => {
     if (hasAttempt) {
@@ -31,27 +33,27 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
     socket.emit("attempt", payload);
     setShowResult(index);
     setAnswer(Number(extractNumbers(data.rightAnswer)[0]));
-    reload();
   };
 
   const optionLabel = ["A", "B", "C", "D", "E", "F", "G"];
-  const totalCount = data?.attemptResults?.reduce(
+  const totalCount = quizData?.attemptResults?.reduce(
     (sum, item) => sum + item.total,
     0
   );
 
-  const getQuizAttempt = () => {
-    const onListenEvent = (value: any) => {
-      console.log(value.data);
-    };
-    socket.on(`attempted`, onListenEvent);
-
-    // Remove event listener on component unmount
-    return () => socket.off(`attempted`);
-  };
-
   useEffect(() => {
-    getQuizAttempt();
+    const onListenEventPost = (value: any) => {
+      if (value.data.quizQuestionId === data.id) {
+        setQuizData((prevData) => ({
+          ...prevData,
+          attemptResults: value.data.result, // Replace attemptResults with the new result array
+        }));
+      }
+    };
+    socket.on(`attempted`, onListenEventPost);
+
+    // Cleanup on unmount
+    return () => socket.off(`attempted`, onListenEventPost);
   }, [socket]);
 
   console.log(data);
@@ -59,7 +61,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
   return (
     <div className="p-2 mb-4 rounded-lg">
       <>
-        {data.attemptResults.map((item, i) => (
+        {quizData.attemptResults.map((item, i) => (
           <div className="mb-4" key={i}>
             <div
               className="relative flex justify-between items-center cursor-pointer hover:scale-x-105 duration-100"
@@ -91,9 +93,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket, reload }) => {
                   </p>
                 </div>
                 <p className="fs-500 pl-16 p-2">{item.option}</p>
-                {hasAttempt && (
-                  <p className="fs-500 fw-500 pr-3">{item.percentage}%</p>
-                )}
+                <p className="fs-500 fw-500 pr-3">{item.percentage}%</p>
               </div>
             </div>
           </div>
