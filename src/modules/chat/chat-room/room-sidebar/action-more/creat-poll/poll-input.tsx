@@ -124,7 +124,7 @@ const PollInput: FC<Props> = ({
     updatedDateTime.setMinutes(updatedDateTime.getMinutes() + minutes);
 
     // Update state with the new date and time
-    setExpiresAt(dayjs(updatedDateTime).format("YYYY-MM-DDThh:mm"));
+    setExpiresAt(dayjs(updatedDateTime).format("YYYY-MM-DDTHH:mm"));
   };
 
   useEffect(() => {

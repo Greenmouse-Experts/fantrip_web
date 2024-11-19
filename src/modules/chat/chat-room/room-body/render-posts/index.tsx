@@ -70,10 +70,20 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
 
   useEffect(() => {
     const onListenEventPost = (value: any) => {
-      const newPost = [value.data];
-      const posts = [...newPost, ...postsToRender];
-      setPostsToRender(posts);
+      setPrevPosts((prevPosts) => {
+        const newPost = [value.data];
+        const updatedPosts = [...newPost, ...prevPosts];
+
+        // Update postsToRender alongside prevPosts
+        setPostsToRender((prevPostsToRender) => [
+          ...newPost,
+          ...prevPostsToRender,
+        ]);
+
+        return updatedPosts; // Ensure prevPosts is updated
+      });
     };
+
     socket.on(`postCreated`, onListenEventPost);
 
     // Cleanup on unmount
