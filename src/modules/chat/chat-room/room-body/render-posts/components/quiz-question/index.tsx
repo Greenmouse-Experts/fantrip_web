@@ -9,7 +9,7 @@ interface Props {
   socket: any;
 }
 const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
-  const { token, isLoggedIn } = useAuth();
+  const { token, isLoggedIn, userId } = useAuth();
   const navigate = useNavigate();
   const [quizData, setQuizData] = useState(data);
   const [showResult, setShowResult] = useState<number>();
@@ -42,21 +42,38 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
   );
 
   useEffect(() => {
+    setQuizData(data);
+  }, [data]);
+
+  useEffect(() => {
     const onListenEventPost = (value: any) => {
       if (value.data.quizQuestionId === data.id) {
         setQuizData((prevData) => ({
           ...prevData,
-          attemptResults: value.data.result, // Replace attemptResults with the new result array
+          attemptResults: prevData.attemptResults.map((attempt) => {
+            // Find matching result from `value.data.result`
+            const updatedResult = value.data.result.find(
+              (res: any) => res.option === attempt.option
+            );
+
+            // Update fields, but respect the current user's `myAttempt`
+            return {
+              ...attempt,
+              total: updatedResult?.total ?? attempt.total,
+              percentage: updatedResult?.percentage ?? attempt.percentage,
+              myAttempt:
+                updatedResult?.myAttempt && value.data.userId === userId, // Check userId
+            };
+          }),
         }));
       }
     };
+
     socket.on(`attempted`, onListenEventPost);
 
     // Cleanup on unmount
     return () => socket.off(`attempted`, onListenEventPost);
-  }, [socket]);
-
-  console.log(data);
+  }, [socket, data.id, token]);
 
   return (
     <div className="p-2 mb-4 rounded-lg">

@@ -1,12 +1,7 @@
 import { FC, useState } from "react";
 import useAuth from "@/hooks/authUser";
 import { useChat } from "@/hooks/useChat";
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react";
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { ChevronDownIcon } from "lucide-react";
 import PollInput from "./poll-input";
 import Button from "@/components/Button";
@@ -18,7 +13,7 @@ interface Props {
   close: () => void;
 }
 const CreatePoll: FC<Props> = ({ socket, reload, close }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { token, isLoggedIn } = useAuth();
   const { community } = useChat();
   const [selectedChannel, setSelectedChannel] = useState({
@@ -33,8 +28,8 @@ const CreatePoll: FC<Props> = ({ socket, reload, close }) => {
   const [multiVote, setMultivote] = useState<boolean>(false);
 
   const onSubmit = () => {
-    if(!isLoggedIn){
-      navigate('/auth/login')
+    if (!isLoggedIn) {
+      navigate("/auth/login");
       return;
     }
     const payload = {

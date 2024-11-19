@@ -80,6 +80,17 @@ const PostActions: FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    setStatCount({
+      initLike: like,
+      initDislike: dislike,
+      initComment: comment,
+    });
+    setLikeAction(
+      reaction ? formatReaction[reaction as keyof typeof formatReaction] : ""
+    );
+  }, [id]);
+
   const handleShowComment = (id: string) => {
     if (id === showComment) {
       setShowComment("");
