@@ -3,7 +3,6 @@ import AboutHostSection from "./profile-pop/about-host-section";
 import HostReviews from "./profile-pop/host-reviews";
 import VerifyDetails from "./profile-pop/verify-details";
 import PreviousListing from "./profile-pop/prevoius-listing";
-import { FaRegFlag } from "react-icons/fa6";
 import { useQuery } from "@tanstack/react-query";
 import { getSingleStay } from "@/services/api/stay-api";
 import PyramidSpin from "@/components/loaders/pyramid-spin";
@@ -77,7 +76,7 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
             </div>
             <p className="bg-gradient p-[0.4px] my-7"></p>
             <div>
-              <HostReviews reviews={data?.reviews || []}/>
+              <HostReviews reviews={data?.reviews || []} />
             </div>
             <p className="bg-gradient p-[0.4px] my-7"></p>
             <div>
@@ -96,12 +95,12 @@ const MeetProfileIndex: FC<Props> = ({ id }) => {
               />
             </div>
             <p className="bg-gradient p-[0.4px] my-7"></p>
-            <div className="mb-5">
+            {/*<div className="mb-5">
               <button className="flex gap-x-2 items-center">
                 <FaRegFlag className="dark:text-white"/>
                 <p className="fw-600 underline">Submit a report</p>
               </button>
-            </div>
+            </div>*/}
           </div>
         </div>
       )}

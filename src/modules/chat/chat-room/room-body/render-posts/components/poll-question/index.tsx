@@ -73,6 +73,8 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
     return () => socket.off(`votedUnvoted`, onListenEventPost);
   }, [socket, data.id, userId]);
 
+  const hasMyVote = voteData?.voteResults?.some((result) => result.myVote);
+
   return (
     <div className="p-2 mb-4 rounded-lg glass">
       {voteData?.voteResults?.map((item, i) => (
@@ -83,12 +85,12 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
           <div className="flex justify-between items-center">
             <div
               className="flex gap-x-2 items-center"
-              onClick={() => !item.myVote && markQuestion(i)}
+              onClick={() => !hasMyVote && markQuestion(i)}
             >
               <input
                 type="radio"
-                checked={item.myVote}
-                disabled={!voteData.multipleVote && item.myVote}
+                defaultChecked={item.myVote}
+                disabled={hasMyVote}
               />
               <p className="fs-400">{item.option}</p>
             </div>
