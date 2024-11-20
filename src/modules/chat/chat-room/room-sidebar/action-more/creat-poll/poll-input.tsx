@@ -70,7 +70,7 @@ const PollInput: FC<Props> = ({
     if (key === "days") {
       if (inputValue > 5 || inputValue < 0) {
         toast({
-          title: "Days value is out of ",
+          title: "Days value is out of range, maximum of 5 days is allowed",
           isClosable: true,
           position: "top",
           status: "error",
@@ -82,7 +82,7 @@ const PollInput: FC<Props> = ({
     } else if (key === "hours") {
       if (inputValue > 23 || inputValue < 0) {
         toast({
-          title: "Days value is out of ",
+          title: "Hours value is out of range, maximum of 23 hours is allowed",
           isClosable: true,
           position: "top",
           status: "error",
@@ -94,7 +94,8 @@ const PollInput: FC<Props> = ({
     } else if (key === "minute") {
       if (inputValue > 59 || inputValue < 0) {
         toast({
-          title: "Days value is out of ",
+          title:
+            "Minutes value is out of range, maximum of 59 minutes is allowed",
           isClosable: true,
           position: "top",
           status: "error",
