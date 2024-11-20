@@ -11,9 +11,9 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
   const { token, userId } = useAuth();
   // const [showPoll, setShowPoll] = useState(false)
   const [voteData, setVoteData] = useState(data);
-  const [showResult, setShowResult] = useState<string>("");
+  // const [showResult, setShowResult] = useState<string>("");
 
-  const hasTrueValue = data.voteResults?.find((where) => where.myVote);
+  // const hasTrueValue = data.voteResults?.find((where) => where.myVote);
 
   const markQuestion = (index: number) => {
     const payload = {
@@ -22,7 +22,7 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
       choice: index,
     };
     socket.emit("voteUnvote", payload);
-    setShowResult(data.id);
+    // setShowResult(data.id);
   };
 
   const totalCount = voteData?.voteResults?.reduce(
@@ -37,8 +37,6 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
 
   useEffect(() => {
     const onListenEventPost = (value: any) => {
-      console.log(value.data);
-
       if (value.data.pollQuestionId === data.id) {
         setVoteData((prevData) => {
           // Map through the current vote results to preserve all data
@@ -74,8 +72,6 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
     // Cleanup on unmount
     return () => socket.off(`votedUnvoted`, onListenEventPost);
   }, [socket, data.id, userId]);
-
-  console.log(voteData);
 
   return (
     <div className="p-2 mb-4 rounded-lg glass">
