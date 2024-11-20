@@ -25,20 +25,19 @@ const RoomChatListIndex: FC<Props> = ({ socket }) => {
 
     const onRecentChat = (value: any) => {
       const idToMatch = value.data.id;
-      const updatedArray = history.map((item) => {
-        if (item.id === idToMatch) {
-          return {
-            ...item,
-            lastMessage: value.data.lastMessage,
-            createdDate: value.data.createdDate,
-            updatedDate: value.data.updatedDate,
-            unread: 0,
-          };
-        }
-        return item;
-      });
-
-      setPrevChats(updatedArray);
+      setPrevChats((prev) =>
+        prev.map((item) =>
+          item.id === idToMatch
+            ? {
+                ...item,
+                lastMessage: value.data.lastMessage,
+                createdDate: value.data.createdDate,
+                updatedDate: value.data.updatedDate,
+                unread: 0,
+              }
+            : item
+        )
+      );
     };
 
     socket.on(`chatsRetrieved:${userId}`, onChatsRetrieved);

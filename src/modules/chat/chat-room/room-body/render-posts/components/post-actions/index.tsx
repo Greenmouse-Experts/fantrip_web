@@ -115,7 +115,7 @@ const PostActions: FC<Props> = ({
 
   useEffect(() => {
     getReactions();
-  }, [socket]);
+  }, [id]);
 
   // console.log(id, 'init id');
   // console.log(showComment, 'show comment');

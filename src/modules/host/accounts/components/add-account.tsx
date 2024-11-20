@@ -164,6 +164,8 @@ const AddHostAccount: FC<Props> = ({ close }) => {
       fd.append("idDoc", addressBackImg[0]);
       // fd.append("purpose", "identity_document");
 
+      console.log(payload);
+
       mutation.mutate(fd, {
         onSuccess: (data) => {
           const newData = {
@@ -176,14 +178,14 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               id: data[1]?.id,
               link: data[1]?.link,
             },
-             addressDocFront: {
-                  id: data[2]?.id,
-                  link: data[2]?.link,
-                },
-                addressDocBack: {
-                  id: data[3]?.id,
-                  link: data[3]?.link,
-                },
+            addressDocFront: {
+              id: data[2]?.id,
+              link: data[2]?.link,
+            },
+            addressDocBack: {
+              id: data[3]?.id,
+              link: data[3]?.link,
+            },
           };
           handleCreateKyc(newData);
         },
@@ -390,6 +392,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                     {Country.getAllCountries().map((item) => (
                       <option value={item.isoCode} key={item.isoCode}>
                         {item.name}
+                        {JSON.stringify(item)}
                       </option>
                     ))}
                   </select>
