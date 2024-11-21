@@ -39,7 +39,6 @@ const ChatBody: FC<Props> = ({ socket, reload }) => {
   // get recent chat sent
   const getSentMessages = () => {
     const onListenEvent = (value: any) => {
-      console.log(value);
       setIsLoaded(true);
       const payload = {
         chatBuddy: {

@@ -80,6 +80,17 @@ const PostActions: FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    setStatCount({
+      initLike: like,
+      initDislike: dislike,
+      initComment: comment,
+    });
+    setLikeAction(
+      reaction ? formatReaction[reaction as keyof typeof formatReaction] : ""
+    );
+  }, [id]);
+
   const handleShowComment = (id: string) => {
     if (id === showComment) {
       setShowComment("");
@@ -89,7 +100,6 @@ const PostActions: FC<Props> = ({
   const getReactions = () => {
     const onListenEvent = (value: any) => {
       if (id === value.data.postId) {
-        console.log(value.data);
         setStatCount({
           ...statCount,
           initLike: value.data.full.upvotes,
@@ -105,7 +115,7 @@ const PostActions: FC<Props> = ({
 
   useEffect(() => {
     getReactions();
-  }, [socket]);
+  }, [id]);
 
   // console.log(id, 'init id');
   // console.log(showComment, 'show comment');

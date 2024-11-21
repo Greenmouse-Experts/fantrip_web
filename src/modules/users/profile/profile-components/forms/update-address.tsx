@@ -16,7 +16,7 @@ import {
   getStreetFromGoogle,
 } from "@/lib/utils/helper-function";
 import TextInput, { InputType } from "@/components/TextInput";
-import {Country} from "country-state-city";
+import { Country } from "country-state-city";
 
 interface Props {
   close: () => void;
@@ -25,7 +25,7 @@ const UpdateAddressForm: FC<Props> = ({ close }) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
   const { user, saveUser } = useAuth();
-  const { } = usePlacesWidget({
+  const {} = usePlacesWidget({
     apiKey: GOOGLE_MAP_KEY,
     options: {
       types: ["address"],
