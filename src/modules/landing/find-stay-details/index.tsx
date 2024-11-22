@@ -32,6 +32,21 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
     avrRating,
     discountPrice,
   } = data;
+
+  let fromDate = null;
+  let toDate = null;
+
+  const isValidFormatFrom = /^\d{4}-\d{2}-\d{2}$/.test(availableFrom);
+  const isValidFormatTo = /^\d{4}-\d{2}-\d{2}$/.test(availableTo);
+
+  if (!isValidFormatFrom) {
+    fromDate = availableFrom.split("-").reverse().join("-");
+  }
+
+  if (!isValidFormatTo) {
+    toDate = availableTo.split("-").reverse().join("-");
+  }
+
   return (
     <div>
       <div className="lg:flex gap-7 lg:gap-x-12">
@@ -73,7 +88,10 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
             <CondoRatings id={id} />
           </div>
           <div className="mt-7">
-            <Availability from={availableFrom} to={availableTo} />
+            <Availability
+              from={fromDate ? fromDate : availableFrom}
+              to={toDate ? toDate : availableTo}
+            />
           </div>
         </div>
         <div className="lg:w-5/12 mt-6 lg:mt-0">
@@ -103,8 +121,8 @@ const StayDetailsIndex: FC<Props> = ({ data }) => {
             </div>
             <div>
               <SelectStayDate
-                from={availableFrom}
-                to={availableTo}
+                from={fromDate ? fromDate : availableFrom}
+                to={toDate ? toDate : availableTo}
                 id={id}
                 currency={currency}
                 maxNight={maxNights}
