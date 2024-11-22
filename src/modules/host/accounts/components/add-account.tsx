@@ -392,7 +392,6 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                     {Country.getAllCountries().map((item) => (
                       <option value={item.isoCode} key={item.isoCode}>
                         {item.name}
-                        {JSON.stringify(item)}
                       </option>
                     ))}
                   </select>
