@@ -2,15 +2,29 @@ import dayjs from "dayjs";
 import { FC } from "react";
 import Calendar from "react-calendar";
 
-interface Props{
+interface Props {
   from: string;
   to: string;
 }
-const Availability:FC<Props> = ({from, to}) => {
-  const date = {
-    from: dayjs(from).toDate(),
-    to: dayjs(to).toDate()
+const Availability: FC<Props> = ({ from, to }) => {
+  const isValidFormatFrom = /^\d{4}-\d{2}-\d{2}$/.test(from);
+  const isValidFormatTo = /^\d{4}-\d{2}-\d{2}$/.test(to);
+
+  let fromDate = from;
+  let toDate = to;
+
+  if (!isValidFormatFrom) {
+    fromDate = from.split("-").reverse().join("-");
   }
+
+  if (!isValidFormatTo) {
+    toDate = to.split("-").reverse().join("-");
+  }
+
+  const date = {
+    from: dayjs(fromDate).toDate(),
+    to: dayjs(toDate).toDate(),
+  };
   return (
     <div className="pb-6 border-b border-[#D2D2D2]">
       <div>
