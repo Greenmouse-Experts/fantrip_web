@@ -9,10 +9,10 @@ import ProfileMore from "../../../profile-more";
 interface Props {
   comment: CommentItem;
   socket: any;
-  reload: () => void
+  reload: () => void;
 }
 const RenderComment: FC<Props> = ({ comment, socket, reload }) => {
-    const [profileShow, setProfileShow] = useState(false);
+  const [profileShow, setProfileShow] = useState(false);
   return (
     <div className="flex gap-x-1">
       <div
@@ -36,6 +36,7 @@ const RenderComment: FC<Props> = ({ comment, socket, reload }) => {
               user={comment.user}
               openUser={() => setProfileShow(true)}
               reload={reload}
+              postLink={`${window.location.protocol}//${window.location.hostname}/chat-room?chatpost-id=${comment.id}&chatinit-id=${comment.user.id}`}
               type="comment"
             />
           </div>
