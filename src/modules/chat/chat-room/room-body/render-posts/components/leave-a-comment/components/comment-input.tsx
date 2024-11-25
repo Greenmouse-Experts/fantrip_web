@@ -9,12 +9,12 @@ interface Props {
   addComment: () => void;
 }
 const CommentInput: FC<Props> = ({ socket, id, addComment }) => {
-  const navigate = useNavigate()
-  const {token, isLoggedIn} = useAuth()
-  const [msgInput, setMsgInput] = useState('')
+  const navigate = useNavigate();
+  const { token, isLoggedIn } = useAuth();
+  const [msgInput, setMsgInput] = useState("");
   const handleAddComment = () => {
-    if(!isLoggedIn){
-      navigate('/auth/login')
+    if (!isLoggedIn) {
+      navigate("/auth/login");
       return;
     }
     const payload = {
@@ -23,8 +23,8 @@ const CommentInput: FC<Props> = ({ socket, id, addComment }) => {
       postId: id,
     };
     socket.emit("createComment", payload);
-    setMsgInput('')
-    addComment()
+    setMsgInput("");
+    addComment();
   };
 
   return (
@@ -39,7 +39,12 @@ const CommentInput: FC<Props> = ({ socket, id, addComment }) => {
       <div className="flex items-center gap-x-2 justify-end pr-2 shrink-0">
         {/* <BsEmojiSmile className="text-[#8C8C8C] fs-500 cursor-pointer" />
         <IoCameraOutline className="text-[#8C8C8C] text-xl cursor-pointer" /> */}
-        {!!msgInput.length && <IoSend onClick={handleAddComment} className="text-prima shrink-0 ml-2 text-2xl cursor-pointer"/>}
+        {!!msgInput.length && (
+          <IoSend
+            onClick={handleAddComment}
+            className="text-prima shrink-0 ml-2 text-2xl cursor-pointer"
+          />
+        )}
       </div>
     </div>
   );
