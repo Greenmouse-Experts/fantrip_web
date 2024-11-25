@@ -8,9 +8,10 @@ import { Modal, ModalOverlay, ModalContent } from "@chakra-ui/react";
 interface Props {
   socket: any;
   userId: string;
+  link: string;
   close: () => void;
 }
-const ReportUser: FC<Props> = ({ socket, userId, close }) => {
+const ReportUser: FC<Props> = ({ socket, userId, link, close }) => {
   const [textInput, setTextInput] = useState<boolean>(false);
   const [text, setText] = useState<string>("");
   const { token } = useAuth();
@@ -29,8 +30,8 @@ const ReportUser: FC<Props> = ({ socket, userId, close }) => {
       token: token,
       userId: userId,
       reason: text,
+      link: link,
     };
-
     socket.emit("reportUser", payload);
     setText("");
     toast({
