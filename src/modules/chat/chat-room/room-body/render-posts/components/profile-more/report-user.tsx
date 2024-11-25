@@ -31,7 +31,7 @@ const ReportUser: FC<Props> = ({ socket, userId, close }) => {
       reason: text,
     };
 
-    socket.emit("createComment", payload);
+    socket.emit("reportUser", payload);
     setText("");
     toast({
       render: () => (
