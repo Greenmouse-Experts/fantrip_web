@@ -64,6 +64,7 @@ const TextPostRender: FC<Props> = ({ item, socket, handleReload }) => {
             socket={socket}
             id={item.id}
             user={item.user}
+            postLink={`${window.location.protocol}//${window.location.hostname}/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`}
             openUser={() => setProfileShow(true)}
             reload={handleReload}
           />
