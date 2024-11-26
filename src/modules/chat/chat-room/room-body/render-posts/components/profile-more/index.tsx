@@ -114,7 +114,11 @@ const ProfileMore: FC<Props> = ({
                 <MenuItem onClick={openUser}>
                   <p className="text-black fs-400">View User Profile</p>
                 </MenuItem>
-                <MenuItem onClick={() => ShowReport(true)}>
+                <MenuItem
+                  onClick={() =>
+                    userId ? ShowReport(true) : navigate("/auth/login")
+                  }
+                >
                   <p className="text-black fs-400">Report this user</p>
                 </MenuItem>
               </>
