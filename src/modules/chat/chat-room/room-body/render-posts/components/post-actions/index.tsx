@@ -113,12 +113,37 @@ const PostActions: FC<Props> = ({
     return () => socket.off(`reacted`);
   };
 
+  const getComments = () => {
+    const onListenEvent = (value: any) => {
+      const postIds = [
+        ...new Set(
+          value.data.result.map((comment: { postId: any }) => comment.postId)
+        ),
+      ];
+
+      if (postIds[0] === id) {
+        console.log(value.data);
+        const numContents = value.data.result.length;
+        setStatCount({
+          ...statCount,
+          initComment: numContents,
+        });
+      }
+    };
+
+    socket.on("publishedCommentsRetrieved", onListenEvent);
+
+    // Clean up event listener on component unmount
+    return () => socket.off("publishedCommentsRetrieved", onListenEvent);
+  };
+
   useEffect(() => {
     getReactions();
   }, [id]);
 
-  // console.log(id, 'init id');
-  // console.log(showComment, 'show comment');
+  useEffect(() => {
+    getComments();
+  }, [socket, id]);
 
   return (
     <div>

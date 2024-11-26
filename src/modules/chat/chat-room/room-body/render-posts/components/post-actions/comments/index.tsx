@@ -33,7 +33,13 @@ const ViewComments: FC<Props> = ({
     socket.emit("retrievePublishedComments", payload);
 
     const onListenEvent = (value: any) => {
-      if (value?.data?.postId === id) {
+      const postIds = [
+        ...new Set(
+          value.data.result.map((comment: { postId: any }) => comment.postId)
+        ),
+      ];
+
+      if (postIds[0] === id) {
         // Ensure the postId matches this post's id
         setPrevComments(value.data.result || []);
       }
@@ -53,8 +59,9 @@ const ViewComments: FC<Props> = ({
     // Listen for real-time updates
     const onNewComment = (value: any) => {
       if (value?.data?.postId === id) {
+        const newData = [value.data];
         // Only update if the postId matches
-        setPrevComments((prev) => [...prev, ...value.data.result]);
+        setPrevComments((prev) => [...prev, ...newData]);
         setIsLoading(false);
       }
     };
@@ -76,7 +83,7 @@ const ViewComments: FC<Props> = ({
         <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
           <div>
             <p className="fs-500 fw-500">
-              {count} Comment{count > 1 ? "s" : ""}
+              {prevComments.length} Comment{prevComments.length > 1 ? "s" : ""}
             </p>
           </div>
           <div className="mt-4 grid gap-2">
