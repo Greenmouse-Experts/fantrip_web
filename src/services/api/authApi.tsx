@@ -83,6 +83,18 @@ export const updateProfile = async (payload: any) => {
     .then((response) => response.data);
 };
 
+export const updateEmail = async (payload: any) => {
+  return axios
+    .patch(`${ENDPOINT.UPDATE_EMAIL}`, payload)
+    .then((response) => response.data);
+};
+
+export const updatePhone = async (payload: any) => {
+  return axios
+    .patch(`${ENDPOINT.UPDATE_PHONE}`, payload)
+    .then((response) => response.data);
+};
+
 export const updatePassword = async (payload: any) => {
   return axios
     .post(`${ENDPOINT.UPDATE_PASSWORD}`, payload)

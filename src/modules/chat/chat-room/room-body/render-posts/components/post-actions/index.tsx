@@ -113,12 +113,37 @@ const PostActions: FC<Props> = ({
     return () => socket.off(`reacted`);
   };
 
+  const getComments = () => {
+    const onListenEvent = (value: any) => {
+      const postIds = [
+        ...new Set(
+          value.data.result.map((comment: { postId: any }) => comment.postId)
+        ),
+      ];
+
+      if (postIds[0] === id) {
+        console.log(value.data);
+        const numContents = value.data.result.length;
+        setStatCount({
+          ...statCount,
+          initComment: numContents,
+        });
+      }
+    };
+
+    socket.on("publishedCommentsRetrieved", onListenEvent);
+
+    // Clean up event listener on component unmount
+    return () => socket.off("publishedCommentsRetrieved", onListenEvent);
+  };
+
   useEffect(() => {
     getReactions();
   }, [id]);
 
-  // console.log(id, 'init id');
-  // console.log(showComment, 'show comment');
+  useEffect(() => {
+    getComments();
+  }, [socket, id]);
 
   return (
     <div>
@@ -167,34 +192,20 @@ const PostActions: FC<Props> = ({
         </div>
         <button
           type="button"
-          className={`${
-            type === "text"
-              ? `${
-                  showComment
-                    ? "bg-blue-600 text-white"
-                    : "bg-white dark:bg-darkColor"
-                }`
-              : `${
-                  showComment
-                    ? "bg-blue-600 text-white"
-                    : "bg-[#EDEDFF] dark:bg-darkColorLight"
-                }`
-          } flex items-center gap-x-1 rounded-full px-4 py-[2px]`}
+          className="bg-white dark:bg-darkColor flex items-center gap-x-1 rounded-full px-4 py-[2px]"
           onClick={() => handleShowComment(id)}
         >
           <GoComment className="dark:text-white" />
           <p>{statCount.initComment || 0}</p>
         </button>
       </div>
-      {showComment === id && (
-        <ViewComments
-          socket={socket}
-          id={id}
-          count={comment || 0}
-          token={token || ""}
-          minusComment={minusComment}
-        />
-      )}
+      <ViewComments
+        socket={socket}
+        id={id}
+        count={comment || 0}
+        token={token || ""}
+        minusComment={minusComment}
+      />
     </div>
   );
 };

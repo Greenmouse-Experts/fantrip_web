@@ -17,10 +17,14 @@ import FirstTimeInfo from "./first-time-info";
 import SecondTimeInfo from "./second-time-info";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import DeleteAccount from "./modal/delete-account";
+import EmailUpdate from "./forms/email-update";
+import PhoneUpdate from "./forms/phone-update";
 
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
   const { Dialog: LocationInfo, setShowModal: ShowLocation } = useDialog();
+  const { Dialog: EmailInfo, setShowModal: ShowEmail } = useDialog();
+  const { Dialog: PhoneInfo, setShowModal: ShowPhone } = useDialog();
   const { Dialog: FirstDialog, setShowModal: ShowFirstDialog } = useDialog();
   const { Dialog: SecondDialog, setShowModal: ShowSecondDialog } = useDialog();
   const { Dialog: Delete, setShowModal: ShowDelete } = useDialog();
@@ -46,6 +50,8 @@ const UserAccount = () => {
 
   const handleNextNavigate = () => {
     ShowProfile(false);
+    ShowEmail(false);
+    ShowPhone(false);
     if (user.loginTimes <= 1) {
       ShowSecondDialog(true);
     }
@@ -194,11 +200,27 @@ const UserAccount = () => {
               <p className="fw-500 mt-1">{lastName}</p>
             </div>
             <div>
-              <p className="fs-500 text-[#5F5F5F]">Email</p>
+              <div className="flex gap-3">
+                <p className="fs-500 text-[#5F5F5F]">Email</p>
+                <div
+                  className="flex gap-x-2 items-center px-2 rounded-[14px] text-gray-400 cursor-pointer"
+                  onClick={() => ShowEmail(true)}
+                >
+                  <AiOutlineEdit />
+                </div>
+              </div>
               <p className="fw-500 mt-1">{user.email}</p>
             </div>
             <div>
-              <p className="fs-500 text-[#5F5F5F]">Phone</p>
+              <div className="flex gap-3">
+                <p className="fs-500 text-[#5F5F5F]">Phone</p>
+                <div
+                  className="flex gap-x-2 items-center px-2 rounded-[14px] text-gray-400 cursor-pointer"
+                  onClick={() => ShowPhone(true)}
+                >
+                  <AiOutlineEdit />
+                </div>
+              </div>
               <p className="fw-500 mt-1">{formatPhoneNumber(user.phone)}</p>
             </div>
             <div>
@@ -266,6 +288,12 @@ const UserAccount = () => {
           </div>
         )}
       </div>
+      <PhoneInfo title="Update Email Address" size="xl">
+        <PhoneUpdate close={() => handleNextNavigate()} />
+      </PhoneInfo>
+      <EmailInfo title="Update Email Address" size="xl">
+        <EmailUpdate close={() => handleNextNavigate()} />
+      </EmailInfo>
       <ProfileInfo title="Update Profile Information" size="xl">
         <UpdateProfileForm close={() => handleNextNavigate()} />
       </ProfileInfo>

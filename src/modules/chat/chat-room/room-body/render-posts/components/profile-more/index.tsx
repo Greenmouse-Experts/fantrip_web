@@ -28,6 +28,7 @@ interface Props {
   socket: any;
   reload: () => void;
   type?: string;
+  postLink: string;
   title?: string;
 }
 const ProfileMore: FC<Props> = ({
@@ -36,6 +37,7 @@ const ProfileMore: FC<Props> = ({
   socket,
   id,
   reload,
+  postLink,
   type,
   title,
 }) => {
@@ -147,6 +149,7 @@ const ProfileMore: FC<Props> = ({
         <ReportUser
           socket={socket}
           userId={user.id}
+          link={postLink}
           close={() => ShowReport(false)}
         />
       </Report>

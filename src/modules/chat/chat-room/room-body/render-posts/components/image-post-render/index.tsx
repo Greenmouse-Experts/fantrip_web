@@ -61,6 +61,7 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
                 socket={socket}
                 id={item.id}
                 user={item.user}
+                postLink={`${window.location.protocol}//${window.location.hostname}/chat-room?chatpost-id=${item.id}&chatinit-id=${item.user.id}`}
                 openUser={() => setProfileShow(true)}
                 reload={handleReload}
               />
@@ -85,7 +86,7 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
             id={item.id}
             like={item.upvotes}
             dislike={item.downvotes}
-            comment={commentCount}
+            comment={item.threads}
             type="image"
             socket={socket}
             reaction={item.myReaction}
