@@ -26,7 +26,7 @@ const PostActions: FC<Props> = ({
   minusComment,
 }) => {
   const navigate = useNavigate();
-  const { token, isLoggedIn } = useAuth();
+  const { token, userId, isLoggedIn } = useAuth();
 
   const formatReaction = {
     upvote: "like",
@@ -122,7 +122,6 @@ const PostActions: FC<Props> = ({
       ];
 
       if (postIds[0] === id) {
-        console.log(value.data);
         const numContents = value.data.result.length;
         setStatCount({
           ...statCount,
@@ -199,13 +198,15 @@ const PostActions: FC<Props> = ({
           <p>{statCount.initComment || 0}</p>
         </button>
       </div>
-      <ViewComments
-        socket={socket}
-        id={id}
-        count={comment || 0}
-        token={token || ""}
-        minusComment={minusComment}
-      />
+      {userId && (
+        <ViewComments
+          socket={socket}
+          id={id}
+          count={comment || 0}
+          token={token || ""}
+          minusComment={minusComment}
+        />
+      )}
     </div>
   );
 };

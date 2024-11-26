@@ -1,5 +1,4 @@
 import ProfileAvatar from "@/components/ProfileAvatar";
-import { CommentItem } from "@/lib/contracts/chat";
 import { FC, useState } from "react";
 import CommentAction from "../comment-action";
 import { ComponentModal } from "@/components/modal-component";
@@ -7,7 +6,7 @@ import ProfileModal from "../../../profile-more/profile-modal";
 import ProfileMore from "../../../profile-more";
 
 interface Props {
-  comment: CommentItem;
+  comment: any;
   socket: any;
   reload: () => void;
 }
@@ -47,6 +46,7 @@ const RenderComment: FC<Props> = ({ comment, socket, reload }) => {
             socket={socket}
             like={comment.upvotes}
             dislike={comment.downvotes}
+            reaction={comment.myReaction}
             id={comment.id}
             type="post"
             comment={comment.totalReplies}
