@@ -86,7 +86,7 @@ const ImagePostRender: FC<Props> = ({ item, socket, handleReload }) => {
             id={item.id}
             like={item.upvotes}
             dislike={item.downvotes}
-            comment={commentCount}
+            comment={item.threads}
             type="image"
             socket={socket}
             reaction={item.myReaction}
