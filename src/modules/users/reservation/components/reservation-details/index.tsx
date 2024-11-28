@@ -36,7 +36,7 @@ const BookingDetails: FC<Props> = ({ id, close, refetch }) => {
           </div>
           {/* pay button */}
           <div>
-            {data.status === RESERVATION_STATUS.CONFIRMED && (
+            {data.status !== RESERVATION_STATUS.CONFIRMED && (
               <PaymentButton
                 id={id}
                 currency={data.stay.currency}
