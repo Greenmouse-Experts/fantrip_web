@@ -12,6 +12,11 @@
 .dark p {
   color: white;
 }
+
+.dark .cviop_sdr {
+  color: black !important;
+}
+
 .css-1o3pyl4 {
   background: #0e1624 !important;
   color: white !important;
@@ -137,9 +142,9 @@ input[type="radio"]:checked {
 
 /* menu small screen position */
 @media (max-width: 1000px) {
-    .chat-pope {
-        left: -137px !important;
-    }
+  .chat-pope {
+    left: -137px !important;
+  }
 }
 
 @layer base {
@@ -265,12 +270,20 @@ input[type="radio"]:checked {
 }
 
 .chat-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #9847fe 0%, #fc819f 100%); /* Thumb color */
+  background: linear-gradient(
+    to bottom,
+    #9847fe 0%,
+    #fc819f 100%
+  ); /* Thumb color */
   border-radius: 4px; /* Rounded corners */
 }
 
 .chat-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom,#fc819f  0%, #9847fe 100%); /* Thumb color on hover */
+  background: linear-gradient(
+    to bottom,
+    #fc819f 0%,
+    #9847fe 100%
+  ); /* Thumb color on hover */
   cursor: grab;
 }
 

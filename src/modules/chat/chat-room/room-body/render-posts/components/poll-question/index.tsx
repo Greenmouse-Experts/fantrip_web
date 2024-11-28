@@ -2,20 +2,26 @@ import { FC, useEffect, useState } from "react";
 import { PollQuestion } from "@/lib/contracts/chat";
 import useAuth from "@/hooks/authUser";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   data: PollQuestion;
   socket: any;
 }
 const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
-  const { token, userId } = useAuth();
+  const { token, userId, isLoggedIn } = useAuth();
   // const [showPoll, setShowPoll] = useState(false)
   const [voteData, setVoteData] = useState(data);
   // const [showResult, setShowResult] = useState<string>("");
 
   // const hasTrueValue = data.voteResults?.find((where) => where.myVote);
+  const navigate = useNavigate();
 
   const markQuestion = (index: number) => {
+    if (!isLoggedIn) {
+      navigate("/auth/login");
+      return;
+    }
     const payload = {
       token: token,
       pollQuestionId: data.id,
