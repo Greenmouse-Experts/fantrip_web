@@ -5,7 +5,6 @@ import PyramidSpin from "@/components/loaders/pyramid-spin";
 import { fetchReservationDetails } from "@/services/api/booking-api";
 import DetailsList from "./details-list";
 import PaymentButton from "../payment";
-import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 
 interface Props {
   id: string;
@@ -17,6 +16,26 @@ const BookingDetails: FC<Props> = ({ id, close, refetch }) => {
     queryKey: ["get-reservation-details", id],
     queryFn: () => fetchReservationDetails(id),
   });
+
+  let hasConfirmedStatus = false;
+
+  const renderPayBtn = (item: any) => {
+    hasConfirmedStatus = item.bookings.some(
+      (reservation: { trx: { status: string } }) =>
+        reservation.trx?.status === "confirmed"
+    );
+    const htmlToRener = !hasConfirmedStatus ? (
+      <PaymentButton
+        id={id}
+        currency={item.stay.currency}
+        price={item.total - (item.enableRewardForPayment ? 5 : 0)}
+        checkin={item.checkIn}
+      />
+    ) : null;
+
+    return htmlToRener;
+  };
+
   return (
     <div className="h-full dark:bg-darkColor">
       {isLoading && (
@@ -35,16 +54,7 @@ const BookingDetails: FC<Props> = ({ id, close, refetch }) => {
             <DetailsList data={data} close={close} refetch={refetch} />
           </div>
           {/* pay button */}
-          <div>
-            {data.status !== RESERVATION_STATUS.CONFIRMED && (
-              <PaymentButton
-                id={id}
-                currency={data.stay.currency}
-                price={data.total - (data.enableRewardForPayment ? 5 : 0)}
-                checkin={data.checkIn}
-              />
-            )}
-          </div>
+          <div>{renderPayBtn(data)}</div>
         </div>
       )}
     </div>
