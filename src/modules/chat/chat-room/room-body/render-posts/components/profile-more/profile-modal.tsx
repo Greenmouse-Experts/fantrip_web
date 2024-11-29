@@ -35,18 +35,22 @@ const ProfileModal: FC<Props> = ({ user, close }) => {
   };
 
   const openChatWithUser = () => {
-    const payload = {
-      id: user.id,
-      firstName: user?.firstName,
-      lastName: user?.lastName,
-      nickname: user?.nickname,
-      verifiedAsHost: user?.verifiedAsHost,
-      role: user.role,
-      picture: user.picture,
-    };
-    saveHostInfo(payload);
-    setShowModal(true);
-    close();
+    if (userId) {
+      const payload = {
+        id: user.id,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        nickname: user?.nickname,
+        verifiedAsHost: user?.verifiedAsHost,
+        role: user.role,
+        picture: user.picture,
+      };
+      saveHostInfo(payload);
+      setShowModal(true);
+      close();
+    } else {
+      navigate("/auth/login");
+    }
   };
 
   return (

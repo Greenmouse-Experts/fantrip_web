@@ -1,5 +1,5 @@
 import logo from "@/assets/footer_logo.svg";
-import { FaFacebookF, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { SlSocialInstagram } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -10,7 +10,6 @@ const LandingFooter = () => {
       route: "https://www.instagram.com/joinfantrip/",
       icon: <SlSocialInstagram />,
     },
-    { route: "", icon: <FaLinkedinIn /> },
     {
       route:
         "https://www.facebook.com/profile.php?id=61567200627982&mibextid=LQQJ4d",

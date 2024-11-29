@@ -30,7 +30,7 @@ const Pricing: FC<Props> = ({ next, prev }) => {
     saveStay({
       ...stay,
       price: Number(data.price),
-      currency: selectedCurr
+      currency: selectedCurr,
     });
     next();
   };
@@ -67,13 +67,15 @@ const Pricing: FC<Props> = ({ next, prev }) => {
                   <Menu>
                     <MenuButton>
                       <div className="flex gap-x-2 items-center">
-                        <p className="fw-500 text-xl text-gray-600">{selectedCurr}</p>
+                        <p className="fw-500 text-xl cviop_sdr text-gray-600">
+                          {selectedCurr}
+                        </p>
                         <ChevronDownIcon size={14} className="text-xs" />
                       </div>
                     </MenuButton>
                     <MenuList>
                       <MenuItem onClick={() => setSelectedCurr("€")}>
-                        Euro (€)
+                        <p className="dark:text-white">Euro (€)</p>
                       </MenuItem>
                       {/* <MenuItem onClick={() => setSelectedCurr("$")}>
                         Dollar ($)

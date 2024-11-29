@@ -6,12 +6,19 @@ import Button from "./Button";
 
 const CookieModal = () => {
   const [show, setShow] = useState(true);
-  const accept = Cookies.get("fantrip_cookie");
+  const accept =
+    Cookies.get("fantrip_cookie") ||
+    localStorage.getItem("fantrip_cookie") === "declined";
 
   const handleAccept = () => {
-    setShow(false)
+    setShow(false);
     Cookies.set("fantrip_cookie", `yes`);
-  }
+  };
+
+  const handleRejection = () => {
+    setShow(false);
+    localStorage.setItem("fantrip_cookie", "declined");
+  };
 
   return (
     <div>
@@ -60,6 +67,13 @@ const CookieModal = () => {
                     title={"Accept"}
                     onClick={() => handleAccept()}
                     altClassName="btn-int px-5 py-2"
+                  />
+                </div>
+                <div className="">
+                  <Button
+                    title={"Decline"}
+                    onClick={() => handleRejection()}
+                    altClassName="px-5 dark:text-white py-2"
                   />
                 </div>
               </div>

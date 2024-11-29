@@ -49,7 +49,7 @@ const CreatePoll: FC<Props> = ({ socket, reload, close }) => {
     reload();
     setTimeout(() => {
       close();
-    }, 300);
+    }, 100);
   };
 
   return (

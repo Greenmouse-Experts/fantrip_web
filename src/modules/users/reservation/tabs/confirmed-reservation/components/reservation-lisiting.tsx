@@ -10,7 +10,7 @@ import ChatForStay from "@/modules/chat/stay-chat";
 import PaymentButton from "../../../components/payment";
 
 interface Props {
-  data: BookingItem[];
+  data: any;
   refetch: () => void;
   next: () => void;
 }
@@ -22,6 +22,24 @@ const ConfirmedReservationList: FC<Props> = ({ data, refetch }) => {
     setSelectedId(id);
     setIsOpen(true);
   };
+  let hasConfirmedStatus = false;
+
+  const renderPayBtn = (item: any) => {
+    hasConfirmedStatus = item.bookings.some(
+      (reservation: { trx: { status: string } }) =>
+        reservation.trx?.status === "confirmed"
+    );
+    const htmlToRener = !hasConfirmedStatus ? (
+      <PaymentButton
+        id={item.id}
+        currency={item.stay.currency}
+        checkin={item.checkIn}
+      />
+    ) : null;
+
+    return htmlToRener;
+  };
+
   return (
     <div className="grid gap-4 mt-4">
       {data.map((item: BookingItem) => (
@@ -65,11 +83,7 @@ const ConfirmedReservationList: FC<Props> = ({ data, refetch }) => {
               </div>
               <div className="grid gap-1 md:gap-3 md:justify-end pb-2 md:p-2">
                 <div className="relative flex justify-end">
-                  <PaymentButton
-                    id={item.id}
-                    currency={item.stay.currency}
-                    checkin={item.checkIn}
-                  />
+                  {renderPayBtn(item)}
                 </div>
                 <div className="flex md:justify-end">
                   <p className="text-[#9847fe] fw-600 fs-300 md:fs-500">

@@ -68,17 +68,7 @@ const PollInput: FC<Props> = ({
       return;
     }
     if (key === "days") {
-      if (inputValue > 5 || inputValue < 0) {
-        toast({
-          title: "Days value is out of range, maximum of 5 days is allowed",
-          isClosable: true,
-          position: "top",
-          status: "error",
-        });
-        return;
-      } else {
-        setDuration({ ...duration, days: inputValue });
-      }
+      setDuration({ ...duration, days: inputValue });
     } else if (key === "hours") {
       if (inputValue > 23 || inputValue < 0) {
         toast({
@@ -168,16 +158,15 @@ const PollInput: FC<Props> = ({
         <div className="grid grid-cols-3 gap-x-5">
           <div>
             <TextInput
-              type={InputType.number}
+              type={InputType.text}
               placeholder={`Days`}
-              value={duration.days}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 handleDuration("days", e.target.value)
               }
             />
           </div>
-          <div>
-            <TextInput
+          {/**  <div>
+           <TextInput
               type={InputType.text}
               placeholder={`Hours`}
               value={duration.hours}
@@ -195,7 +184,7 @@ const PollInput: FC<Props> = ({
                 handleDuration("minute", e.target.value)
               }
             />
-          </div>
+            </div> **/}
         </div>
       </div>
       <div className="flex items-center gap-x-4 mt-4">
