@@ -3,11 +3,16 @@ import { formatNumber, formatStatus } from "@/lib/utils/formatHelp";
 import dayjs from "dayjs";
 import { FC } from "react";
 import { FaStar } from "react-icons/fa6";
+import { RESERVATION_STATUS } from "@/lib/contracts/enums";
+import CancelReservation from "@/modules/users/reservation/components/cancel-reservation";
 
 interface Props {
   data: PaidBookingItem;
+  id: any;
+  close: any;
+  refetch: any;
 }
-const DetailsList: FC<Props> = ({ data }) => {
+const DetailsList: FC<Props> = ({ data, id, close, refetch }) => {
   const {
     createdDate,
     status,
@@ -17,11 +22,11 @@ const DetailsList: FC<Props> = ({ data }) => {
     pricePerNight,
     serviceFee,
     total,
-    trx
+    trx,
   } = data;
 
-  const deduction = data.reservation.enableRewardForPayment? 5 : 0
-  
+  const deduction = data.reservation.enableRewardForPayment ? 5 : 0;
+
   return (
     <div className="h-[93vh] overflow-y-auto">
       <div className="flex gap-x-2">
@@ -29,6 +34,11 @@ const DetailsList: FC<Props> = ({ data }) => {
         <div className="fw-500">
           {formatStatus[status as keyof typeof formatStatus]}
         </div>
+      </div>
+      <div>
+        {status === RESERVATION_STATUS.PENDING && (
+          <CancelReservation id={id} close={close} refetch={refetch} />
+        )}
       </div>
       <div>
         <div className="mt-4">
@@ -46,8 +56,7 @@ const DetailsList: FC<Props> = ({ data }) => {
             <div className="flex gap-x-2">
               <p className="text-gray-600">Address:</p>
               <p className="fw-500">
-                {reservation.stay.address}{" "}
-                {reservation.stay.host.lastName}
+                {reservation.stay.address} {reservation.stay.host.lastName}
               </p>
             </div>
             <div className="flex gap-x-2">
@@ -96,23 +105,19 @@ const DetailsList: FC<Props> = ({ data }) => {
             Payment Information
           </p>
           <div className="grid gap-3 bg-gray-100 dark:bg-darkColor p-4 rounded">
-          <div className="flex gap-x-2">
+            <div className="flex gap-x-2">
               <p className="text-gray-600">Payment Status:</p>
               <div className="fw-500">
                 {formatStatus[trx.status as keyof typeof formatStatus]}
               </div>
             </div>
-          <div className="flex gap-x-2">
+            <div className="flex gap-x-2">
               <p className="text-gray-600">Payment Reference:</p>
-              <p className="fw-500">
-                {trx.reference}
-              </p>
+              <p className="fw-500">{trx.reference}</p>
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Payment Portal:</p>
-              <p className="fw-500 capitalize text-prima">
-                {trx.gateway}
-              </p>
+              <p className="fw-500 capitalize text-prima">{trx.gateway}</p>
             </div>
             <div className="flex gap-x-2">
               <p className="text-gray-600">Price per night:</p>

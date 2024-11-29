@@ -11,9 +11,9 @@ import LeaveReviewIndex from "../../../components/leave-review";
 interface Props {
   data: PaidBookingItem[];
   refetch: () => void;
-  next: () => void
+  next: () => void;
 }
-const CompletedBookingList: FC<Props> = ({ data }) => {
+const CompletedBookingList: FC<Props> = ({ data, refetch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const closeDrawer = () => setIsOpen(false);
@@ -23,7 +23,7 @@ const CompletedBookingList: FC<Props> = ({ data }) => {
   };
   return (
     <div className="grid gap-4 mt-4">
-       {data.map((item: PaidBookingItem) => (
+      {data.map((item: PaidBookingItem) => (
         <div className="bg-gradient rounded-lg p-[2px]" key={item.id}>
           <div className="bg-white dark:bg-darkColor rounded-lg md:flex gap-x-4 p-1 h-full">
             <div className="w-full h-[130px] md:w-[160px] md:h-[100%] max-h-[140px] shrink-0 overflow-hidden rounded-[8px]">
@@ -83,7 +83,7 @@ const CompletedBookingList: FC<Props> = ({ data }) => {
                   </Link>
                 </div>
                 <div className="flex md:justify-end">
-                  <LeaveReviewIndex id={`${item.reservation.stay.id}`}/>
+                  <LeaveReviewIndex id={`${item.reservation.stay.id}`} />
                 </div>
               </div>
             </div>
@@ -98,7 +98,11 @@ const CompletedBookingList: FC<Props> = ({ data }) => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <BookingDetails id={selectedId} close={closeDrawer} />
+          <BookingDetails
+            id={selectedId}
+            close={closeDrawer}
+            refetch={refetch}
+          />
         </DrawerContent>
       </Drawer>
     </div>

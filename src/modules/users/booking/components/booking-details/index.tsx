@@ -7,16 +7,17 @@ import DetailsList from "./details-list";
 
 interface Props {
   id: string;
+  refetch: () => void;
   close: () => void;
 }
-const BookingDetails: FC<Props> = ({ id, close }) => {
+const BookingDetails: FC<Props> = ({ id, close, refetch }) => {
   const { isLoading, data } = useQuery({
     queryKey: ["get-booking-details"],
     queryFn: () => fetchBookingDetails(id),
   });
   return (
     <div className="h-full dark:bg-darkColor">
-         {isLoading && (
+      {isLoading && (
         <div className="py-12 lg:py-24 place-center">
           <PyramidSpin size={1.8} />
         </div>
@@ -24,12 +25,14 @@ const BookingDetails: FC<Props> = ({ id, close }) => {
       {!isLoading && data && (
         <div className="relative h-full m-3 lg:mr-5">
           <div className="flex justify-between items-center">
-            <p className="syne fw-600 text-xl lg:text-3xl">{data?.reservation.stay.name}</p>
-            <LiaTimesSolid className="text-xl cursor-pointer" onClick={close}/>
+            <p className="syne fw-600 text-xl lg:text-3xl">
+              {data?.reservation.stay.name}
+            </p>
+            <LiaTimesSolid className="text-xl cursor-pointer" onClick={close} />
           </div>
           {/* booking-details */}
           <div className="mt-4">
-            <DetailsList data={data}/>
+            <DetailsList data={data} id={id} close={close} refetch={refetch} />
           </div>
         </div>
       )}
