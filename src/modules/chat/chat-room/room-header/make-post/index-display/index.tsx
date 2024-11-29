@@ -85,8 +85,6 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       uploadImage(fd)
         .then((res) => {
           payload.file = res.image;
-          console.log(payload);
-
           socket.emit("createPost", payload);
           setIsBusy(false);
           setTextInput("");
@@ -110,7 +108,6 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
       uploadVideo(fd)
         .then((res) => {
           payload.file = res.video;
-          console.log(payload);
           socket.emit("createPost", payload);
           setIsBusy(false);
           setTextInput("");
@@ -128,7 +125,6 @@ const IndexDisplayUi: FC<Props> = ({ socket, setReload }) => {
           setIsBusy(false);
         });
     } else {
-      console.log(payload);
       socket.emit("createPost", payload);
       setIsBusy(false);
       setTextInput("");

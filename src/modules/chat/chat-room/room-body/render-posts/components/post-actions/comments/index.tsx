@@ -8,6 +8,8 @@ interface Props {
   id: string;
   count: number;
   token: string;
+  addComment: any;
+  removeComment: any;
   minusComment: (minus?: boolean) => void;
 }
 
@@ -16,6 +18,8 @@ const ViewComments: FC<Props> = ({
   id,
   token,
   count,
+  addComment,
+  removeComment,
   minusComment,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,15 +57,13 @@ const ViewComments: FC<Props> = ({
   };
 
   useEffect(() => {
-    // Initial fetch
-    getComments();
-
     // Listen for real-time updates
     const onNewComment = (value: any) => {
       if (value?.data?.postId === id) {
         const newData = [value.data];
         // Only update if the postId matches
         setPrevComments((prev) => [...prev, ...newData]);
+        addComment(true);
         setIsLoading(false);
       }
     };
@@ -72,14 +74,36 @@ const ViewComments: FC<Props> = ({
     return () => socket.off("commentCreated", onNewComment);
   }, [socket, count, id]); // Add id as a dependency
 
+  useEffect(() => {
+    // Initial fetch
+    getComments();
+  }, [socket]);
+
+  useEffect(() => {
+    // Listen for real-time updates
+    const onDeletedComment = (value: any) => {
+      if (value?.data?.postId === id) {
+        console.log(prevComments);
+        console.log(value.data);
+
+        removeComment(true);
+      }
+    };
+
+    socket.on("commentDeleted", onDeletedComment);
+
+    // Clean up event listeners
+    return () => socket.off("commentDeleted", onDeletedComment);
+  }, [socket, count, id]); // Add id as a dependency
+
   const handleReload = () => {
     minusComment(true);
-    getComments(); // Reload comments
+    getComments();
   };
 
   return (
     <>
-      {count > 0 && (
+      {prevComments.length > 0 && (
         <div className="mt-2 bg-[#EDEDFF] dark:bg-darkColorLight p-3 rounded-lg">
           <div>
             <p className="fs-500 fw-500">
