@@ -128,9 +128,7 @@ const PollQuestionIndex: FC<Props> = ({ data, socket }) => {
           {totalCount} {totalCount > 1 ? `votes` : `vote`},{" "}
           {!isExpired
             ? "Voting Closed"
-            : `expires ${dayjs(data.expiryDate).format(
-                "hh:mm a - DD/MM/YYYY"
-              )}`}
+            : `expires ${dayjs(data.expiryDate).format("DD/MM/YYYY")}`}
         </p>
       </div>
     </div>

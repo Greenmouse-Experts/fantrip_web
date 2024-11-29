@@ -1,4 +1,3 @@
-import { BookingItemWithPricing } from "@/lib/contracts/booking";
 import {
   formatAsNgnMoney,
   formatNumber,
@@ -11,7 +10,7 @@ import CancelReservation from "../cancel-reservation";
 import { RESERVATION_STATUS } from "@/lib/contracts/enums";
 
 interface Props {
-  data: BookingItemWithPricing;
+  data: any;
   close: () => void;
   refetch: () => void;
 }
@@ -23,6 +22,7 @@ const DetailsList: FC<Props> = ({ data, close, refetch }) => {
     priceWithNightInclusion,
     serviceFee,
     total,
+    bookings,
     checkIn,
     checkOut,
     adults,
@@ -31,6 +31,14 @@ const DetailsList: FC<Props> = ({ data, close, refetch }) => {
     status,
     enableRewardForPayment,
   } = data;
+
+  let getConfirmedPayment = true;
+
+  getConfirmedPayment = bookings.some(
+    (reservation: { trx: { status: string } }) =>
+      reservation.trx?.status === "confirmed"
+  );
+
   return (
     <div className="max-h-[calc(95vh_-_100px)] overflow-y-auto">
       <div className="flex gap-x-2">
@@ -40,9 +48,8 @@ const DetailsList: FC<Props> = ({ data, close, refetch }) => {
         </p>
       </div>
       <div>
-        {(status === RESERVATION_STATUS.PENDING ||
-          status === RESERVATION_STATUS.CONFIRMED) && (
-          <CancelReservation id={id} close={close} refetch={refetch}/>
+        {(status === RESERVATION_STATUS.PENDING || !getConfirmedPayment) && (
+          <CancelReservation id={id} close={close} refetch={refetch} />
         )}
       </div>
       <div>
