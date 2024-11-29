@@ -144,6 +144,20 @@ const PostActions: FC<Props> = ({
     getComments();
   }, [socket, id]);
 
+  const handleAddComment = () => {
+    setStatCount((prevStatCount) => ({
+      ...prevStatCount,
+      initComment: (prevStatCount.initComment || 0) + 1, // Ensure it's not undefined
+    }));
+  };
+
+  const handleRemoveComment = () => {
+    setStatCount((prevStatCount) => ({
+      ...prevStatCount,
+      initComment: (prevStatCount.initComment || 0) - 1, // Ensure it's not undefined
+    }));
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -205,6 +219,8 @@ const PostActions: FC<Props> = ({
           count={comment || 0}
           token={token || ""}
           minusComment={minusComment}
+          addComment={handleAddComment}
+          removeComment={handleRemoveComment}
         />
       )}
     </div>
