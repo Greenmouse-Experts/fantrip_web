@@ -73,7 +73,7 @@ const CookieModal = () => {
                   <Button
                     title={"Decline"}
                     onClick={() => handleRejection()}
-                    altClassName="px-5 py-2"
+                    altClassName="px-5 dark:text-white py-2"
                   />
                 </div>
               </div>
