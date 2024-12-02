@@ -289,7 +289,10 @@ const LandingHeader = () => {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <MobileSheet close={() => setShow(false)} />
+          <MobileSheet
+            close={() => setShow(false)}
+            mobileLogOut={() => setShowModal(true)}
+          />
         </DrawerContent>
       </Drawer>
       <Drawer
