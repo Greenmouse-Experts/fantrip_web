@@ -8,12 +8,15 @@ import icon_6 from "@/assets/svg/calendar-check-02.svg";
 import icon_7 from "@/assets/svg/globe-06.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
 import icon_9 from "@/assets/images/ref.png";
+import icon_10 from "@/assets/svg/logout.svg";
 
 interface Props {
   close: () => void;
+  mobileLogOut: (data: Boolean) => void;
 }
-const MobileSheet: FC<Props> = ({ close }) => {
+const MobileSheet: FC<Props> = ({ close, mobileLogOut }) => {
   const { isHost } = useAuth();
+
   return (
     <div
       className="relative p-8 pb-12 bg-white dark:bg-darkColor"
@@ -76,6 +79,17 @@ const MobileSheet: FC<Props> = ({ close }) => {
               </Link>
             </div>
           )}
+          {isHost && (
+            <Link
+              to={"/user/guest-activity"}
+              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
+            >
+              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                <img src={icon_7} alt="icons" />
+              </div>
+              <p className="">My Fanstay trips</p>
+            </Link>
+          )}
           <Link
             to={isHost ? "/user/host" : "/user/host-setup"}
             className="flex gap-x-3 items-center !py-3 text-black"
@@ -98,6 +112,16 @@ const MobileSheet: FC<Props> = ({ close }) => {
             </div>
             <p className="dark:text-white">Referrals</p>
           </Link>
+
+          <div
+            className="flex gap-x-3 items-center !py-3 text-black"
+            onClick={() => mobileLogOut(true)}
+          >
+            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+              <img src={icon_10} alt="icons" className="w-5 h-5" />
+            </div>
+            <p className="">Logout</p>
+          </div>
         </div>
       </div>
     </div>
