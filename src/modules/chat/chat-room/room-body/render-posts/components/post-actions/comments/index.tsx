@@ -83,10 +83,11 @@ const ViewComments: FC<Props> = ({
     // Listen for real-time updates
     const onDeletedComment = (value: any) => {
       if (value?.data?.postId === id) {
-        console.log(prevComments);
-        console.log(value.data);
-
         removeComment(true);
+        const updatedCommennts = prevComments.filter(
+          (item) => item.id !== value.data.id
+        );
+        setPrevComments(updatedCommennts);
       }
     };
 
