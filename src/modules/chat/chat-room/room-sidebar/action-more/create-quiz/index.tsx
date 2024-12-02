@@ -60,8 +60,6 @@ const CreateQuiz: FC<Props> = ({ socket, reload, close }) => {
           rightAnswer: answer,
         },
       };
-
-      console.log(payload);
       socket.emit("createPost", payload);
       reload();
       setTimeout(() => {

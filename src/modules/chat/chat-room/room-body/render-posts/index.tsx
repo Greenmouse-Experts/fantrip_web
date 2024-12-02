@@ -70,17 +70,19 @@ const RenderPostsIndex: FC<Props> = ({ reload, socket, handleReload }) => {
 
   useEffect(() => {
     const onListenEventPost = (value: any) => {
+      if (value.data.userId === userId) return;
       setPrevPosts((prevPosts) => {
-        const newPost = [value.data];
-        const updatedPosts = [...newPost, ...prevPosts];
+        const alreadyExists = prevPosts.some(
+          (post) => post.id === value.data.id
+        );
+        if (alreadyExists) return prevPosts;
 
-        // Update postsToRender alongside prevPosts
+        const newPost = [value.data];
         setPostsToRender((prevPostsToRender) => [
           ...newPost,
           ...prevPostsToRender,
         ]);
-
-        return updatedPosts; // Ensure prevPosts is updated
+        return [...newPost, ...prevPosts];
       });
     };
 
