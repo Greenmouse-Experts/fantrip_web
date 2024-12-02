@@ -43,10 +43,10 @@ const CookiePage = () => {
               head="Functionality Cookies:"
               text=" These cookies allow fantrip to remember choices you make (such as your user name or language) and provide enhanced, more personal features."
             />
-            <PolicyList
+            {/* <PolicyList
               head="Targeting or Advertising Cookies:"
               text=" Fantrip may use these cookies to deliver adverts relevant to you. They can also limit the number of times you see an advertisement and help measure the effectiveness of advertising campaigns."
-            />
+  /> */}
           </div>
         </div>
         <div className="">
@@ -80,9 +80,7 @@ const CookiePage = () => {
         <div>
           <PolicyHeader text="Sharing of Cookie Data" />
           <div>
-            <PolicyList
-              text="Fantrip may share data collected by cookies with trusted third parties for purposes such as analytics and improving our services. These third parties are required to protect your data and may only use it in accordance with our instructions and for the purposes outlined in this policy."
-            />
+            <PolicyList text="Fantrip may share data collected by cookies with trusted third parties for purposes such as analytics and improving our services. These third parties are required to protect your data and may only use it in accordance with our instructions and for the purposes outlined in this policy." />
           </div>
         </div>
         <div>
