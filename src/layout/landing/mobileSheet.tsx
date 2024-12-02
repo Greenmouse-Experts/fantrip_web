@@ -15,7 +15,7 @@ interface Props {
   mobileLogOut: (data: Boolean) => void;
 }
 const MobileSheet: FC<Props> = ({ close, mobileLogOut }) => {
-  const { isHost } = useAuth();
+  const { isHost, isLoggedIn } = useAuth();
 
   return (
     <div
@@ -23,107 +23,109 @@ const MobileSheet: FC<Props> = ({ close, mobileLogOut }) => {
       onClick={close}
     >
       <IoMdClose onClick={close} className="absolute top-4 right-4" />
-      <div>
+      {isLoggedIn && (
         <div>
-          {isHost ? (
-            <Link
-              to={"/host"}
-              className="flex gap-x-3 !py-3 items-center text-black"
-            >
-              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                <img src={icon_4} alt="icons" />
-              </div>
-              <p className="dark:text-white">Dashboard</p>
-            </Link>
-          ) : (
-            <Link
-              to={"/user/profile"}
-              className="flex gap-x-3 !py-3 items-center text-black"
-            >
-              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                <img src={icon_4} alt="icons" />
-              </div>
-              <p className="dark:text-white">Profile</p>
-            </Link>
-          )}
-        </div>
-        <div>
-          {!isHost && (
-            <div>
+          <div>
+            {isHost ? (
               <Link
-                to={"/user/reservation"}
-                className="flex gap-x-3 items-center !py-3 text-black"
+                to={"/host"}
+                className="flex gap-x-3 !py-3 items-center text-black"
               >
                 <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                  <img src={icon_5} alt="icons" />
+                  <img src={icon_4} alt="icons" />
                 </div>
-                <p className="dark:text-white">Reservations</p>
+                <p className="dark:text-white">Dashboard</p>
               </Link>
+            ) : (
               <Link
-                to={"/user/booking"}
-                className="flex gap-x-3 items-center !py-3 text-black"
+                to={"/user/profile"}
+                className="flex gap-x-3 !py-3 items-center text-black"
               >
                 <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                  <img src={icon_6} alt="icons" />
+                  <img src={icon_4} alt="icons" />
                 </div>
-                <p className="dark:text-white">Bookings</p>
+                <p className="dark:text-white">Profile</p>
               </Link>
+            )}
+          </div>
+          <div>
+            {!isHost && (
+              <div>
+                <Link
+                  to={"/user/reservation"}
+                  className="flex gap-x-3 items-center !py-3 text-black"
+                >
+                  <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                    <img src={icon_5} alt="icons" />
+                  </div>
+                  <p className="dark:text-white">Reservations</p>
+                </Link>
+                <Link
+                  to={"/user/booking"}
+                  className="flex gap-x-3 items-center !py-3 text-black"
+                >
+                  <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                    <img src={icon_6} alt="icons" />
+                  </div>
+                  <p className="dark:text-white">Bookings</p>
+                </Link>
+                <Link
+                  to={"/user/recommendations"}
+                  className="flex gap-x-3 items-center !py-3 text-black"
+                >
+                  <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                    <img src={icon_7} alt="icons" />
+                  </div>
+                  <p className="dark:text-white">Reccomendations</p>
+                </Link>
+              </div>
+            )}
+            {isHost && (
               <Link
-                to={"/user/recommendations"}
-                className="flex gap-x-3 items-center !py-3 text-black"
+                to={"/user/guest-activity"}
+                className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
               >
                 <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
                   <img src={icon_7} alt="icons" />
                 </div>
-                <p className="dark:text-white">Reccomendations</p>
+                <p className="">My Fanstay trips</p>
               </Link>
-            </div>
-          )}
-          {isHost && (
+            )}
             <Link
-              to={"/user/guest-activity"}
-              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
+              to={isHost ? "/user/host" : "/user/host-setup"}
+              className="flex gap-x-3 items-center !py-3 text-black"
             >
               <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-                <img src={icon_7} alt="icons" />
+                <img src={icon_8} alt="icons" />
               </div>
-              <p className="">My Fanstay trips</p>
+              <p className="dark:text-white">Create New Listing</p>
             </Link>
-          )}
-          <Link
-            to={isHost ? "/user/host" : "/user/host-setup"}
-            className="flex gap-x-3 items-center !py-3 text-black"
-          >
-            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-              <img src={icon_8} alt="icons" />
-            </div>
-            <p className="dark:text-white">Create New Listing</p>
-          </Link>
-          <Link
-            to={
-              isHost
-                ? "/host/settings?referral=true"
-                : "/user/profile?referral=true"
-            }
-            className="flex gap-x-3 items-center !py-3 text-black"
-          >
-            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-              <img src={icon_9} alt="icons" />
-            </div>
-            <p className="dark:text-white">Referrals</p>
-          </Link>
+            <Link
+              to={
+                isHost
+                  ? "/host/settings?referral=true"
+                  : "/user/profile?referral=true"
+              }
+              className="flex gap-x-3 items-center !py-3 text-black"
+            >
+              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                <img src={icon_9} alt="icons" />
+              </div>
+              <p className="dark:text-white">Referrals</p>
+            </Link>
 
-          <div
-            className="flex gap-x-3 items-center !py-3 text-black"
-            onClick={() => mobileLogOut(true)}
-          >
-            <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
-              <img src={icon_10} alt="icons" className="w-5 h-5" />
+            <div
+              className="flex gap-x-3 items-center !py-3 text-black"
+              onClick={() => mobileLogOut(true)}
+            >
+              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                <img src={icon_10} alt="icons" className="w-5 h-5" />
+              </div>
+              <p className="">Logout</p>
             </div>
-            <p className="">Logout</p>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
