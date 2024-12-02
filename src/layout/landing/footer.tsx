@@ -23,6 +23,10 @@ const LandingFooter = () => {
       route: "/privacy",
     },
     {
+      name: "Cookie Policy",
+      route: "/cookie",
+    },
+    {
       name: "Terms & Conditions",
       route: "/terms",
     },
