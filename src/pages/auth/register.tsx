@@ -13,9 +13,6 @@ const RegistrationPage = () => {
           </Link>
           <div className="text-center mt-8 lg:mt-16">
             <p className="text-3xl fw-600">Sign Up</p>
-            <p className="mt-5 text-[#828282]">
-              Fill in the forms below to create a new fantrip account.
-            </p>
           </div>
           <div className="mt-7 lg:w-10/12 mx-auto">
             <GoogleButton text={"Continue with Google"} />

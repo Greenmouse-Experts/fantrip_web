@@ -56,7 +56,7 @@ const LandingHeader = () => {
             </div>
             <div>
               <div className="lg:hidden text-white">
-                <MdAttractions
+                <FaCircleUser
                   className="text-2xl cursor-pointer"
                   onClick={() => setShow(true)}
                 />
