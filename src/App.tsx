@@ -15,7 +15,6 @@ const router = createBrowserRouter([
   ...hostRoutes,
 ]);
 
-
 function App() {
   return (
     <ChakraProvider>
