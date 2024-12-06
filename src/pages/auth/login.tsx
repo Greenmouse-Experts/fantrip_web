@@ -11,13 +11,14 @@ const LoginPage = () => {
         <div className="lg:w-7/12 2xl:w-6/12 mx-auto py-12 lg:py-16">
           <Link to={"/"}>
             <img src={logo} alt="logo" className="w-44 mx-auto dark:hidden" />
-            <img src={logoDark} alt="logo" className="w-44 mx-auto hidden dark:block" />
+            <img
+              src={logoDark}
+              alt="logo"
+              className="w-44 mx-auto hidden dark:block"
+            />
           </Link>
           <div className="text-center mt-8 lg:mt-16">
             <p className="text-3xl fw-600">Login</p>
-            <p className="mt-5 text-[#828282]">
-              Enter your credential to access your account.
-            </p>
           </div>
           <div className="mt-7">
             <GoogleButton text="Login with Google" />
