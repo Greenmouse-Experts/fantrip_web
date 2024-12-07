@@ -1,0 +1,34 @@
+name: Main CI
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Add DO Droplet to SSH known hosts
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.DO_HOST }} $(ssh-keyscan ${{ secrets.DO_HOST }} 2>/dev/null)" >> ~/.ssh/known_hosts
+      - name: Deploy to DigitalOcean
+        env:
+          DO_SSH_KEY: ${{ secrets.DO_SSH_KEY }}
+          DO_HOST: ${{ secrets.DO_HOST }}
+          DO_USERNAME: ${{ secrets.DO_USERNAME }}
+        run: |
+          echo "$DO_SSH_KEY" > private_key.pem
+          chmod 600 private_key.pem
+          scp -i private_key.pem -r * ${{ secrets.DO_USERNAME }}@${{ secrets.DO_HOST }}:/var/www/web-main
+
+          ssh -i private_key.pem ${{ secrets.DO_USERNAME }}@${{ secrets.DO_HOST }} "scp /var/www/.env.web-main /var/www/web-main && cd /var/www/web-main && yarn install && yarn generate"
+          rm -f private_key.pem
