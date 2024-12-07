@@ -144,7 +144,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
         </div>
       ))}
       <div className="border-t border-gray-400 pt-2 lg:px-3">
-        <p>{totalCount} answer(s).</p>
+        <p>{totalCount} vote(s).</p>
       </div>
     </div>
   );
