@@ -1,7 +1,6 @@
 import { FC } from "react";
 import ExternalLinks from "./external-links";
 import MakePostIndex from "./make-post";
-import SearchCompIndex from "./search-comp";
 import { RiArchiveDrawerLine } from "react-icons/ri";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { useUtils } from "@/hooks/useUtils";
@@ -25,7 +24,7 @@ const RoomHeaderIndex: FC<Props> = ({ socket, setReload }) => {
         >
           <RiArchiveDrawerLine className="text-xl text-[#9847FE]" />
         </button>
-        <SearchCompIndex />
+        {/* <SearchCompIndex /> */}
         {isLoggedIn && (
           <button
             type="button"
