@@ -141,6 +141,73 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
                 </p>
               </div>
               <p className="fs-500 pl-16 p-2">{item.option}</p>
+              <p>
+                {hasAttempt && item.myAttempt ? (
+                  JSON.parse(quizData.rightAnswer).includes(i) ? (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      width="18"
+                      height="18"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="white"
+                        stroke-width="2"
+                        fill="none"
+                      />
+                      <path
+                        d="M9 12.5l2 2 4-4"
+                        stroke="white"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="white"
+                      width="18"
+                      height="18"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="white"
+                        stroke-width="2"
+                        fill="none"
+                      />
+                      <line
+                        x1="8"
+                        y1="8"
+                        x2="16"
+                        y2="16"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                      <line
+                        x1="16"
+                        y1="8"
+                        x2="8"
+                        y2="16"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  )
+                ) : (
+                  ""
+                )}
+              </p>
               <p className="fs-500 fw-500 flex pr-3">{item.percentage}%</p>
             </div>
           </div>
