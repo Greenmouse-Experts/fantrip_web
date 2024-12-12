@@ -14,6 +14,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
 
   const [quizData, setQuizData] = useState<QuizQuestion>(data); // State for current post
   const [showResult, setShowResult] = useState<number | null>(null); // Tracks user's selected option
+  console.log(showResult);
 
   useEffect(() => {
     // Update quizData when new data is provided and reset the state for the current post
@@ -115,8 +116,10 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
           >
             <div
               className={`flex gap-x-2 items-center justify-between text-white w-full rounded-full ${
-                showResult === i || item.myAttempt
-                  ? "bg-[#FC819F]"
+                hasAttempt
+                  ? JSON.parse(quizData.rightAnswer).includes(i)
+                    ? "bg-green-500 text-white"
+                    : "bg-red-500 text-white"
                   : "bg-prima text-white"
               }`}
             >
@@ -138,7 +141,7 @@ const QuizQuestionIndex: FC<Props> = ({ data, socket }) => {
                 </p>
               </div>
               <p className="fs-500 pl-16 p-2">{item.option}</p>
-              <p className="fs-500 fw-500 pr-3">{item.percentage}%</p>
+              <p className="fs-500 fw-500 flex pr-3">{item.percentage}%</p>
             </div>
           </div>
         </div>
