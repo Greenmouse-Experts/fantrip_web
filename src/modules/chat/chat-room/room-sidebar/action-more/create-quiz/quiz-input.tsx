@@ -73,9 +73,10 @@ const QuizInput: FC<Props> = ({
               />
             </div>
             <div
-              className={`w-[60px] shrink-0 border rounded-lg m-1 cursor-pointer hover:bg-prima ${
+              className={`w-[60px] shrink-0 border border-2 border-gray-400 rounded-lg m-1 cursor-pointer hover:bg-prima ${
                 answer[0] === i ? "bg-prima" : ""
               }`}
+              title="Select the correct answer"
               onClick={() => setAnswer([i])}
             ></div>
           </div>
