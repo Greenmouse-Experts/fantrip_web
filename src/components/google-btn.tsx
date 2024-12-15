@@ -54,6 +54,7 @@ const GoogleButton: FC<Props> = ({}) => {
           favTeam: res.data.favTeam,
           roomPicture: res.data.roomPicture,
           street: res.data.street,
+          signInOption: res?.data?.signinOption || "",
           postalCode: res.data.postalCode,
           aptSuitUnit: res.data.apiSuitUnit,
           loginTimes: res.data.loginTimes,
@@ -101,7 +102,7 @@ const GoogleButton: FC<Props> = ({}) => {
           width={"100%"}
           logo_alignment={"left"}
           size="large"
-          ux_mode={'popup'}
+          ux_mode={"popup"}
           onSuccess={async (credentialResponse) => {
             handleSocialLogin(credentialResponse);
           }}

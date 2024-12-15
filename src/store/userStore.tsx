@@ -32,6 +32,7 @@ interface userProps {
   dob: string;
   isVerified: boolean;
   favTeam: string;
+  signInOption: string;
   roomPicture: string;
   street: string;
   postalCode: string;
@@ -64,7 +65,7 @@ const kycInitState = {
   instagramUrl: "",
   bio: "",
   governmentID: "",
-  dob: ""
+  dob: "",
 };
 const userInitState = {
   name: "",
@@ -90,7 +91,8 @@ const userInitState = {
   postalCode: "",
   aptSuitUnit: "",
   loginTimes: 0,
-  points: 0
+  points: 0,
+  signInOption: "",
 };
 const accountsInitState = [] as BankAccountFullItem[];
 const useAuthStore = create<Props>()(

@@ -67,6 +67,7 @@ const LoginForm = () => {
           street: data.data.street,
           postalCode: data.data.postalCode,
           aptSuitUnit: data.data.aptSuitUnit,
+          signInOption: data?.data?.signinOption || "",
           loginTimes: data.data.loginTimes,
           points: data?.data?.reward?.point || 0,
         });
@@ -148,7 +149,6 @@ const LoginForm = () => {
             title={isBusy ? <BeatLoader size={12} color="white" /> : "Login"}
             type="int"
             disabled={!isValid || isBusy}
-           
           />
         </div>
       </form>
