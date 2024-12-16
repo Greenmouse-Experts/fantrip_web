@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import TextInput, { InputType } from "@/components/TextInput";
+import useAuth from "@/hooks/authUser";
 import { updatePassword } from "@/services/api/authApi";
 import { useToast } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ import { BeatLoader } from "react-spinners";
 
 const UserSecurity = () => {
   const [isBusy, setIsBusy] = useState(false);
+  const { user } = useAuth();
   const toast = useToast();
   const {
     control,
@@ -35,7 +37,7 @@ const UserSecurity = () => {
         ),
         position: "top",
       });
-      reset()
+      reset();
       setIsBusy(false);
     },
     onError: (error: any) => {
@@ -57,112 +59,118 @@ const UserSecurity = () => {
     };
     mutation.mutate(payload);
   };
+
+  console.log(user);
   return (
     <div>
       <p className="hidden lg:block fw-600 lg:text-lg">Change Password</p>
       <div className="border border-[#E8EAED] rounded-[16px] mt-6 p-4">
-       <form onSubmit={handleSubmit(onSubmit)}>
-       <div className="grid gap-4 py-4">
-          <div className="">
-            <div>
-              <Controller
-                name="old_password"
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: "Please enter your old password",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Password is too short",
-                  },
-                }}
-                render={({ field }) => (
-                  <TextInput
-                    label="Old Password"
-                    type={InputType.password}
-                    error={errors.old_password?.message}
-                    {...field}
-                    ref={null}
-                  />
-                )}
-              />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="grid gap-4 py-4">
+            <div className="">
+              <div>
+                <Controller
+                  name="old_password"
+                  control={control}
+                  rules={
+                    user.signInOption !== "google"
+                      ? {
+                          required: {
+                            value: true,
+                            message: "Please enter your old password",
+                          },
+                          minLength: {
+                            value: 5,
+                            message: "Password is too short",
+                          },
+                        }
+                      : undefined
+                  }
+                  render={({ field }) => (
+                    <TextInput
+                      label="Old Password"
+                      type={InputType.password}
+                      error={errors.old_password?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className="">
+              <div>
+                <Controller
+                  name="new_password"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "Please enter your password",
+                    },
+                    minLength: {
+                      value: 5,
+                      message: "Password is too short",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextInput
+                      label="New Password"
+                      type={InputType.password}
+                      error={errors.new_password?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className="">
+              <div>
+                {" "}
+                <Controller
+                  name="new_password_confirmation"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "Please enter your password",
+                    },
+                    validate: (val) => {
+                      if (watch("new_password") != val) {
+                        return "Your passwords do no match";
+                      }
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextInput
+                      label="Confirm New Password"
+                      type={InputType.password}
+                      error={errors.new_password_confirmation?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
+                />
+              </div>
+            </div>
+            <div className="flex mt-8 justify-end">
+              <div className="lg:w-5/12 2xl:w-4/12">
+                <Button
+                  title={
+                    isBusy ? (
+                      <BeatLoader size={12} color="white" />
+                    ) : (
+                      "Change Password"
+                    )
+                  }
+                  type="int"
+                  disabled={!isValid}
+                />
+              </div>
             </div>
           </div>
-          <div className="">
-            <div>
-              <Controller
-                name="new_password"
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: "Please enter your password",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Password is too short",
-                  },
-                }}
-                render={({ field }) => (
-                  <TextInput
-                    label="New Password"
-                    type={InputType.password}
-                    error={errors.new_password?.message}
-                    {...field}
-                    ref={null}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div className="">
-            <div>
-              {" "}
-              <Controller
-                name="new_password_confirmation"
-                control={control}
-                rules={{
-                  required: {
-                    value: true,
-                    message: "Please enter your password",
-                  },
-                  validate: (val) => {
-                    if (watch("new_password") != val) {
-                      return "Your passwords do no match";
-                    }
-                  },
-                }}
-                render={({ field }) => (
-                  <TextInput
-                    label="Confirm New Password"
-                    type={InputType.password}
-                    error={errors.new_password_confirmation?.message}
-                    {...field}
-                    ref={null}
-                  />
-                )}
-              />
-            </div>
-          </div>
-          <div className="flex mt-8 justify-end">
-            <div className="lg:w-5/12 2xl:w-4/12">
-              <Button
-                title={
-                  isBusy ? (
-                    <BeatLoader size={12} color="white" />
-                  ) : (
-                    "Change Password"
-                  )
-                }
-                type="int"
-                disabled={!isValid}
-              />
-            </div>
-          </div>
-        </div>
-       </form>
+        </form>
       </div>
     </div>
   );

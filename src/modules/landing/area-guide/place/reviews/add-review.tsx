@@ -83,12 +83,6 @@ const AddReview: FC<Props> = ({ id, close, refetch }) => {
         <Controller
           name="review"
           control={control}
-          rules={{
-            required: {
-              value: true,
-              message: "A review is required. Let us know your thoughts.",
-            },
-          }}
           render={({ field }) => (
             <TextInput
               label="Review"
