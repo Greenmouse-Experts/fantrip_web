@@ -202,12 +202,12 @@ const UserAccount = () => {
             <div>
               <div className="flex gap-3">
                 <p className="fs-500 text-[#5F5F5F]">Email</p>
-                <div
+                {/*<div
                   className="flex gap-x-2 items-center px-2 rounded-[14px] text-gray-400 cursor-pointer"
                   onClick={() => ShowEmail(true)}
                 >
                   <AiOutlineEdit />
-                </div>
+        </div>*/}
               </div>
               <p className="fw-500 mt-1">{user.email}</p>
             </div>
