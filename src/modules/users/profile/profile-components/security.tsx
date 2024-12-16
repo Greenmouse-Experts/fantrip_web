@@ -68,35 +68,37 @@ const UserSecurity = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="grid gap-4 py-4">
             <div className="">
-              <div>
-                <Controller
-                  name="old_password"
-                  control={control}
-                  rules={
-                    user.signInOption !== "google"
-                      ? {
-                          required: {
-                            value: true,
-                            message: "Please enter your old password",
-                          },
-                          minLength: {
-                            value: 5,
-                            message: "Password is too short",
-                          },
-                        }
-                      : undefined
-                  }
-                  render={({ field }) => (
-                    <TextInput
-                      label="Old Password"
-                      type={InputType.password}
-                      error={errors.old_password?.message}
-                      {...field}
-                      ref={null}
-                    />
-                  )}
-                />
-              </div>
+              {user.signInOption !== "google" && (
+                <div>
+                  <Controller
+                    name="old_password"
+                    control={control}
+                    rules={
+                      user.signInOption !== "google"
+                        ? {
+                            required: {
+                              value: true,
+                              message: "Please enter your old password",
+                            },
+                            minLength: {
+                              value: 5,
+                              message: "Password is too short",
+                            },
+                          }
+                        : undefined
+                    }
+                    render={({ field }) => (
+                      <TextInput
+                        label="Old Password"
+                        type={InputType.password}
+                        error={errors.old_password?.message}
+                        {...field}
+                        ref={null}
+                      />
+                    )}
+                  />
+                </div>
+              )}
             </div>
             <div className="">
               <div>
