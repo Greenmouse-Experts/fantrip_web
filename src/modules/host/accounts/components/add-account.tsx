@@ -225,7 +225,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               }}
               render={({ field }) => (
                 <TextInput
-                  label="Account Number"
+                  label="Account Number/IBAN"
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.text}
                   error={errors.accountNumber?.message}
@@ -255,48 +255,20 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               )}
             />
             <Controller
-              name="idNumber"
+              name="bankName"
               control={control}
               rules={{
                 required: {
                   value: true,
-                  message: "Please enter the correct digit",
-                },
-                minLength: {
-                  value: 9,
-                  message: "Mininimum length of 9",
-                },
-                maxLength: {
-                  value: 9,
-                  message: "Maximum length of 9",
-                },
-                pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Please enter a number",
+                  message: "Please enter bank name",
                 },
               }}
               render={({ field }) => (
                 <TextInput
-                  label="ID Number"
+                  label="Bank Name"
                   labelClassName="text-[#767676] fw-500 "
-                  type={InputType.tel}
-                  error={errors.idNumber?.message}
-                  {...field}
-                  ref={null}
-                />
-              )}
-            />
-            <Controller
-              name="currency"
-              control={control}
-              render={({ field }) => (
-                <RadioButtonGroup
-                  options={currencyOptions}
-                  label="Select Account Currency"
-                  mainLabelClassName="text-[#828282] block mt-[3px]"
-                  altClass="grid grid-cols-2"
-                  selected={field.value}
-                  error={errors.currency?.message}
+                  type={InputType.text}
+                  error={errors.bankName?.message}
                   {...field}
                   ref={null}
                 />
@@ -334,26 +306,6 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               />
             </div>
             <Controller
-              name="bankName"
-              control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Please enter bank name",
-                },
-              }}
-              render={({ field }) => (
-                <TextInput
-                  label="Bank Name"
-                  labelClassName="text-[#767676] fw-500 "
-                  type={InputType.text}
-                  error={errors.bankName?.message}
-                  {...field}
-                  ref={null}
-                />
-              )}
-            />
-            <Controller
               name="routingNumber"
               control={control}
               rules={{
@@ -364,10 +316,26 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               }}
               render={({ field }) => (
                 <TextInput
-                  label="Routing Number (optional)"
+                  label="BIC/SWIFT"
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.tel}
                   error={errors.routingNumber?.message}
+                  {...field}
+                  ref={null}
+                />
+              )}
+            />
+            <Controller
+              name="currency"
+              control={control}
+              render={({ field }) => (
+                <RadioButtonGroup
+                  options={currencyOptions}
+                  label="Select Account Currency"
+                  mainLabelClassName="text-[#828282] block mt-[3px]"
+                  altClass="grid grid-cols-2"
+                  selected={field.value}
+                  error={errors.currency?.message}
                   {...field}
                   ref={null}
                 />
@@ -396,6 +364,38 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                     ))}
                   </select>
                 </div>
+              )}
+            />
+            <Controller
+              name="idNumber"
+              control={control}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Please enter the correct digit",
+                },
+                minLength: {
+                  value: 9,
+                  message: "Mininimum length of 9",
+                },
+                maxLength: {
+                  value: 9,
+                  message: "Maximum length of 9",
+                },
+                pattern: {
+                  value: /^[0-9]+$/,
+                  message: "Please enter a number",
+                },
+              }}
+              render={({ field }) => (
+                <TextInput
+                  label="ID Number"
+                  labelClassName="text-[#767676] fw-500 "
+                  type={InputType.tel}
+                  error={errors.idNumber?.message}
+                  {...field}
+                  ref={null}
+                />
               )}
             />
             <SingleImageInput label="ID Card (front)" setImage={setFrontImg} />
