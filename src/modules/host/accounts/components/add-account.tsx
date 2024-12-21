@@ -357,6 +357,9 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                     {...field}
                     className="p-3 w-full border border-gray-400 rounded-lg outline-none dark:bg-darkColorLight dark:text-white"
                   >
+                    <option value="" disabled selected>
+                      Select Country
+                    </option>
                     {Country.getAllCountries().map((item) => (
                       <option value={item.isoCode} key={item.isoCode}>
                         {item.name}
