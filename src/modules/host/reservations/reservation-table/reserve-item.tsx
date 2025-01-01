@@ -11,6 +11,7 @@ import LargeChatWrapper from "@/components/large-chat-wrapper";
 import { useChat } from "@/hooks/useChat";
 import ChatInterface from "@/modules/chat/stay-chat/components/chat-interface";
 import { BsChatDots } from "react-icons/bs";
+import CancelReservation from "../cancel-reservation";
 
 interface Props {
   data: BookingItem;
@@ -140,6 +141,11 @@ const ReserveItemDisplay: FC<Props> = ({ data, refetch }) => {
           </div>
           {status === RESERVATION_STATUS.PENDING && (
             <ReserveActions id={id} refetch={refetch} />
+          )}
+          {status === RESERVATION_STATUS.CONFIRMED && (
+            <div className="mt-4">
+              <CancelReservation id={id} refetch={refetch} />
+            </div>
           )}
         </div>
       </div>
