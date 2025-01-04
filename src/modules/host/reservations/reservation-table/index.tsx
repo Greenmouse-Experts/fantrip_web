@@ -28,8 +28,6 @@ const ReservationListingTable = () => {
 
   const total = data?.count || 0
 
-  console.log(data.data);
-
   return (
     <div>
       {isLoading && (
