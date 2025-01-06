@@ -1,6 +1,7 @@
 import logo from "@/assets/footer_logo.svg";
 import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
-import { SlSocialInstagram } from "react-icons/sl";
+import { PiTiktokLogoLight } from "react-icons/pi";
+import { SlSocialInstagram, SlSocialLinkedin } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
 
 const LandingFooter = () => {
@@ -14,6 +15,16 @@ const LandingFooter = () => {
       route:
         "https://www.facebook.com/profile.php?id=61567200627982&mibextid=LQQJ4d",
       icon: <FaFacebookF />,
+    },
+    {
+      route:
+        "https://www.tiktok.com/@joinfantrip",
+      icon: <PiTiktokLogoLight />,
+    },
+    {
+      route:
+        "",
+      icon: <SlSocialLinkedin />,
     },
     { route: "https://x.com/joinfantrip", icon: <FaXTwitter /> },
   ];
