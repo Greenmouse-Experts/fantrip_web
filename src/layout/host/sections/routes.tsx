@@ -3,6 +3,8 @@ import { FaDollarSign, FaStar } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
 import { BsBank, BsChatFill, BsCompassFill } from "react-icons/bs";
 import { GiBlackBook } from "react-icons/gi";
+import icon_7 from "@/assets/svg/globe-06.svg";
+
 export interface RouteType {
   name: string;
   icon: any;
@@ -31,6 +33,14 @@ export const Routes = [
     icon: <FaStar className="text-xl dark:text-white" />,
     route: "/host/listings",
     submenu: [],
+  },
+  {
+    name: "My Fanstay Trips",
+    icon: <div className="w-[46px] h-[46px] circle place-center">
+      <img src={icon_7} alt="icons" />
+    </div>,
+    route: "/user/guest-activity",
+    submenu: []
   },
   {
     name: "Reservations",
