@@ -21,7 +21,7 @@ import icon_3 from "@/assets/svg/nav_icon_3.svg";
 import icon_4 from "@/assets/svg/user.svg";
 import icon_5 from "@/assets/svg/building-07.svg";
 import icon_6 from "@/assets/svg/calendar-check-02.svg";
-import icon_7 from "@/assets/svg/globe-006.svg";
+import icon_7 from "@/assets/svg/globs-006.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
 import icon_9 from "@/assets/svg/logout.svg";
 import icon_10 from "@/assets/images/ref.png";
