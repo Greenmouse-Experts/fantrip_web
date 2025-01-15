@@ -23,7 +23,7 @@ const LandingFooter = () => {
     },
     {
       route:
-        "",
+        "https://www.linkedin.com/company/fantrip-app/",
       icon: <SlSocialLinkedin />,
     },
     { route: "https://x.com/joinfantrip", icon: <FaXTwitter /> },

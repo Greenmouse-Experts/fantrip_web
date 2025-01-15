@@ -21,7 +21,7 @@ import icon_3 from "@/assets/svg/nav_icon_3.svg";
 import icon_4 from "@/assets/svg/user.svg";
 import icon_5 from "@/assets/svg/building-07.svg";
 import icon_6 from "@/assets/svg/calendar-check-02.svg";
-import icon_7 from "@/assets/svg/globe-06.svg";
+import icon_7 from "@/assets/svg/globe-006.svg";
 import icon_8 from "@/assets/svg/ph_key.svg";
 import icon_9 from "@/assets/svg/logout.svg";
 import icon_10 from "@/assets/images/ref.png";
@@ -54,12 +54,14 @@ const LandingHeader = () => {
               </Link>
             </div>
             <div>
-              <div className="lg:hidden text-white">
-                <FaCircleUser
-                  className="text-2xl cursor-pointer"
-                  onClick={() => setShow(true)}
-                />
-              </div>
+              {isLoggedIn && (
+                <div className="lg:hidden text-white">
+                  <FaCircleUser
+                    className="text-2xl cursor-pointer"
+                    onClick={() => setShow(true)}
+                  />
+                </div>
+              )}
               <ul className="hidden lg:flex items-center gap-x-6 lg:gap-x-10 text-white">
                 <li className="hidden xl:block">
                   <Link to={"/get-app"}>Get the app</Link>
@@ -180,6 +182,19 @@ const LandingHeader = () => {
                                 <img src={icon_6} alt="icons" />
                               </div>
                               <p>Bookings</p>
+                            </Link>
+                          </MenuItem>
+                        )}
+                        {isHost && (
+                          <MenuItem className="border-b !p-0">
+                            <Link
+                              to={"/user/guest-activity"}
+                              className="w-full flex gap-x-3 items-center !py-2 pl-2 pr-4 text-black "
+                            >
+                              <div className="w-[46px] h-[46px] circle place-center bg-[#EDEDFF]">
+                                <img src={icon_7} alt="icons" />
+                              </div>
+                              <p className="">My Fanstay trips</p>
                             </Link>
                           </MenuItem>
                         )}
