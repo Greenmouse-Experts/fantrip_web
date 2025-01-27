@@ -9,6 +9,8 @@ import { useMutation } from "@tanstack/react-query";
 import RadioButtonGroup from "@/components/radio-group-input";
 import { Country } from "country-state-city";
 import SingleImageInput from "@/components/single-image-input";
+import { Tooltip } from "@/components/tooltip";
+import { FaCircleInfo } from "react-icons/fa6";
 
 const currencyOptions = [
   {
@@ -93,6 +95,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
       bankName: "",
       routingNumber: "",
       country: "",
+      itn: ""
     },
   });
   const addAction = useMutation({
@@ -231,6 +234,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   error={errors.accountNumber?.message}
                   {...field}
                   ref={null}
+                  required
                 />
               )}
             />
@@ -251,6 +255,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   error={errors.accountName?.message}
                   {...field}
                   ref={null}
+                  required
                 />
               )}
             />
@@ -269,6 +274,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.text}
                   error={errors.bankName?.message}
+                  required
                   {...field}
                   ref={null}
                 />
@@ -293,6 +299,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                       {...field}
                       ref={null}
                       className="w-[95%] p-3 dark:bg-darkColorLight dark:text-white lg:p-[15px] outline-none rounded-[10px]"
+                      required
                     >
                       <option value="" disabled>
                         Select account holder type
@@ -322,6 +329,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   error={errors.routingNumber?.message}
                   {...field}
                   ref={null}
+                  required
                 />
               )}
             />
@@ -356,6 +364,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   <select
                     {...field}
                     className="p-3 w-full border border-gray-400 rounded-lg outline-none dark:bg-darkColorLight dark:text-white"
+                    required
                   >
                     <option value="" disabled selected>
                       Select Country
@@ -369,6 +378,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                 </div>
               )}
             />
+
             <Controller
               name="idNumber"
               control={control}
@@ -377,32 +387,59 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                   value: true,
                   message: "Please enter the correct digit",
                 },
-                minLength: {
-                  value: 9,
-                  message: "Mininimum length of 9",
-                },
-                maxLength: {
-                  value: 9,
-                  message: "Maximum length of 9",
-                },
-                pattern: {
-                  value: /^[0-9]+$/,
-                  message: "Please enter a number",
-                },
               }}
               render={({ field }) => (
                 <TextInput
-                  label="ID Number"
-                  labelClassName="text-[#767676] fw-500 "
+                  label="SSN/ITIN"
+                  subLabel='Required for verification - U.S. Accounts Only [Learn More]'
+                  alert='For U.S. accounts, Stripe requires a Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN) for identity verification. This field does not require document uploads.'
+                  labelClassName="text-[#767676] fw-500"
                   type={InputType.tel}
                   error={errors.idNumber?.message}
+                  required
                   {...field}
                   ref={null}
                 />
               )}
             />
-            <SingleImageInput label="ID Card (front)" setImage={setFrontImg} />
-            <SingleImageInput label="ID Card (back)" setImage={setBackImg} />
+
+
+            <Controller
+              name="itn"
+              control={control}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Please enter the correct digit",
+                },
+              }}
+              render={({ field }) => (
+                <TextInput
+                  label="National ID/Passport Number"
+                  subLabel='National ID / Passport Number (For Non-U.S. Accounts)'
+                  alert='For global accounts, Stripe requires a National ID or Passport Number for identity verification. You will also need to upload a copy of your ID document'
+                  labelClassName="text-[#767676] fw-500 "
+                  required
+                  type={InputType.tel}
+                  error={errors.itn?.message}
+                  {...field}
+                  ref={null}
+                />
+              )}
+            />
+            <p className="my-2 font-bold">Upload ID Document</p>
+            <SingleImageInput label="Upload ID Document (front)" alert={'Upload a clear copy of the front of your ID document. Ensure the name matches the account holder information'} setImage={setFrontImg} />
+            <SingleImageInput label="Upload ID Document (back)" alert={'Upload a clear copy of the back of your ID document, if applicable'} setImage={setBackImg} />
+
+            <div className="mt-4 mb-2 flex flex-col">
+              <p className="font-bold">Address Verification Document</p>
+              <div className="flex items-center gap-2 mt-1 text-sm text-[#9847FE]">
+                <span>Proof of address document required</span>
+                <Tooltip text={"Stripe requires proof of address to ensure the information you provide is accurate. Acceptable documents include utility bills, bank statements, government-issued letters, driver's licenses, insurance documents, employment documents, student ID, or tax documents."} position="top">
+                  <FaCircleInfo className="text-xl shrink-0 cursor-pointer text-[#fc819f]" />
+                </Tooltip>
+              </div>
+            </div>
             <SingleImageInput
               label="Address Document (front)"
               setImage={setAddressFrontImg}

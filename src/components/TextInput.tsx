@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 import { classNames } from '@/lib/utils/formatHelp';
+import { FaCircleInfo } from 'react-icons/fa6';
+import { Tooltip } from './tooltip';
 
 export enum InputType {
   email = 'email',
@@ -19,15 +21,15 @@ interface Props {
   type: InputType;
   name?: string;
   onChange?:
-    | React.ChangeEvent<HTMLInputElement>
-    | React.ChangeEvent<HTMLTextAreaElement>
-    | any;
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLTextAreaElement>
+  | any;
   label?: string;
   error?:
-    | string
-    | FieldError
-    | Merge<FieldError, FieldErrorsImpl<any>>
-    | undefined;
+  | string
+  | FieldError
+  | Merge<FieldError, FieldErrorsImpl<any>>
+  | undefined;
   required?: boolean;
   labelClassName?: string;
   className?: string;
@@ -60,6 +62,8 @@ const TextInput: React.FC<Props> = ({
   name,
   onChange,
   label,
+  subLabel,
+  alert,
   error,
   required = false,
   className = 'w-full border-0  outline-none py-2 px-2 rounded',
@@ -177,10 +181,9 @@ const TextInput: React.FC<Props> = ({
 
   return (
     <div
-      className={` ${
-        type === InputType.checkbox &&
+      className={` ${type === InputType.checkbox &&
         'flex gap-x-4 justify-end flex-row-reverse items-start'
-      }`}
+        }`}
     >
       <div>
         <>
@@ -190,6 +193,16 @@ const TextInput: React.FC<Props> = ({
               {required && <span className="text-red-600 fw-600 pl-1">*</span>}
             </label>
           )}
+          {subLabel && (
+            <div className="flex items-center gap-2 mt-1 text-sm text-[#9847FE]">
+              <span>{subLabel}</span>
+              {alert && (
+                <Tooltip text={alert} position="left">
+                  <FaCircleInfo className="text-xl shrink-0 cursor-pointer text-[#fc819f]" />
+                </Tooltip>
+              )}
+            </div>
+          )}
         </>
       </div>
       <div
@@ -197,8 +210,8 @@ const TextInput: React.FC<Props> = ({
           type === InputType.checkbox
             ? 'mt-2'
             : error
-            ? 'border-red-400 border'
-            : 'border border-gray-400',
+              ? 'border-red-400 border'
+              : 'border border-gray-400',
           'flex items-center bg-white dark:bg-darkColorLight  mt-1 rounded-[4px]'
         )}
       >

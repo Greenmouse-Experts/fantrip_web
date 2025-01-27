@@ -1,18 +1,22 @@
 import React, { useState, useCallback, FC } from "react";
 import { useDropzone } from "react-dropzone";
 import { AiFillPicture } from "react-icons/ai";
+import { Tooltip } from "./tooltip";
+import { FaCircleInfo } from "react-icons/fa6";
 
 interface Props {
   label: string;
   setImage: React.Dispatch<React.SetStateAction<Array<File> | undefined>>;
   containerClass?: string;
   prevValue?: string | null;
+  alert?: string | null;
 }
 const SingleImageInput: FC<Props> = ({
   label,
   setImage,
   containerClass,
   prevValue,
+  alert
 }) => {
   const [preview, setPreview] = useState<any>(prevValue);
   //   handle drag and drop
@@ -31,7 +35,14 @@ const SingleImageInput: FC<Props> = ({
   return (
     <>
       <div className={`${containerClass}`}>
-        <p className="text-[#767676] fw-500 mb-2">{label}</p>
+        <span className="flex gap-3">
+          <p className="text-[#767676] fw-500 mb-2">{label}</p>
+          {alert && (
+            <Tooltip text={alert} position="top">
+              <FaCircleInfo className="text-xl shrink-0 cursor-pointer -mt-3 text-[#fc819f]" />
+            </Tooltip>
+          )}
+        </span>
         <div
           {...getRootProps()}
           className="w-full border bg-white dark:bg-darkColorLight border-gray-400 rounded-lg min-h-[120px] p-4 flex justify-between items-center"
