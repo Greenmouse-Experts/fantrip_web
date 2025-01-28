@@ -35,7 +35,7 @@ const HostAccountsIndex = () => {
       <div>
         <div className="flex justify-between items-center">
           <p className="text-xl syne fw-600 text-white">Host Bank Accounts</p>
-          {profile?.bankAccounts.length ?
+          {profile && profile.bankAccounts && profile.bankAccounts.length > 0  ?
             <button
               className="flex gap-x-2 items-center border rounded-lg px-2 lg:px-4 py-1 lg:py-2"
               onClick={() => [setShowModal(true), setEditState(true)]}
