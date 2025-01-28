@@ -57,15 +57,40 @@ export interface KycInputForm {
 }
 interface Props {
   close: () => void;
+  editAccount: Boolean;
+  bankDetails: any;
+  kycDetails: any;
 }
-const AddHostAccount: FC<Props> = ({ close }) => {
+const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails }) => {
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
-  const [frontImg, setFrontImg] = useState<File[] | undefined>();
-  const [backImg, setBackImg] = useState<File[] | undefined>();
-  const [addressFrontImg, setAddressFrontImg] = useState<File[] | undefined>();
-  const [addressBackImg, setAddressBackImg] = useState<File[] | undefined>();
+  const [frontImg, setFrontImg] = useState<File[] | undefined>(
+    editAccount ?
+      kycDetails?.identityFront ? JSON.parse(kycDetails?.identityFront).link : null
+      :
+      null
+  );
+  const [backImg, setBackImg] = useState<File[] | undefined>(
+    editAccount ?
+      kycDetails?.identityBack ? JSON.parse(kycDetails?.identityBack).link : null
+      :
+      null
+  );
+  const [addressFrontImg, setAddressFrontImg] = useState<File[] | undefined>(
+    editAccount ?
+      kycDetails?.addressDocFront ? JSON.parse(kycDetails?.addressDocFront).link : null
+      :
+      null
+  );
+  const [addressBackImg, setAddressBackImg] = useState<File[] | undefined>(
+    editAccount ?
+      kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).link : null
+      :
+      null
+  );
   const [deviceIp, setDeviceIp] = useState("");
+
+  console.log(kycDetails)
 
   useEffect(() => {
     const fetchDeviceIp = async () => {
@@ -87,14 +112,14 @@ const AddHostAccount: FC<Props> = ({ close }) => {
   } = useForm({
     mode: "onChange",
     defaultValues: {
-      accountNumber: "",
-      accountName: "",
-      idNumber: "",
-      currency: "",
-      accountHolderType: "individual",
-      bankName: "",
-      routingNumber: "",
-      country: "",
+      accountNumber: editAccount ? bankDetails.accountNumber : "",
+      accountName: editAccount ? bankDetails.accountName : "",
+      idNumber: editAccount ? kycDetails.idNumber : "",
+      currency: editAccount ? bankDetails.currency : "",
+      accountHolderType: editAccount ? bankDetails.accountHolderType : "individual",
+      bankName: editAccount ? bankDetails.bankName : "",
+      routingNumber: editAccount ? bankDetails.routingNumber : "",
+      country: editAccount ? bankDetails.country : "",
       itn: ""
     },
   });
@@ -135,12 +160,16 @@ const AddHostAccount: FC<Props> = ({ close }) => {
     setIsBusy(true);
     let payload = {
       identityFront: {
-        id: "",
-        link: "",
+        id: editAccount ?
+          kycDetails?.identityFront ? JSON.parse(kycDetails?.identityFront).id : null : "",
+        link: editAccount ?
+          kycDetails?.identityFront ? JSON.parse(kycDetails?.identityFront).link : null : "",
       },
       identityBack: {
-        id: "",
-        link: "",
+        id: editAccount ?
+          kycDetails?.identityBack ? JSON.parse(kycDetails?.identityBack).id : null : "",
+        link: editAccount ?
+          kycDetails?.identityFront ? JSON.parse(kycDetails?.identityFront).link : null : "",
       },
       idNumber: data?.idNumber || "",
       deviceIp: deviceIp,
@@ -167,27 +196,39 @@ const AddHostAccount: FC<Props> = ({ close }) => {
       fd.append("idDoc", addressBackImg[0]);
       // fd.append("purpose", "identity_document");
 
-      console.log(payload);
+      console.log(fd);
 
       mutation.mutate(fd, {
         onSuccess: (data) => {
           const newData = {
             ...payload,
             identityFront: {
-              id: data[0]?.id,
-              link: data[0]?.link,
+              id: editAccount ?
+                kycDetails?.identityFront ? JSON.parse(kycDetails?.identityFront).id : null : data[0]?.id,
+              link: editAccount ?
+                kycDetails?.identityFront ? JSON.parse(kycDetails?.identityFront).link : null : data[0]?.link,
             },
             identityBack: {
-              id: data[1]?.id,
-              link: data[1]?.link,
+              id: editAccount ?
+                kycDetails?.identityBack ? JSON.parse(kycDetails?.identityBack).id : null : data[1]?.id,
+              link: editAccount ?
+                kycDetails?.identityBack ? JSON.parse(kycDetails?.identityBack).link : null : data[1]?.link,
             },
             addressDocFront: {
-              id: data[2]?.id,
-              link: data[2]?.link,
+              id: editAccount ?
+                kycDetails?.addressDocFront ? JSON.parse(kycDetails?.addressDocFront).id : null
+                : data[2]?.id,
+              link: editAccount ?
+                kycDetails?.addressDocFront ? JSON.parse(kycDetails?.addressDocFront).link : null
+                : data[2]?.link,
             },
             addressDocBack: {
-              id: data[3]?.id,
-              link: data[3]?.link,
+              id: editAccount ?
+                kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).id : null
+                : data[3]?.id,
+              link: editAccount ?
+                kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).link : null
+                : data[3]?.link,
             },
           };
           handleCreateKyc(newData);
@@ -307,7 +348,7 @@ const AddHostAccount: FC<Props> = ({ close }) => {
                       <option value="individual">Individual Account</option>
                       <option value="company">Company Account</option>
                     </select>
-                    <p>{errors && errors.accountHolderType?.message}</p>
+                    <p>{errors.accountHolderType?.message?.toString()}</p>
                   </div>
                 )}
               />
@@ -428,8 +469,8 @@ const AddHostAccount: FC<Props> = ({ close }) => {
               )}
             />
             <p className="my-2 font-bold">Upload ID Document</p>
-            <SingleImageInput label="Upload ID Document (front)" alert={'Upload a clear copy of the front of your ID document. Ensure the name matches the account holder information'} setImage={setFrontImg} />
-            <SingleImageInput label="Upload ID Document (back)" alert={'Upload a clear copy of the back of your ID document, if applicable'} setImage={setBackImg} />
+            <SingleImageInput label="Upload ID Document (front)" editState={editAccount} uploadedImg={frontImg} alert={'Upload a clear copy of the front of your ID document. Ensure the name matches the account holder information'} setImage={setFrontImg} />
+            <SingleImageInput label="Upload ID Document (back)" editState={editAccount} uploadedImg={backImg} alert={'Upload a clear copy of the back of your ID document, if applicable'} setImage={setBackImg} />
 
             <div className="mt-4 mb-2 flex flex-col">
               <p className="font-bold">Address Verification Document</p>
@@ -442,10 +483,12 @@ const AddHostAccount: FC<Props> = ({ close }) => {
             </div>
             <SingleImageInput
               label="Address Document (front)"
+              editState={editAccount} uploadedImg={addressFrontImg}
               setImage={setAddressFrontImg}
             />
             <SingleImageInput
               label="Address Document (back)"
+              editState={editAccount} uploadedImg={addressBackImg}
               setImage={setAddressBackImg}
             />
           </div>
