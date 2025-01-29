@@ -90,8 +90,6 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
   );
   const [deviceIp, setDeviceIp] = useState("");
 
-  console.log(kycDetails)
-
   useEffect(() => {
     const fetchDeviceIp = async () => {
       try {

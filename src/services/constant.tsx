@@ -63,6 +63,7 @@ export const CREATE_ACCOUNT = `/bank-accounts/create`;
 export const SELECT_ACCOUNT = `/bank-accounts/select`;
 export const ADD_FCM_TOKEN = `/notification-tokens/add`;
 export const SAVE_BANK_KYC = `/kyc/save`;
+export const DELETE_BANK_KYC = `/kyc/remove`;
 export const CONTACT_US = `/user/send-contact-message`;
 
 // area guide endpoints

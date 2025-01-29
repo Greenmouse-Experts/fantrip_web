@@ -71,6 +71,14 @@ export const addAccount = async (payload: BankAccountItem) => {
     .then((response) => response.data);
 };
 
+
+export const deleteBankAccount = async () => {
+  return axios
+    .delete(`${ENDPOINT.DELETE_BANK_KYC}`)
+    .then((response) => response.data);
+};
+
+
 export const removeHostAccount = async (id: string) => {
   return axios
     .delete(`${ENDPOINT.GET_ACCOUNTS}/${id}`)
