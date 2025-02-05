@@ -82,12 +82,6 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
       :
       null
   );
-  const [addressBackImg, setAddressBackImg] = useState<File[] | undefined>(
-    editAccount ?
-      kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).link : null
-      :
-      null
-  );
   const [deviceIp, setDeviceIp] = useState("");
 
   useEffect(() => {
@@ -184,14 +178,12 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
     if (
       frontImg?.length &&
       backImg?.length &&
-      addressFrontImg?.length &&
-      addressBackImg?.length
+      addressFrontImg?.length 
     ) {
       const fd = new FormData();
       fd.append("idDoc", frontImg[0]);
       fd.append("idDoc", backImg[0]);
       fd.append("idDoc", addressFrontImg[0]);
-      fd.append("idDoc", addressBackImg[0]);
       // fd.append("purpose", "identity_document");
 
       console.log(fd);
@@ -219,14 +211,6 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
               link: editAccount ?
                 kycDetails?.addressDocFront ? JSON.parse(kycDetails?.addressDocFront).link : null
                 : data[2]?.link,
-            },
-            addressDocBack: {
-              id: editAccount ?
-                kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).id : null
-                : data[3]?.id,
-              link: editAccount ?
-                kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).link : null
-                : data[3]?.link,
             },
           };
           handleCreateKyc(newData);
@@ -428,9 +412,9 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
               }}
               render={({ field }) => (
                 <TextInput
-                  label="SSN/ITIN"
-                  subLabel='Required for verification - U.S. Accounts Only [Learn More]'
-                  alert='For U.S. accounts, Stripe requires a Social Security Number (SSN) or Individual Taxpayer Identification Number (ITIN) for identity verification. This field does not require document uploads.'
+                  label="SIN/SSN/ITIN"
+                  subLabel='Required for verification - [Learn More]'
+                  alert='For identity verification, Stripe requires a Social Security Number for US account (SSN), Social Insurance Number for Cabnada account (SIN), or Individual Taxpayer Identification Number (ITIN) for Europe accounts.'
                   labelClassName="text-[#767676] fw-500"
                   type={InputType.tel}
                   error={errors.idNumber?.message}
@@ -478,14 +462,9 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
               </div>
             </div>
             <SingleImageInput
-              label="Address Document (front)"
+              label="Address Document"
               editState={editAccount} uploadedImg={addressFrontImg}
               setImage={setAddressFrontImg}
-            />
-            <SingleImageInput
-              label="Address Document (back)"
-              editState={editAccount} uploadedImg={addressBackImg}
-              setImage={setAddressBackImg}
             />
           </div>
           <div className="mt-7">
