@@ -106,7 +106,7 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -368,7 +368,6 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
                   error={errors.routingNumber?.message}
                   {...field}
                   ref={null}
-                  required
                 />
               )}
             />
@@ -435,7 +434,6 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
                   labelClassName="text-[#767676] fw-500"
                   type={InputType.tel}
                   error={errors.idNumber?.message}
-                  required
                   {...field}
                   ref={null}
                 />
@@ -494,7 +492,7 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
             <Button
               title={isBusy ? <BeatLoader size={12} color="white" /> : "Submit"}
               type="int"
-              disabled={!isValid || isBusy}
+              disabled={isBusy}
             />
           </div>
         </form>

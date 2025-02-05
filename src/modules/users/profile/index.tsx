@@ -10,7 +10,6 @@ import { useSearchParams } from "react-router-dom";
 const ProfileComponent = () => {
   const [searchParams] = useSearchParams();
   const refer = searchParams.get("referral");
-
   const [active, setActive] = useState(1);
   useEffect(() => {
     if (refer) {

@@ -10,8 +10,8 @@ import { AiOutlineEdit } from "react-icons/ai";
 import UpdateProfileForm from "./forms/update-profile-form";
 import UpdateAddressForm from "./forms/update-address";
 import { useToast } from "@chakra-ui/react";
-import { useMutation } from "@tanstack/react-query";
-import { updateProfile } from "@/services/api/authApi";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { updateProfile, viewProfile } from "@/services/api/authApi";
 import { uploadImage } from "@/services/api/routine";
 import FirstTimeInfo from "./first-time-info";
 import SecondTimeInfo from "./second-time-info";
@@ -33,6 +33,17 @@ const UserAccount = () => {
   const toast = useToast();
   const [isUpdate, setIsUpdate] = useState(false);
   const email = Cookies.get("fantrip_user");
+
+
+  const { data: profile, } = useQuery({
+    queryKey: ["profile"],
+    queryFn: () => viewProfile(),
+  });
+
+  const kyc = profile && profile.kycInfo.length ? profile.kycInfo[0] : null;
+
+  console.log(kyc)
+
 
   useEffect(() => {
     Cookies.set("fantrip_user", `${user.email}`);
@@ -135,9 +146,8 @@ const UserAccount = () => {
       <div>
         <p className="hidden lg:block fw-600 lg:text-lg">My Profile</p>
         <div
-          className={`border lg:flex justify-between items-start ${
-            isHost ? "border-gray-600" : "border-[#E8EAED]"
-          } rounded-[16px] mt-6`}
+          className={`border lg:flex justify-between items-start ${isHost ? "border-gray-600" : "border-[#E8EAED]"
+            } rounded-[16px] mt-6`}
         >
           <div className="flex items-center gap-x-4 p-4">
             <div className="relative w-[70px]">
@@ -176,9 +186,8 @@ const UserAccount = () => {
           </div>
         </div>
         <div
-          className={`border ${
-            isHost ? "border-gray-600" : "border-[#E8EAED]"
-          } rounded-[16px] mt-6 p-4`}
+          className={`border ${isHost ? "border-gray-600" : "border-[#E8EAED]"
+            } rounded-[16px] mt-6 p-4`}
         >
           <div className="flex justify-between items-center">
             <p className="fw-600 lg:text-lg">Personal Information</p>
@@ -245,9 +254,8 @@ const UserAccount = () => {
         </div>
         {isHost && (
           <div
-            className={`border ${
-              isHost ? "border-gray-600" : "border-[#E8EAED]"
-            } rounded-[16px] mt-6 p-4`}
+            className={`border ${isHost ? "border-gray-600" : "border-[#E8EAED]"
+              } rounded-[16px] mt-6 p-4`}
           >
             <div className="flex justify-between items-center">
               <p className="fw-600 lg:text-lg">Address</p>
