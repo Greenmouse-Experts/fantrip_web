@@ -82,6 +82,12 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
       :
       null
   );
+  const [addressBackImg, setAddressBackImg] = useState<File[] | undefined>(
+    editAccount ?
+      kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).link : null
+      :
+      null
+  );
   const [deviceIp, setDeviceIp] = useState("");
 
   useEffect(() => {
@@ -126,6 +132,7 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
   const handleCreateKyc = (data: any) => {
     addAction.mutate(data, {
       onSuccess: (data) => {
+        console.log(data)
         toast({
           render: () => (
             <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
@@ -178,12 +185,14 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
     if (
       frontImg?.length &&
       backImg?.length &&
-      addressFrontImg?.length 
+      addressFrontImg?.length &&
+      addressBackImg?.length
     ) {
       const fd = new FormData();
       fd.append("idDoc", frontImg[0]);
       fd.append("idDoc", backImg[0]);
       fd.append("idDoc", addressFrontImg[0]);
+      fd.append("idDoc", addressBackImg[0]);
       // fd.append("purpose", "identity_document");
 
       console.log(fd);
@@ -211,6 +220,14 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
               link: editAccount ?
                 kycDetails?.addressDocFront ? JSON.parse(kycDetails?.addressDocFront).link : null
                 : data[2]?.link,
+            },
+            addressDocBack: {
+              id: editAccount ?
+                kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).id : null
+                : data[3]?.id,
+              link: editAccount ?
+                kycDetails?.addressDocBack ? JSON.parse(kycDetails?.addressDocBack).link : null
+                : data[3]?.link,
             },
           };
           handleCreateKyc(newData);
@@ -346,7 +363,7 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
               }}
               render={({ field }) => (
                 <TextInput
-                  label="BIC/SWIFT"
+                  label="Transit Number/Routing Number (For Canadan or U.S. accounts)"
                   labelClassName="text-[#767676] fw-500 "
                   type={InputType.tel}
                   error={errors.routingNumber?.message}
@@ -462,9 +479,14 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
               </div>
             </div>
             <SingleImageInput
-              label="Address Document"
+              label="Address Document (front)"
               editState={editAccount} uploadedImg={addressFrontImg}
               setImage={setAddressFrontImg}
+            />
+            <SingleImageInput
+              label="Address Document (back)"
+              editState={editAccount} uploadedImg={addressBackImg}
+              setImage={setAddressBackImg}
             />
           </div>
           <div className="mt-7">

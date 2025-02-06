@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { GoPencil } from "react-icons/go";
 import dayjs from "dayjs";
 import { formatPhoneNumber } from "react-phone-number-input";
-import { Country } from "country-state-city";
 import Cookies from "js-cookie";
 import useAuth from "@/hooks/authUser";
 import useDialog from "@/hooks/useDialog";
@@ -72,7 +71,7 @@ const UserAccount = () => {
     mutationFn: updateProfile,
     mutationKey: ["update"],
   });
-  const country = Country.getCountryByCode(`${user.country}`);
+  // const country = Country.getCountryByCode(`${user.country}`);
 
   const mutation = useMutation({
     mutationFn: uploadImage,
@@ -270,7 +269,7 @@ const UserAccount = () => {
             <div className="grid lg:grid-cols-2 gap-5 items-center mt-7 pb-2">
               <div>
                 <p className="fs-500 text-[#5F5F5F]">Country</p>
-                <p className="fw-500 mt-1">{country?.name}</p>
+                <p className="fw-500 mt-1">{user?.country}</p>
               </div>
               <div>
                 <p className="fs-500 text-[#5F5F5F]">Street</p>

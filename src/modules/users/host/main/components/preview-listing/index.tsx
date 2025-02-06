@@ -11,12 +11,14 @@ import Availability from "./components/availability";
 import useDialog from "@/hooks/useDialog";
 import StayCreateSuccess from "../modal/stay-create-success";
 import dayjs from "dayjs";
+import useAuth from "@/hooks/authUser";
 
 interface Props {
   setActive: React.Dispatch<React.SetStateAction<number>>;
 }
 const PreviewListing: FC<Props> = ({ setActive }) => {
   const { stay, clearStay } = useStay();
+  const { user, saveUser } = useAuth();
   const [isBusy, setIsBusy] = useState(false);
   const toast = useToast();
   const { Dialog, setShowModal } = useDialog();
@@ -25,14 +27,14 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
     if (!checkStay()) {
       return;
     }
-    if(!stay.country || !stay.city || !stay.state){
+    if (!stay.country || !stay.city || !stay.state) {
       toast({
         title: 'Please add more information on your address',
         isClosable: true,
         position: "top",
         status: "info",
       });
-      return ;
+      return;
     }
     setIsBusy(true);
     const payload = {
@@ -43,6 +45,15 @@ const PreviewListing: FC<Props> = ({ setActive }) => {
     };
     await createStay(payload)
       .then(() => {
+        saveUser({
+          ...user,
+          country: stay.country,
+          state: stay.state,
+          city: stay.city,
+          street: stay.street,
+          postalCode: stay.postal,
+          aptSuitUnit: stay.suite
+        })
         setIsBusy(false);
         toast({
           render: () => (

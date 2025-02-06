@@ -102,8 +102,8 @@ const useAuthStore = create<Props>()(
       kyc: kycInitState,
       account: accountsInitState,
       saveUser: (data: userProps) =>
-        set(() => ({
-          user: data,
+        set((state) => ({
+          user: { ...state.user, ...data }
         })),
       saveAccounts: (data: BankAccountFullItem[]) =>
         set(() => ({
