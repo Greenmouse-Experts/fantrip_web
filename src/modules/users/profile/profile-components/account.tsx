@@ -43,6 +43,8 @@ const UserAccount = () => {
 
   const kyc = profile && profile?.kycInfo?.length ? profile?.kycInfo[0] : null;
 
+  console.log(kyc)
+
 
   useEffect(() => {
     Cookies.set("fantrip_user", `${user.email}`);
