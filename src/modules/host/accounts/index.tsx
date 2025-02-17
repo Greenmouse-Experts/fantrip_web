@@ -30,33 +30,33 @@ const HostAccountsIndex = () => {
   const kyc = profile && profile.kycInfo.length ? profile.kycInfo[0] : null;
 
 
-    const deleteAccount = async () => {
-      setIsBusy(true);
-      await deleteBankAccount()
-        .then((data) => {
-          toast({
-            render: () => (
-              <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
-                {data.message}
-              </div>
-            ),
-            position: "top",
-          });
-          setIsBusy(false);
-          refetch()
-          ShowDelete(false);
-        })
-        .catch((error: any) => {
-          toast({
-            title: error.response.data.message,
-            isClosable: true,
-            position: "top",
-            status: "error",
-          });
-          setIsBusy(false);
+  const deleteAccount = async () => {
+    setIsBusy(true);
+    await deleteBankAccount()
+      .then((data) => {
+        toast({
+          render: () => (
+            <div className="text-white w-[290px] text-center fw-600 syne bg-gradient rounded p-3">
+              {data.message}
+            </div>
+          ),
+          position: "top",
         });
-    };
-  
+        setIsBusy(false);
+        refetch()
+        ShowDelete(false);
+      })
+      .catch((error: any) => {
+        toast({
+          title: error.response.data.message,
+          isClosable: true,
+          position: "top",
+          status: "error",
+        });
+        setIsBusy(false);
+      });
+  };
+
 
 
   if (isLoading) {
@@ -103,20 +103,23 @@ const HostAccountsIndex = () => {
           <AccountList />
         </div>
         <Dialog title={editState ? 'Edit Account' : 'Add A New Account'} size="lg">
-          <AddHostAccount editAccount={editState} bankDetails={bank} kycDetails={kyc} close={() => setShowModal(false)} />
+          <AddHostAccount editAccount={editState} bankDetails={bank} kycDetails={kyc} close={() => {
+            setShowModal(false);
+            refetch();
+          }} />
         </Dialog>
 
         <Reject title="" size="md">
-        <ReusableModal
-          type="warning"
-          title="Are you sure you want to delete this account"
-          actionTitle="Delete"
-          action={deleteAccount}
-          cancelTitle="Close"
-          closeModal={() => ShowDelete(false)}
-          isBusy={isBusy}
-        />
-      </Reject>
+          <ReusableModal
+            type="warning"
+            title="Are you sure you want to delete this account"
+            actionTitle="Delete"
+            action={deleteAccount}
+            cancelTitle="Close"
+            closeModal={() => ShowDelete(false)}
+            isBusy={isBusy}
+          />
+        </Reject>
       </div>
     );
   }

@@ -75,7 +75,11 @@ const ProfileSetup: FC<Props> = ({ next }) => {
         />
       </div>
       <div className="mt-3">
-        <p className="mb-2 text-[#9F9F9F]">Date of Birth <span className="text-red-500 fw-600">*</span></p>
+        <p className="text-[#9F9F9F]">Date of Birth <span className="text-red-500 fw-600">*</span></p>
+        <p className="italic mb-2">
+        Please enter your correct date of birth as it appears on your official ID. This is required for identity verification and payouts. 
+        Stripe may flag your account if the date entered does not match your ID, causing payment delays.
+        </p>
         <Menu closeOnSelect={false}>
           <MenuButton
             borderRadius={"xl"}

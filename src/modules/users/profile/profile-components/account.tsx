@@ -41,7 +41,7 @@ const UserAccount = () => {
     queryFn: () => viewProfile(),
   });
 
-  const kyc = profile && profile.kycInfo.length ? profile.kycInfo[0] : null;
+  const kyc = profile && profile?.kycInfo?.length ? profile?.kycInfo[0] : null;
 
 
   useEffect(() => {
