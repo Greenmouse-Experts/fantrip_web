@@ -351,143 +351,169 @@ const AddHostAccount: FC<Props> = ({ close, editAccount, bankDetails, kycDetails
                   </div>
                 )}
               />
-            </div>
-            <Controller
-              name="routingNumber"
-              control={control}
-              rules={{
-                required: {
-                  value: false,
-                  message: "Please enter routing number",
-                },
-              }}
-              render={({ field }) => (
-                <TextInput
-                  label="Transit Number/Routing Number (For Canadan or U.S. accounts)"
-                  labelClassName="text-[#767676] fw-500 "
-                  type={InputType.tel}
-                  error={errors.routingNumber?.message}
-                  {...field}
-                  ref={null}
+
+              <div className="my-4">
+                <Controller
+                  name="routingNumber"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: false,
+                      message: "Please enter routing number",
+                    },
+                    pattern: {
+                      value: /^(?:\d{5}-\d{3}|\d{9})$/, 
+                      message:
+                        "For Canadian accounts, enter your routing number as a 5-digit Transit Number, a hyphen (-), and a 3-digit Institution Number (e.g., 85092-002). For U.S. accounts, enter a 9-digit number with no hyphens or spaces (e.g., 021000021).",
+                    }
+                  }}
+                  render={({ field }) => (
+                    <TextInput
+                      label="Routing Number (For Canadan or U.S. accounts)"
+                      subLabel='[Learn More]'
+                      position='right'
+                      alert="For Canadian accounts, enter your routing number as your 5-digit Transit Number, followed by a hyphen (-), and your 3-digit Institution Number (e.g., 85092-002). For U.S. accounts, enter your routing number as a single 9-digit number with no hyphens or spaces (e.g., 021000021)"
+                      labelClassName="text-[#767676] fw-500"
+                      type={InputType.tel}
+                      error={errors.routingNumber?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Controller
-              name="currency"
-              control={control}
-              render={({ field }) => (
-                <RadioButtonGroup
-                  options={currencyOptions}
-                  label="Select Account Currency"
-                  mainLabelClassName="text-[#828282] block mt-[3px]"
-                  altClass="grid grid-cols-2"
-                  selected={field.value}
-                  error={errors.currency?.message}
-                  {...field}
-                  ref={null}
+              </div>
+
+              <div className="my-4">
+                <Controller
+                  name="currency"
+                  control={control}
+                  render={({ field }) => (
+                    <RadioButtonGroup
+                      options={currencyOptions}
+                      label="Select Account Currency"
+                      mainLabelClassName="text-[#828282] block mt-[3px]"
+                      altClass="grid grid-cols-2"
+                      selected={field.value}
+                      error={errors.currency?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
                 />
-              )}
-            />
-            <Controller
-              name="country"
-              control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Value is required",
-                },
-              }}
-              render={({ field }) => (
-                <div>
-                  <p className="text-[#000000B2] fw-500 mb-1">Country</p>
-                  <select
-                    {...field}
-                    className="p-3 w-full border border-gray-400 rounded-lg outline-none dark:bg-darkColorLight dark:text-white"
-                    required
-                  >
-                    <option value="" disabled selected>
-                      Select Country
-                    </option>
-                    {Country.getAllCountries().map((item) => (
-                      <option value={item.isoCode} key={item.isoCode}>
-                        {item.name}
-                      </option>
-                    ))}
-                  </select>
+              </div>
+
+              <div className="my-4">
+                <Controller
+                  name="country"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "Value is required",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <div>
+                      <p className="text-[#000000B2] fw-500 mb-1">Country</p>
+                      <select
+                        {...field}
+                        className="p-3 w-full border border-gray-400 rounded-lg outline-none dark:bg-darkColorLight dark:text-white"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Select Country
+                        </option>
+                        {Country.getAllCountries().map((item) => (
+                          <option value={item.isoCode} key={item.isoCode}>
+                            {item.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
+                />
+              </div>
+
+              <div className="my-4">
+                <Controller
+                  name="idNumber"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "Please enter the correct digit",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextInput
+                      label="SIN/SSN/ITIN"
+                      subLabel='Required for verification - [Learn More]'
+                      position='top'
+                      alert='For identity verification, Stripe requires a Social Security Number for US account (SSN), Social Insurance Number for Cabnada account (SIN), or Individual Taxpayer Identification Number (ITIN) for Europe accounts.'
+                      labelClassName="text-[#767676] fw-500"
+                      type={InputType.tel}
+                      error={errors.idNumber?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
+                />
+              </div>
+
+              <div className="my-4">
+                <Controller
+                  name="itn"
+                  control={control}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: "Please enter the correct digit",
+                    },
+                  }}
+                  render={({ field }) => (
+                    <TextInput
+                      label="National ID/Passport Number"
+                      subLabel='National ID / Passport Number (For Non-U.S. Accounts)'
+                      alert='For global accounts, Stripe requires a National ID or Passport Number for identity verification. You will also need to upload a copy of your ID document'
+                      labelClassName="text-[#767676] fw-500 "
+                      required
+                      type={InputType.tel}
+                      error={errors.itn?.message}
+                      {...field}
+                      ref={null}
+                    />
+                  )}
+                />
+              </div>
+
+              <p className="mt-5 mb-2 font-bold">Upload ID Document</p>
+              <div className="flex flex-col gap-4">
+                <SingleImageInput label="Upload ID Document (front)" editState={editAccount} uploadedImg={frontImg} alert={'Upload a clear copy of the front of your ID document. Ensure the name matches the account holder information'} setImage={setFrontImg} />
+                <SingleImageInput label="Upload ID Document (back)" editState={editAccount} uploadedImg={backImg} alert={'Upload a clear copy of the back of your ID document, if applicable'} setImage={setBackImg} />
+              </div>
+
+              <div className="mt-5 mb-2 flex flex-col">
+                <p className="font-bold">Address Verification Document</p>
+                <div className="flex items-center gap-2 mt-1 text-sm text-[#9847FE]">
+                  <span>Proof of address document required</span>
+                  <Tooltip text={"Stripe requires proof of address to ensure the information you provide is accurate. Acceptable documents include utility bills, bank statements, government-issued letters, driver's licenses, insurance documents, employment documents, student ID, or tax documents."} position="top">
+                    <FaCircleInfo className="text-xl shrink-0 cursor-pointer text-[#fc819f]" />
+                  </Tooltip>
                 </div>
-              )}
-            />
-
-            <Controller
-              name="idNumber"
-              control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Please enter the correct digit",
-                },
-              }}
-              render={({ field }) => (
-                <TextInput
-                  label="SIN/SSN/ITIN"
-                  subLabel='Required for verification - [Learn More]'
-                  alert='For identity verification, Stripe requires a Social Security Number for US account (SSN), Social Insurance Number for Cabnada account (SIN), or Individual Taxpayer Identification Number (ITIN) for Europe accounts.'
-                  labelClassName="text-[#767676] fw-500"
-                  type={InputType.tel}
-                  error={errors.idNumber?.message}
-                  {...field}
-                  ref={null}
+              </div>
+              <div className="flex flex-col gap-4">
+                <SingleImageInput
+                  label="Address Document (front)"
+                  editState={editAccount} uploadedImg={addressFrontImg}
+                  setImage={setAddressFrontImg}
                 />
-              )}
-            />
-
-
-            <Controller
-              name="itn"
-              control={control}
-              rules={{
-                required: {
-                  value: true,
-                  message: "Please enter the correct digit",
-                },
-              }}
-              render={({ field }) => (
-                <TextInput
-                  label="National ID/Passport Number"
-                  subLabel='National ID / Passport Number (For Non-U.S. Accounts)'
-                  alert='For global accounts, Stripe requires a National ID or Passport Number for identity verification. You will also need to upload a copy of your ID document'
-                  labelClassName="text-[#767676] fw-500 "
-                  required
-                  type={InputType.tel}
-                  error={errors.itn?.message}
-                  {...field}
-                  ref={null}
+                <SingleImageInput
+                  label="Address Document (back) (Optional)"
+                  editState={editAccount} uploadedImg={addressBackImg}
+                  setImage={setAddressBackImg}
                 />
-              )}
-            />
-            <p className="my-2 font-bold">Upload ID Document</p>
-            <SingleImageInput label="Upload ID Document (front)" editState={editAccount} uploadedImg={frontImg} alert={'Upload a clear copy of the front of your ID document. Ensure the name matches the account holder information'} setImage={setFrontImg} />
-            <SingleImageInput label="Upload ID Document (back)" editState={editAccount} uploadedImg={backImg} alert={'Upload a clear copy of the back of your ID document, if applicable'} setImage={setBackImg} />
-
-            <div className="mt-4 mb-2 flex flex-col">
-              <p className="font-bold">Address Verification Document</p>
-              <div className="flex items-center gap-2 mt-1 text-sm text-[#9847FE]">
-                <span>Proof of address document required</span>
-                <Tooltip text={"Stripe requires proof of address to ensure the information you provide is accurate. Acceptable documents include utility bills, bank statements, government-issued letters, driver's licenses, insurance documents, employment documents, student ID, or tax documents."} position="top">
-                  <FaCircleInfo className="text-xl shrink-0 cursor-pointer text-[#fc819f]" />
-                </Tooltip>
               </div>
             </div>
-            <SingleImageInput
-              label="Address Document (front)"
-              editState={editAccount} uploadedImg={addressFrontImg}
-              setImage={setAddressFrontImg}
-            />
-            <SingleImageInput
-              label="Address Document (back)"
-              editState={editAccount} uploadedImg={addressBackImg}
-              setImage={setAddressBackImg}
-            />
           </div>
           <div className="mt-7">
             <Button

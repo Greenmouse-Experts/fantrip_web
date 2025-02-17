@@ -18,12 +18,14 @@ import { RiDeleteBin5Fill } from "react-icons/ri";
 import DeleteAccount from "./modal/delete-account";
 import EmailUpdate from "./forms/email-update";
 import PhoneUpdate from "./forms/phone-update";
+import DobUpdate from "./forms/dob-update";
 
 const UserAccount = () => {
   const { Dialog: ProfileInfo, setShowModal: ShowProfile } = useDialog();
   const { Dialog: LocationInfo, setShowModal: ShowLocation } = useDialog();
   const { Dialog: EmailInfo, setShowModal: ShowEmail } = useDialog();
   const { Dialog: PhoneInfo, setShowModal: ShowPhone } = useDialog();
+  const { Dialog: DoB, setShowModal: ShowDOB } = useDialog();
   const { Dialog: FirstDialog, setShowModal: ShowFirstDialog } = useDialog();
   const { Dialog: SecondDialog, setShowModal: ShowSecondDialog } = useDialog();
   const { Dialog: Delete, setShowModal: ShowDelete } = useDialog();
@@ -40,8 +42,6 @@ const UserAccount = () => {
   });
 
   const kyc = profile && profile.kycInfo.length ? profile.kycInfo[0] : null;
-
-  console.log(kyc)
 
 
   useEffect(() => {
@@ -62,6 +62,7 @@ const UserAccount = () => {
     ShowProfile(false);
     ShowEmail(false);
     ShowPhone(false);
+    ShowDOB(false);
     if (user.loginTimes <= 1) {
       ShowSecondDialog(true);
     }
@@ -232,6 +233,18 @@ const UserAccount = () => {
               <p className="fw-500 mt-1">{formatPhoneNumber(user.phone)}</p>
             </div>
             <div>
+              <div className="flex gap-3">
+                <p className="fs-500 text-[#5F5F5F]">Date of Birth</p>
+                <div
+                  className="flex gap-x-2 items-center px-2 rounded-[14px] text-gray-400 cursor-pointer"
+                  onClick={() => ShowDOB(true)}
+                >
+                  <AiOutlineEdit />
+                </div>
+              </div>
+              <p className="fw-500 mt-1">{user.dob}</p>
+            </div>
+            <div>
               <p className="fs-500 text-[#5F5F5F]">Nickname</p>
               <p className="fw-500 mt-1">{user.nickname}</p>
             </div>
@@ -298,6 +311,9 @@ const UserAccount = () => {
       <PhoneInfo title="Update Email Address" size="xl">
         <PhoneUpdate close={() => handleNextNavigate()} />
       </PhoneInfo>
+      <DoB title="Update Date of Birth" size="xl">
+        <DobUpdate close={() => handleNextNavigate()} />
+      </DoB>
       <EmailInfo title="Update Email Address" size="xl">
         <EmailUpdate close={() => handleNextNavigate()} />
       </EmailInfo>

@@ -64,6 +64,7 @@ const TextInput: React.FC<Props> = ({
   label,
   subLabel,
   alert,
+  position='left',
   error,
   required = false,
   className = 'w-full border-0  outline-none py-2 px-2 rounded',
@@ -197,7 +198,7 @@ const TextInput: React.FC<Props> = ({
             <div className="flex items-center gap-2 mt-1 text-sm text-[#9847FE]">
               <span>{subLabel}</span>
               {alert && (
-                <Tooltip text={alert} position="left">
+                <Tooltip text={alert} position={position}>
                   <FaCircleInfo className="text-xl shrink-0 cursor-pointer text-[#fc819f]" />
                 </Tooltip>
               )}
