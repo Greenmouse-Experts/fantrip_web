@@ -44,6 +44,9 @@ const LoginForm = () => {
           position: "top",
         });
         sessionStorage.setItem("fantrip_token", data.accessToken);
+        const cachedURL = localStorage.getItem('cachedURL');
+        const URL = cachedURL ? JSON.parse(cachedURL) : null;
+
         saveUser({
           name: `${data.data.firstName} ${data.data.lastName}`,
           email: data.data.email,
@@ -73,10 +76,22 @@ const LoginForm = () => {
         });
         saveAccount(data.data.bankAccounts);
         if (data.data.role === "host") {
-          navigate("/host");
+          if (URL) {
+            navigate(URL);
+            localStorage.removeItem('cachedURL')
+          }
+          else {
+            navigate("/host");
+          }
         }
         if (data.data.role === "guest") {
-          navigate("/user/profile");
+          if (URL) {
+            navigate(URL);
+            localStorage.removeItem('cachedURL');
+          }
+          else {
+            navigate("/user/profile");
+          }
         }
       },
       onError: (error: any) => {
