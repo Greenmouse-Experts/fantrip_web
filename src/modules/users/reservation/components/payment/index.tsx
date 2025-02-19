@@ -1,8 +1,7 @@
-import { ComponentModal } from "@/components/modal-component";
 import { formatNumber } from "@/lib/utils/formatHelp";
-import { FC, useState } from "react";
-import PaymentModal from "./payment-modal";
+import { FC } from "react";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   price?: number;
@@ -11,8 +10,9 @@ interface Props {
   checkin: string;
 }
 const PaymentButton: FC<Props> = ({ price, currency, id, checkin }) => {
-  const [openModal, setOpenModal] = useState(false);
   const isAfter = dayjs().isAfter(dayjs(checkin));
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className={`${price? 'absolute w-full bottom-5' : 'w-full mt-2 lg:mt-0'}`}>
@@ -23,19 +23,12 @@ const PaymentButton: FC<Props> = ({ price, currency, id, checkin }) => {
         ) : (
           <button
             className={`${price? 'btn-int w-full text-center py-3 !fw-600 text-lg' : 'btn-int w-[120px] fs-400 text-center py-2 !fw-600'}`}
-            onClick={() => setOpenModal(true)}
+            onClick={() => navigate(`payment/${id}`)}
           >
             PAY {price && `${currency}${formatNumber(price)}`} NOW
           </button>
         )}
       </div>
-      <ComponentModal
-        title="Reservation Payment"
-        shouldShow={openModal}
-        onClose={() => setOpenModal(false)}
-      >
-        <PaymentModal id={id} />
-      </ComponentModal>
     </div>
   );
 };

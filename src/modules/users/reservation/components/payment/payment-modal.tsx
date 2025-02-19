@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./payment-element";
@@ -7,7 +7,6 @@ import { guestInitatePayment } from "@/services/api/booking-api";
 import { useToast } from "@chakra-ui/react";
 import PaymentFieldShimmer from "@/components/shimmers/payment-fields";
 import { STRIPE_KEY } from "@/services/constant";
-import BillingAddress from "./billing-address";
 
 const stripePromise = loadStripe(`${STRIPE_KEY}`);
 interface Props {
@@ -52,21 +51,17 @@ const PaymentModal: FC<Props> = ({ id }) => {
   const options = {
     clientSecret: `${data?.data?.clientSecret}`,
   };
-  const [activeTab, setActiveTab] = useState(1);
   return (
     <div className="py-6 px-2">
       {isPending && !data && <PaymentFieldShimmer />}
       {!isPending && data && (
         <>
-          {activeTab === 1 && <BillingAddress next={() => setActiveTab(2)} />}
-          {activeTab === 2 && (
             <Elements stripe={stripePromise} options={options}>
               <CheckoutForm
                 id={id}
                 secret_key={data.data?.clientSecret || ""}
               />
             </Elements>
-          )}
         </>
       )}
     </div>
