@@ -33,6 +33,9 @@ const GoogleButton: FC<Props> = ({}) => {
           position: "top",
         });
         sessionStorage.setItem("fantrip_token", res.accessToken);
+        const cachedURL = localStorage.getItem('cachedURL');
+        const URL = cachedURL ? JSON.parse(cachedURL) : null;
+
         saveUser({
           name: `${res.data.firstName} ${res.data.lastName}`,
           email: res.data.email,
@@ -62,10 +65,22 @@ const GoogleButton: FC<Props> = ({}) => {
         });
         saveAccount(res.data.bankAccounts);
         if (res.data.role === "host") {
-          navigate("/host");
+          if (URL) {
+            localStorage.removeItem('cachedURL')
+            navigate(URL);
+          }
+          else {
+            navigate("/host");
+          }
         }
         if (res.data.role === "guest") {
-          navigate("/user/profile");
+          if (URL) {
+            localStorage.removeItem('cachedURL');
+            navigate(URL);
+          }
+          else {
+            navigate("/user/profile");
+          }
         }
       })
       .catch((error) => {
@@ -76,7 +91,7 @@ const GoogleButton: FC<Props> = ({}) => {
           status: "error",
         });
         setIsBusy(false);
-      });
+      }); 
   };
 
   // const login = useGoogleLogin({
