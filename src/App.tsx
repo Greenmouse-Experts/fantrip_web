@@ -7,6 +7,7 @@ import { userRoutes } from "./routes/user-routes";
 import { hostRoutes } from "./routes/host-routes";
 import { GOOGLE_AUTH_KEY } from "./services/constant";
 import { register } from "./serviceWorker";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   ...landingRooutes,
@@ -17,11 +18,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    <HelmetProvider>
     <ChakraProvider>
       <GoogleOAuthProvider clientId={`${GOOGLE_AUTH_KEY}`}>
         <RouterProvider router={router} />
       </GoogleOAuthProvider>
     </ChakraProvider>
+    </HelmetProvider>
   );
 }
 

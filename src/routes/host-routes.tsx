@@ -1,3 +1,4 @@
+import SEO from "@/components/SEO";
 import UserDashboardLayout from "@/layout/host";
 import HostAccounts from "@/pages/host/accounts";
 import HostAmenityPage from "@/pages/host/amenities";
@@ -14,62 +15,67 @@ import HostSettings from "@/pages/host/settings";
 import HostTransactions from "@/pages/host/transactions";
 
 export const hostRoutes = [
-    {
-        path: '/host/',
-        element: <UserDashboardLayout />,
-        children: [
-          {
-            index: true,
-            element: <UserDashboard/>,
-          },
-          {
-            path: 'listings',
-            element: <HostListings/>,
-          },
-          {
-            path: 'listings/:id',
-            element: <HostEditListing/>,
-          },
-          {
-            path: 'bookings',
-            element: <HostBookings/>,
-          },
-          {
-            path: 'reservations',
-            element: <HostReservationPage/>,
-          },
-          {
-            path: 'accounts',
-            element: <HostAccounts />,
-          },
-          {
-            path: 'transact',
-            element: <HostTransactions/>,
-          },
-          {
-            path: 'inbox',
-            element: <HostInbox/>,
-          },
-          {
-            path: 'area-guide',
-            element: <HostRecommendations/>,
-          },
-          {
-            path: 'payments',
-            element: <HostPayments/>,
-          },
-          {
-            path: 'amenities',
-            element: <HostAmenityPage/>,
-          },
-          {
-            path: 'settings',
-            element: <HostSettings/>,
-          },
-          {
-            path: 'notifications',
-            element: <HostNotification/>,
-          },
-        ],
+  {
+    path: '/host/',
+    element: (
+      <>
+        <SEO title="Host" />
+        <UserDashboardLayout />
+      </>
+    ),
+    children: [
+      {
+        index: true,
+        element: <UserDashboard />,
       },
+      {
+        path: 'listings',
+        element: <HostListings />,
+      },
+      {
+        path: 'listings/:id',
+        element: <HostEditListing />,
+      },
+      {
+        path: 'bookings',
+        element: <HostBookings />,
+      },
+      {
+        path: 'reservations',
+        element: <HostReservationPage />,
+      },
+      {
+        path: 'accounts',
+        element: <HostAccounts />,
+      },
+      {
+        path: 'transact',
+        element: <HostTransactions />,
+      },
+      {
+        path: 'inbox',
+        element: <HostInbox />,
+      },
+      {
+        path: 'area-guide',
+        element: <HostRecommendations />,
+      },
+      {
+        path: 'payments',
+        element: <HostPayments />,
+      },
+      {
+        path: 'amenities',
+        element: <HostAmenityPage />,
+      },
+      {
+        path: 'settings',
+        element: <HostSettings />,
+      },
+      {
+        path: 'notifications',
+        element: <HostNotification />,
+      },
+    ],
+  },
 ]
