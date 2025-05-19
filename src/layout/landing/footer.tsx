@@ -98,7 +98,7 @@ const LandingFooter = () => {
         </div>
         <div className="py-12">
           <p className="text-center text-white fs-400">
-            © 2024 fantrip. All rights reserved.{" "}
+            © {new Date().getFullYear()} fantrip. All rights reserved.{" "}
           </p>
         </div>
       </div>
